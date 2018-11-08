@@ -7,9 +7,11 @@ char	*ft_strrchr(const char *s, int c)
 
 	i = 0;
 	z = "";
-	if (c < 1)
+	if (c == '\0')
 	{
-		return (z);
+		while (s[i])
+			i++;
+		return (char*)(&s[i]);
 	}
 	while (s[i])
 		i++;

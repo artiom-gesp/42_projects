@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 10:59:28 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/07 10:36:21 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 15:11:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ static	int	special_car(const char *str)
 	int i;
 
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v' || str[i] == '\r')
-		i++;
-	while (str[i] == '\f' || str[i] == '\n')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v' || str[i] == '\r'
+			|| str[i] == '\f' || str[i] == '\n')
 		i++;
 	return (i);
 }

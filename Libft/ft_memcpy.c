@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:41:48 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 10:41:50 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 16:16:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	int i;
-	char *savedst;
-	char *savesrc;
+	unsigned char *savedst;
+	unsigned char *savesrc;
 
 	i = 0;
-	savedst = (char*)dst;
-	savesrc = (char*)src;
+	savedst = (unsigned char*)dst;
+	savesrc = (unsigned char*)src;
+	if (savedst == savesrc)
+		return (dst);
 	while (i < n)
 	{
 		savedst[i] = savesrc[i];

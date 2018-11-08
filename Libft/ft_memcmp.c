@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 12:32:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 13:15:08 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 17:27:56 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,16 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	saves1 = (char*)s1;
 	saves2 = (char*)s2;
 
-	if (saves1[0] == '\0'  && saves2[0] == '\0')
-	{
-		if (n == 1 || n == 0)
-			return (0);
-		return (-1);
-	}
-	if (ft_strlen(s1) + 1 < n)
+	if (saves1[i] && !saves2[i])
 		return (1);
-	while (i < n)
+	if (!saves1[i] && saves2[i])
+		return (-1);
+	while (i < n && saves1[i] && saves2[i])
 	{
-		if ((unsigned char)saves1[i] == (unsigned char)saves2[i])
+		if (saves1[i] == saves2[i])
 			i++;
-		return ((unsigned char)saves1[i] - (unsigned char)saves2[i]);
+		else
+			return (saves1[i] - saves2[i]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:41:56 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 12:30:18 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 16:13:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,31 @@ int main(int ac, char **av)
 	printf("memcpy : %s\n", memcpy(cpy, av[1], atoi(av[2])));
 
 	//test memcpy
-	char str[] = "je suis une chaine de test coucou";
+	char str[] = "NULL";
 	ft_memcpy (str, av[1], atoi(av[2]));
-	char str1[] = "je suis une chaine de test coucou";
+	char str1[] = "NULL";
 	memcpy (str1, av[1], atoi(av[2]));
 	printf("ft_memcpy : %s\n",str);
 	printf("memcpy : %s\n", str1);
 
 	//test memccpy
-	char str5[] = "je suis une chaine de test coucou";
+/*	char str5[] = "je suis une chaine de test coucou";
 	ft_memccpy (str5 , av[1], av[2][0], atoi(av[3]));
 	char str6[] = "je suis une chaine de test coucou";
 	memccpy (str6, av[1], av[2][0], atoi(av[3]));
 	printf("ft_memccpy : %s\n",str5);
 	printf("memccpy : %s\n", str6);
+*/
+	char src[] = "test basic du memccpy !";
+//	char buff1[22];
+	char src2[] = "test basic du memccpy !";
+//	char buff2[22];
+	char *s = memccpy("", src, 'm', 0);
+	char *s2 = ft_memccpy("", src2, 'm', 0);
+	printf("ft_memccpy : %s\n",s2);
+	printf("memccpy : %s\n", s);
+
+
 
 	//test memcmove
 	char str3[] = "je suis une chaine de test coucou";

@@ -6,13 +6,13 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:56:56 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/07 09:59:06 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 13:37:33 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_ascii(int c)
+int	ft_isascii(int c)
 {
 	if (0 <= c && c <= 127)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:42:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 10:52:28 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 17:21:27 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	int i;
-	char *savedst;
-	char *savesrc;
-	char save[n];
+	int			i;
+	char		*savedst;
+	char		*savesrc;
 
 	i = 0;
 	savedst = (char*)dst;
 	savesrc = (char*)src;
+
+	if (savedst == savesrc)
+		return (dst);
 	while (i < n)
 	{
-		save[i] = savesrc[i];
+		if (savesrc[i] == savedst[i] && 
+				savesrc[ft_strlen(savesrc)] - savedst[0] > 0
+				&& (savesrc[0] - savedst[ft_strlen(savedst)]) > 0)
+		{
+			i = n;
+			while (--i >= 0)
+			{
+				savedst[i] = savesrc[i];
+			}
+			dst = savedst;
+			return (dst);
+		}
 		i++;
 	}
-	i = 0;
-	while (i < n)
-	{
-		savedst[i] = save[i];
-		i++;
-	}
-	dst = savedst;
-	return (dst);
+	return (ft_memcpy(dst, src, n));
 }
-
-

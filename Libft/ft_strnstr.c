@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:08:47 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/07 14:07:15 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/08 16:08:31 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	j = 0;
 	if (needle[0] == '\0')
-		return (char *)(haystack);
+		return (char*)(haystack);
 	if (haystack[0] == '\0')
 		return (0);
 	if (ft_strlen(haystack) == ft_strlen(needle))
