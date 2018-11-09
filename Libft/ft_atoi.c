@@ -6,11 +6,11 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 10:59:28 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 15:11:15 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:22:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static	int	print_atoi(int is_negative, int save)
+static int	print_atoi(int is_negative, int save)
 {
 	if (is_negative == 1)
 		return (save * -1);
@@ -18,7 +18,7 @@ static	int	print_atoi(int is_negative, int save)
 		return (save);
 }
 
-static	int	special_car(const char *str)
+static int	special_car(const char *str)
 {
 	int i;
 
@@ -29,7 +29,7 @@ static	int	special_car(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int i;
 	int save;

@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/11/08 12:27:25 by agesp            ###   ########.fr        #
+#    Updated: 2018/11/09 11:38:28 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ HEAD =  libft.h
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(SRC) $(HEAD)
+	gcc -c $(SRC) $(HEAD) -Wall -Werror -Wextra
 	ar -rc $(NAME) $(OBJ)
 
 clean:

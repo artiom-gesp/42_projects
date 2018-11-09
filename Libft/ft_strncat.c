@@ -6,16 +6,16 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 14:36:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/07 12:28:58 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:42:37 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char		*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	int i;
-	int j;
+	int		i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

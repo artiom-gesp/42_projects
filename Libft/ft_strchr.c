@@ -6,16 +6,16 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:42:31 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 16:05:50 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:31:26 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
-	int i;
-	char *z;
+	int		i;
+	char	*z;
 
 	i = 0;
 	z = "";

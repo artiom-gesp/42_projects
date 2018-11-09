@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 09:44:39 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 17:30:08 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:33:17 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char		*ft_strdup(const char *s1)
 	i = 0;
 	while (s1[i] != '\0')
 		i++;
-	if(!(dest = malloc(sizeof(char) * i)))
-			return (NULL);
+	if (!(dest = malloc(sizeof(char) * (i + 1))))
+		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
 	{

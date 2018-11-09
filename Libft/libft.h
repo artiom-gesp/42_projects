@@ -6,16 +6,16 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 12:28:02 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:36:04 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_toupper(int c);

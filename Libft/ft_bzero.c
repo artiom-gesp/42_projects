@@ -6,16 +6,16 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:38:29 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/08 13:31:57 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:41:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void		ft_bzero(void *s, size_t n)
 {
-	int i;
-	char *save;
+	size_t	i;
+	char	*save;
 
 	i = 0;
 	save = s;

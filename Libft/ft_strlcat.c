@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 14:39:28 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/07 15:45:55 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/09 11:33:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 size_t		ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
 	size_t	a;
-	size_t b;
+	size_t	b;
 
 	i = 0;
 	a = ft_strlen(dst);
