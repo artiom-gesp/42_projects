@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/11/09 11:38:28 by agesp            ###   ########.fr        #
+#    Updated: 2018/11/09 15:36:35 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,20 @@ SRC = ft_isalpha.c \
 	ft_memccpy.c \
 	ft_memchr.c \
 	ft_memcmp.c \
+	ft_memalloc.c \
+	ft_memdel.c \
+	ft_strnew.c \
+	ft_strdel.c \
+	ft_strclr.c \
+	ft_striter.c \
+	ft_striteri.c \
+	ft_strmap.c \
+	ft_strmapi.c \
+	ft_strequ.c \
+	ft_strnequ.c \
+	ft_strsub.c \
+	ft_strjoin.c \
+	ft_strtrim.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -69,6 +83,20 @@ OBJ = ft_isalpha.o \
 	ft_memccpy.o \
 	ft_memchr.o \
 	ft_memcmp.o \
+	ft_memalloc.o \
+	ft_memdel.o \
+	ft_strnew.o \
+	ft_strdel.o \
+	ft_strclr.o \
+	ft_striter.o \
+	ft_striteri.o \
+	ft_strmap.o \
+	ft_strmapi.o \
+	ft_strequ.o \
+	ft_strnequ.o \
+	ft_strsub.o \
+	ft_strjoin.o \
+	ft_strtrim.o \
 
 HEAD =  libft.h
 all: $(NAME)
