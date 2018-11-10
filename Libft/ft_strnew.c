@@ -17,10 +17,10 @@ char			*ft_strnew(size_t size)
 	size_t	i;
 	char	*save;
 
-	if (!(save = ft_memalloc(size)))
+	if (!(save = (char*)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	i = 0;
-	while (i < size)
+	while (i <= size)
 	{
 		save[i] = 0;
 		i++;

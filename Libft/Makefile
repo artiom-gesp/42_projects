@@ -55,11 +55,19 @@ SRC = ft_isalpha.c \
 	ft_strjoin.c \
 	ft_strtrim.c \
 	ft_strsplit.c \
+	ft_putstr.c \
+	ft_putchar.c \
+	ft_putendl.c \
+	ft_putstr_fd.c \
+	ft_putchar_fd.c \
+	ft_putendl_fd.c \
+	ft_putnbr.c \
+	ft_putnbr_fd.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
 	ft_strchr.o \
-	ft_strlcat.o\
+	ft_strlcat.o \
 	ft_strncpy.o \
 	ft_tolower.o \
 	ft_atoi.o \
@@ -99,6 +107,14 @@ OBJ = ft_isalpha.o \
 	ft_strjoin.o \
 	ft_strtrim.o \
 	ft_strsplit.o \
+	ft_putstr.o  \
+	ft_putchar.o \
+	ft_putendl.o \
+	ft_putstr_fd.o \
+	ft_putchar_fd.o \
+	ft_putendl_fd.o \
+	ft_putnbr.o \
+	ft_putnbr_fd.o \
 
 HEAD =  libft.h
 all: $(NAME)
