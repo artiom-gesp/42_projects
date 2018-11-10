@@ -12,24 +12,24 @@
 
 #include "libft.h"
 
-static int	readstart(char const *s, char c)
+static int	readstart(char const *s, char c, int startorend)
 {
 	int		i;
 
-	i = 0;
-	while (s[i] == c)
-		i++;
-	return (i);
-}
-
-static int	readend(char const *s, char c)
-{
-	int		i;
-
-	i = ft_strlen(s) - 1;
-	while (s[i] == c)
-		i--;
-	return (i);
+	if (startorend == 1)
+	{
+		i = 0;
+		while (s[i] == c)
+			i++;
+		return (i);
+	}
+	else
+	{
+		i = ft_strlen(s) - 1;
+		while (s[i] == c)
+			i--;
+		return (i);
+	}
 }
 
 static char	*ft_strtrimop(char const *s, char c, int start, int end)
@@ -38,10 +38,10 @@ static char	*ft_strtrimop(char const *s, char c, int start, int end)
 	char *save;
 
 	i = 0;
-	if (readstart(s, c) == readend(s, c) && s[0] != '\0')
+	if (readstart(s, c, 1) == readstart(s, c, 2) && s[0] != '\0')
 	{
 		save = malloc(sizeof(char) * 2);
-		save[0] = s[readstart(s, c)];
+		save[0] = s[readstart(s, c, 1)];
 		save[1] = '\0';
 		return (save);
 	}
@@ -65,64 +65,87 @@ static int		countword(char *s, char c)
 
 	i = 0;
 	nbmots = 0;
-	while (s[i])
+	if(s[i] != '\0')
 	{
-		if (s[i] != c && s[i])
+		while (s[i])
 		{
-			while (s[i] != (char)c && s[i])
-				i++;
-			nbmots++;
+			if (s[i] == c && s[i])
+			{
+				while (s[i] == (char)c && s[i])
+					i++;
+				nbmots++;
+			}
+			i++;
 		}
-		i++;
+		return (nbmots + 1);
 	}
-	return (nbmots);
+	return (0);
+}
+
+char	**do_split(char const *s, char c, char **myreturn, int countmots)
+{
+	int		i;
+	int		j;
+	int		k;
+	
+	i = 0;
+	j = -1;
+	k = -1;
+	while (s[++j] && i < countmots)
+	{
+		while (s[j] != c)
+			myreturn[i][++k] = s[j++];
+		myreturn[i][k + 1] = '\0';
+		k = -1;
+		if (s[j] == c)
+		{
+			while (s[j] == c)
+				j++;
+			j--;
+			i++;
+		}
+	}
+	myreturn[i][0] = '\0';;
+	return (myreturn);
 }
 
 char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
-	int		j;
 	int		countmots;
 	char	**myreturn;
 
 	if (s)
 	{
 		i = -1;
-		j = -1;
-		countmots = countword(ft_strtrimop(s, c, readstart(s, c), readend(s, c)), c);
-		if (!(myreturn = (char**)malloc(sizeof(char*) * countmots)))
+		countmots = countword(ft_strtrimop(s, c, readstart(s, c, 1), 
+		readstart(s, c, 2)), c);
+		if (!(myreturn = (char**)malloc(sizeof(char*) * (countmots + 1))))
 			return (NULL);
-		while (++i < countmots)
-			myreturn[i] = (char*)malloc(sizeof(char) * 100);
+		while (++i <= countmots)
+			myreturn[i] = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
 		i = 0;
-		while (s[++j])
-		{
-			while (s[++j] != c && s[j])
-				myreturn[i][j] = s[j];
-			if (s[j] == c)
-			{
-				while (s[j++] == c)
-					j++;
-				i++;
-			}
-		}
+
+		while (s[i] == c)
+			i++;
+		myreturn = do_split(&s[i], c, myreturn, countmots);
 	}
 	return (myreturn);
 }
-
+/*
 int	main(int ac, char **av)
 {
 	int i = 0;
+	int save =  countword(ft_strtrimop(av[1], av[2][0], readstart(av[1], av[2][0], 1), readstart(av[1], av[2][0], 2)), av[2][0]);
+ 
 	char  **tab = ft_strsplit(av[1], av[2][0]);
-	printf("%s\n", ft_strtrimop(av[1], av[2][0], readstart(av[1], av[2][0]), readend(av[1], av[2][0])));
-	printf("%d\n", countword(ft_strtrimop(av[1], av[2][0], readstart(av[1], av[2][0]), readend(av[1], av[2][0])), av[2][0]));
-/*	while (i < 2)
+	printf("%d\n", save);
+	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
 		i++;
-	}*/
-	printf("%s\n", tab[1]);
+	}
 }
 
-
+*/
 

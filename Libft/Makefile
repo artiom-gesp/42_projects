@@ -54,6 +54,7 @@ SRC = ft_isalpha.c \
 	ft_strsub.c \
 	ft_strjoin.c \
 	ft_strtrim.c \
+	ft_strsplit.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -97,6 +98,7 @@ OBJ = ft_isalpha.o \
 	ft_strsub.o \
 	ft_strjoin.o \
 	ft_strtrim.o \
+	ft_strsplit.o \
 
 HEAD =  libft.h
 all: $(NAME)
