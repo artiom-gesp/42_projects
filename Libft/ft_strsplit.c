@@ -87,7 +87,7 @@ char	**do_split(char const *s, char c, char **myreturn, int countmots)
 	int		i;
 	int		j;
 	int		k;
-	
+
 	i = 0;
 	j = -1;
 	k = -1;
@@ -105,7 +105,7 @@ char	**do_split(char const *s, char c, char **myreturn, int countmots)
 			i++;
 		}
 	}
-	myreturn[i][0] = '\0';;
+	myreturn[i] = NULL;
 	return (myreturn);
 }
 
@@ -119,33 +119,18 @@ char		**ft_strsplit(char const *s, char c)
 	{
 		i = -1;
 		countmots = countword(ft_strtrimop(s, c, readstart(s, c, 1), 
-		readstart(s, c, 2)), c);
+					readstart(s, c, 2)), c);
 		if (!(myreturn = (char**)malloc(sizeof(char*) * (countmots + 1))))
 			return (NULL);
-		while (++i <= countmots)
-			myreturn[i] = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
+		while (++i < countmots)
+			if (!(myreturn[i] = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+				return (NULL);
 		i = 0;
 
 		while (s[i] == c)
 			i++;
 		myreturn = do_split(&s[i], c, myreturn, countmots);
+		return(myreturn);
 	}
-	return (myreturn);
+	return (NULL);
 }
-/*
-int	main(int ac, char **av)
-{
-	int i = 0;
-	int save =  countword(ft_strtrimop(av[1], av[2][0], readstart(av[1], av[2][0], 1), readstart(av[1], av[2][0], 2)), av[2][0]);
- 
-	char  **tab = ft_strsplit(av[1], av[2][0]);
-	printf("%d\n", save);
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
-}
-
-*/
-
