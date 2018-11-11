@@ -64,6 +64,12 @@ SRC = ft_isalpha.c \
 	ft_putnbr.c \
 	ft_putnbr_fd.c \
 	ft_itoa.c \
+	ft_lstnew.c \
+	ft_lstdelone.c \
+	ft_lstdel.c \
+	ft_lstadd.c \
+	ft_lstiter.c \
+	ft_lstmap.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -117,6 +123,12 @@ OBJ = ft_isalpha.o \
 	ft_putnbr.o \
 	ft_putnbr_fd.o \
 	ft_itoa.o \
+	ft_lstnew.o \
+	ft_lstdelone.o \
+	ft_lstdel.o \
+	ft_lstadd.o \
+	ft_lstiter.o \
+	ft_lstmap.o \
 
 HEAD =  libft.h
 all: $(NAME)
