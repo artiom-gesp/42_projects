@@ -63,6 +63,7 @@ SRC = ft_isalpha.c \
 	ft_putendl_fd.c \
 	ft_putnbr.c \
 	ft_putnbr_fd.c \
+	ft_itoa.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -115,6 +116,7 @@ OBJ = ft_isalpha.o \
 	ft_putendl_fd.o \
 	ft_putnbr.o \
 	ft_putnbr_fd.o \
+	ft_itoa.o \
 
 HEAD =  libft.h
 all: $(NAME)

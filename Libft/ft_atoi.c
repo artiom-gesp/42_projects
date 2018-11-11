@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 static int	print_atoi(int is_negative, int save)
 {
 	if (is_negative == 1)
