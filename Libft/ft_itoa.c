@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/12 09:40:10 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/12 09:41:32 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void	is_neg_itoa(int *n, int *negative)
+static void	is_neg_itoa(int *n, int *negative)
 {
 	if (*n < 0)
 	{
@@ -9,7 +21,7 @@ void	is_neg_itoa(int *n, int *negative)
 	}
 }
 
-char*	get_int_min()
+static char	*get_int_min(void)
 {
 	int		i;
 	char	*int_min;
@@ -27,7 +39,7 @@ char*	get_int_min()
 	return (my_return);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	int		save;
 	int		i;

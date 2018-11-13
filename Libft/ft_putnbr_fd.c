@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/12 09:39:10 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/12 09:39:41 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int		ft_pow_10(int i)
+static int	ft_pow_10(int i)
 {
-	int p_10;
+	int		p_10;
 
 	p_10 = 10;
 	while (i > 1)
@@ -16,13 +28,13 @@ static int		ft_pow_10(int i)
 
 static void	do_putnbr(int n, int fd)
 {
-	int i;
-	int save;
-	int p_10;
+	int		i;
+	int		save;
+	int		p_10;
 
 	save = n;
 	i = 0;
-		while (save)
+	while (save)
 	{
 		save /= 10;
 		i++;
@@ -36,9 +48,10 @@ static void	do_putnbr(int n, int fd)
 		i--;
 	}
 }
-void	ft_putnbr_fd(int n, int fd)
+
+void		ft_putnbr_fd(int n, int fd)
 {
-	long save;
+	long	save;
 
 	save = n;
 	if (save == -2147483647)

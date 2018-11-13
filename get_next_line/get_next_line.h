@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 09:19:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:19:42 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/13 17:25:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 100000
 
-void	ft_lstadd(t_list **alst, t_list *new)
-{
-	if (new && alst)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
-}
+#include <fcntl.h>
+#include "../Libft/libft.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int	get_next_line(int fd, char **line);
+
+#endif

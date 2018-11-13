@@ -6,20 +6,20 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:13 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 18:16:54 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/12 09:24:13 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		countword(const char *s, char c)
+static int	countword(const char *s, char c)
 {
-	int i;
-	int nbmots;
+	int		i;
+	int		nbmots;
 
 	i = 0;
 	nbmots = 0;
-	if(s[i] != '\0')
+	if (s[i] != '\0')
 	{
 		while (s[i])
 		{
@@ -76,14 +76,14 @@ char		**ft_strsplit(char const *s, char c)
 		if (!(myreturn = (char**)malloc(sizeof(*myreturn) * (countmots + 1))))
 			return (NULL);
 		while (++i < countmots)
-			if (!(myreturn[i] = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+			if (!(myreturn[i] = (char*)malloc(sizeof(char)
+							* (ft_strlen(s) + 1))))
 				return (NULL);
 		i = 0;
-
 		while (s[i] == c)
 			i++;
 		myreturn = do_split(&s[i], c, myreturn, countmots);
-		return(myreturn);
+		return (myreturn);
 	}
 	return (NULL);
 }

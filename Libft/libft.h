@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 15:36:59 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/12 09:59:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ char	*ft_itoa(int n);
 
 typedef struct s_list
 {
-void *content;
-size_t content_size;
-struct s_list *next;
-} t_list;
+	void *content;
+	size_t content_size;
+	struct s_list *next;
+}t_list;
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t));

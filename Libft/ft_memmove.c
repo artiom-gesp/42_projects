@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:42:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 11:41:02 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/12 10:17:55 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 		return (dst);
 	while ((size_t)i < n)
 	{
-		if (savesrc[i] == savedst[i] &&
-				savesrc[ft_strlen(savesrc)] - savedst[0] > 0
-				&& (savesrc[0] - savedst[ft_strlen(savedst)]) > 0)
+		if (&savesrc[i] == &savedst[i] &&
+				&savesrc[ft_strlen(savesrc)] - &savedst[0] > 0
+				&& (&savesrc[0] - &savedst[ft_strlen(savedst)]) > 0)
 		{
 			i = n;
 			while (--i >= 0)
