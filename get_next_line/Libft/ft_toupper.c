@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/14 16:53:00 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/06 17:49:25 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:35:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
+#include "libft.h"
 
-#include <fcntl.h>
-#include "Libft/libft.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-
-int	get_next_line(int fd, char **line);
-
-#endif
+int	ft_toupper(int c)
+{
+	if (97 <= c && c <= 122)
+		return (c - 32);
+	else
+		return (c);
+}
