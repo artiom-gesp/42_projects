@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 11:46:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/14 17:45:39 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/15 13:03:55 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*check_for_endline(char *buff, char **line, int *j, int *k)
 	//char *save;
 	char	*my_return;
 	int flag = 0;
-	my_return = ft_strdup(buff);
+	if (!(my_return = ft_strdup(buff)))
+		return (NULL);
 	while (buff[i] && !flag)
 	{
 		if (buff[i] == '\n')
@@ -33,11 +34,13 @@ char	*check_for_endline(char *buff, char **line, int *j, int *k)
 	}
 	*k = i;
 	if (flag == 0)
+	{
 		my_return = ft_strcpy(my_return, buff);
-	ft_strcat(*line, my_return);
+		ft_strcat(*line, my_return);
+	}
 	return (&my_return[i]);
 }
-:
+
 char	*read_once(const int fd)
 {
 	int ret;
@@ -56,28 +59,39 @@ char	*read_once(const int fd)
 	return (buff);
 }
 
-int	get_next_line(const int fd, char **line)
+char	*extract_line(char *save, char *save_rest)
 {
 	int i;
-	int k;
+
+	i = 0;
+	if (save_rest)
+	{
+		save = ft_memccpy(save, save_rest, '\n', BUFF_SIZE);
+	}
+	return (save);
+}
+
+int	get_next_line(const int fd, char **line)
+{
+	int j;
+	static int k = 0;
 	static char *save;
 	char *save_rest;
 	char fake_buff[1];
 
-	i = 0;
-	k = 0;
+	j = 0;
 	ft_memset(*line, '\0', sizeof(*line));
-	while (i == 0)
+	printf("%s\n", *line);
+	while (j == 0)
 	{
+		if (!(save_rest = check_for_endline(read_once(fd), line, &j, &k)))
+			return (0);
 		if (save)
 			ft_strcat(save, save_rest);
 		else
 			save = ft_strdup(*line);
-		save = *line;
-		save_rest = check_for_endline(read_once(fd), line, &i, &k);
+//		save = extract_line(save, save_rest);
 	}
-
-	*line = save;
 	printf("%s\n", *line);
 	if (!(read(fd, fake_buff, 0)))
 		return (0);
