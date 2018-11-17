@@ -91,19 +91,25 @@ int		get_next_line(int const fd, char **line)
 	char buff[BUFF_SIZE + 1];
 	static char *save_my_buff;
 	ret = 1;
-	while (ret > 0)
+	if (!line || fd < 0)
+		return (-1);
+	while (ret >= 0)
 	{
 			if (save_my_buff)
 			{
-				if (ft_strchr(save_my_buff, '\n'))
+				if (ft_strchr(save_my_buff, '\n') || ret == 0)
 				{
 					*line = ft_strccpy(save_my_buff, save_my_buff, '\n');
 					save_my_buff = remove_start(save_my_buff);
+					if (ret == 0 && !(ft_strchr(save_my_buff, '\n')))
+						return (0);;
 					return (1);
 				}
 				else
 				{
 					ret = read(fd, buff, BUFF_SIZE);
+					if (ret == -1)
+						return (-1);
 					buff[ret] = '\0';
 					ft_strccat(save_my_buff, buff, '\0');
 				}
@@ -115,12 +121,12 @@ int		get_next_line(int const fd, char **line)
 	}
 	return (0);
 }
-
+/*
 int	main(int ac, char **av)
-{/*
+{
+
 	char *str;
 
-//	str = ft_memalloc(1111111);
 	if (ac > 2)
 	{
 		int i = -1;
@@ -131,31 +137,5 @@ int	main(int ac, char **av)
 			printf("%s\n", str);
 		}
 	}
-*/
-	char		*line;
-	int			fd;
-	int			ret;
-	int			count_lines;
-	int			errors;
-
-	fd = open("test", O_RDONLY);
-	count_lines = 0;
-	errors = 0;
-	line = NULL;
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		if (count_lines == 0 && strcmp(line, "1234567") != 0)
-			errors++;
-		if (count_lines == 1 && strcmp(line, "abcdefg") != 0)
-			errors++;
-		if (count_lines == 2 && strcmp(line, "4567890") != 0)
-			errors++;
-		if (count_lines == 3 && strcmp(line, "defghij") != 0)
-			errors++;
-		count_lines++;
-		if (count_lines > 50)
-			break ;
-//		printf("%d\n", errors);
-	}
-	printf("%d\n", count_lines);
-}
+	
+}*/
