@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 14:43:42 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 10:43:03 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/19 12:14:17 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int			ft_strnequ(char const *s1, char const *s2, size_t n)
 	i = 0;
 	if (!s1 && !s2)
 		return (1);
-
 	if (s1 && s2)
 	{
 		if (n > ft_strlen(s1) && n > ft_strlen(s2))
