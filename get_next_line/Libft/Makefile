@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/11/09 15:36:35 by agesp            ###   ########.fr        #
+#    Updated: 2018/11/20 14:34:03 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC = ft_isalpha.c \
 	ft_lstadd.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
+	ft_strccpy.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -129,6 +130,7 @@ OBJ = ft_isalpha.o \
 	ft_lstadd.o \
 	ft_lstiter.o \
 	ft_lstmap.o \
+	ft_strccpy.o \
 
 HEAD =  libft.h
 all: $(NAME)

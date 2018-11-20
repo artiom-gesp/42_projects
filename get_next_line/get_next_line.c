@@ -6,107 +6,102 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 14:11:04 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/20 13:59:18 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/20 17:22:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int		ft_strccat(char *dst, const char *src, int c)
+char	*remove_start(char *s)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
-	while (dst[i] != '\0')
+	while (s[i] && s[i] != '\n')
 		i++;
-	while (src[j] != '\0')
-	{
-		dst[i + j] = src[j];
-		if (src[j] == c)
-		{
-			dst[i + j] = '\0';
-			return (1);
-		}
-		j++;
-	}
-	dst[i + j] = '\0';
-	return (0);
+	return (char*)&s[i + 1];
 }
 
-char	*remove_start_or_ccpy(char *dst, const char *src, int c, char *s)
+int		make_or_read(char **line, int *ret, my_list *list, char *buff, int c)
 {
-	int i;
+	char *save;
 
-	i = 0;
+	save = NULL;
 	if (c == 1)
 	{
-		while (s[i] && s[i] != '\n')
-			i++;
-		return (char*)&s[i + 1];
+		*line = ft_strccpy(list->save_my_buff, list->save_my_buff, '\n');
+		if (*ret != 0)
+			list->save_my_buff = remove_start(list->save_my_buff);
+		if (ft_strcmp(list->save_my_buff, "") == 0 && *ret == 0)
+			return (0);
+		if (*ret == 0 && !(ft_strchr(list->save_my_buff, '\n')))
+			list->flag = 1;
+		return (1);
 	}
-	while (src[i])
+	else
 	{
-		if (src[i] == '\n')
-		{
-			dst[i] = '\0';
-			return (dst);
-		}
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-int		make_line(char **line, int ret, my_list *list)
-{
-	*line = remove_start_or_ccpy(list->save_my_buff, list->save_my_buff, 0, "");
-	if (ret != 0)
-		list->save_my_buff = remove_start_or_ccpy("", "", 1, list->save_my_buff);
-	if (ft_strcmp(list->save_my_buff, "") == 0 && ret == 0)
+		*ret = read(list->fd, buff, BUFF_SIZE);
+		if (*ret == -1)
+			return (-1);
+		buff[*ret] = '\0';
+		save = ft_strdup(list->save_my_buff);
+	//	ft_memdel((void**)list->save_my_buff);
+		list->save_my_buff = ft_memalloc(ft_strlen(save) + ft_strlen(buff));
+		ft_strcat(list->save_my_buff, save);
+		ft_strcat(list->save_my_buff, buff);
 		return (0);
-	if (ret == 0 && !(ft_strchr(list->save_my_buff, '\n')))
-		list->flag = 1;
-	return (1);
+	}
 }
 
-int		read_line(int *ret, int fd, my_list *list, char *buff)
+my_list	*multi_fd(int fd, my_list *list)
 {
-	*ret = read(fd, buff, BUFF_SIZE);
-	if (*ret == -1)
-		return (-1);
-	buff[*ret] = '\0';
-	ft_strccat(list->save_my_buff, buff, '\0');
-	return (0);
+	while (list->prev)
+		list = list->prev;
+	while (list->next)
+	{
+		if (list->fd == (int)fd)
+			return (list);
+		list = list->next;
+	}
+	if (!list->next)
+	{
+		list->next = malloc(sizeof(my_list));
+		list->next->prev = list;
+		list->fd = (int)fd;
+	}
+	return (list);
 }
+
+
 
 int		get_next_line(int const fd, char **line)
 {
-	int ret;
-	char		buff[BUFF_SIZE + 1];
-	static my_list list;
-	list.flag = 0;
+	int				ret;
+	char			buff[BUFF_SIZE + 1];
+	static my_list	list;
 
+	list = *multi_fd(fd, &list);
+	if (!list.flag)
+		list.flag = 0;
+	list.fd = (int)fd;
 	ret = 1;
-	if (!line || fd < 0)
+	if (!line || list.fd < 0)
 		return (-1);
 	while (ret >= 0 && !list.flag)
 	{
 		if (list.save_my_buff)
 		{
 			if (ft_strchr(list.save_my_buff, '\n') || ret == 0)
-				return (make_line(line,  ret, &list));
+				return (make_or_read(line, &ret, &list, buff, 1));
 			else
 			{
-				if (read_line(&ret, fd, &list, buff))
-					return (0);
+				if (make_or_read(line, &ret, &list, buff, 0) == -1)
+					return (-1);
 			}
 		}
 		else
-			list.save_my_buff = ft_memalloc(sizeof(buff));
+			list.save_my_buff = ft_memalloc(1);
 	}
 	return (0);
 }
@@ -114,7 +109,11 @@ int		get_next_line(int const fd, char **line)
 int		main(int ac, char **av)
 {
 	char *str;
+	int i;
 	int fd = open(av[1], O_RDONLY);
-	while (get_next_line(fd, &str))
+	int fd2
+	while ((i = get_next_line(fd, &str)))
+	{
 		printf("%s\n", str);
+	}
 }*/
