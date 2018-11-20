@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 14:11:04 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/19 12:13:38 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/20 13:59:18 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,52 +61,60 @@ char	*remove_start_or_ccpy(char *dst, const char *src, int c, char *s)
 	return (dst);
 }
 
-int		make_line(char **line, char **save_my_buff, int ret, int *flag)
+int		make_line(char **line, int ret, my_list *list)
 {
-	*line = remove_start_or_ccpy(*save_my_buff, *save_my_buff, 0, "");
+	*line = remove_start_or_ccpy(list->save_my_buff, list->save_my_buff, 0, "");
 	if (ret != 0)
-		*save_my_buff = remove_start_or_ccpy("", "", 1, *save_my_buff);
-	if (ft_strcmp(*save_my_buff, "") == 0 && ret == 0)
+		list->save_my_buff = remove_start_or_ccpy("", "", 1, list->save_my_buff);
+	if (ft_strcmp(list->save_my_buff, "") == 0 && ret == 0)
 		return (0);
-	if (ret == 0 && !(ft_strchr(*save_my_buff, '\n')))
-		*flag = 1;
+	if (ret == 0 && !(ft_strchr(list->save_my_buff, '\n')))
+		list->flag = 1;
 	return (1);
 }
 
-int		read_line(int *ret, int fd, char **save_my_buff, char *buff)
+int		read_line(int *ret, int fd, my_list *list, char *buff)
 {
 	*ret = read(fd, buff, BUFF_SIZE);
 	if (*ret == -1)
 		return (-1);
 	buff[*ret] = '\0';
-	ft_strccat(*save_my_buff, buff, '\0');
+	ft_strccat(list->save_my_buff, buff, '\0');
 	return (0);
 }
 
 int		get_next_line(int const fd, char **line)
 {
-	int			ret;
+	int ret;
 	char		buff[BUFF_SIZE + 1];
-	static char	*save_my_buff;
-	static int	flag = 0;
+	static my_list list;
+	list.flag = 0;
 
 	ret = 1;
 	if (!line || fd < 0)
 		return (-1);
-	while (ret >= 0 && !flag)
+	while (ret >= 0 && !list.flag)
 	{
-		if (save_my_buff)
+		if (list.save_my_buff)
 		{
-			if (ft_strchr(save_my_buff, '\n') || ret == 0)
-				return (make_line(line, &save_my_buff, ret, &flag));
+			if (ft_strchr(list.save_my_buff, '\n') || ret == 0)
+				return (make_line(line,  ret, &list));
 			else
 			{
-				if (read_line(&ret, fd, &save_my_buff, buff))
-					return (-1);
+				if (read_line(&ret, fd, &list, buff))
+					return (0);
 			}
 		}
 		else
-			save_my_buff = ft_memalloc(sizeof(buff));
+			list.save_my_buff = ft_memalloc(sizeof(buff));
 	}
 	return (0);
 }
+/*
+int		main(int ac, char **av)
+{
+	char *str;
+	int fd = open(av[1], O_RDONLY);
+	while (get_next_line(fd, &str))
+		printf("%s\n", str);
+}*/
