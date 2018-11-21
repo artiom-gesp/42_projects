@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 14:11:04 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/20 17:22:49 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/21 11:34:51 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*remove_start(char *s)
 	return (char*)&s[i + 1];
 }
 
-int		make_or_read(char **line, int *ret, my_list *list, char *buff, int c)
+int		make_or_read(char **line, int *ret, t_mylist *list, int c)
 {
 	char *save;
 
@@ -39,22 +39,18 @@ int		make_or_read(char **line, int *ret, my_list *list, char *buff, int c)
 			list->flag = 1;
 		return (1);
 	}
-	else
-	{
-		*ret = read(list->fd, buff, BUFF_SIZE);
-		if (*ret == -1)
-			return (-1);
-		buff[*ret] = '\0';
-		save = ft_strdup(list->save_my_buff);
-	//	ft_memdel((void**)list->save_my_buff);
-		list->save_my_buff = ft_memalloc(ft_strlen(save) + ft_strlen(buff));
-		ft_strcat(list->save_my_buff, save);
-		ft_strcat(list->save_my_buff, buff);
-		return (0);
-	}
+	*ret = read(list->fd, list->buff, BUFF_SIZE);
+	if (*ret == -1)
+		return (-1);
+	list->buff[*ret] = '\0';
+	save = ft_strdup(list->save_my_buff);
+	list->save_my_buff = ft_memalloc(ft_strlen(save) + ft_strlen(list->buff));
+	ft_strcat(list->save_my_buff, save);
+	ft_strcat(list->save_my_buff, list->buff);
+	return (0);
 }
 
-my_list	*multi_fd(int fd, my_list *list)
+t_mylist	*multi_fd(int fd, t_mylist *list)
 {
 	while (list->prev)
 		list = list->prev;
@@ -64,27 +60,30 @@ my_list	*multi_fd(int fd, my_list *list)
 			return (list);
 		list = list->next;
 	}
+	if (!list->fd)
+	{
+		list->fd = (int)fd;
+		list->prev = NULL;
+		return (list);
+	}
 	if (!list->next)
 	{
-		list->next = malloc(sizeof(my_list));
+		list->next = malloc(sizeof(t_mylist));
 		list->next->prev = list;
-		list->fd = (int)fd;
+		list->next->next = NULL;
+		list->next->fd = (int)fd;
 	}
-	return (list);
+	return (list->next);
 }
-
-
 
 int		get_next_line(int const fd, char **line)
 {
 	int				ret;
-	char			buff[BUFF_SIZE + 1];
-	static my_list	list;
+	static t_mylist	list;
 
 	list = *multi_fd(fd, &list);
 	if (!list.flag)
 		list.flag = 0;
-	list.fd = (int)fd;
 	ret = 1;
 	if (!line || list.fd < 0)
 		return (-1);
@@ -93,10 +92,10 @@ int		get_next_line(int const fd, char **line)
 		if (list.save_my_buff)
 		{
 			if (ft_strchr(list.save_my_buff, '\n') || ret == 0)
-				return (make_or_read(line, &ret, &list, buff, 1));
+				return (make_or_read(line, &ret, &list,  1));
 			else
 			{
-				if (make_or_read(line, &ret, &list, buff, 0) == -1)
+				if (make_or_read(line, &ret, &list, 0) == -1)
 					return (-1);
 			}
 		}
@@ -105,15 +104,24 @@ int		get_next_line(int const fd, char **line)
 	}
 	return (0);
 }
-/*
+
 int		main(int ac, char **av)
 {
 	char *str;
 	int i;
 	int fd = open(av[1], O_RDONLY);
-	int fd2
-	while ((i = get_next_line(fd, &str)))
-	{
+	int fd2 = open(av[2], O_RDONLY);
+	/*	while ((i = get_next_line(fd, &str)))
+		{
 		printf("%s\n", str);
-	}
-}*/
+		}*/
+	get_next_line(fd, &str);
+	printf("cc%s\n", str);
+	get_next_line(fd2, &str);
+	printf("dd%s\n", str);
+	get_next_line(fd, &str);
+	printf("gg%s\n", str);
+	get_next_line(fd2, &str);
+	printf("pp%s\n", str);
+
+}

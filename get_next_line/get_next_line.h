@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/20 17:15:56 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/21 11:19:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-typedef struct	w_list
+typedef struct		s_mylist
 {
-	char		*save_my_buff;
-	int	fd;
-	int			flag;
-	struct w_list *next;
-	struct w_list *prev;
-}				my_list;
+	char			*save_my_buff;
+	char			buff[BUFF_SIZE + 1];
+	int				fd;
+	int				flag;
+	struct s_mylist	*next;
+	struct s_mylist	*prev;
+}					t_mylist;
 
-int				get_next_line(int fd, char **line);
-char			*ft_strdup(const char *s1);
-void			*ft_memset(void *b, int c, size_t len);
-char			*ft_strchr(const char *s, int c);
+int					get_next_line(int fd, char **line);
+char				*ft_strdup(const char *s1);
+void				*ft_memset(void *b, int c, size_t len);
+char				*ft_strchr(const char *s, int c);
 
 #endif
