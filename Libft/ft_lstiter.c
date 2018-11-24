@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:20:43 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:20:55 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 16:55:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 
 	save_list = lst;
 	save_next = lst;
-	if (lst)
+	if (lst && f)
 		while (save_list)
 		{
 			save_next = save_list->next;

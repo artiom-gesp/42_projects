@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/11/23 09:47:02 by agesp            ###   ########.fr        #
+#    Updated: 2018/11/23 14:57:07 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,13 @@ SRC = ft_isalpha.c \
 	ft_lstadd.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
+	ft_isspace.c \
+	ft_atoi_base.c \
+	ft_is_bigger.c \
+	ft_sort_nb_tab.c \
+	ft_sort_tab_param.c \
+	ft_itoa_base.c \
+	ft_pow.c \
 
 OBJ = ft_isalpha.o \
 	ft_memcpy.o \
@@ -129,6 +136,14 @@ OBJ = ft_isalpha.o \
 	ft_lstadd.o \
 	ft_lstiter.o \
 	ft_lstmap.o \
+	ft_isspace.o \
+	ft_atoi_base.o \
+	ft_is_bigger.o \
+	ft_sort_nb_tab.o \
+	ft_sort_tab_param.o \
+	ft_itoa_base.o \
+	ft_pow.o \
+
 
 all: $(NAME)
 

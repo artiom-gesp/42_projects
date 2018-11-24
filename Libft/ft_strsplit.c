@@ -6,16 +6,26 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:13 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 13:40:39 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/23 10:51:04 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	get_size(char const *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+	return (i);
+}
+
 static int	countword(const char *s, char c)
 {
-	int		i;
-	int		nbmots;
+	int i;
+	int nbmots;
 
 	i = 0;
 	nbmots = 0;
@@ -36,75 +46,50 @@ static int	countword(const char *s, char c)
 	return (0);
 }
 
-static char	**do_split(char const *s, char c, char **myreturn, int countmots)
+static char	*get_next_word(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
+	int		size_word;
+	char	*str;
 
-	i = 0;
-	j = -1;
-	k = -1;
-	while (s[++j] && i < countmots)
-	{
-		while (s[j] != c)
-			myreturn[i][++k] = s[j++];
-		myreturn[i][k + 1] = '\0';
-		k = -1;
-		if (s[j] == c)
-		{
-			while (s[j] == c)
-				j++;
-			j--;
-			i++;
-		}
-	}
-	myreturn[i] = NULL;
-	return (myreturn);
+	size_word = get_size(s, c);
+	str = NULL;
+	if (!(str = ft_strnew(size_word)))
+		return (NULL);
+	str = ft_strncpy(str, s, size_word);
+	return (str);
 }
 
-static int	check_lenght(char const *s, char c)
+static void	get_var(int *i, int *j)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	if (i == ft_strlen(s))
-		return (1);
-	return (0);
-}
-
-static char	**is_max_lenght(char const *s, char **myreturn)
-{
-	myreturn[0] = (char*)s;
-	myreturn[1] = NULL;
-	return (myreturn);
+	*j = 0;
+	*i = 0;
 }
 
 char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
-	int		countmots;
-	char	**myreturn;
+	int		words;
+	char	**tab;
+	int		j;
 
-	if (s)
+	if (!s)
+		return (NULL);
+	get_var(&i, &j);
+	words = countword(s, c);
+	if (!(tab = (char**)malloc(sizeof(char*) * (words + 1))))
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		i = -1;
-		countmots = countword((const char *)s, c);
-		if (!(myreturn = (char**)malloc(sizeof(*myreturn) * (countmots + 1))))
-			return (NULL);
-		while (++i < countmots)
-			if (!(myreturn[i] = (char*)malloc(sizeof(char)
-							* (ft_strlen(s) + 1))))
-				return (NULL);
-		i = 0;
-		while (s[i] == c)
+		if (s[i] != c)
+		{
+			tab[j++] = get_next_word(&s[i], c);
+			i += get_size(&s[i], c);
+		}
+		else
 			i++;
-		if (check_lenght(s, c))
-			return (is_max_lenght(s, myreturn));
-		myreturn = do_split(&s[i], c, myreturn, countmots);
-		return (myreturn);
 	}
-	return (NULL);
+	if (!(tab[j] = (char*)malloc(sizeof(char))))
+		return (NULL);
+	tab[j] = 0;
+	return (tab);
 }

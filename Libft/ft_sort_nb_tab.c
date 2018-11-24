@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 09:19:51 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 17:45:34 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/23 12:08:18 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/23 13:11:59 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int	*ft_sort_nb_tab(int *tab, size_t size)
 {
-	t_list	*save_list;
-	t_list	*save_next;
+	size_t	i;
+	size_t	j;
+	int		save;
 
-	save_list = *alst;
-	save_next = save_list->next;
-	if (del)
+	i = 0;
+	save = 0;
+	j = 0;
+	while (j < size)
 	{
-		while (save_next)
+		i = 0;
+		while (i < size)
 		{
-			save_next = save_list->next;
-			ft_lstdelone(&save_list, del);
-			save_list = save_next;
+			if (tab[i] > tab[j])
+			{
+				save = tab[i];
+				tab[i] = tab[j];
+				tab[j] = save;
+			}
+			i++;
 		}
-		*alst = NULL;
+		j++;
 	}
+	return (tab);
 }
