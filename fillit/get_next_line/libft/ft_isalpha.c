@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/07 10:10:41 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/08 13:39:22 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
-
-#endif
+int	ft_isalpha(int c)
+{
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+		return (1);
+	return (0);
+}

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/07/14 12:58:25 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/07 14:23:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	unsigned int i;
 
-#endif
+	i = 0;
+	while (src[i] && i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < len)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
+}

@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/07/10 12:16:43 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:34:09 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+int					ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	int				save;
 
-#endif
+	i = 0;
+	save = 0;
+	if (s1[i] && !s2[i])
+		return (1);
+	if (!s1[i] && s2[i])
+		return (-1);
+	while (i < n && s1[i] && s2[i])
+	{
+		if (s1[i] == s2[i])
+		{
+			i++;
+		}
+		else
+		{
+			save = ((unsigned char)s1[i] - (unsigned char)s2[i]);
+			i = n;
+		}
+	}
+	return (save);
+}

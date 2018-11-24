@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/07 09:56:56 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/08 13:37:33 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
-
-#endif
+int	ft_isascii(int c)
+{
+	if (0 <= c && c <= 127)
+		return (1);
+	return (0);
+}

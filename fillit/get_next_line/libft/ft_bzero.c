@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/07 16:38:29 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:41:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+void		ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*save;
 
-#endif
+	i = 0;
+	save = s;
+	if (n == 0)
+		return ;
+	while (i < n)
+	{
+		save[i] = 0;
+		i++;
+	}
+	s = save;
+}

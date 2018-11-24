@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/07/12 14:39:28 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:33:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+size_t		ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	a;
+	size_t	b;
 
-#endif
+	i = 0;
+	a = ft_strlen(dst);
+	b = ft_strlen(src);
+	if (!size)
+		return (b);
+	if (size < a)
+		return (b + size);
+	while (a + i < size - 1)
+	{
+		dst[a + i] = src[i];
+		i++;
+	}
+	dst[a + i] = '\0';
+	return (a + b);
+}

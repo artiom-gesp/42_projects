@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/08 11:21:03 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:44:21 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+void				*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*save;
 
-#endif
+	i = 0;
+	save = (unsigned char*)(s);
+	while (i < n)
+	{
+		if (save[i] == (unsigned char)c)
+			return (&save[i]);
+		i++;
+	}
+	return (NULL);
+}

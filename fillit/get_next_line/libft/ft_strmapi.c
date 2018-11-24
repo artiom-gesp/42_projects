@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/09 14:32:43 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 16:24:00 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	size_t	i;
+	char	*save;
 
-#endif
+	i = 0;
+	if (s)
+	{
+		if (!(save = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+			return (NULL);
+		while (s[i])
+		{
+			save[i] = (*f)(i, s[i]);
+			i++;
+		}
+		save[ft_strlen(s)] = '\0';
+		return (save);
+	}
+	return (NULL);
+}

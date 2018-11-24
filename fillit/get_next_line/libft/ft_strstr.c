@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/07 11:05:08 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/07 11:23:56 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+char	*ft_strstr(const char *haystack, const char *needle)
+{
+	int j;
+	int k;
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
-
-#endif
+	j = 0;
+	if (needle[0] == '\0')
+		return (char *)(haystack);
+	if (haystack[0] == '\0')
+		return (0);
+	while (haystack[j] != '\0')
+	{
+		k = 0;
+		while (needle[k] != '\0' && needle[k] == haystack[j + k])
+		{
+			k++;
+			if (!needle[k])
+			{
+				return (char*)&haystack[j];
+			}
+		}
+		j++;
+	}
+	return (0);
+}

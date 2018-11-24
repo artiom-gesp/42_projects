@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/12 09:20:43 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/12 09:20:55 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+void		ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+{
+	t_list	*save_list;
+	t_list	*save_next;
 
-#endif
+	save_list = lst;
+	save_next = lst;
+	if (lst)
+		while (save_list)
+		{
+			save_next = save_list->next;
+			(*f)(save_list);
+			save_list = save_next;
+		}
+}

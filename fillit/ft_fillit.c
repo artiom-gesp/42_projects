@@ -6,50 +6,76 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:58:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 16:27:08 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 16:39:45 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
-
-int		get_error(char *str)
-{
-}
-
-int		read_all(int fd)
-{
-	int		ret;
-	int		i;
-	char *buff;
-	char *line;
-
-	buff = ft_strnew(5);
-	line = ft_strnew(5);
-	i = 0;
-	while ((ret = read(fd, buff, 5)))
-	{
-		buff[ret] = '\0';
-		if (buff[ret - 1] && buff[ret - 1] != '\n')
-			return (-1);
-		line = ft_strjoin(line, buff);
-		if (i % 4 == 0 && buff[0] != '\n')
-			return (-1);
-		i++;
-	}
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] != '\n' || line[i] != '.' || line[i] != '#')
-			return (-1);
-	}
-	return (0);
-}
-
 #include <stdio.h>
 
-int main(int ac, char **av)
+int		baobab(char **tab, int i, int j , int h, int k)
 {
-	int fd = open(av[1], O_RDONLY);
-	printf("%d\n", read_all(fd));
+	while (tab[i])
+	{
+		if ((i + 1) % 5 != 0)
+		{
+			k = 0;
+			if (!(ft_strlen(tab[i]) == 5))
+				return (-1);
+			while (tab[i][k])
+			{
+				if (tab[i][k] == '.')
+					j++;
+				if (tab[i][k] == '#')
+					h++;
+				k++;
+			}
+		}
+		else
+			if (ft_strcmp(tab[i], "\n") != 0)
+				return (-2);
+		i++;
+	}
+	if ((j != 0 && h != 0) && (h % 4 != 0 || j % 12 != 0))
+		return (-3);
+
+	return (1);
 }
 
+int		check_tab(char **tab)
+{
+	int i;
+	int j;
+	int h;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	h = 0;
+	return (baobab(tab, i, j, h, k));
+}
+
+int		make_tab(char *file)
+{
+	int		i;
+	char	*tab[130];
+	char	*save;
+	int		fd;
+	int		is_ok;
+	
+	fd = open(file, O_RDONLY);
+	while (get_next_line(fd, &save))
+	{
+		if (ft_strlen(save) == 4 || ft_strlen(save) == 0)
+		{
+			tab[i] = ft_strjoin(save, "\n");
+			i++;
+		}
+		else
+			return (-1);
+	}
+	tab[i] = NULL;
+	is_ok = check_tab(tab);
+	return (is_ok);
+}
