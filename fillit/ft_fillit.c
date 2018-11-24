@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:58:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:48:41 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:05:50 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**make_tab(char *file)
 	tab = malloc(sizeof(char*) * 130);
 	while (get_next_line(fd, &save))
 	{
-		if (ft_strlen(save) == 4 || ft_strlen(save) == 0)
+		if ((ft_strlen(save) == 4 || ft_strlen(save) == 0) && i <= 130)
 		{
 			tab[i] = ft_strjoin(save, "\n");
 			i++;
