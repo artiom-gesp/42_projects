@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:13 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:24:13 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/12 13:40:39 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,25 @@ static char	**do_split(char const *s, char c, char **myreturn, int countmots)
 	return (myreturn);
 }
 
+static int	check_lenght(char const *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	if (i == ft_strlen(s))
+		return (1);
+	return (0);
+}
+
+static char	**is_max_lenght(char const *s, char **myreturn)
+{
+	myreturn[0] = (char*)s;
+	myreturn[1] = NULL;
+	return (myreturn);
+}
+
 char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
@@ -82,6 +101,8 @@ char		**ft_strsplit(char const *s, char c)
 		i = 0;
 		while (s[i] == c)
 			i++;
+		if (check_lenght(s, c))
+			return (is_max_lenght(s, myreturn));
 		myreturn = do_split(&s[i], c, myreturn, countmots);
 		return (myreturn);
 	}

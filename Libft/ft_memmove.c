@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 10:42:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 10:17:55 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/12 16:19:52 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/12 16:20:00 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
 	int			i;
-	char		*savedst;
-	char		*savesrc;
+	char		*save_dst;
+	char		*save_src;
 
 	i = 0;
-	savedst = (char*)dst;
-	savesrc = (char*)src;
-	if (savedst == savesrc)
+	save_dst = (char*)dst;
+	save_src = (char*)src;
+	if (save_dst == save_src)
 		return (dst);
 	while ((size_t)i < n)
 	{
-		if (&savesrc[i] == &savedst[i] &&
-				&savesrc[ft_strlen(savesrc)] - &savedst[0] > 0
-				&& (&savesrc[0] - &savedst[ft_strlen(savedst)]) > 0)
+		if (dst > src)
 		{
 			i = n;
 			while (--i >= 0)
-				savedst[i] = savesrc[i];
-			dst = savedst;
+				save_dst[i] = save_src[i];
+			dst = save_dst;
 			return (dst);
 		}
 		i++;

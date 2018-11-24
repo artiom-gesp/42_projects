@@ -6,68 +6,35 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:26:45 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:39:03 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/12 11:33:13 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_pow_10(int i)
+void	ft_putnbr(int n)
 {
-	int		p_10;
+	int c;
 
-	p_10 = 10;
-	while (i > 1)
+	c = 0;
+	if (n == -2147483648)
 	{
-		p_10 *= 10;
-		i--;
+		ft_putchar('-');
+		ft_putchar('2');
+		ft_putnbr(147483648);
 	}
-	p_10 /= 10;
-	return (p_10);
-}
-
-static void	do_putnbr(int n)
-{
-	int		i;
-	int		save;
-	int		p_10;
-
-	save = n;
-	i = 0;
-	while (save)
+	else if (n < 0)
 	{
-		save /= 10;
-		i++;
+		ft_putchar('-');
+		ft_putnbr(-n);
 	}
-	p_10 = ft_pow_10(i);
-	while (i)
+	if (n >= 0)
 	{
-		ft_putchar((n / p_10) + '0');
-		n %= p_10;
-		p_10 /= 10;
-		i--;
+		if (n > 9)
+		{
+			ft_putnbr(n / 10);
+		}
+		c = n % 10;
+		ft_putchar(c + '0');
 	}
-}
-
-void		ft_putnbr(int n)
-{
-	long	save;
-
-	save = n;
-	if (save == -2147483647)
-	{
-		ft_putstr("–2147483648");
-		return ;
-	}
-	if (n < 0)
-	{
-		n *= -1;
-		ft_putstr("-");
-	}
-	if (n == 0)
-	{
-		ft_putchar('0');
-		return ;
-	}
-	do_putnbr(n);
 }
