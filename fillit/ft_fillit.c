@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:58:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:39:45 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 16:48:41 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,16 @@ int		check_tab(char **tab)
 	return (baobab(tab, i, j, h, k));
 }
 
-int		make_tab(char *file)
+char	**make_tab(char *file)
 {
 	int		i;
-	char	*tab[130];
+	char	**tab;
 	char	*save;
 	int		fd;
 	int		is_ok;
 	
 	fd = open(file, O_RDONLY);
+	tab = malloc(sizeof(char*) * 130);
 	while (get_next_line(fd, &save))
 	{
 		if (ft_strlen(save) == 4 || ft_strlen(save) == 0)
@@ -73,9 +74,10 @@ int		make_tab(char *file)
 			i++;
 		}
 		else
-			return (-1);
+			return (NULL);
 	}
 	tab[i] = NULL;
-	is_ok = check_tab(tab);
-	return (is_ok);
+	if (check_tab(tab) == 1)
+		return (tab);
+	return (NULL);
 }
