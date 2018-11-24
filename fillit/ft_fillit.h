@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 16:24:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 16:26:25 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:27:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+# define BUFF_SIZE 32
+
+int	get_next_line(int fd, char **line);
 
 #endif

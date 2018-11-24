@@ -6,15 +6,12 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 09:24:50 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 11:18:30 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:26:53 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
+#include "ft_fillit.h"
 #include <stdlib.h>
-#include <string.h>
-#include "get_next_line.h"
 
 int		get_n_pos(char *str)
 {

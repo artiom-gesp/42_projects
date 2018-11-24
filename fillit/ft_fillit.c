@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:58:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 17:05:50 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:42:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int		check_tab(char **tab)
 char	**make_tab(char *file)
 {
 	int		i;
-	char	**tab;
 	char	*save;
 	int		fd;
-	int		is_ok;
-	
+	char **tab;
+
+	i = 0;
 	fd = open(file, O_RDONLY);
 	tab = malloc(sizeof(char*) * 130);
 	while (get_next_line(fd, &save))
