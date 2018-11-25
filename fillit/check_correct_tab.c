@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fillit.h"
+#include "fillit.h"
 #include <stdio.h>
 
 int		baobab(char **tab, int i, int j , int h, int k)

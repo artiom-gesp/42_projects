@@ -10,14 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILLIT_H
-# define FT_FILLIT_H
+#ifndef FILLIT_H
+# define FILLIT_H
 
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include <stdio.h>
 # define BUFF_SIZE 32
 
-int	get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
+char	**make_tab(char *file);
+void	is_bc(int tab[], char **tetr, int i);
+void	is_z(int tab[], char **tetr, int i);
+void	is_mp(int tab[], char **tetr, int i);
+void	is_l(int tab[], char **tetr, int i);
+void	is_rev_l(int tab[], char **tetr, int i);
 
 #endif

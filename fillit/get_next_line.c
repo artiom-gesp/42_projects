@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fillit.h"
+#include "fillit.h"
 #include <stdlib.h>
 
 int		get_n_pos(char *str)
