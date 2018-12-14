@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 13:43:22 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/12 17:26:45 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/14 11:38:33 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ int		print_inter(const char *format, int pos)
 	return (i + pos);
 }
 
+int		get_end_flag(const char *format, int pos, va_list *ap, int flag)
+{
+	if (flag == 1 || flag == 2 || flag == 3 || flag == 4)
+		return (pos + 2);
+	if (flag == 5)
+	{
+		pos += 2;
+		while (ft_isdigit(format[pos]))
+			pos++;
+		return (pos + 1);
+	}
+	return (0);
+}
+
 int		ft_printf(const char * restrict format, ...)
 {
 	va_list ap;
@@ -49,15 +63,19 @@ int		ft_printf(const char * restrict format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
-		i = print_inter(format + i, i);
+		//i = print_inter(format + i, i);
 		if (format[i] == '%')
 			flag = reckon_flag(format, i + 1, &ap);
-		if (flag != -1)
+		if (flag != -1 && flag != -2)
 		{
 			do_print(&ap, flag);
+			i = get_end_flag(format, i, &ap, flag);
 			flag = -1;
-			i += 2;
 		}
+		else if (flag == -2)
+			break ;
+		else
+			i = print_inter(format + i, i);
 	}
 	return (0);
 }
@@ -66,6 +84,6 @@ int		main(int ac, char **av)
 {
 	//ft_printf(av[1], ft_atoi(av[2]), ft_atoi(av[3]));
 	//ft_putstr("\n");
-	ft_printf("|%s| |%d| |%c|\n", "coucou", 23, 's');
-	printf("|%.5s|\n", "-12gfdgdfgdfg");
+	ft_printf("6546 %.0d 545 %d\n", 0, 40);
+	printf("6546 %.0d 545 %d\n", 0, 40);
 }
