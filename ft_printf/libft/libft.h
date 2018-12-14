@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/23 14:58:45 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/14 17:05:08 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr(int n);
 void					ft_putnbr_fd(int n, int fd);
 char					*ft_itoa(int n);
+void					ft_put_long_nbr(long long n);
 
 typedef struct			s_list
 {

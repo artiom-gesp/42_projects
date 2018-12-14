@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_put_long_nbr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 13:15:38 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/14 17:24:34 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/14 17:03:36 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/14 17:08:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(long long value, int base)
+void	ft_put_long_nbr(long long n)
 {
-	int		i;
-	char	*nbr;
-	int		neg;
+	long long c;
 
-	i = 1;
-	neg = 0;
-	if (value < 0)
+	c = 0;
+	if (n == -9223372036854775807)
 	{
-		if (base == 10)
-			neg = 1;
-		value *= -1;
+		ft_putstr("-9223372036854775807");
 	}
-	while (ft_pow(base, i) - 1 < value)
-		i++;
-	nbr = (char*)malloc(sizeof(nbr) * i);
-	nbr[i + neg] = '\0';
-	while (i-- > 0)
+	else if (n < 0)
 	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
-		value = value / base;
+		ft_putchar('-');
+		ft_put_long_nbr(-n);
 	}
-	if (neg)
-		nbr[0] = '-';
-	return (nbr);
+	if (n >= 0)
+	{
+		if (n > 9)
+		{
+			ft_put_long_nbr(n / 10);
+		}
+		c = n % 10;
+		ft_putchar(c + '0');
+	}
 }

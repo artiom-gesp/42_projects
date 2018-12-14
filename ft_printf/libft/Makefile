@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/12/10 13:24:13 by agesp            ###   ########.fr        #
+#    Updated: 2018/12/14 17:04:28 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libft.a
 
 CC = gcc -Wall -Werror -Wextra
 
-SRC = ft_isalpha.c \
+SRC = ft_put_long_nbr.c \
+	ft_isalpha.c \
 	ft_memcpy.c \
 	ft_strchr.c \
 	ft_strlcat.c \
