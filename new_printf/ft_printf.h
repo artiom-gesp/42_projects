@@ -20,5 +20,6 @@ int	is_dioux(const char *format, int i);
 int	is_sign(const char *format, int i);
 int	is_csp(const char *format, int i);
 int	is_convert(const char *format, int i);
+void	complete_list(const char *format, int *pos, t_plist *list);
 
 #endif
