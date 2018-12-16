@@ -36,9 +36,11 @@ int	is_ok_conv(const char *format, int *pos)
 int	check_dot(const char *format, int i)
 {
 	i++;
+	if (!ft_isdigit(format[i]))
+		return (0);
 	while (format[i] && ft_isdigit(format[i]))
 		i++;
-	if (!format[i] || !(is_dioux(format, i)
+	if (!format[i] || !(is_ok_flag(format, i)
 				|| is_ok_conv(format, &i)))
 		return (0);
 	return (i);
@@ -65,7 +67,7 @@ int	correct_flags(const char *format, int i)
 		{
 			while (format[i] && ft_isdigit(format[i]))
 				i++;
-			if (!format[i] || !(is_dioux(format, i) || format[i] == '.'
+			if (!format[i] || !(is_ok_flag(format, i) || format[i] == '.'
 						|| is_ok_conv(format, &i)))
 				return (0);
 			if (format[i] == '.')
