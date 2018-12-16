@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   isprint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 10:33:28 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/07 09:46:06 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/09 11:24:10 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
+#include "libft.h"
 
-# include <fcntl.h>
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-
-int					get_next_line(int fd, char **line);
-
-#endif
+int	ft_isprint(int c)
+{
+	if (32 <= c && c <= 126)
+		return (1);
+	return (0);
+}

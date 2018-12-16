@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_is_biggest.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 10:33:28 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/23 12:05:51 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/23 12:55:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
+#include "libft.h"
 
-# include <fcntl.h>
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-
-int					get_next_line(int fd, char **line);
-
-#endif
+int		ft_is_bigger(int a, int b)
+{
+	return (a > b ? 1 : 0);
+}

@@ -12,10 +12,6 @@
 
 #include "get_next_line.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include "get_next_line.h"
-
 int		get_n_pos(char *str)
 {
 	int i;

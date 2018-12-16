@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 10:33:28 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/23 14:17:40 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/23 14:56:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-
-# include <fcntl.h>
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-
-int					get_next_line(int fd, char **line);
-
-#endif
+float	ft_pow(float nb, int pow)
+{
+	if (pow > 1)
+	{
+		return (nb * ft_pow(nb, pow - 1));
+	}
+	else if (pow < 0)
+	{
+		return (1 / ft_pow(nb, -pow));
+	}
+	if (pow == 1)
+		return (nb);
+	return (0);
+}
