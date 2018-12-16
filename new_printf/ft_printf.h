@@ -8,7 +8,7 @@
 
 typedef struct		s_plist
 {
-	char	flag;
+	int	flag;
 	int	conversion;
 	int	precision;
 	int	min_width;
@@ -21,5 +21,6 @@ int	is_sign(const char *format, int i);
 int	is_csp(const char *format, int i);
 int	is_convert(const char *format, int i);
 void	complete_list(const char *format, int *pos, t_plist *list);
+void	print_list(t_plist *list, va_list *ap);
 
 #endif

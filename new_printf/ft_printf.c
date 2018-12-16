@@ -33,12 +33,13 @@ void	reset_list(t_plist *list)
 	list->sign = 0;
 }
 
-void	make_plist(const char *format)
+void	make_plist(const char *format, va_list *ap)
 {
 	int	i;
 	t_plist	*list;
 
 	i = 0;
+	list = malloc(sizeof(t_plist*));
 	while (format[i])
 	{
 		reset_list(list);
@@ -51,11 +52,7 @@ void	make_plist(const char *format)
 		{
 			i++;
 			complete_list(format, &i, list);
-			printf("flag %c\n", list->flag);
-			printf("conv %d\n", list->conversion);
-			printf("prec %d\n", list->precision);
-			printf("min %d\n", list->min_width);
-			printf("sign %c\n\n", list->sign);
+			print_list(list, ap);
 		}
 		if (i < ft_strlen(format))
 			ft_putchar(format[i]);
@@ -69,14 +66,17 @@ int	ft_printf(const char *restrict format, ...)
 	int		i;
 
 	i = 0;
+	va_start(ap, format);
 	if (!(are_flags_correct(format)))
 		return (0);
-	make_plist(format);
+	make_plist(format, &ap);
 	//return (print_list(&ap));
 	return (1);
 }
 
 int	main(int ac, char **av)
 {
-	printf("%d\n", ft_printf(av[1], 12));
+	ft_printf(av[1], 1212121212);
+	printf("\n");
+	printf("%+-# s", 1212121212);
 }

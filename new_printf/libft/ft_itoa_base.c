@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_itoa_base(long long value, int base)
+char	*ft_itoa_base(long long value, int base, int a)
 {
 	int		i;
 	char	*nbr;
@@ -32,7 +32,7 @@ char	*ft_itoa_base(long long value, int base)
 	nbr[i + neg] = '\0';
 	while (i-- > 0)
 	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
+		nbr[i + neg] = (value % base) + (value % base > 9 ? a - 10 : '0');
 		value = value / base;
 	}
 	if (neg)

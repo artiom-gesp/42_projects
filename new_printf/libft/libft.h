@@ -95,7 +95,7 @@ char					**ft_sort_tab_param(char **tab,
 		int (*f)(const char *, const char *));
 int						ft_is_bigger(int a, int b);
 int						*ft_sort_nb_tab(int *tab, size_t size);
-char					*ft_itoa_base(long long nb, int base);
+char					*ft_itoa_base(long long nb, int base, int a);
 float					ft_pow(float nb, int pow);
 
 #endif

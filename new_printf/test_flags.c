@@ -19,11 +19,11 @@ int	is_ok_conv(const char *format, int *pos)
 	i = *pos;
 	if (format[i] == 'h' && format[i + 1] == 'h')
 		i += 2;
-	if (format[i] == 'h')
+	else if (format[i] == 'h')
 		i++;
-	if (format[i] == 'l' && format[i + 1] == 'l')
+	else if (format[i] == 'l' && format[i + 1] == 'l')
 		i += 2;
-	if (format[i] == 'l')
+	else if (format[i] == 'l')
 		i++;
 	if (i != *pos && is_dioux(format, i))
 	{
