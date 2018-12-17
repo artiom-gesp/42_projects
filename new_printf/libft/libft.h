@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/14 17:05:08 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/17 14:59:18 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+char					*get_bits(unsigned int octet);
 void					*ft_memset(void *b, int c, size_t len);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
@@ -64,7 +65,7 @@ char					*ft_strsub(char const *s,
 char					*ft_strjoin(char const *s1, char const *s2);
 char					*ft_strtrim(char const *s);
 char					**ft_strsplit(char const *s, char c);
-void					ft_putchar(char c);
+void					ft_putchar(int c);
 void					ft_putstr(char const *s);
 void					ft_putendl(char const *s);
 void					ft_putchar_fd(char c, int fd);

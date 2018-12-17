@@ -76,7 +76,8 @@ int	ft_printf(const char *restrict format, ...)
 
 int	main(int ac, char **av)
 {
-	ft_printf(av[1], 1212121212);
+	ft_printf("%s", "😀 ");
 	printf("\n");
-	printf("%+-# s", 1212121212);
+	printf("%s", ");
+
 }

@@ -12,7 +12,7 @@ int	is_dioux(const char *format, int i)
 int	is_sign(const char *format, int i)
 {
 	if (format[i] == '+' || format[i] == '-' || format[i] == ' '
-			|| format[i] == '#')
+			|| format[i] == '#' || format[i] == '0')
 		return (1);
 	return (0);
 }
