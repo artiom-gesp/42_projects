@@ -5,26 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 14:48:06 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/17 15:00:33 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/18 12:19:04 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/18 13:56:51 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*get_bits(unsigned int octet)
+char	*do_bits(unsigned int octet, char *print, char *save, int j)
 {
 	size_t	i;
-	char	*print;
-	char	*save;
-	int		j;
 
 	i = 0;
-	j = 2;
-	if (!(print = malloc(sizeof(char) * 9)))
-		return (NULL);
-	if (!(save = malloc(sizeof(char) * 9)))
-		return (NULL);
 	while (octet / j)
 		j *= 2;
 	j /= 2;
@@ -41,10 +33,22 @@ char	*get_bits(unsigned int octet)
 		save[i] = '0';
 	i--;
 	j = 0;
-	while (++i < ft_strlen(print))
-	{
-		save[i] = print[j];
-		j++;
-	}
+	while (++i < 16)
+		save[i] = print[j++];
+	free(print);
 	return (save);
+}
+
+char	*get_bits(unsigned int octet)
+{
+	char	*print;
+	char	*save;
+	int		j;
+
+	j = 2;
+	if (!(print = malloc(sizeof(char) * 17)))
+		return (NULL);
+	if (!(save = malloc(sizeof(char) * 17)))
+		return (NULL);
+	return (do_bits(octet, print, save, j));
 }

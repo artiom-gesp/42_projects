@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 09:25:53 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/18 12:38:50 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/18 12:05:50 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/18 12:06:05 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr(char const *s)
+size_t	ft_power(int n, int p)
 {
-	int i;
+	size_t	result;
 
-	i = 0;
-	if (s)
+	result = 1;
+	if (p < 0)
+		return (0);
+	while (p > 0)
 	{
-		while (s[i])
-		{
-			ft_putchar((unsigned int)s[i]);
-			i++;
-		}
+		result *= n;
+		p--;
 	}
+	return (result);
 }

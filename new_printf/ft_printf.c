@@ -30,7 +30,7 @@ void	reset_list(t_plist *list)
 	list->conversion = 0;
 	list->precision = 0;
 	list->min_width = 1;
-	list->sign = 0;
+	list->sign = 'z';
 }
 
 void	make_plist(const char *format, va_list *ap)
@@ -76,8 +76,7 @@ int	ft_printf(const char *restrict format, ...)
 
 int	main(int ac, char **av)
 {
-	ft_printf("%s", "😀 ");
-	printf("\n");
-	printf("%s", ");
-
+	ft_printf(av[1], 'g');
+	ft_printf("\n");
+	printf(av[1], 'g');
 }

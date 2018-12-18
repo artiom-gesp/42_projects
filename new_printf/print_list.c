@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 10:16:09 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/17 13:22:52 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/18 17:41:27 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ int		print_wp(t_plist *list, int len, char zero)
 	if (flag == 1)
 		return (1);
 	return (0);
+}
+
+void	print_width(t_plist *list, int len)
+{
+	int		i;
+
+	i = -1;
+	if (list->min_width > len)
+		while (++i < list->min_width - len)
+			ft_putchar(' ');
 }
 
 void	print_int(t_plist *list, va_list *ap)
@@ -125,6 +135,26 @@ void	print_u(t_plist *list, va_list *ap)
 	ft_putstr(ret);
 }
 
+void	print_c(t_plist *list, va_list *ap)
+{
+	print_width(list, 1);
+	w_print_char(va_arg(*ap, wchar_t));
+}
+
+void	print_s(t_plist *list, va_list *ap)
+{
+	int		i;
+	char	*s;
+
+	i = 0;
+	s = va_arg(*ap, char*);
+	print_width(list, ft_strlen(s)); 
+	while (s[i])
+	{
+		w_print_char((unsigned int)s[i]);
+		i++;
+	}
+}
 
 void	print_list(t_plist *list, va_list *ap)
 {
@@ -136,4 +166,8 @@ void	print_list(t_plist *list, va_list *ap)
 		print_u(list, ap);
 	if (list->flag == 'x' || list->flag == 'X')
 		print_x(list, ap);
+	if (list->flag == 'c')
+		print_c(list, ap);
+	if (list->flag == 's')
+		print_s(list, ap);
 }
