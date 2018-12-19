@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/18 13:16:08 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/19 16:59:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-char					*get_bits(unsigned int octet);
 void					*ft_memset(void *b, int c, size_t len);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
@@ -97,6 +96,6 @@ char					**ft_sort_tab_param(char **tab,
 int						ft_is_bigger(int a, int b);
 int						*ft_sort_nb_tab(int *tab, size_t size);
 char					*ft_itoa_base(long long nb, int base, int a);
-float					ft_pow(float nb, int pow);
+double					ft_pow(double nb, int pow);
 
 #endif

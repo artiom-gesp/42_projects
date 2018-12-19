@@ -53,8 +53,6 @@ void	complete_convert(const char *format, int *pos, t_plist *list)
 void	complete_list(const char *format, int *pos, t_plist *list)
 {
 	int	i;
-	char	*save;
-	int	digit;
 
 	i = *pos;
 	if (is_sign(format, i))
