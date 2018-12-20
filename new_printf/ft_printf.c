@@ -19,18 +19,21 @@ int	are_flags_correct(const char *format)
 		else
 			i++;
 	}
-	if (format[i] == '%')
-		return (0);
 	return (1);
 }
 
 void	reset_list(t_plist *list)
 {
+	int	i;
+
+	i = -1;
 	list->flag = 0;
 	list->conversion = 0;
 	list->precision = 0;
 	list->min_width = 1;
-	list->sign = 'z';
+	while (++i < 4)
+		list->sign[i] = 'z';
+	list->size = 0;
 }
 
 int		make_plist(const char *format, va_list *ap)
@@ -41,28 +44,23 @@ int		make_plist(const char *format, va_list *ap)
 
 	i = 0;
 	ret = 0;
-	list = malloc(sizeof(t_plist*));
-	while (format[i])
+	list = malloc(sizeof(t_plist));
+	while (i < (int)ft_strlen(format))
 	{
 		reset_list(list);
-		if (format[i] == '%' && (format[i + 1] == '%'))
-		{
-			ret++;
-			ft_putchar('%');
-			i += 2;
-		}
-		if (format[i] == '%' && format[i + 1] != '%')
+		if (format[i] == '%')
 		{
 			i++;
 			complete_list(format, &i, list);
-			ret += print_list(list, ap);
+			print_list(list, ap);
+			ret += list->size;
 		}
-		if (i < (int)ft_strlen(format))
+		if (format[i] != '%' && i < (int)ft_strlen(format))
 		{
 			ft_putchar(format[i]);
 			ret++;
+			i++;
 		}
-		i++;
 	}
 	free(list);
 	return (ret);

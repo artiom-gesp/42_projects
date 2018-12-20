@@ -12,7 +12,8 @@ typedef struct		s_plist
 	int	conversion;
 	int	precision;
 	int	min_width;
-	char	sign;
+	char	sign[4];
+	int		size;
 }			t_plist;
 
 
@@ -26,7 +27,7 @@ void	complete_list(const char *format, int *pos, t_plist *list);
 int		print_list(t_plist *list, va_list *ap);
 void	w_print_char(wchar_t c);
 void	w_print_str(wchar_t *s);
-int		print_wp(t_plist *list, int len, char zero, int *size);
+int		print_wp(t_plist *list, int len, char zero, int ou);
 
 
 #endif

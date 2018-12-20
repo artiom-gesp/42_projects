@@ -50,16 +50,55 @@ void	complete_convert(const char *format, int *pos, t_plist *list)
 	*pos = i;
 }
 
+void	complete_sign(const char *format, int *pos, t_plist *list)
+{
+	int		i;
+	int		j;
+
+	i = *pos;
+	j = 0;
+	while (is_sign(format, i) && j < 4)
+	{
+		if (format[i] != '0' || (format[i] == '0' && format[i + 1] != '.'))
+			list->sign[j] = format[i];
+		if (format[i] == format[i + 1] && format[i] != '0')
+			while (format[i] == format[i + 1])
+				i++;
+		if (format[i] == '0' && format[i + 1] == '.')
+				break ;
+		else
+		{
+			i++;
+			j++;
+		}
+	}
+		*pos = i;
+}
+
+void	remove_flag(t_plist *list)
+{
+	int		i;
+
+	i = 0;
+	if (ft_strchr(list->sign, '-') && ft_strchr(list->sign, '0'))
+	{
+		while (i < 4)
+		{
+			if (list->sign[i] == '0')
+				list->sign[i] = 'z';
+			i++;
+		}
+	}
+}
+
 void	complete_list(const char *format, int *pos, t_plist *list)
 {
 	int	i;
 
 	i = *pos;
 	if (is_sign(format, i))
-	{
-		list->sign = format[i];
-		i++;
-	}
+		complete_sign(format, &i, list);
+	remove_flag(list);
 	*pos = i;
 	if (ft_isdigit(format[i]))
 		complete_width(format, &i, list);
