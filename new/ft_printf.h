@@ -17,6 +17,10 @@ typedef struct		s_plist
 }			t_plist;
 
 
+void	print_precision(t_plist *list, char *ret);
+void	print_minus_wd(t_plist *list, char *ret, int plus, int len);
+void	print_pw_minus(t_plist *list, char *ret);
+void	integer_print(t_plist *list, va_list *ap);
 int		ft_printf(const char *format, ...);
 int		correct_flags(const char *format, int i);
 int		is_dioux(const char *format, int i);
@@ -32,8 +36,9 @@ void	print_x(t_plist *list, va_list *ap);
 void	print_s(t_plist *list, va_list *ap);
 void	print_u(t_plist *list, va_list *ap);
 void	print_o(t_plist *list, va_list *ap);
-void	print_int(t_plist *list, va_list *ap);
 void	print_percent(t_plist *list);
 void	print_c(t_plist *list, va_list *ap);
+char	*convert_dioux(char flag, va_list *ap, int base, int conv);
+void	print_width(t_plist *list, int len);
 
 #endif
