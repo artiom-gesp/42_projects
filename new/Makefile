@@ -87,7 +87,8 @@ SRC = ft_put_long_nbr.c \
 	  print_list.c \
 	  print_w.c \
 	  test_flags.c \
-	  prints.c
+	  prints.c \
+	  test_print.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	complete_dot(const char *format, int *pos, t_plist *list)
+int	complete_dot(const char *format, int *pos, t_plist *list)
 {
 	int	i;
 	char	*save;
@@ -11,7 +11,7 @@ void	complete_dot(const char *format, int *pos, t_plist *list)
 	while (ft_isdigit(format[i]))
 		i++;
 	if (!(save = ft_strnew(i - *pos)))
-		return ;
+		return (0);
 	ft_strncpy(save, format + *pos + 1, i - *pos);
 	digit = ft_atoi(save);
 	free(save);
@@ -20,6 +20,9 @@ void	complete_dot(const char *format, int *pos, t_plist *list)
 	else
 		list->precision = digit;
 	*pos = i;
+	if (digit != 0 && list->precision == -1)
+		return (1);
+	return (0);
 }
 
 void	complete_width(const char *format, int *pos, t_plist *list)
@@ -97,8 +100,10 @@ void	remove_flag(t_plist *list)
 void	complete_list(const char *format, int *pos, t_plist *list)
 {
 	int	i;
+	int	save;
 
 	i = *pos;
+	save = 1;
 	if (is_sign(format, i))
 		complete_sign(format, &i, list);
 	remove_flag(list);
@@ -107,10 +112,12 @@ void	complete_list(const char *format, int *pos, t_plist *list)
 		complete_width(format, &i, list);
 	*pos = i;
 	if (format[i] == '.')
-		complete_dot(format, &i, list);
+		save = complete_dot(format, &i, list);
 	if (is_convert(format, i))
 		complete_convert(format, &i, list);
 	list->flag = format[i];
+	if (save && list->flag != 's')
+		list->precision = 0;
 	i++;
 	*pos = i;
 }

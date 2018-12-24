@@ -36,7 +36,7 @@ char	*convert_dioux(char flag, va_list *ap, int base, int conv)
 	return (ret);
 }
 
-int		print_wp(t_plist *list, int len, char zero, int ou)
+int		print_wp(t_plist *list, int len, char zero)
 {
 	int		i;
 	int		lim;
@@ -54,7 +54,10 @@ int		print_wp(t_plist *list, int len, char zero, int ou)
 		while (++i < (lim = list->precision > len ? lim: list->min_width - len))
 			ft_strchr(list->sign, '0') && list->precision == 0 ? ft_putchar('0') : ft_putchar(' ');
 	if (zero == '-')
+	{
 		ft_putchar('-');
+		list->size++;
+	}
 	list->size = i == -1 ? list->size + 0 : list->size + i;
 	i = -1;
 	lim = list->precision + flag - len;
@@ -62,11 +65,38 @@ int		print_wp(t_plist *list, int len, char zero, int ou)
 		while (++i < lim)
 			ft_putchar('0');
 	list->size = i == -1 ? list->size + 0 : list->size + i;
-	if (flag == 1)
-		return (1);
-	return (0);
+	return flag == 1 ? 1 : 0;
 }
 
+void		print_wp_x(t_plist *list, int len, int hash)
+{
+	int		i;
+	int		lim;
+	int		flag;
+
+	i = -1;
+	list->precision = list->precision == -1 ? 0 : list->precision;
+	flag = list->min_width + list->precision < len ?
+		0 : (list->min_width - list->precision);
+	lim = list->min_width > list->precision ?
+		flag : 0;
+	if (lim > 0 && list->min_width - len > 0)
+		while (++i < (lim = list->precision > len ? lim: list->min_width - len))
+			ft_strchr(list->sign, '0') && list->precision == 0 ? ft_putchar('0') : ft_putchar(' ');
+	if (hash)
+	{
+		ft_putchar('0');
+		list->flag != 'o' ? ft_putchar(list->flag) : 1;
+		list->size += list->flag == 'o' ? 1 : 2;
+	}
+	list->size = i == -1 ? list->size + 0 : list->size + i;
+	i = -1;
+	lim = list->precision - len;
+	if (lim > 0)
+		while (++i < lim)
+			ft_putchar('0');
+	list->size = i == -1 ? list->size + 0 : list->size + i;
+}
 void	print_width(t_plist *list, int len)
 {
 	int		i;

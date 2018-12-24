@@ -15,41 +15,56 @@
 void	print_o(t_plist *list, va_list *ap)
 {
 	char	*ret;
-	int	i;
+	int	hash;
+	int	minus;
 
-	i = -1;
+	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 8, list->conversion);
-	if (print_wp(list, ft_strlen(ret), ret[0], 0))
-		ret++;
-	if (ft_strcmp(ret, "0") == 0 && list->precision == 0 && list->min_width == 0)
-		return ;
-	ft_putstr(ret);
-	list->size += (int)ft_strlen(ret);
+	hash = ft_strchr(list->sign, '#') && ft_strcmp(ret, "0") ? 1 : 0;
+	if (hash && ft_strcmp(ret, "0") && minus)
+		list->min_width -= 1;
+	if (!ft_strcmp(ret, "0") && list->precision == -1)
+	{
+		ret = "";
+		hash = 0;
+	}
+	if (list->precision >= list->min_width)
+		print_precision(list, ret, 1);
+	else if (list->precision < list->min_width && minus)
+		print_pw_minus(list, ret);
+	else if (list->precision < list->min_width)
+	{
+		list->min_width -= hash == 1 ? 1 : 0;
+		print_wp_x(list, ft_strlen(ret), hash);
+		ft_putstr(ret);
+		list->size += (int)ft_strlen(ret);
+	}
 }
 
 void	print_x(t_plist *list, va_list *ap)
 {
 	int		minus;
-	char	*ret;
+	char		*ret;
+	int		hash;
 
 	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 16, list->conversion);
-	if (ft_strchr(list->sign, '#') && ft_strcmp(ret, "0") && minus)
-	{
-		ft_putchar('0');
-		ft_putchar(list->flag);
+	hash = ft_strchr(list->sign, '#') && ft_strcmp(ret, "0") ? 1 : 0;
+	if (hash && ft_strcmp(ret, "0") && minus)
 		list->min_width -= 2;
-		list->size += 2;
-	}
 	if (!ft_strcmp(ret, "0") && list->precision == -1)
-				return ;
+	{
+		ret = "";
+		hash = 0;
+	}
 	if (list->precision >= list->min_width)
-		print_precision(list, ret);
+		print_precision(list, ret, 1);
 	else if (list->precision < list->min_width && minus)
 		print_pw_minus(list, ret);
 	else if (list->precision < list->min_width)
 	{
-		print_wp(list, ft_strlen(ret), ret[0], 0);
+		list->min_width -= hash == 1 ? 2 : 0;
+		print_wp_x(list, ft_strlen(ret), hash);
 		ft_putstr(ret);
 		list->size += (int)ft_strlen(ret);
 	}
@@ -62,7 +77,7 @@ void	print_u(t_plist *list, va_list *ap)
 
 	i = -1;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
-	if (print_wp(list, ft_strlen(ret), ret[0], 0))
+	if (print_wp(list, ft_strlen(ret), ret[0]))
 		ret++;
 	if (ft_strcmp(ret, "0") == 0 && list->precision == 0 && list->min_width == 0)
 		return ;
