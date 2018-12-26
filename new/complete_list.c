@@ -71,29 +71,39 @@ void	complete_sign(const char *format, int *pos, t_plist *list)
 			while (format[i] == format[i + 1])
 				i++;
 		if (format[i] == '0' && format[i + 1] == '.')
-				break ;
+			break ;
 		else
 		{
 			i++;
 			j++;
 		}
 	}
-		*pos = i;
+	*pos = i;
 }
 
 void	remove_flag(t_plist *list)
 {
 	int		i;
+	int		zero;
+	int		space;
+	int		minus;
+	int		plus;
 
 	i = 0;
-	if (ft_strchr(list->sign, '-') && ft_strchr(list->sign, '0'))
+	zero = ft_strchr(list->sign, '0') ? 1 : 0;
+	plus = ft_strchr(list->sign, '+') ? 1 : 0;
+	minus = ft_strchr(list->sign, '-') ? 1 : 0;
+	space = ft_strchr(list->sign, ' ') ? 1 : 0;
+	while (i < 4)
 	{
-		while (i < 4)
-		{
-			if (list->sign[i] == '0')
-				list->sign[i] = 'z';
-			i++;
-		}
+		if (minus && zero && list->sign[i] == '0')
+			list->sign[i] = 'z';		
+		if (plus && space && list->sign[i] == ' ')
+			list->sign[i] = 'z';
+		if ((list->precision > 0 || list->precision == -1)
+				&& list->sign[i] == '0')
+			list->sign[i] = 'z';
+		i++;
 	}
 }
 
@@ -106,7 +116,6 @@ void	complete_list(const char *format, int *pos, t_plist *list)
 	save = 1;
 	if (is_sign(format, i))
 		complete_sign(format, &i, list);
-	remove_flag(list);
 	*pos = i;
 	if (ft_isdigit(format[i]))
 		complete_width(format, &i, list);
@@ -118,6 +127,7 @@ void	complete_list(const char *format, int *pos, t_plist *list)
 	list->flag = format[i];
 	if (save && list->flag != 's')
 		list->precision = 0;
+	remove_flag(list);
 	i++;
 	*pos = i;
 }

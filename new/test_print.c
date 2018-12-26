@@ -23,14 +23,26 @@ void	do_nothing()
 {
 }
 
-void	print_hash(t_plist *list)
+void	print_hash(t_plist *list, char *ret)
 {
 	if ((list->flag == 'x' || list->flag == 'X')
-			&& ft_strchr(list->sign, '#'))
+			&& ft_strchr(list->sign, '#')
+			&& ft_strcmp(ret, "0"))
 	{
 		ft_putchar('0');
 		ft_putchar(list->flag);
 		list->size += 2;
+	}
+	if (list->flag == 'o' && ft_strchr(list->sign, '#')
+			&& ft_strcmp(ret, "0"))
+	{
+		if (list->precision <= (int)ft_strlen(ret))
+		{
+			ft_putchar('0');
+			list->size++;
+		}
+		else if (list->min_width > list->precision)
+			list->min_width++;
 	}
 }
 
@@ -42,7 +54,7 @@ void	is_minus(char **ret, int *len, t_plist *list)
 	ft_putchar('-');
 	save = *ret;
 	yolo = *len;
-	if (list->precision >= yolo)
+	if (list->precision >= yolo || (list->precision >= list->min_width && *len > list->precision))
 		list->size++;
 	save++;
 	yolo--;
@@ -50,6 +62,20 @@ void	is_minus(char **ret, int *len, t_plist *list)
 	*len = yolo;
 	if (list->precision >= list->min_width)
 		list->min_width--;
+}
+
+void	print_precision_sign(t_plist *list, char *ret, int flag)
+{
+	if (ret[0] != '-' && flag && ft_strchr(list->sign, '+'))
+	{
+		ft_putchar('+');
+		list->size++;
+	}
+	if (ret[0] != '-' && flag && ft_strchr(list->sign, ' '))
+	{
+		ft_putchar(' ');
+		list->size++;
+	}
 }
 
 void	print_precision(t_plist *list, char *ret, int flag)
@@ -60,12 +86,8 @@ void	print_precision(t_plist *list, char *ret, int flag)
 	i = 0;
 
 	len = (int)ft_strlen(ret);
-	print_hash(list);
-	if (ft_strchr(list->sign, '+') && ret[0] != '-' && is_int(list->flag))
-	{
-		ft_putchar('+');
-		list->size++;
-	}
+	print_hash(list, ret);
+	print_precision_sign(list, ret, is_int(list->flag));
 	if (ret[0] == '-')
 		is_minus(&ret, &len, list);
 	if (list->precision - len > 0)
@@ -92,7 +114,7 @@ void	print_minus_wd(t_plist *list, char *ret, int plus, int len)
 	{
 		if (list->precision > len && list->precision > list->min_width)
 		{
-			ft_putchar('+');
+			ft_putchar(plus);
 			ft_putstr(ret);
 		}
 		lim--;
@@ -114,26 +136,23 @@ void	print_minus_wd(t_plist *list, char *ret, int plus, int len)
 void	print_pw_minus(t_plist *list, char *ret)
 {
 	int	plus;
-	int len;
+	int 	len;
 
 	len = (int)ft_strlen(ret);
-	plus = ft_strchr(list->sign, '+') && ret[0] != '-' && is_int(list->flag) ? 1 : 0;
-	if (list->precision < len && list->min_width < len)
+	plus = ft_strchr(list->sign, ' ') && ret[0] != '-' && is_int(list->flag) ? ' ' : 0;
+	plus = ft_strchr(list->sign, '+') && ret[0] != '-' && is_int(list->flag) ? '+' : 0;
+	if (list->precision <= len && list->min_width <= len)
 	{
-		plus == 1 ? ft_putchar('+') : do_nothing();
+		plus ? ft_putchar(plus) : do_nothing();
+		print_hash(list, ret);
 		ft_putstr(ret);
+		plus = plus  ? 1 : 0;
 		list->size += (len + plus);
 	}
 	else if (list->min_width > len)
 	{
 		print_precision(list, ret, 0);
 		print_minus_wd(list, ret, plus, len);
-	}
-	else
-	{
-		print_precision(list, ret, 0);
-		print_minus_wd(list, ret, 0, len -
-				(list->precision + plus));
 	}
 }
 
@@ -145,14 +164,18 @@ void	integer_print(t_plist *list, va_list *ap)
 	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
 	if (!ft_strcmp(ret, "0") && list->precision == -1)
-			ret = "";
+	{
+		if (list->min_width == 0)
+			return ;
+		ret = "";
+	}
 	if (list->precision >= list->min_width)
 		print_precision(list, ret, 1);
 	else if (list->precision < list->min_width && minus)
 		print_pw_minus(list, ret);
 	else if (list->precision < list->min_width)
 	{
-		if (print_wp(list, (int)ft_strlen(ret), ret[0]))
+		if (print_wp(list, (int)ft_strlen(ret), ret))
 		{
 			ret++;
 		}

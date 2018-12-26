@@ -30,7 +30,7 @@ void	reset_list(t_plist *list)
 	list->flag = 0;
 	list->conversion = 0;
 	list->precision = -1;
-	list->min_width = 1;
+	list->min_width = 0;
 	while (++i < 4)
 		list->sign[i] = 'z';
 	list->size = 0;

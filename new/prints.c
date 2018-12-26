@@ -20,11 +20,13 @@ void	print_o(t_plist *list, va_list *ap)
 
 	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 8, list->conversion);
-	hash = ft_strchr(list->sign, '#') && ft_strcmp(ret, "0") ? 1 : 0;
+	hash = ft_strchr(list->sign, '#') ? 1 : 0;
 	if (hash && ft_strcmp(ret, "0") && minus)
 		list->min_width -= 1;
 	if (!ft_strcmp(ret, "0") && list->precision == -1)
 	{
+		if (!hash && list->min_width == 0)
+			return ;
 		ret = "";
 		hash = 0;
 	}
@@ -54,8 +56,10 @@ void	print_x(t_plist *list, va_list *ap)
 		list->min_width -= 2;
 	if (!ft_strcmp(ret, "0") && list->precision == -1)
 	{
-		ret = "";
-		hash = 0;
+		if (list->min_width == 0)
+			return ;
+		else
+			ret = "";
 	}
 	if (list->precision >= list->min_width)
 		print_precision(list, ret, 1);
@@ -77,7 +81,7 @@ void	print_u(t_plist *list, va_list *ap)
 
 	i = -1;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
-	if (print_wp(list, ft_strlen(ret), ret[0]))
+	if (print_wp(list, ft_strlen(ret), ret))
 		ret++;
 	if (ft_strcmp(ret, "0") == 0 && list->precision == 0 && list->min_width == 0)
 		return ;

@@ -31,7 +31,7 @@ void	complete_list(const char *format, int *pos, t_plist *list);
 int		print_list(t_plist *list, va_list *ap);
 void	w_print_char(wchar_t c);
 void	w_print_str(wchar_t *s);
-int		print_wp(t_plist *list, int len, char zero);
+int		print_wp(t_plist *list, int len, char *ret);
 void		print_wp_x(t_plist *list, int len, int hash);
 void	print_x(t_plist *list, va_list *ap);
 void	print_s(t_plist *list, va_list *ap);
