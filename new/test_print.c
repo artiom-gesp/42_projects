@@ -139,14 +139,15 @@ void	print_pw_minus(t_plist *list, char *ret)
 	int 	len;
 
 	len = (int)ft_strlen(ret);
+	plus = 0;
 	plus = ft_strchr(list->sign, ' ') && ret[0] != '-' && is_int(list->flag) ? ' ' : 0;
-	plus = ft_strchr(list->sign, '+') && ret[0] != '-' && is_int(list->flag) ? '+' : 0;
+	plus = ft_strchr(list->sign, '+') && ret[0] != '-' && is_int(list->flag) ? '+' : plus;
 	if (list->precision <= len && list->min_width <= len)
 	{
 		plus ? ft_putchar(plus) : do_nothing();
 		print_hash(list, ret);
 		ft_putstr(ret);
-		plus = plus  ? 1 : 0;
+		plus = plus ? 1 : 0;
 		list->size += (len + plus);
 	}
 	else if (list->min_width > len)

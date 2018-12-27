@@ -107,6 +107,16 @@ void	remove_flag(t_plist *list)
 	}
 }
 
+void	sort_flags(t_plist *list, char flag)
+{
+	char c;
+
+	list->flag = flag;
+	c = list->flag;
+	if (c == 'S' || c == 'C' || c == 'D' || c == 'U' || c == 'O')
+		list->flag += 32;
+}
+
 void	complete_list(const char *format, int *pos, t_plist *list)
 {
 	int	i;
@@ -124,7 +134,7 @@ void	complete_list(const char *format, int *pos, t_plist *list)
 		save = complete_dot(format, &i, list);
 	if (is_convert(format, i))
 		complete_convert(format, &i, list);
-	list->flag = format[i];
+	sort_flags(list, format[i]);
 	if (save && list->flag != 's')
 		list->precision = 0;
 	remove_flag(list);

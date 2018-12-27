@@ -7,7 +7,9 @@ int	is_ok_flag(const char *format, int i)
 			|| format[i] == 'c' || format[i] == 'p'
 			|| format[i] == 'u' || format[i] == 'o'
 			|| format[i] == 'x' || format[i] == 'X'
-			|| format[i] == '%')
+			|| format[i] == '%' || format[i] == 'D'
+			|| format[i] == 'C' || format[i] == 'S'
+			|| format[i] == 'U' || format[i] == 'O')
 		return (1);
 	return (0);
 }

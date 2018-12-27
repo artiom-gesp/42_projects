@@ -36,6 +36,7 @@ void		print_wp_x(t_plist *list, int len, int hash);
 void	print_x(t_plist *list, va_list *ap);
 void	print_s(t_plist *list, va_list *ap);
 void	print_u(t_plist *list, va_list *ap);
+void	print_p(t_plist *list, va_list *ap);
 void	print_o(t_plist *list, va_list *ap);
 void	print_percent(t_plist *list);
 void	print_c(t_plist *list, va_list *ap);

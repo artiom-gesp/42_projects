@@ -27,7 +27,7 @@ void	print_o(t_plist *list, va_list *ap)
 	{
 		if (!hash && list->min_width == 0)
 			return ;
-		ret = "";
+		ret = hash ? "0" : "";
 		hash = 0;
 	}
 	if (list->precision >= list->min_width)
@@ -77,56 +77,80 @@ void	print_x(t_plist *list, va_list *ap)
 void	print_u(t_plist *list, va_list *ap)
 {
 	char	*ret;
-	int	i;
+	int	minus;
 
-	i = -1;
+	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
-	if (print_wp(list, ft_strlen(ret), ret))
-		ret++;
-	if (ft_strcmp(ret, "0") == 0 && list->precision == 0 && list->min_width == 0)
-		return ;
-	if (!ft_strchr(list->sign, '-'))
+	if (!ft_strcmp(ret, "0") && list->precision == -1)
+	{
+		if (list->min_width == 0)
+			return ;
+		ret = "";
+	}
+	if (list->precision >= list->min_width)
+		print_precision(list, ret, 1);
+	else if (list->precision < list->min_width && minus)
+		print_pw_minus(list, ret);
+	else if (list->precision < list->min_width)
+	{
+		if (print_wp(list, (int)ft_strlen(ret), ret))
+		{
+			ret++;
+		}
 		ft_putstr(ret);
-	list->size += (int)ft_strlen(ret);
+		list->size += (int)ft_strlen(ret);
+	}
 }
 
 void	print_c(t_plist *list, va_list *ap)
 {
-	print_width(list, 1);
-	w_print_char(va_arg(*ap, wchar_t));
+	if (ft_strchr(list->sign, '-'))
+	{
+		w_print_char(va_arg(*ap, wchar_t));
+		print_width(list, 1);
+	}
+	else
+	{
+		print_width(list, 1);
+		w_print_char(va_arg(*ap, wchar_t));
+	}
+	list->size++;
+
 }
 
 void	print_s(t_plist *list, va_list *ap)
 {
 	int		i;
 	char	*s;
+	char	*save;
 
-	i = 0;
-	s = va_arg(*ap, char*);
-	if (!s)
+	i = -1;
+	save = va_arg(*ap, char*);
+	if (!save)
 	{
-		ft_putstr("(null)");
-		list->size += 6;
+		save = "(null)";
+	}
+	if (list->precision == 0)
+		list->precision = (int)ft_strlen(save);
+	if (list->precision == -1)
+	{
+		list->min_width += list->min_width > 0 ? 1 : 0;
+		print_width(list, 1);
 		return ;
 	}
+	if (!(s = ft_strnew(list->precision)))
+		return ;
+	ft_strncpy(s, save, list->precision);
 	if (ft_strcmp(s, "") || list->min_width > 1)
 	{
 		if (!ft_strchr(list->sign, '-'))
-			list->precision > (int)ft_strlen(s) ?
-			print_width(list, ft_strlen(s)) : 
-			print_width(list, list->precision != -1 ? list->precision : ft_strlen(s));
-		while (list->precision != -1 && list->precision < (int)ft_strlen(s) ? 
-				i < list->precision : (s[i]))
-		{
+			print_width(list, ft_strlen(s));
+		while (s[++i])
 			w_print_char((unsigned int)s[i]);
-			i++;
-		}
 		if (ft_strchr(list->sign, '-'))
-			list->precision > (int)ft_strlen(s) && list->precision != -1 
-				&& ft_strchr(list->sign, '-') ? print_width(list, ft_strlen(s)) : 
-				print_width(list, list->precision != -1 ? list->precision : ft_strlen(s));
+				print_width(list, (int)ft_strlen(s));
 	}
-	list->size += i;
+	list->size += i != -1 ? i : 0;
 }
 
 void	print_percent(t_plist *list)
@@ -134,12 +158,40 @@ void	print_percent(t_plist *list)
 	int i;
 
 	i = -1;
-	if (list->min_width > 1)
-	while (++i < list->min_width -1)
+	if (ft_strchr(list->sign, '-'))
 	{
-		list->size++;
-		ft_putchar(' ');
+		ft_putchar('%');
+		print_width(list, 1);
+	}
+	else
+	{
+		print_width(list, 1);
+		ft_putchar('%');
 	}
 	list->size++;
-	ft_putchar('%');
+}
+
+void	print_p(t_plist *list, va_list *ap)
+{
+	long long	save;
+	char		*ret;
+	int		len;
+
+	save = (long)va_arg(*ap, void*);
+	ret = ft_itoa_base(save, 16, 'a');
+	len = (int)ft_strlen(ret);
+	len += 2;
+	if (ft_strchr(list->sign, '-'))
+	{
+		ft_putstr("0x");
+		ft_putstr(ret);
+		print_width(list, len);
+	}
+	else
+	{
+		print_width(list, len);
+		ft_putstr("0x");
+		ft_putstr(ret);
+	}
+	list->size += len;
 }

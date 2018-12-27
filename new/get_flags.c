@@ -4,7 +4,9 @@ int	is_dioux(const char *format, int i)
 {
 	if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u'
 			|| format[i] == 'o'
-			|| format[i] == 'x' || format[i] == 'X')
+			|| format[i] == 'x' || format[i] == 'X'
+			|| format[i] == 'D' || format[i] == 'O'
+			|| format[i] == 'U')
 		return (1);
 	return (0);
 }
@@ -19,7 +21,8 @@ int	is_sign(const char *format, int i)
 
 int	is_csp(const char *format, int i)
 {
-	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
+	if (format[i] == 'c' || format[i] == 's' || format[i] == 'p'
+			|| format[i] == 'S' || format[i] == 'C')
 		return (1);
 	return (0);
 }

@@ -96,6 +96,7 @@ char					**ft_sort_tab_param(char **tab,
 int						ft_is_bigger(int a, int b);
 int						*ft_sort_nb_tab(int *tab, size_t size);
 char					*ft_itoa_base(long long nb, int base, int a);
+char					*get_u(uintmax_t nb, int base, int a);
 double					ft_pow(double nb, int pow);
 
 #endif
