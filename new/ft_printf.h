@@ -21,6 +21,7 @@ void	print_precision(t_plist *list, char *ret, int flag);
 void	print_minus_wd(t_plist *list, char *ret, int plus, int len);
 void	print_pw_minus(t_plist *list, char *ret);
 void	integer_print(t_plist *list, va_list *ap);
+void	print_float(va_list *ap, t_plist *list);
 int		ft_printf(const char *format, ...);
 int		correct_flags(const char *format, int i);
 int		is_dioux(const char *format, int i);

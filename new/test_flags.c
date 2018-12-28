@@ -9,7 +9,8 @@ int	is_ok_flag(const char *format, int i)
 			|| format[i] == 'x' || format[i] == 'X'
 			|| format[i] == '%' || format[i] == 'D'
 			|| format[i] == 'C' || format[i] == 'S'
-			|| format[i] == 'U' || format[i] == 'O')
+			|| format[i] == 'U' || format[i] == 'O'
+			|| format[i] == 'f')
 		return (1);
 	return (0);
 }
@@ -27,7 +28,7 @@ int	is_ok_conv(const char *format, int *pos)
 		i += 2;
 	else if (format[i] == 'l')
 		i++;
-	if (i != *pos && is_dioux(format, i))
+	if (i != *pos && (is_dioux(format, i) || format[i] == 'f'))
 	{
 		*pos = i;
 		return (1);

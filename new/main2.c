@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}'));
  */
-	printf(" %d p\n", printf(av[1], atoll(av[2])));
-	printf(" %d m\n", ft_printf(av[1], atoll(av[2])));
+	float digit = 1243.1232;
+
+	printf(" %d p\n", printf(av[1], 1243.2434566));
+	
+	printf(" %d m\n", ft_printf(av[1], 1243.2434566));
 }

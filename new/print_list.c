@@ -184,5 +184,7 @@ int	print_list(t_plist *list, va_list *ap)
 		print_percent(list);
 	if (list->flag == 'p')
 		print_p(list, ap);
+	if (list->flag == 'f')
+		print_float(ap, list);
 	return (0);
 }
