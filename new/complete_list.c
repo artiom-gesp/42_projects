@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   complete_list.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/29 11:56:05 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/29 12:15:04 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	complete_dot(const char *format, int *pos, t_plist *list)
+int		complete_dot(const char *format, int *pos, t_plist *list)
 {
-	int	i;
+	int		i;
 	char	*save;
-	int	digit;
+	int		digit;
 
 	i = *pos;
 	i++;
@@ -27,9 +39,9 @@ int	complete_dot(const char *format, int *pos, t_plist *list)
 
 void	complete_width(const char *format, int *pos, t_plist *list)
 {
-	int	i;
+	int		i;
 	char	*save;
-	int	digit;
+	int		digit;
 
 	i = *pos;
 	while (ft_isdigit(format[i]))
@@ -48,7 +60,7 @@ void	complete_convert(const char *format, int *pos, t_plist *list)
 	int i;
 
 	i = *pos;
-	list->conversion = is_convert(format,i);
+	list->conversion = is_convert(format, i);
 	if (list->conversion == 1 || list->conversion == 3)
 		i++;
 	else
@@ -79,42 +91,6 @@ void	complete_sign(const char *format, int *pos, t_plist *list)
 		}
 	}
 	*pos = i;
-}
-
-void	remove_flag(t_plist *list)
-{
-	int		i;
-	int		zero;
-	int		space;
-	int		minus;
-	int		plus;
-
-	i = 0;
-	zero = ft_strchr(list->sign, '0') ? 1 : 0;
-	plus = ft_strchr(list->sign, '+') ? 1 : 0;
-	minus = ft_strchr(list->sign, '-') ? 1 : 0;
-	space = ft_strchr(list->sign, ' ') ? 1 : 0;
-	while (i < 4)
-	{
-		if (minus && zero && list->sign[i] == '0')
-			list->sign[i] = 'z';		
-		if (plus && space && list->sign[i] == ' ')
-			list->sign[i] = 'z';
-		if ((list->precision > 0 || list->precision == -1)
-				&& list->sign[i] == '0')
-			list->sign[i] = 'z';
-		i++;
-	}
-}
-
-void	sort_flags(t_plist *list, char flag)
-{
-	char c;
-
-	list->flag = flag;
-	c = list->flag;
-	if (c == 'S' || c == 'C' || c == 'D' || c == 'U' || c == 'O')
-		list->flag += 32;
 }
 
 void	complete_list(const char *format, int *pos, t_plist *list)

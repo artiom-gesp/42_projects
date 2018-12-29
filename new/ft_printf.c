@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/29 12:15:22 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/29 12:17:23 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	are_flags_correct(const char *format)
+int		are_flags_correct(const char *format)
 {
 	int	i;
 	int	flag;
@@ -38,9 +50,9 @@ void	reset_list(t_plist *list)
 
 int		make_plist(const char *format, va_list *ap)
 {
-	int	i;
+	int		i;
 	t_plist	*list;
-	int	ret;
+	int		ret;
 
 	i = 0;
 	ret = 0;
@@ -57,18 +69,17 @@ int		make_plist(const char *format, va_list *ap)
 		}
 		if (format[i] != '%' && i < (int)ft_strlen(format))
 		{
-			ft_putchar(format[i]);
+			ft_putchar(format[i++]);
 			ret++;
-			i++;
 		}
 	}
 	free(list);
 	return (ret);
 }
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
-	va_list		ap;
+	va_list	ap;
 	int		i;
 
 	i = 0;

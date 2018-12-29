@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_flags.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/29 12:50:37 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/29 12:51:43 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	is_ok_flag(const char *format, int i)
@@ -10,7 +22,7 @@ int	is_ok_flag(const char *format, int i)
 			|| format[i] == '%' || format[i] == 'D'
 			|| format[i] == 'C' || format[i] == 'S'
 			|| format[i] == 'U' || format[i] == 'O'
-			|| format[i] == 'f')
+			|| format[i] == 'f' || format[i] == 'F')
 		return (1);
 	return (0);
 }
@@ -42,7 +54,8 @@ int	check_dot(const char *format, int i)
 
 	i++;
 	j = i;
-	if (!ft_isdigit(format[i]) && !is_ok_flag(format, i) && !is_ok_conv(format, &j))
+	if (!ft_isdigit(format[i]) && !is_ok_flag(format, i)
+			&& !is_ok_conv(format, &j))
 		return (0);
 	while (format[i] && ft_isdigit(format[i]))
 		i++;
@@ -56,7 +69,7 @@ int	check_sign(const char *format, int i)
 {
 	if ((format[i] == '+' || format[i] == '-'
 				|| format[i] == ' ' || format[i] == '0'
-				|| format[i] == '#') 
+				|| format[i] == '#')
 			&& format[i + 1]
 			&& (is_ok_flag(format, i + 1) || format[i + 1] == '.'
 				|| ft_isdigit(format[++i])
@@ -70,7 +83,7 @@ int	correct_flags(const char *format, int i)
 	if (format[i] && !(is_ok_flag(format, i)))
 	{
 		while (check_sign(format, i))
-				i++;
+			i++;
 		if (ft_isdigit(format[i]))
 		{
 			while (format[i] && ft_isdigit(format[i]))

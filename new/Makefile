@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/12/20 17:08:13 by agesp            ###   ########.fr        #
+#    Updated: 2018/12/29 12:24:13 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,14 @@ SRC = ft_put_long_nbr.c \
 	  print_w.c \
 	  test_flags.c \
 	  prints.c \
-	  test_print.c \
 	  print_u.c \
-	  print_float.c
+	  print_float.c \
+	  print_int.c \
+	  print_precision.c \
+	  print_x_o_u.c \
+	  sort_flags.c \
+	  print_minus.c \
+	  print_width.c
 
 OBJ = $(SRC:.c=.o)
 
