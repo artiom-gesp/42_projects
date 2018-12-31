@@ -66,6 +66,7 @@ void	print_s(t_plist *list, va_list *ap)
 		return ;
 	ft_strncpy(s, save, list->precision);
 	do_print_s(s, list);
+	free(s);
 }
 
 void	print_percent(t_plist *list)
@@ -93,7 +94,8 @@ void	print_p(t_plist *list, va_list *ap)
 	int			len;
 
 	save = (long)va_arg(*ap, void*);
-	ret = ft_itoa_base(save, 16, 'a');
+	if (!(ret = ft_itoa_base(save, 16, 'a')))
+		return ;
 	len = (int)ft_strlen(ret);
 	len += 2;
 	if (ft_strchr(list->sign, '-'))
@@ -109,4 +111,5 @@ void	print_p(t_plist *list, va_list *ap)
 		ft_putstr(ret);
 	}
 	list->size += len;
+	free(ret);
 }

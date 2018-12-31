@@ -61,5 +61,6 @@ void				print_c(t_plist *list, va_list *ap);
 char				*convert_dioux(char flag, va_list *ap, int base, int conv);
 void				print_width(t_plist *list, int len);
 void				print_sign(t_plist *list, char *ret, int flag);
+int				zero_ret(char **ret, t_plist *list, int *hash);
 
 #endif

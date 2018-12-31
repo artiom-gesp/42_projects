@@ -28,6 +28,8 @@ int	main(int ac, char **av)
  */
 	float digit = 1.42;
 
+//	ft_printf("@moulitest: %lld", -9223372036854775808);
+		
 	printf(" %d p\n", printf(av[1], atoi(av[2])));
 	
 	printf(" %d m\n", ft_printf(av[1], atoi(av[2])));

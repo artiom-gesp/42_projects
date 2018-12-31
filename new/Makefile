@@ -95,7 +95,8 @@ SRC = ft_put_long_nbr.c \
 	  print_x_o_u.c \
 	  sort_flags.c \
 	  print_minus.c \
-	  print_width.c
+	  print_width.c \
+	  ft_nbrlen.c
 
 OBJ = $(SRC:.c=.o)
 

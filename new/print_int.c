@@ -30,23 +30,18 @@ void	integer_print(t_plist *list, va_list *ap)
 
 	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
-	if (!ft_strcmp(ret, "0") && list->precision == -1)
-	{
-		if (list->min_width == 0)
-			return ;
-		ret = "";
-	}
+	if (!zero_ret(&ret, list, &minus))
+		return ;
 	if (list->precision >= list->min_width)
 		print_precision(list, ret, 1);
 	else if (list->precision < list->min_width && minus)
 		print_pw_minus(list, ret);
 	else if (list->precision < list->min_width)
 	{
-		if (print_wp(list, (int)ft_strlen(ret), ret))
-		{
-			ret++;
-		}
-		ft_putstr(ret);
-		list->size += (int)ft_strlen(ret);
+		print_wp(list, (int)ft_strlen(ret), ret)
+			? ft_putstr(ret + 1) : ft_putstr(ret);
+		list->size += ret[0] != '-' ? (int)ft_strlen(ret)
+			: (int)ft_strlen(ret) - 1;
 	}
+	ft_strcmp(ret, "") && ft_strcmp(ret, "-9223372036854775808") ? free(ret) : do_nothing();
 }

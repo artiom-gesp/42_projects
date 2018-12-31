@@ -98,5 +98,6 @@ int						*ft_sort_nb_tab(int *tab, size_t size);
 char					*ft_itoa_base(long long nb, int base, int a);
 char					*get_u(uintmax_t nb, int base, int a);
 double					ft_pow(double nb, int pow);
+int					ft_nbrlen(long long nbr);
 
 #endif

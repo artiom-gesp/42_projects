@@ -18,9 +18,10 @@ int		zero_ret(char **ret, t_plist *list, int *hash)
 	{
 		if (!ft_strcmp(*ret, "0") && list->precision == -1)
 		{
+			free(*ret);
 			if (!(*hash) && list->min_width == 0)
 				return (0);
-			*ret = hash ? "0" : "";
+			*ret = *hash ? "0" : "";
 			*hash = 0;
 		}
 	}
@@ -28,6 +29,7 @@ int		zero_ret(char **ret, t_plist *list, int *hash)
 	{
 		if (!ft_strcmp(*ret, "0") && list->precision == -1)
 		{
+			free(*ret);
 			if (list->min_width == 0)
 				return (0);
 			else
@@ -58,6 +60,7 @@ void	print_u(t_plist *list, va_list *ap)
 		ft_putstr(ret);
 		list->size += (int)ft_strlen(ret);
 	}
+	ft_strcmp(ret, "") ? free(ret) : do_nothing();
 }
 
 void	print_o(t_plist *list, va_list *ap)
@@ -84,6 +87,7 @@ void	print_o(t_plist *list, va_list *ap)
 		ft_putstr(ret);
 		list->size += (int)ft_strlen(ret);
 	}
+	ft_strcmp(ret, "") && ft_strcmp(ret, "0") ? free(ret) : do_nothing();
 }
 
 void	print_x(t_plist *list, va_list *ap)
@@ -110,4 +114,5 @@ void	print_x(t_plist *list, va_list *ap)
 		ft_putstr(ret);
 		list->size += (int)ft_strlen(ret);
 	}
+	ft_strcmp(ret, "") ? free(ret) : do_nothing();
 }
