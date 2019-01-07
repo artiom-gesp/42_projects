@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:20:10 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/07 09:24:20 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/29 12:26:26 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int					is_dioux(const char *format, int i);
 int					is_sign(const char *format, int i);
 int					is_csp(const char *format, int i);
 int					is_convert(const char *format, int i);
-void				complete_list(const char *format, int *pos, t_plist *list);
+void				complete_list(const char *format, int *pos, t_plist *list, va_list *ap);
 int					print_list(t_plist *list, va_list *ap);
 void				w_print_char(wchar_t c);
 void				w_print_str(wchar_t *s);
@@ -61,6 +61,6 @@ void				print_c(t_plist *list, va_list *ap);
 char				*convert_dioux(char flag, va_list *ap, int base, int conv);
 void				print_width(t_plist *list, int len);
 void				print_sign(t_plist *list, char *ret, int flag);
-int					zero_ret(char **ret, t_plist *list, int *hash);
-int					print_zero(int lim);
+int				zero_ret(char **ret, t_plist *list, int *hash);
+
 #endif
