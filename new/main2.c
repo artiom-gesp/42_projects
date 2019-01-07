@@ -1,3 +1,4 @@
+#include <limits.h>
 #include "ft_printf.h"
 
 int	main(int ac, char **av)
@@ -30,7 +31,7 @@ int	main(int ac, char **av)
 
 //	ft_printf("@moulitest: %lld", -9223372036854775808);
 		
-	printf(" %d p\n", printf(av[1], atoi(av[2])));
+	printf(" %d p\n", printf(av[1], 0));
 	
-	printf(" %d m\n", ft_printf(av[1], atoi(av[2])));
+	printf(" %d m\n", ft_printf(av[1], 0));
 }

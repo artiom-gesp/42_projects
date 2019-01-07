@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:20:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:26:26 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 09:24:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void				print_c(t_plist *list, va_list *ap);
 char				*convert_dioux(char flag, va_list *ap, int base, int conv);
 void				print_width(t_plist *list, int len);
 void				print_sign(t_plist *list, char *ret, int flag);
-int				zero_ret(char **ret, t_plist *list, int *hash);
-
+int					zero_ret(char **ret, t_plist *list, int *hash);
+int					print_zero(int lim);
 #endif

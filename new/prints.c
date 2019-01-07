@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 17:01:36 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 11:51:46 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 11:49:48 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,29 +87,39 @@ void	print_percent(t_plist *list)
 	list->size++;
 }
 
+void	zero_p(char **ret, t_plist *list)
+{
+	(void)list;
+	if (!ft_strcmp(*ret, "0") && list->precision == -1)
+	{
+		free(*ret);
+		*ret = "";
+	}
+}
+
 void	print_p(t_plist *list, va_list *ap)
 {
 	long long	save;
 	char		*ret;
-	int			len;
+	int			minus;
 
+	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	save = (long)va_arg(*ap, void*);
 	if (!(ret = ft_itoa_base(save, 16, 'a')))
 		return ;
-	len = (int)ft_strlen(ret);
-	len += 2;
-	if (ft_strchr(list->sign, '-'))
+	zero_p(&ret, list);
+	if (minus && ft_strcmp(ret, "0"))
+		list->min_width -= 2;
+	if (list->precision >= list->min_width)
+		print_precision(list, ret, 1);
+	else if (list->precision < list->min_width && minus)
+		print_pw_minus(list, ret);
+	else if (list->precision < list->min_width)
 	{
-		ft_putstr("0x");
+		list->min_width -=  2;
+		print_wp_x(list, ft_strlen(ret), 1);
 		ft_putstr(ret);
-		print_width(list, len);
+		list->size += (int)ft_strlen(ret);
 	}
-	else
-	{
-		print_width(list, len);
-		ft_putstr("0x");
-		ft_putstr(ret);
-	}
-	list->size += len;
-	free(ret);
+	ft_strcmp(ret, "") ? free(ret) : do_nothing();
 }

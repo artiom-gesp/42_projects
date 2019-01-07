@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:23:18 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:48:50 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 11:46:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ int		print_wp(t_plist *list, int len, char *ret)
 				&& list->precision == 0 ? ft_putchar('0') : ft_putchar(' ');
 	print_sign(list, ret, 1);
 	list->size = i == -1 ? list->size + 0 : list->size + i;
-	i = -1;
 	lim = list->precision + flag - len;
-	if (lim > 0)
-		while (++i < lim)
-			ft_putchar('0');
+	i = print_zero(lim);
 	list->size = i == -1 ? list->size + 0 : list->size + i;
 	return (flag == 1 ? (1) : (0));
 }
@@ -53,11 +50,11 @@ void	print_hash_sign(t_plist *list, int flag, int len, int hash)
 			list->precision <= len ? ft_putchar('0') : ft_putchar(' ');
 			list->size++;
 		}
-		else if (hash && (list->flag == 'x' || list->flag == 'X'))
+		else if ((hash && (list->flag == 'x' || list->flag == 'X')) || list->flag == 'p')
 		{
 			list->size += 2;
 			ft_putchar('0');
-			ft_putchar(list->flag);
+			ft_putchar(list->flag != 'p' ? list->flag : 'x');
 		}
 	}
 }
@@ -84,9 +81,7 @@ void	print_wp_x(t_plist *list, int len, int hash)
 	list->size = i == -1 ? list->size + 0 : list->size + i;
 	i = -1;
 	lim = list->precision - len;
-	if (lim > 0)
-		while (++i < lim)
-			ft_putchar('0');
+	i = print_zero(lim);
 	list->size = i == -1 ? list->size + 0 : list->size + i;
 }
 

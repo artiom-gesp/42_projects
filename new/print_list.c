@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 10:16:09 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:41:44 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 09:53:58 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ char	*convert_dioux(char flag, va_list *ap, int base, int conv)
 {
 	char *ret;
 
-	if (conv == 2 && flag == 'u')
+	if (conv == 2 && (flag == 'u' || flag == 'o' || flag == 'x'
+				|| flag == 'X'))
 		ret = get_u((unsigned long long)va_arg(*ap, long long), base,
 				flag - 23);
 	else if (conv == 2)
 		ret = ft_itoa_base(va_arg(*ap, long long), base, flag - 23);
-	else if (conv == 1 && flag == 'u')
+	else if (conv == 1 && (flag == 'u' || flag == 'x' || flag == 'X'
+			|| flag == 'o'))
 		ret = get_u((unsigned long)va_arg(*ap, uintmax_t), base, flag - 23);
 	else if (conv == 1)
 		ret = ft_itoa_base(va_arg(*ap, long), base, flag - 23);

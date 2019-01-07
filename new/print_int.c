@@ -6,11 +6,22 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 11:22:04 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 11:40:10 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 09:23:53 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		print_zero(int lim)
+{
+	int i;
+
+	i = -1;
+	if (lim > 0)
+		while (++i < lim)
+			ft_putchar('0');
+	return (i);
+}
 
 int		is_int(char c)
 {
@@ -43,5 +54,6 @@ void	integer_print(t_plist *list, va_list *ap)
 		list->size += ret[0] != '-' ? (int)ft_strlen(ret)
 			: (int)ft_strlen(ret) - 1;
 	}
-	ft_strcmp(ret, "") && ft_strcmp(ret, "-9223372036854775808") ? free(ret) : do_nothing();
+	ft_strcmp(ret, "") &&
+		ft_strcmp(ret, "-9223372036854775808") ? free(ret) : do_nothing();
 }

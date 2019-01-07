@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 11:24:44 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:05:40 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 11:47:04 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	print_hash(t_plist *list, char *ret)
 {
-	if ((list->flag == 'x' || list->flag == 'X')
+	if (((list->flag == 'x' || list->flag == 'X')
 			&& ft_strchr(list->sign, '#')
-			&& ft_strcmp(ret, "0"))
+			&& ft_strcmp(ret, "0")) || list->flag == 'p')
 	{
 		ft_putchar('0');
-		ft_putchar(list->flag);
+		ft_putchar(list->flag != 'p' ? list->flag : 'x');
 		list->size += 2;
 	}
 	if (list->flag == 'o' && ft_strchr(list->sign, '#')

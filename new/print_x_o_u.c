@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 11:44:22 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 11:44:34 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 10:31:44 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	print_u(t_plist *list, va_list *ap)
 
 	minus = ft_strchr(list->sign, '-') ? 1 : 0;
 	ret = convert_dioux(list->flag, ap, 10, list->conversion);
-	zero_ret(&ret, list, &minus);
+	if (!zero_ret(&ret, list, &minus))
+		return ;
 	if (list->precision >= list->min_width)
 		print_precision(list, ret, 1);
 	else if (list->precision < list->min_width && minus)

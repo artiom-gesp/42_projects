@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 11:58:11 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:04:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 09:34:54 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	sort_flags(t_plist *list, char flag)
 
 	list->flag = flag;
 	c = list->flag;
-	if (c == 'D' || c == 'U')
+	if (c == 'D' || c == 'U' || c == 'O')
 		list->conversion = 2;
 	if (c == 'S' || c == 'C' || c == 'D' || c == 'U'
 			|| c == 'O' || c == 'F')
