@@ -6,11 +6,21 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 10:46:24 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:22:18 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/08 15:46:48 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	zero_p(char **ret, t_plist *list)
+{
+	(void)list;
+	if (!ft_strcmp(*ret, "0") && list->precision == -1)
+	{
+		free(*ret);
+		*ret = "";
+	}
+}
 
 char	*round_float(double save, int precision, long long fpart)
 {

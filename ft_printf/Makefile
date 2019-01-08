@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2018/12/29 12:24:13 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/08 14:56:06 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,8 @@ SRC = ft_put_long_nbr.c \
 	  sort_flags.c \
 	  print_minus.c \
 	  print_width.c \
-	  ft_nbrlen.c
+	  ft_nbrlen.c \
+	  complete_stars.c
 
 OBJ = $(SRC:.c=.o)
 

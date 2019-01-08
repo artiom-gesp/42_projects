@@ -34,4 +34,6 @@ int	main(int ac, char **av)
 	printf(" %d p\n", printf(av[1], atoi(av[2]), av[3]));
 	
 	printf(" %d m\n", ft_printf(av[1], atoi(av[2]), av[3]));
+	
+	
 }

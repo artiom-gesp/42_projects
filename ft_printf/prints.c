@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 17:01:36 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/07 11:49:48 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/08 15:50:18 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,6 @@ void	print_percent(t_plist *list)
 	list->size++;
 }
 
-void	zero_p(char **ret, t_plist *list)
-{
-	(void)list;
-	if (!ft_strcmp(*ret, "0") && list->precision == -1)
-	{
-		free(*ret);
-		*ret = "";
-	}
-}
-
 void	print_p(t_plist *list, va_list *ap)
 {
 	long long	save;
@@ -116,7 +106,7 @@ void	print_p(t_plist *list, va_list *ap)
 		print_pw_minus(list, ret);
 	else if (list->precision < list->min_width)
 	{
-		list->min_width -=  2;
+		list->min_width -= 2;
 		print_wp_x(list, ft_strlen(ret), 1);
 		ft_putstr(ret);
 		list->size += (int)ft_strlen(ret);
