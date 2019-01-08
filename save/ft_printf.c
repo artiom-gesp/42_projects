@@ -51,7 +51,7 @@ void	reset_list(t_plist *list)
 int		make_plist(const char *format, va_list *ap)
 {
 	int		i;
-	t_plist		*list;
+	t_plist	*list;
 	int		ret;
 
 	i = 0;
@@ -63,7 +63,7 @@ int		make_plist(const char *format, va_list *ap)
 		if (format[i] == '%')
 		{
 			i++;
-			complete_list(format, &i, list, ap);
+			complete_list(format, &i, list);
 			print_list(list, ap);
 			ret += list->size;
 		}
