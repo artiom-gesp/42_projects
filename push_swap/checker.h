@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/09 16:56:13 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/09 18:52:31 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	rotate_both(t_push *a, t_push *b);
 void	rev_rotate_both(t_push *a, t_push *b);
 void	free_tab(char **tab);
 char	**add_el_ttab(char **ptr, char *str);
-void	do_check(t_push *a, t_push *b, char *instruction);
+int		do_check(t_push *a, t_push *b, char *instruction, int flag);
+void	print_plist(t_push *a, t_push *b);
 
 #endif
