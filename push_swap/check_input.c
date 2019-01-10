@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 11:27:22 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/10 15:40:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,30 @@ static int	is_tab_ok(int tab[], int size)
 	return (1);
 }
 
-int			is_input_ok(char ac, char **av)
+int			is_input_ok(int ac, char **av)
 {
 	int 	i;
 	int		tab[ac - 1];
 	char	*save;
+	int		flag;
+	int		j;
 
-	i = 1;
+
+	i = ft_atoi(av[0]) && av[0][0] != '0' ? 0 : 1;
+	flag = ft_atoi(av[0]) && av[0][0] != '0' ? 1 : 0;
 	save = NULL;
+	j = 0;
 	if (!ft_strcmp(av[1], "-v"))
 		i++;
 	while (i < ac)
 	{
-		if (!((tab[i - 1] = ft_atoi(av[i])) && av[i][0] != '0'))
+		if ((!(tab[j] = ft_atoi(av[i])) && av[i][0] != '0'))
 			return (0);
-		save = ft_itoa_base(tab[i - 1], 10, 'a');
+		save = ft_itoa_base(tab[j], 10, 'a');
 		if (save[0] != av[i][0])
 			return (0);
 		i++;
+		j++;
 	}
 	return (is_tab_ok(tab, ac - 1));
 }

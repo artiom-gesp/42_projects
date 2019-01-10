@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:54:58 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 10:46:40 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/10 13:00:16 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		is_full(t_push *list)
 {
 	list = get_start_list(list);
-	while (list->next)
+	while (list)
 	{
 		if (!list->is_data)
 			return (0);
@@ -30,6 +30,18 @@ int		is_sorted(t_push *list)
 	while (list->next)
 	{
 		if (list->data >= list->next->data)
+			return (0);
+		list = list->next;
+	}
+	return (1);
+}
+
+int		is_rev_sorted(t_push *list)
+{
+	list = get_top_list(list);
+	while (list->next)
+	{
+		if (list->next->data >= list->data)
 			return (0);
 		list = list->next;
 	}
