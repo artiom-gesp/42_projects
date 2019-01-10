@@ -6,11 +6,25 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 13:50:22 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/09 13:54:35 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/10 10:44:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void	free_list(t_push *list)
+{
+	t_push	*save;
+
+	list = get_start_list(list);
+	save = list;
+	while (list)
+	{
+		save = list->next;
+		free(list);
+		list = save;
+	}
+}
 
 t_push	*get_start_list(t_push *list)
 {
