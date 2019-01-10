@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 14:39:28 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 11:33:46 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:10:27 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t size)
 		return (b);
 	if (size < a)
 		return (b + size);
-	while (a + i < size - 1)
+	while (a + i < size - 1 && i < b)
 	{
 		dst[a + i] = src[i];
 		i++;

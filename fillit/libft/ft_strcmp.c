@@ -15,10 +15,8 @@
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	int i;
-	int save_s1;
 
 	i = 0;
-	save_s1 = 0;
 	if (s1[i] && !s2[i])
 		return (1);
 	if (!s1[i] && s2[i])

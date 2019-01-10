@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:19:51 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:20:15 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:45:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 
 	save_list = *alst;
 	save_next = save_list->next;
-	while (save_next)
+	if (del)
 	{
-		save_next = save_list->next;
-		ft_lstdelone(&save_list, del);
-		save_list = save_next;
+		while (save_next)
+		{
+			save_next = save_list->next;
+			ft_lstdelone(&save_list, del);
+			save_list = save_next;
+		}
+		*alst = NULL;
 	}
-	*alst = NULL;
 }

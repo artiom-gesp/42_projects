@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strccpy.c                                       :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 14:29:25 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/20 14:36:11 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/23 14:17:40 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/23 14:56:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strccpy(char *dst, const char *src, int c)
+float	ft_pow(float nb, int pow)
 {
-	int i;
-
-	i = 0;
-	while (src[i] && dst[i])
+	if (pow > 1)
 	{
-		if (src[i] == c)
-		{
-			dst[i] = '\0';
-			return (dst);
-		}
-		dst[i] = src[i];
-		i++;
+		return (nb * ft_pow(nb, pow - 1));
 	}
-	dst[i] = '\0';
-	return (dst);
+	else if (pow < 0)
+	{
+		return (1 / ft_pow(nb, -pow));
+	}
+	if (pow == 1)
+		return (nb);
+	return (0);
 }

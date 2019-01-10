@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 16:19:52 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 16:20:00 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/23 12:08:18 by agesp             #+#    #+#             */
+/*   Updated: 2018/11/23 13:11:59 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+int	*ft_sort_nb_tab(int *tab, size_t size)
 {
-	int			i;
-	char		*save_dst;
-	char		*save_src;
+	size_t	i;
+	size_t	j;
+	int		save;
 
 	i = 0;
-	save_dst = (char*)dst;
-	save_src = (char*)src;
-	if (save_dst == save_src)
-		return (dst);
-	while ((size_t)i < n)
+	save = 0;
+	j = 0;
+	while (j < size)
 	{
-		if (dst > src)
+		i = 0;
+		while (i < size)
 		{
-			i = n;
-			while (--i >= 0)
-				save_dst[i] = save_src[i];
-			dst = save_dst;
-			return (dst);
+			if (tab[i] > tab[j])
+			{
+				save = tab[i];
+				tab[i] = tab[j];
+				tab[j] = save;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
-	return (ft_memcpy(dst, src, n));
+	return (tab);
 }

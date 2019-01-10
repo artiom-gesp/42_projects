@@ -3,65 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: uroy <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 09:24:50 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 17:26:53 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/15 11:02:05 by uroy              #+#    #+#             */
+/*   Updated: 2018/12/10 14:47:51 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdlib.h>
 
-int		get_n_pos(char *str)
+static unsigned int	ft_linelen(char *mem)
 {
-	int i;
+	unsigned int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (mem[i] != '\n' && mem[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*remove_start(char *s)
+static char			*ft_chrcpy(char *mem)
 {
-	int i;
-
-	i = 0;
-	if (ft_strchr(s, '\n'))
+	if (ft_strchr(mem, '\n'))
 	{
-		s = ft_strcpy(s, ft_strchr(s, '\n') + 1);
-		return (s);
+		ft_strcpy(mem, ft_strchr(mem, '\n') + 1);
+		return (mem);
 	}
-	if (get_n_pos(s) > 0)
+	if (ft_linelen(mem) > 0)
 	{
-		s = ft_strcpy(s, ft_strchr(s, '\0'));
-		return ("\0");
+		ft_strcpy(mem, ft_strchr(mem, '\0'));
+		return (mem);
 	}
 	return (NULL);
 }
 
-int		get_next_line(const int fd, char **line)
+int					get_next_line(int const fd, char **line)
 {
-	int			ret;
-	static char	*stock_fd[4865];
-	char		buff[BUFF_SIZE + 1];
-	char		*save;
+	static char		*mem[4863];
+	char			buff[BUFF_SIZE + 1];
+	char			*sline;
+	int				sread;
 
-	if (!line || fd < 0 || read(fd, buff, 0) < 0)
+	if (BUFF_SIZE < 1 || fd < 0 || !line || read(fd, buff, 0) < 0)
 		return (-1);
-	if (!stock_fd[fd] && (stock_fd[fd] = ft_strnew(0)) == NULL)
+	if (!(mem[fd]) && (mem[fd] = ft_strnew(0)) == NULL)
 		return (-1);
-	while (!(ft_strchr(stock_fd[fd], '\n')) &&
-			(ret = read(fd, buff, BUFF_SIZE)) > 0)
+	while (!(ft_strchr(mem[fd], '\n')) &&
+			(sread = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		buff[ret] = 0;
-		save = stock_fd[fd];
-		stock_fd[fd] = ft_strjoin(save, buff);
-		free(save);
+		buff[sread] = '\0';
+		sline = mem[fd];
+		mem[fd] = ft_strjoin(sline, buff);
+		free(sline);
 	}
-	*line = ft_strsub(stock_fd[fd], 0, get_n_pos(stock_fd[fd]));
-	if (!(remove_start(stock_fd[fd])))
+	*line = ft_strsub(mem[fd], 0, ft_linelen(mem[fd]));
+	if (ft_chrcpy(mem[fd]) == NULL)
+	{
+		free(mem[fd]);
 		return (0);
+	}
 	return (1);
 }

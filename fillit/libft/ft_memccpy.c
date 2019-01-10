@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:43:03 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 11:44:06 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/23 10:44:00 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ void					*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	i = 0;
 	if (n)
 	{
-		if ((savesrc[i]) == (unsigned char)c)
-		{
-			return (savedst);
-		}
 		while (i < n)
 		{
 			savedst[i] = savesrc[i];

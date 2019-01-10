@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 14:32:43 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 16:24:00 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 16:57:13 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*save;
 
 	i = 0;
-	if (s)
+	if (s && f)
 	{
 		if (!(save = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
 			return (NULL);

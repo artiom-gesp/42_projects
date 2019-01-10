@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   create_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: uroy <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 12:16:43 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 12:37:51 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/30 12:57:44 by uroy              #+#    #+#             */
+/*   Updated: 2018/12/09 13:13:34 by uroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-int					ft_strncmp(const char *s1, const char *s2, size_t n)
+void	create_int_tab(int tab[][32], int size)
 {
-	unsigned int	i;
+	int i;
+	int j;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n - 1 && s1[i] && s2[i] && s1[i] == s2[i])
+	while (i < 32)
 	{
+		j = 0;
+		while (j < 32)
+		{
+			tab[i][j] = -1;
+			j++;
+		}
 		i++;
 	}
-	return (((unsigned char)s1[i] - (unsigned char)s2[i]));
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			tab[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
 }

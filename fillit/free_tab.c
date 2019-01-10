@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: uroy <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 12:16:43 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 12:37:51 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/06 11:46:39 by uroy              #+#    #+#             */
+/*   Updated: 2018/12/10 13:59:17 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-int					ft_strncmp(const char *s1, const char *s2, size_t n)
+void	free_tab(char **tab)
 {
-	unsigned int	i;
+	int		i;
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (i < n - 1 && s1[i] && s2[i] && s1[i] == s2[i])
+	i = 129;
+	while (i >= 0)
 	{
-		i++;
+		free(tab[i]);
+		i--;
 	}
-	return (((unsigned char)s1[i] - (unsigned char)s2[i]));
+	free(tab);
 }

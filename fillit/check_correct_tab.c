@@ -1,83 +1,118 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*   check_correct_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:58:10 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/24 17:42:23 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/05 13:03:41 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/13 09:58:53 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-int		baobab(char **tab, int i, int j , int h, int k)
+static void	count_char(char *line, int *j, int *h)
 {
-	while (tab[i])
-	{
-		if ((i + 1) % 5 != 0)
-		{
-			k = 0;
-			if (!(ft_strlen(tab[i]) == 5))
-				return (-1);
-			while (tab[i][k])
-			{
-				if (tab[i][k] == '.')
-					j++;
-				if (tab[i][k] == '#')
-					h++;
-				k++;
-			}
-		}
-		else
-			if (ft_strcmp(tab[i], "\n") != 0)
-				return (-2);
-		i++;
-	}
-	if ((j != 0 && h != 0) && (h % 4 != 0 || j % 12 != 0))
-		return (-3);
+	int k;
+	int sj;
+	int sh;
 
-	return (1);
+	k = 0;
+	sj = *j;
+	sh = *h;
+	while (line[k])
+	{
+		if (line[k] == '.')
+			sj++;
+		if (line[k] == '#')
+			sh++;
+		k++;
+	}
+	*j = sj;
+	*h = sh;
 }
 
-int		check_tab(char **tab)
+static int	check_tab(char **tab)
 {
 	int i;
 	int j;
 	int h;
 	int k;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	k = 0;
 	h = 0;
-	return (baobab(tab, i, j, h, k));
+	while (tab[++i])
+	{
+		if ((i + 1) % 5 != 0)
+		{
+			if (!(ft_strlen(tab[i]) == 5))
+				return (-1);
+			count_char(tab[i], &j, &h);
+		}
+		else if (ft_strcmp(tab[i], "\n") != 0)
+			return (-1);
+	}
+	if (h == 0 || j == 0 || (i + 1) % 5 != 0)
+		return (-1);
+	if ((j != 0 && h != 0) && (h % 4 != 0 || j % 12 != 0))
+		return (-1);
+	return (1);
 }
 
-char	**make_tab(char *file)
+static char	**terminate_tab(char **tab, int i)
 {
-	int		i;
-	char	*save;
-	int		fd;
-	char **tab;
+	if (i >= 130)
+		return (NULL);
+	while (i < 130)
+	{
+		tab[i] = NULL;
+		i++;
+	}
+	return (tab);
+}
 
-	i = 0;
-	fd = open(file, O_RDONLY);
-	tab = malloc(sizeof(char*) * 130);
+static char	**m_tab(char *save, char **tab, int i, int fd)
+{
 	while (get_next_line(fd, &save))
 	{
-		if ((ft_strlen(save) == 4 || ft_strlen(save) == 0) && i <= 130)
+		if ((ft_strlen(save) == 4 || ft_strlen(save) == 0))
 		{
-			tab[i] = ft_strjoin(save, "\n");
+			if (!(tab[i] = malloc(sizeof(char) * ft_strlen(save) + 1)))
+				return (NULL);
+			if (ft_strlen(save) == 0)
+				tab[i][0] = '\n';
+			else
+			{
+				tab[i] = ft_strcpy(tab[i], save);
+				tab[i][4] = '\n';
+			}
 			i++;
 		}
-		else
-			return (NULL);
+		free(save);
 	}
-	tab[i] = NULL;
-	if (check_tab(tab) == 1)
+	free(save);
+	tab = terminate_tab(tab, i);
+	if (tab && check_tab(tab) == 1 && check_entry(tab) == 1 && !close(fd))
 		return (tab);
+	free_tab(tab);
 	return (NULL);
+}
+
+char		**make_tab(char *file)
+{
+	int		i;
+	int		fd;
+	char	**tab;
+	char	*save;
+
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		return (NULL);
+	save = NULL;
+	if ((tab = malloc(sizeof(char*) * 130)) == NULL)
+		return (NULL);
+	return (m_tab(save, tab, i, fd));
 }

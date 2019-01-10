@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/20 14:35:23 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/23 14:58:45 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ void					ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void					ft_lstadd(t_list **alst, t_list *new);
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-char					*ft_strccpy(char *dst, const char *src, int c);
+int						ft_isspace(char c);
+int						ft_atoi_base(char *nbr, int base);
+char					**ft_sort_tab_param(char **tab,
+		int (*f)(const char *, const char *));
+int						ft_is_bigger(int a, int b);
+int						*ft_sort_nb_tab(int *tab, size_t size);
+char					*ft_itoa_base(int nb, int base);
+float					ft_pow(float nb, int pow);
 
 #endif

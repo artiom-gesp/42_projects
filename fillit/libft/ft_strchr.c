@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:42:31 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/09 11:31:26 by agesp            ###   ########.fr       */
+/*   Updated: 2018/11/24 17:12:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 char		*ft_strchr(const char *s, int c)
 {
 	int		i;
-	char	*z;
 
 	i = 0;
-	z = "";
 	if (c == '\0')
 	{
 		while (s[i])
@@ -27,7 +25,7 @@ char		*ft_strchr(const char *s, int c)
 	}
 	if (s[i] == '\0')
 		return (0);
-	while (s[i] && s[i] != c)
+	while (s[i] && s[i] != (char)c)
 	{
 		i++;
 	}

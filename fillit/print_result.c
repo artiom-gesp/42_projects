@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 16:19:52 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 16:20:00 by agesp            ###   ########.fr       */
+/*   Created: 2018/11/30 13:45:59 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/09 14:23:08 by uroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	print_result(int to_fill[][32], int size)
 {
-	int			i;
-	char		*save_dst;
-	char		*save_src;
+	int		i;
+	int		j;
 
 	i = 0;
-	save_dst = (char*)dst;
-	save_src = (char*)src;
-	if (save_dst == save_src)
-		return (dst);
-	while ((size_t)i < n)
+	while (i < size)
 	{
-		if (dst > src)
+		j = 0;
+		while (j < size)
 		{
-			i = n;
-			while (--i >= 0)
-				save_dst[i] = save_src[i];
-			dst = save_dst;
-			return (dst);
+			if (to_fill[i][j] == 0)
+				ft_putchar('.');
+			else
+				ft_putchar(to_fill[i][j] + 64);
+			j++;
 		}
+		ft_putchar('\n');
 		i++;
 	}
-	return (ft_memcpy(dst, src, n));
 }
