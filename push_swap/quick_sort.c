@@ -6,13 +6,13 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:12:11 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 17:50:12 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/11 15:29:18 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-t_push *copy_pile(t_push *p)
+t_push *copy_pile(t_push *p, int is_data)
 {
 	t_push *ret;
 
@@ -20,17 +20,17 @@ t_push *copy_pile(t_push *p)
 	if (!(ret = malloc(sizeof(t_push))))
 		return (NULL);
 	ret->next = NULL;
-	ret->data = p->data;
-	p->is_data = p->is_data;
-	p->prev = NULL;
+	ret->data = is_data ? p->data : 0;
+	ret->is_data = p->is_data;
+	ret->prev = NULL;
 	while (p->next)
 	{
 		if (!(ret->next = malloc(sizeof(t_push))))
 			return (NULL);
 		ret->next->next = NULL;
 		ret->next->prev = ret;
-		ret->next->data = p->next->data;
-		ret->next->is_data = p->next->is_data;
+		ret->next->data = is_data ? p->next->data : 0;
+		ret->next->is_data = is_data ? p->next->is_data : 0;
 		ret = ret->next;
 		p = p->next;
 	}
@@ -57,6 +57,8 @@ int		get_pile_size(t_push *p)
 int		is_min(t_push *p, int min)
 {
 	p = get_top_list(p);
+	if (!p->next)
+		return (1);
 	while (p)
 	{
 		if (p->data < min)
@@ -69,35 +71,139 @@ int		is_min(t_push *p, int min)
 	return (1);
 }
 
-void	quick_sort(t_push *a, t_push *b)
+void	quick_sort(t_push *a, t_push *b, int flag)
 {
 	int pivot;
+	static int		i = 0;
 
-	if (is_sorted(a) && is_full(a))
-		return ;
+	(void)flag;
 	a = get_top_list(a);
 	pivot = a->data;
-	print_plist(a,b);
-	while (!is_min(a, pivot))
-	{
-		ft_printf("pivot : %d\n", pivot);
-		rotate(a);
-		print_plist(a, b);
-		write(0, "ra\n", 3);
-		push(a, b);
-		print_plist(a, b);
-		write(0, "pb\n", 3);
-	}
-	swap(a);
-	print_plist(a, b);
-	write(0, "sa\n", 3);
-	ft_printf("size %d\n", get_pile_size(a));
-	if (get_pile_size(a) == 1)
-	{
-		get_mediane(b, a);
-		get_mediane(a, b);
-		print_plist(a,b);
+	//print_plist(a, b);
+	if (is_sorted(a) && is_full(a))
 		return ;
+	while (!is_empty(a))
+	{
+		while (!is_min(a, pivot))
+		{
+			rotate(a);
+			//		print_plist(a, b);
+			i++;
+			while (a->data < pivot)
+			{
+				push(a, b);
+				a = get_top_list(a);
+				//				print_plist(a, b);
+				b = get_top_list(b);
+				if (b->next && b->data < b->next->data)
+				{
+					swap(b);
+					//					print_plist(a, b);
+					i++;
+				}
+				i++;
+			}
+		}
+		while (a->data != pivot)
+		{
+			rotate(a);
+			//			print_plist(a, b);
+			i++;
+		}
+		push(a,b);
+		//		print_plist(a, b);
+		i++;
+		b = get_top_list(b);
+		if (b->next && b->next->data > b->data)
+		{
+			swap(b);
+			//			print_plist(a, b);
+			i++;
+		}
+		while (!is_empty(a))
+		{
+			a = get_top_list(a);
+			push(a, b);
+			//			print_plist(a, b);
+			i++;
+
+			b = get_top_list(b);
+			if (b->next && b->data < b->next->data)
+			{
+				swap(b);
+				//				print_plist(a, b);
+				i++;
+			}
+		}
 	}
-	return (quick_sort(a, b));
+	b = get_top_list(b);
+	pivot = b->data;
+	if (!is_rev_sorted(b))
+	{
+		while (!is_empty(b))
+		{
+			while (!is_min(b, pivot))
+			{
+				rotate(b);
+				//		print_plist(a, b);
+				i++;
+				while (b->data < pivot && b->next)
+				{
+					push(b, a);
+					b = get_top_list(b);
+					//				print_plist(a, b);
+					a = get_top_list(a);
+					if (a->next && a->data > a->next->data)
+					{
+						swap(a);
+						//					print_plist(a, b);
+						i++;
+					}
+					i++;
+				}
+			}
+			while (b->data != pivot)
+			{
+				rotate(b);
+				//			print_plist(a, b);
+				i++;
+			}
+			push(b, a);
+			//		print_plist(a, b);
+			i++;
+			a = get_top_list(a);
+			if (a->next && a->next->data > a->data)
+			{
+				swap(a);
+				//			print_plist(a, b);
+				i++;
+			}
+			while (!is_empty(b))
+			{
+				b = get_top_list(b);
+				push(b, a);
+				//			print_plist(a, b);
+				i++;
+
+				a = get_top_list(a);
+				if (a->next && a->data > a->next->data)
+				{
+					swap(a);
+					//				print_plist(a, b);
+					i++;
+				}
+			}
+		}
+	}
+	else
+	{
+		b = get_top_list(b);
+		while (!is_empty(b))
+		{
+			push(b, a);
+			i++;
+		}
+	}
+	ft_printf("i %d\n", i);
+	return (quick_sort(a, b, 1));
 }

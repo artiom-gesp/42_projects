@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 17:21:26 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/11 10:29:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void				push_swap(t_push *a, t_push *b);
 int					get_mediane(t_push *a, t_push *b);
 int 				get_list_len(t_push *p);
 int					is_smallest(t_push *p);
-void				quick_sort(t_push *a, t_push *b);
+void				quick_sort(t_push *a, t_push *b, int flag);
+t_push				*copy_pile(t_push *p, int is_data);
+int					is_empty(t_push *list);
 
 #endif
