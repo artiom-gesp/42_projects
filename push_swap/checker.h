@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/11 10:29:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/12 18:02:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ typedef struct		s_push
 t_push				*get_start_list(t_push *list);
 t_push				*get_top_list(t_push *list);
 t_push				*get_end_list(t_push *list);
-void				swap(t_push *p);
-void				swap_both(t_push *a, t_push *b);
-void				push(t_push *a, t_push *b);
-void				rotate(t_push *p);
-void				rev_rotate(t_push *p);
-void				rotate_both(t_push *a, t_push *b);
-void				rev_rotate_both(t_push *a, t_push *b);
+void				swap(t_push *p, int print, int which);
+void				swap_both(t_push *a, t_push *b, int print);
+void				push(t_push *a, t_push *b, int print, int which);
+void				rotate(t_push *p, int print, int which);
+void				rev_rotate(t_push *p, int print, int which);
+void				rotate_both(t_push *a, t_push *b, int print);
+void				rev_rotate_both(t_push *a, t_push *b, int print);
 void				free_tab(char **tab);
 char				**add_el_ttab(char **ptr, char *str);
 int					do_check(t_push *a, t_push *b,
@@ -51,5 +51,6 @@ int					is_smallest(t_push *p);
 void				quick_sort(t_push *a, t_push *b, int flag);
 t_push				*copy_pile(t_push *p, int is_data);
 int					is_empty(t_push *list);
+int					len_tab(char **tab);
 
 #endif

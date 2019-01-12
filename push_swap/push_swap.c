@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/10 11:50:53 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 14:40:04 by agesp            ###   ########.fr       */
+/*   Created: 2019/01/12 17:53:38 by agesp             #+#    #+#             */
+/*   Updated: 2019/01/12 17:58:35 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,57 +38,28 @@ int		is_empty(t_push *list)
 	return (1);
 }
 
-void	push_swap(t_push *a, t_push *b)
+t_push *copy_pile(t_push *p, int is_data)
 {
-	int len;
-	int i;
+	t_push *ret;
 
-	i = 0;
-	len = get_list_len(a);
-	if (is_sorted(a))
-		return ;
-	if (len == 1)
-		return ;
-	else if (len == 2)
+	p = get_start_list(p);
+	if (!(ret = malloc(sizeof(t_push))))
+		return (NULL);
+	ret->next = NULL;
+	ret->data = is_data ? p->data : 0;
+	ret->is_data = p->is_data;
+	ret->prev = NULL;
+	while (p->next)
 	{
-		if (!is_sorted(a))
-		{
-			swap(a);
-			i++;
-			write(0, "sa\n", 3);
-		}
-		ft_printf("%d\n", i);
-		return ;
+		if (!(ret->next = malloc(sizeof(t_push))))
+			return (NULL);
+		ret->next->next = NULL;
+		ret->next->prev = ret;
+		ret->next->data = is_data ? p->next->data : 0;
+		ret->next->is_data = is_data ? p->next->is_data : 0;
+		ret = ret->next;
+		p = p->next;
 	}
-	else
-	{
-		while ((!is_full(b) || is_empty(b)))
-		{
-			while (is_rev_sorted(b) && !is_empty(a))
-			{
-				push(a, b);
-				i++;
-				write(0, "pb\n", 3);
-			}
-			while (!is_rev_sorted(b))
-			{
-				i += 2;
-				swap(b);
-				push(b, a);
-				write(0, "sb\n", 3);
-				write(0, "pa\n", 3);
-			}
-			if (is_full(b) && is_rev_sorted(b))
-			{
-				while (!is_full(a))
-				{
-					i++;
-					push(b, a);
-					write(0, "pa\n\n", 4);
-				}
-				ft_printf("%d\n", i);
-				return ;
-			}
-		}
-	}
+	ret = get_start_list(ret);
+	return (ret);
 }

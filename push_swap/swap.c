@@ -6,13 +6,13 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:45:50 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/09 14:50:17 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/12 18:08:38 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	swap(t_push *p)
+void	swap(t_push *p, int print, int which)
 {
 	int save;
 
@@ -24,15 +24,26 @@ void	swap(t_push *p)
 		p->data = p->next->data;
 		p->next->data = save;
 	}
+	if (print)
+	{
+		if (which == 1)
+			write(1, "sa\n", 3);
+		else
+			write(1, "sb\n", 3);
+	}
 }
 
-void	swap_both(t_push *a, t_push *b)
+void	swap_both(t_push *a, t_push *b, int print)
 {
-	swap(a);
-	swap(b);
+	swap(a, 0, 1);
+	swap(b, 0, 0);
+	if (print)
+	{
+		write(1, "ss\n", 3);
+	}
 }
 
-void	push(t_push *a, t_push *b)
+void	push(t_push *a, t_push *b, int print, int which)
 {
 	a = get_top_list(a);
 	b = get_top_list(b);
@@ -44,10 +55,18 @@ void	push(t_push *a, t_push *b)
 		a->is_data = 0;
 		a->data = 0;
 		b->is_data = 1;
+	}	
+	if (print)
+	{
+		if (which == 1)
+			write(1, "pa\n", 3);
+		else
+			write(1, "pb\n", 3);
 	}
+
 }
 
-void	rotate(t_push *p)
+void	rotate(t_push *p, int print, int which)
 {
 	int save;
 
@@ -63,15 +82,26 @@ void	rotate(t_push *p)
 		}
 		p->data = save;
 	}
+	if (print)
+	{
+		if (which == 1)
+			write(1, "ra\n", 3);
+		else
+			write(1, "rb\n", 3);
+	}
 }
 
-void	rotate_both(t_push *a, t_push *b)
+void	rotate_both(t_push *a, t_push *b, int print)
 {
-	rotate(a);
-	rotate(b);
+	rotate(a, 0, 1);
+	rotate(b, 0, 0);
+	if (print)
+	{
+		write(1, "rr\n", 3);
+	}
 }
 
-void	rev_rotate(t_push *p)
+void	rev_rotate(t_push *p, int print, int which)
 {
 	int save;
 
@@ -87,10 +117,22 @@ void	rev_rotate(t_push *p)
 		}
 		p->data = save;
 	}
+	if (print)
+	{
+		if (which == 1)
+			write(1, "rra\n", 4);
+		else
+			write(1, "rrb\n", 4);
+	}
+
 }
 
-void	rev_rotate_both(t_push *a, t_push *b)
+void	rev_rotate_both(t_push *a, t_push *b, int print)
 {
-	rev_rotate(a);
-	rev_rotate(b);
+	rev_rotate(a, 0, 0);
+	rev_rotate(b, 0, 0);
+	if (print)
+	{
+		write(1, "rrr\n", 4);
+	}
 }
