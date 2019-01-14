@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:18:27 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/12 18:06:33 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/14 16:23:18 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int		is_smallest(t_push *p)
 	return (1);
 }
 
-int		get_direction(t_push *a)
+int		get_direction(t_push *p)
 {
 	t_push *s;
 	int		i;
 	int		j;
 
-	s = copy_pile(a, 1);
+	s = copy_pile(p, 1);
 	i = 0;
 	j = 0;
 	s = get_top_list(s);
@@ -48,7 +48,7 @@ int		get_direction(t_push *a)
 	return (1);
 }
 
-int		get_mediane(t_push *a, t_push *b)
+int		get_mediane(t_push *a, t_push *b, int print)
 {
 	int mediane;
 	int i;
@@ -64,20 +64,20 @@ int		get_mediane(t_push *a, t_push *b)
 		while (!is_smallest(a) && !is_sorted(a))
 		{
 			i++;
-			j == 2 ? rev_rotate(a, 1, 1) : rotate(a, 1, 1);
+			j == 2 ? rev_rotate(a, print, 1) : rotate(a, print, 1);
 			a = get_top_list(a);
 		}
 		if (!is_sorted(a))
 		{
 			i++;
 			a = get_top_list(a);
-			push(a, b, 1, 2);
+			push(a, b, print, 2);
 		}
 	}
 	while (!is_full(a) && !is_empty(b))
 	{
 		i++;
-		push(b, a, 1, 1);
+		push(b, a, print, 1);
 	}
 	a = get_start_list(a);
 	while (mediane--)

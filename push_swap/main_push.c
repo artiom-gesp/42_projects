@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/12 18:03:10 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/14 13:15:37 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		main(int ac, char **av)
 			b = fill_pile(ac, tab ? tab : av, 0);
 			if (!ft_strcmp(av[1], "-v"))
 				flag = 1;
-			get_mediane(a, b);
+			//get_mediane(a, b);
+			quick_sort(a, b);
 		}
 	}
 }

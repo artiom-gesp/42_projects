@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/12 18:02:46 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/14 16:19:04 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ t_push				*fill_pile(int ac, char **av, int is_data);
 void				free_list(t_push *list);
 int					is_input_ok(int ac, char **av);
 void				push_swap(t_push *a, t_push *b);
-int					get_mediane(t_push *a, t_push *b);
+int					get_mediane(t_push *a, t_push *b, int print);
 int 				get_list_len(t_push *p);
 int					is_smallest(t_push *p);
-void				quick_sort(t_push *a, t_push *b, int flag);
 t_push				*copy_pile(t_push *p, int is_data);
 int					is_empty(t_push *list);
 int					len_tab(char **tab);
+void				quick_sort(t_push *a, t_push *b);
+int					get_direction(t_push *p);
 
 #endif
