@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/14 13:17:52 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/15 16:19:43 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC = main.c \
 	push_swap.c \
 	get_smallest.c \
 	print_list.c \
-	quick_sort.c
+	quick_sort.c \
+	nquick_sort.c
 
 PUSH_SRC = checker.c \
     move_threw_list.c \
@@ -36,7 +37,8 @@ PUSH_SRC = checker.c \
 	get_smallest.c \
 	main_push.c \
 	print_list.c \
-	quick_sort.c
+	quick_sort.c \
+	nquick_sort.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
 

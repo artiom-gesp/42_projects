@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 11:47:46 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/14 18:54:30 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/15 15:27:36 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,16 @@ void	rev_split_list(t_push *a, t_push *b)
 
 void	split_in_three(t_push *a, t_push *b, int *b1, int *b2, int part2)
 {
+	int	save_b2;
+
 	cut_in_three(b, b1, b2);
 	*b1 += part2;
 	*b2 += part2;
+	save_b2 = *b2;
 	while (!is_empty(b))
 	{
 		b = get_top_list(b);
-		while (!is_max(b, *b2))
+		while (!is_max(b, *b2) && !is_empty(b))
 		{
 			if (b->data > *b2)
 			{
@@ -162,10 +165,11 @@ void	split_in_three(t_push *a, t_push *b, int *b1, int *b2, int part2)
 				rotate(b, 1, 2);
 		}
 		if (*b1 == *b2)
-			*b2 = 0;
+			*b2 = -2147483648;
 		else
 			*b2 = *b1;
 	}
+	*b2 = save_b2;
 }
 
 int		is_biggest(t_push *p)
@@ -206,11 +210,21 @@ int		get_biggest_direction(t_push *p)
 
 void	mini_sort(t_push *a, t_push *b, int b1, int b2)
 {
-	
-	while (b1 < b2)
+	if (b2 == -1)
 	{
-		push(a, b, 1, 2);
-		b1++;
+		while (a->data != 1)
+		{
+			push(a, b, 1, 2);
+			a = get_top_list(a);
+		}
+	}
+	else
+	{
+		while (b1 < b2)
+		{
+			push(a, b, 1, 2);
+			b1++;
+		}
 	}
 	while (!is_empty(b))
 	{
@@ -232,7 +246,7 @@ void	quick_sort(t_push *a, t_push *b)
 
 	if (is_sorted(a))
 		return ;
-	if (get_list_len(a) < 4)
+	if (get_list_len(a) < 5)
 	{
 		get_mediane(a, b, 1);
 		return ;
@@ -243,8 +257,10 @@ void	quick_sort(t_push *a, t_push *b)
 		split_in_three(a, b, &b1, &b2, 0);
 		while (--i)
 		{
+			if (i == 2)
+				b1 = b2 - b1;
 			if (i == 1)
-				b1 = (get_list_len(a) / 2) - 2 * b1;
+				b1 = get_list_len(a) / 2 - b2;
 			mini_sort(a, b, 0, b1);
 		}
 		a = get_top_list(a);
@@ -254,16 +270,21 @@ void	quick_sort(t_push *a, t_push *b)
 			rotate(a, 1, 1);
 		split_in_three(a, b, &b1, &b2, get_list_len(a) / 2);
 		i = 4;
-	//	ft_printf("b1 %d\n", b1);
-		b1 -= get_list_len(a) / 2;
+		//	ft_printf("b1 %d\n", b1);
+		//b1 -= get_list_len(a) / 2;
 		while (--i)
 		{
-			if (i == 1)
-				b1 = (get_list_len(a) / 2) - 2 * b1;
-			mini_sort(a, b, 0, b1);
+			if (i == 3)
+				mini_sort(a, b, 0, b1 - get_list_len(a) / 2);
+			else if (i == 2)
+				mini_sort(a, b, 0, b2 - b1);
+			else
+				mini_sort(a, b, 0, -1);
 		}
-	//	mini_sort(a, b, b1, b2);
-	//	mini_sort(a, b, b2, get_list_len(a));
+		if (!is_sorted(a))
+			rotate(a, 1, 1);
+		//	mini_sort(a, b, b1, b2);
+		//	mini_sort(a, b, b2, get_list_len(a));
 
 	}
 }

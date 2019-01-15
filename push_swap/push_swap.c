@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:53:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/12 17:58:35 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/15 11:40:12 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_list_len(t_push *p)
 		p = p->next;
 		i++;
 	}
-	return (i);
+	return (i + 1);
 }
 
 int		is_empty(t_push *list)
