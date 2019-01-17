@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:04:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/15 14:21:40 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/17 10:02:30 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	my_sleep(int len)
 	}
 }
 
-void	print_line(int len)
+void	print_line(int len, int flag)
 {
 	int i;
 
@@ -37,9 +37,10 @@ void	print_line(int len)
 		return ;
 	while (i < len)
 	{
-		ft_printf("-");
+		flag ? ft_printf("-") : ft_printf("#");
 		i++;
 	}
+	flag ? do_nothing() : ft_printf("\n");
 }
 
 int		get_pos(t_push *a, int data)
@@ -75,17 +76,18 @@ void	print_plist(t_push *a, t_push *b)
 	a = get_start_list(a);
 	b = get_start_list(b);
 	my_sleep(10000000);
-	ft_printf("################################################################################################\n");
+	//ft_printf("################################################################################################\n");
+	max = get_nb_elem(a) + get_nb_elem(b) + 80;
+	print_line(max, 0);
 	while (a)
 	{
 		i = a->is_data ? get_pos(a, a->data) : 0;
 		j = b->is_data ? get_pos(b, b->data) : 0;
-		max = i < j ? j : i;
 		ft_printf("%3d - ", i);
-		print_line(i);
-		ft_printf("%*c", 70 - i, 0);
+		print_line(i, 1);
+		ft_printf("%*c", (get_nb_elem(b) + get_nb_elem(a) + 8) - i, 0);
 		ft_printf("%3d - ", j);
-		print_line(j);
+		print_line(j, 1);
 		ft_printf("\n");
 			//ft_printf("%d %*d\n", a->data, a->data < 0 ? (40 - ft_nbrlen(a->data) - 1)
 		//		: (40 - ft_nbrlen(a->data)), b->data);
@@ -94,7 +96,7 @@ void	print_plist(t_push *a, t_push *b)
 		a = a->next;
 		b = b->next;
 	}
-	ft_printf("################################################################################################\n");
+	print_line(max, 0);
 	my_sleep(10000000);
 //	ft_printf("\e[1;1H\e[2J");
 	my_sleep(10000000);

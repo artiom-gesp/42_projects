@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 11:47:46 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/15 15:27:36 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/17 09:51:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,6 @@ int		is_min(t_push *p, int data)
 		p = p->next;
 	}
 	return (1);
-}
-
-int		get_nb_elem(t_push *p)
-{
-	int i;
-
-	i = 1;
-	p = get_top_list(p);
-	if (!p)
-		return (0);
-	while (p->next)
-	{
-		i++;
-		p = p->next;
-	}
-	return (i);
 }
 
 void	cut_in_three(t_push *p, int *b1, int *b2)

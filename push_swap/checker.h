@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/15 16:18:24 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/17 09:50:38 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_push
 t_push				*get_start_list(t_push *list);
 t_push				*get_top_list(t_push *list);
 t_push				*get_end_list(t_push *list);
+int					get_nb_elem(t_push *p);
 void				swap(t_push *p, int print, int which);
 void				swap_both(t_push *a, t_push *b, int print);
 void				push(t_push *a, t_push *b, int print, int which);

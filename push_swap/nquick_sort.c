@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_quick_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agesp <marvin@32.fr>                       +#+  +:+       +#+        */
+/*   By: agesp <marvin@202.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 33/01/3 3:35:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/16 18:46:51 by agesp            ###   ########.fr       */
+/*   Created: 2020/01/20 20:2020:020 by agesp             #+#    #+#             */
+/*   Updated: 2019/01/17 10:51:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		is_min(t_push *p, int data)
 	return (1);
 }
 
-static int		get_nb_elem(t_push *p)
+int		get_nb_elem(t_push *p)
 {
 	int i;
 
@@ -68,7 +68,8 @@ int		get_borne(t_push *p, int mediane, int *borne)
 	get_mediane(c, d, 0);
 	i = -1;
 	c = get_end_list(c);
-	while (++i < 3 && c->is_data)
+	while (++i < (get_list_len(p) > 200
+				? 20 : get_list_len(p) / 10) && c->is_data)
 	{
 		if (!c->prev)
 			break ;
@@ -105,7 +106,7 @@ int		find_closest(t_push *b, int data, int i, int j)
 	c = get_top_list(c);
 	while (c->data != data)
 		rotate(c, 0, 0);
-	if (get_nb_elem(c) > 3)
+	if (get_nb_elem(c) > 20)
 	{
 	first = c->next->data;
 	second = c->next->next->data;
@@ -158,13 +159,15 @@ void	send_them_back(t_push *a, t_push *b, int mediane, int *i)
 	save = get_nb_elem(b);
 	b = get_top_list(b);
 	save_b = b->data;
-	while ((!is_max(b, borne) || save <= 3) && !is_empty(b))
+	while ((!is_max(b, borne) || save <= (get_list_len(a) > 200
+					? 20 : get_list_len(a) / 10)) && !is_empty(b))
 	{
 		b = get_top_list(b);
-		if (b->data > borne || (get_nb_elem(b) <= 3 && b->data > borne))
+		if (b->data > borne || (get_nb_elem(b) <= (get_list_len(a) > 200
+						? 20 : get_list_len(a) / 10) && b->data > borne))
 			push(b, a, 1, 1);
 		else
-			find_closest(b, save_b, 0, 0) == 2 ? rev_rotate(b, 1, 2) : rotate(b, 1, 2);
+			rotate(b, 1, 2);
 	}
 	send_them_back(a, b, mediane, i);
 }
@@ -221,7 +224,7 @@ void	sort_three(t_push *a, t_push *b)
 		}
 		return ;
 	}
-	if (get_nb_elem(b) == 3)
+	if (get_nb_elem(b) == 20)
 	{
 		b = get_top_list(b);
 /*cba*/	if (is_rev_sorted(b))
@@ -299,14 +302,14 @@ void	nmini_sort(t_push *a, t_push *b, int first, int mediane)
 	}
 	while (!is_empty(b))
 	{
-/*		b = get_top_list(b);
+		b = get_top_list(b);
 		while (!is_smallest(b))
 			get_direction(b) == 2 ? rev_rotate(b, 1, 2) : rotate(b, 1, 2);
 		push(b, a, 1, 1);
-		rotate(a, 1, 1);*/
-		sort_three(a, b);
+		rotate(a, 1, 1);
+	//	sort_three(a, b);
 	}
-	nmini_sort(a, b, 3, mediane);
+	nmini_sort(a, b, (get_list_len(a) > 200 ? 20 : get_list_len(a) / 10), mediane);
 }
 
 void	nquick_sort(t_push *a, t_push *b)
@@ -319,7 +322,7 @@ void	nquick_sort(t_push *a, t_push *b)
 	if (is_sorted(a))
 		return ;
 	c = copy_pile(a, 1);
-	if (get_list_len(a) < 7)
+	if (get_list_len(a) < 10)
 	{
 		is_max(a, 1);
 		get_nb_elem(a);
