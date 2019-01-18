@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/18 18:15:09 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/18 18:27:02 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,9 +189,9 @@ int	do_stuff(int x, int y, char *file, void **param)
 		j = 0;
 		while (j < x - 1)
 		{
-			mlx_pixel_put(param[0], param[1], (j - i) * 60 + 500, (j + i) * 30 + 200 , 0x66FFF);
-			ligne((j - i) * 60 + 500 - tab[j][i], (j - i + 1) * 60 + 500 - tab[j + 1][i], (j + i) * 30 + 200,
-					(j + i + 1) * 30 + 200, param, tab[j][i] != tab[j + 1][i] ? 0x66FFF: 0xFFFFF);
+		//	mlx_pixel_put(param[0], param[1], (j - i) * 20 + 500, (j + i) * 30 + 200 , 0x66FFF);
+			ligne((j - i) * 20 + 500 /*+ tab[j][i]*/, (j - i + 1) * 20 + 500 /*+ tab[j + 1][i]*/, (j + i) * 15 + 200 - tab[j][i],
+					(j + i + 1) * 15 + 200 - tab[j + 1][i], param, tab[j][i] != tab[j + 1][i] ? 0xCC00CC: 0xCC00CC);
 			j += 1;
 		}
 		i += 1;
@@ -203,9 +203,9 @@ int	do_stuff(int x, int y, char *file, void **param)
 		j = 0;
 		while (j < y - 1)
 		{
-			//mlx_pixel_put(param[0], param[1], (j - i) * 60 + 500, (j + i) * 30 + 200 , 0x66FFF);
-			ligne((i - j) * 60 + 500 + tab[i][j], (i - (j + 1)) * 60 + 500 + tab[i][j + 1]
-					, (j + i) * 30 + 200, (j + i + 1) * 30 + 200, param, tab[i][j] != tab[i][j + 1] ? 0x66FFF : 0xFFFF);
+			//mlx_pixel_put(param[0], param[1], (j - i) * 20 + 500, (j + i) * 30 + 200 , 0x66FFF);
+			ligne((i - j) * 20 + 500 /*- tab[i][j]*/, (i - (j + 1)) * 20 + 500 /*- tab[i][j + 1]*/
+					, (j + i) * 15 + 200 - tab[i][j], (j + i + 1) * 15 + 200 - tab[i][j + 1], param, tab[i][j] != tab[i][j + 1] ? 0xCC00CC : 0xCC00CC);
 			j += 1;
 		}
 	
@@ -216,8 +216,8 @@ int	do_stuff(int x, int y, char *file, void **param)
 	ft_printf("%d %d\n", tab[0][0], tab[1][0]);
 	//	ligne(500 + tab[0][0], 440 + tab[0][1], 200, 230, param);
 	//	ligne(440 + tab[0][1], 380 + tab[0][2], 200, 230, param);
-	//	ligne(560, 500, 230, 260, param);
-	//	trace_seg(500, 560, 260, 290, param);
+	//	ligne(520, 500, 230, 220, param);
+	//	trace_seg(500, 520, 220, 290, param);
 	return (0);
 }
 
