@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/07 09:19:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/19 16:21:11 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void					*ft_memset(void *b, int c, size_t len);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
 int						ft_isprint(int c);
+long long				ft_atoll(const char *str);
 int						ft_isascii(int c);
 int						ft_isalpha(int c);
 int						ft_isdigit(int c);

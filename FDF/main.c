@@ -6,31 +6,11 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/19 13:11:23 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/19 17:12:52 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	deal_key(int key, void **param)
-{
-	static int i = 3;
-	static int j = 3;
-	if (key == 53)
-		exit(0);
-	else if (key == 12)
-	{
-		mlx_pixel_put(param[0], param[1], i, j, 0x00FFFF);
-		i++;
-	}
-	else if (key == 13)
-	{
-		mlx_pixel_put(param[0], param[1], i, j, 0xCC0066);
-		j++;
-	}
-	ft_printf("%d\n", key);
-	return (0);
-}
 
 int	print_tab(void **param)
 {
@@ -67,7 +47,7 @@ int	is_tab_ok(char **tab, int x)
 	return (1);
 }
 
-void	copy_into_tab(int z, int tab[][z], char **tab2)
+void	copy_into_tab(int tab[5000][5000], char **tab2)
 {
 	int i;
 	static int y = 0;
@@ -75,7 +55,7 @@ void	copy_into_tab(int z, int tab[][z], char **tab2)
 	i = 0;
 	while (tab2[i])
 	{
-		tab[i][y] = ft_atoi(tab2[i]);
+		tab[i][y] = ft_atoll(tab2[i]);
 		i++;
 	}
 	y++;
@@ -91,34 +71,12 @@ void	print_square(void **param, int x, int y, long long color)
 	mlx_pixel_put(param[0], param[1], i, j, color);
 }
 
-int	get_mouse(int intput, int x, int y, void *param)
-{
-	static int zoom = 500;
-	if (input == 5)
-		zoom++;
-	else if (input == 4)
-		zoom--;
-	zoom = zoom > 100 ? 100 : zoom; 
-	zoom = zoom < 2 ? 2 : zoom;
-	(t_fstruct)param->zoom = zoom;
-	return (zoom);
-}
-
 int	do_stuff(char *file, t_fstruct *p, t_line *line)
 {
 	int i;
 	int j;
-	int fd;
-	int tab[p->x][p->y];
 	char *save;
 
-	i = 0;
-	j = 0;
-	fd = open(file, O_RDONLY);
-	while (get_next_line(fd, &save) > 0)
-	{
-		copy_into_tab(p->y, tab, ft_strsplit(save, ' '));
-	}
 	i = 0;
 	j = 0;
 	while (i < p->y)
@@ -126,11 +84,11 @@ int	do_stuff(char *file, t_fstruct *p, t_line *line)
 		j = 0;
 		while (j < p->x - 1)
 		{
-			line->xi = (j - i) * (1000 / p->x) + (p->x * 3);
-			line->xf = (j - i + 1) * (1000 / p->x) + (p->x * 3);
-			line->yi = (j + i) * (500 / p->x) + 1 - tab[j][i];
-			line->yf = (j + i + 1) * (500 / p->x) + 1 - tab[j + 1][i];
-			line->color = 0xCC00CC + tab[j][i] * 20000;
+			line->xi = (j - i) * (p->zoom) + (p->x > 50 ? sqrt(ft_pow(p->x * 10, 2) + ft_pow(p->y, 2)) / 4: 150);
+			line->xf = (j - i + 1) * (p->zoom) + (p->x > 50 ? sqrt(ft_pow(p->x * 10, 2) + ft_pow(p->y, 2)) / 4: 150);
+			line->yi = (j + i) * (p->zoom / 2) + (p->y > 50 ? 100 : 20) - p->tab[j][i];
+			line->yf = (j + i + 1) * (p->zoom / 2) + (p->y > 50 ? 100 : 20) - p->tab[j + 1][i];
+			line->color = 0xBE58F9 + ft_pow(p->tab[j][i], 8);	
 			print_seg(line, p);
 			j += 1;
 		}
@@ -143,17 +101,54 @@ int	do_stuff(char *file, t_fstruct *p, t_line *line)
 		j = 0;
 		while (j < p->y - 1)
 		{
-			line->xi = (i - j) * (1000 / p->x) + (p->x * 3);
-			line->xf = (i - (j + 1)) * (1000 / p->x) + (p->x * 3);
-			line->yi = (j + i) * (500 / p->x) + 1 - tab[i][j];
-			line->yf = (j + i + 1) * (500 / p->x) + 1 - tab[i][j + 1];
-			line->color = 0xCC00CC + tab[i][j] * 20000;
+			line->xi = (i - j) * (p->zoom) + (p->x > 50 ? sqrt(ft_pow(p->x * 10, 2) + ft_pow(p->y, 2)) / 4 : 150);
+			line->xf = (i - (j + 1)) * (p->zoom) + (p->x > 50 ? sqrt(ft_pow(p->x * 10, 2) + ft_pow(p->y, 2)) / 4 : 150); 
+			line->yi = (j + i) * (p->zoom / 2) + (p->y > 50 ? 100 : 20) - p->tab[i][j];
+			line->yf = (j + i + 1) * (p->zoom / 2) + (p->y > 50 ? 100 : 20) - p->tab[i][j + 1];
+			line->color = 0xBE58F9 + ft_pow(p->tab[i][j], 8);
 			print_seg(line, p);
 			j += 1;
 		}
-	
 		i += 1;
 	}
+	return (0);
+}
+/*
+   int	get_mouse(int input, int x, int y, t_fstruct *p)
+   {
+   ft_printf("%d\n", p->zoom);
+   do_stuff(p->save, p, p->line);
+   return (zoom);
+   }*/
+
+void	my_pause(int pause)
+{
+	int i;
+
+	i = 0;
+	while (pause)
+	{
+		while (i < 100000)
+		{
+			free(malloc(1));
+			i++;
+		}
+		pause--;
+	}
+}
+
+int	deal_key(int key, t_fstruct *p)
+{
+	static int zoom = 50;
+
+	if (key == 126)
+		zoom++;
+	else if (key == 125)
+		zoom--;
+
+	zoom = zoom > 100 ? 100 : zoom; 
+	zoom = zoom < 2 ? 2 : zoom;
+	p->zoom = zoom;
 	return (0);
 }
 
@@ -181,9 +176,19 @@ int	main(int ac, char **av)
 		p->x = get_tab_len(tab);
 		p->y++;
 	}
-	p->win = mlx_new_window(p->init, p->x > 100 ? p->x * 10 : 1000, p->y > 100 ? p->y * 10 : 1000, "test");
-	mlx_mouse_hook(p->win, p->zoom = get_mouse, p);
+	close(fd);
+	fd = open(av[1], O_RDONLY);
+	while (get_next_line(fd, &save) > 0)
+	{
+		copy_into_tab(p->tab, ft_strsplit(save, ' '));
+	}
+	if (p->x > 50)
+		p->win = mlx_new_window(p->init, sqrt(ft_pow(p->x * 10, 2) + ft_pow(p->y, 2)), sqrt(ft_pow(p->x * 10, 2)), "test");
+	else
+		p->win = mlx_new_window(p->init, 500, 500, "test");
+	//p->win = mlx_new_window(p->init, p->x > 80 ? sqrt(ft_pow(p->x * 20, 2) + ft_pow(p->y, 2)) : 1500, p->y > 80 ? sqrt(ft_pow(p->x * 20, 2) + ft_pow(p->y, 2)): 1500, "test");
+	p->zoom = p->x > 40 ? 1000 / p->x : 20;
+
 	do_stuff(av[1], p, line);
-	
 	mlx_loop(p->init);
 }
