@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/18 18:27:02 by agesp            ###   ########.fr       */
+/*   Created: 1019/01/17 13:59:04 by agesp             #+#    #+#             */
+/*   Updated: 2019/01/19 13:11:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft/ft_printf.h"
+#include "fdf.h"
 
 int	deal_key(int key, void **param)
 {
-	static int i = 200;
-	static int j = 200;
+	static int i = 3;
+	static int j = 3;
 	if (key == 53)
 		exit(0);
 	else if (key == 12)
@@ -59,7 +58,7 @@ int	is_tab_ok(char **tab, int x)
 	i = 0;
 	while (tab[i])
 	{
-		if (!ft_isdigit(tab[i][0]))
+		if (!ft_isdigit(tab[i][0]) && (tab[i][0] != '-' && tab[i][1] && !ft_isdigit(tab[i][1])))
 			return (0);
 		i++;
 	}
@@ -89,166 +88,102 @@ void	print_square(void **param, int x, int y, long long color)
 
 	i = x;
 	j = y;
-//	while (i < x + 5)
-//	{
-//		j = y;
-//		while (j < y + 5)
-//		{
-			mlx_pixel_put(param[0], param[1], i, j, color);
-//			j++;
-//		}
-//		i++;
-//	}
-}
-
-void	trace_seg(int x1, int x2, int y1, int y2, void **param)
-{
-	double a;
-	double b;
-
-	a = (double) ((y2 - y1)) / ((x2 - x1));
-	b = y1 - a * x1;
-	while (x1 <= x2)
-	{
-		y1 = a * x1   + b;
-		mlx_pixel_put(param[0], param[1], x1 , (int)y1, 0x66FFFF);
-		x1++;
-	}
-}
-
-void ligne(int xi,int xf,int yi,int yf, void **param, long long color) 
-{
-	int dx,dy,i,xinc,yinc,cumul,x,y ;
-	x = xi ;
-	y = yi ;
-	dx = xf - xi ;
-	dy = yf - yi ;
-	xinc = ( dx > 0 ) ? 1 : -1 ;
-	yinc = ( dy > 0 ) ? 1 : -1 ;
-	dx = abs(dx) ;
-	dy = abs(dy) ;
-	mlx_pixel_put(param[0], param[1], x, y, color) ;
-	if ( dx > dy ) 
-	{
-		cumul = dx / 2 ;
-		for ( i = 1 ; i <= dx ; i++ )
-		{
-			x += xinc ;
-			cumul += dy ;
-			if ( cumul >= dx ) 
-			{
-				cumul -= dx ;
-				y += yinc ; 
-			}
-			mlx_pixel_put(param[0], param[1], x, y, color); 
-		} 
-	}
-	else 
-	{
-		cumul = dy / 2 ;
-		for ( i = 1 ; i <= dy ; i++ ) 
-		{
-			y += yinc ;
-			cumul += dx ;
-			if ( cumul >= dy ) 
-			{
-				cumul -= dy ;
-				x += xinc ; 
-			}
-			mlx_pixel_put(param[0], param[1], x, y, color) ; 
-		} 
-	}
+	mlx_pixel_put(param[0], param[1], i, j, color);
 }
 
 int	get_mouse(int intput, int x, int y, void *param)
 {
-	//printf("%d %d\n", x, y);
-	//	mxl_mouse_hook(param[0],  
-	return (0);
+	static int zoom = 500;
+	if (input == 5)
+		zoom++;
+	else if (input == 4)
+		zoom--;
+	zoom = zoom > 100 ? 100 : zoom; 
+	zoom = zoom < 2 ? 2 : zoom;
+	(t_fstruct)param->zoom = zoom;
+	return (zoom);
 }
 
-int	do_stuff(int x, int y, char *file, void **param)
+int	do_stuff(char *file, t_fstruct *p, t_line *line)
 {
 	int i;
 	int j;
 	int fd;
-	int tab[x][y];
-	char *line;
+	int tab[p->x][p->y];
+	char *save;
 
 	i = 0;
 	j = 0;
 	fd = open(file, O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &save) > 0)
 	{
-		copy_into_tab(y, tab, ft_strsplit(line, ' '));
+		copy_into_tab(p->y, tab, ft_strsplit(save, ' '));
 	}
 	i = 0;
 	j = 0;
-	while (i < y)
+	while (i < p->y)
 	{
 		j = 0;
-		while (j < x - 1)
+		while (j < p->x - 1)
 		{
-		//	mlx_pixel_put(param[0], param[1], (j - i) * 20 + 500, (j + i) * 30 + 200 , 0x66FFF);
-			ligne((j - i) * 20 + 500 /*+ tab[j][i]*/, (j - i + 1) * 20 + 500 /*+ tab[j + 1][i]*/, (j + i) * 15 + 200 - tab[j][i],
-					(j + i + 1) * 15 + 200 - tab[j + 1][i], param, tab[j][i] != tab[j + 1][i] ? 0xCC00CC: 0xCC00CC);
+			line->xi = (j - i) * (1000 / p->x) + (p->x * 3);
+			line->xf = (j - i + 1) * (1000 / p->x) + (p->x * 3);
+			line->yi = (j + i) * (500 / p->x) + 1 - tab[j][i];
+			line->yf = (j + i + 1) * (500 / p->x) + 1 - tab[j + 1][i];
+			line->color = 0xCC00CC + tab[j][i] * 20000;
+			print_seg(line, p);
 			j += 1;
 		}
 		i += 1;
 	}
 	i = 0;
 	j = 0;
-	while (i < x)
+	while (i < p->x)
 	{
 		j = 0;
-		while (j < y - 1)
+		while (j < p->y - 1)
 		{
-			//mlx_pixel_put(param[0], param[1], (j - i) * 20 + 500, (j + i) * 30 + 200 , 0x66FFF);
-			ligne((i - j) * 20 + 500 /*- tab[i][j]*/, (i - (j + 1)) * 20 + 500 /*- tab[i][j + 1]*/
-					, (j + i) * 15 + 200 - tab[i][j], (j + i + 1) * 15 + 200 - tab[i][j + 1], param, tab[i][j] != tab[i][j + 1] ? 0xCC00CC : 0xCC00CC);
+			line->xi = (i - j) * (1000 / p->x) + (p->x * 3);
+			line->xf = (i - (j + 1)) * (1000 / p->x) + (p->x * 3);
+			line->yi = (j + i) * (500 / p->x) + 1 - tab[i][j];
+			line->yf = (j + i + 1) * (500 / p->x) + 1 - tab[i][j + 1];
+			line->color = 0xCC00CC + tab[i][j] * 20000;
+			print_seg(line, p);
 			j += 1;
 		}
 	
 		i += 1;
 	}
-
-
-	ft_printf("%d %d\n", tab[0][0], tab[1][0]);
-	//	ligne(500 + tab[0][0], 440 + tab[0][1], 200, 230, param);
-	//	ligne(440 + tab[0][1], 380 + tab[0][2], 200, 230, param);
-	//	ligne(520, 500, 230, 220, param);
-	//	trace_seg(500, 520, 220, 290, param);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	char	**tab;
-	char	*line;
-	void	*init;
-	void	*win;
+	char	*save;
 	int		fd;
-	void	*save[4];
-	int		x;
-	int		y;
+	t_fstruct *p;
+	t_line *line;
 
+	if (!(p = malloc(sizeof(t_fstruct))))
+		return (0);
+	if (!(line = malloc(sizeof(t_line))))
+		return (0);
 	fd = open(av[1], O_RDONLY);
-	init = mlx_init();
-	x = -1;
-	y = 0;
-
-	win = mlx_new_window(init, 2048, 2048, "test");
-	save[0] = init;
-	save[1] = win;
-	while (get_next_line(fd, &line) > 0)
+	p->init = mlx_init();
+	p->x = -1;
+	p->y = 0;
+	while (get_next_line(fd, &save) > 0)
 	{
-		tab = ft_strsplit(line, ' ');
-		if (!is_tab_ok(tab, x))
+		tab = ft_strsplit(save, ' ');
+		if (!is_tab_ok(tab, p->x))
 			return (0);
-		x = get_tab_len(tab);
-		y++;
+		p->x = get_tab_len(tab);
+		p->y++;
 	}
-	do_stuff(x, y, av[1], save);
-//	mlx_mouse_hook(win, get_mouse, save);
-	mlx_loop(init);
+	p->win = mlx_new_window(p->init, p->x > 100 ? p->x * 10 : 1000, p->y > 100 ? p->y * 10 : 1000, "test");
+	mlx_mouse_hook(p->win, p->zoom = get_mouse, p);
+	do_stuff(av[1], p, line);
+	
+	mlx_loop(p->init);
 }
