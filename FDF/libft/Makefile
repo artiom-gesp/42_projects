@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2019/01/19 16:21:27 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/21 11:21:33 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC = gcc -Wall -Werror -Wextra
 SRC = ft_put_long_nbr.c \
 	  ft_isalpha.c \
 	  ft_memcpy.c \
+	  ft_sqrt.c \
 	  ft_strchr.c \
 	  ft_strlcat.c \
 	  ft_atoll.c \

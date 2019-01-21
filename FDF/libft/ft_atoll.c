@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:19:12 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/19 16:21:45 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/21 11:47:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	print_atoi(int is_negative, long long save)
 		return (save);
 }
 
-static int special_car(const char *str)
+static int	special_car(const char *str)
 {
 	int i;
 

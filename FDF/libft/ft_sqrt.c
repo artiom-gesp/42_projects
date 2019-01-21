@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/21 15:35:22 by agesp            ###   ########.fr       */
+/*   Created: 2019/01/21 11:04:36 by agesp             #+#    #+#             */
+/*   Updated: 2019/01/21 11:47:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 1000
+#include "libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include <sys/types.h>
-# include <sys/stat.h>
+int	ft_sqrt(int num)
+{
+	int n;
+	int n1;
 
-int					get_next_line(int fd, char **line);
-
-#endif
+	if (0 == num)
+		return (0);
+	n = (num / 2) + 1;
+	n1 = (n + (num / n)) / 2;
+	while (n1 < n)
+	{
+		n = n1;
+		n1 = (n + (num / n)) / 2;
+	}
+	return (n);
+}

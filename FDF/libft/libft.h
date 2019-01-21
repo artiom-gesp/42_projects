@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/19 16:21:11 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/21 11:21:14 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 
 void					*ft_memset(void *b, int c, size_t len);
+int						ft_sqrt(int n);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
 int						ft_isprint(int c);
