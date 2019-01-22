@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 11:27:33 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/22 09:13:07 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/22 16:20:10 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_fstruct
 	int			tab[5000][5000];
 	int			min;
 	int			max;
+	int			contrast;
 }				t_fstruct;
 
 void			print_seg(t_line *line, t_fstruct *p);

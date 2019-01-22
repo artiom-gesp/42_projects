@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/22 09:11:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/22 16:32:07 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,7 @@ int		create_list(t_fstruct *p, char *file)
 	p->y = 0;
 	if (!create_tab(file, p))
 		return (0);
-	if (p->x > 50)
-		p->win = mlx_new_window(p->init, ft_sqrt(ft_pow(p->x * 10, 2)
-					+ ft_pow(p->y, 2)), ft_sqrt(ft_pow(p->x * 10, 2)), "test");
-	else
-		p->win = mlx_new_window(p->init, 1500, 1500, "test");
+	p->win = mlx_new_window(p->init, 5000, 5000, "test");
 	p->zoom = p->x > 50 ? 1000 / p->x : 30;
 	p->max = get_max(p);
 	p->min = get_min(p);
@@ -137,6 +133,8 @@ int	main(int ac, char **av)
 			wrong_file(av[2]);
 		if (!(line = malloc(sizeof(t_line))))
 			return (0);
+		ft_printf("Choose contrast:");
+		scanf("%d", &p->contrast);
 		print_fdf(av[1], p, line);
 		free(line);
 		mlx_key_hook(p->win, deal_key, (void*)0);
