@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 11:27:33 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/21 18:09:17 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/22 09:13:07 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void			copy_into_tab(int tab[5000][5000], char **tab2);
 void			print_iso(t_fstruct *p, t_line *line);
 int				create_tab(char *file, t_fstruct *p);
 void			print_para(t_fstruct *p, t_line *line);
+long			ft_map(long x, long in_min, long in_max, long out_min, long out_max);
 
 #endif

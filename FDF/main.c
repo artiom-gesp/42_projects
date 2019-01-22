@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/21 18:12:03 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/22 09:11:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,34 @@ int		create_list(t_fstruct *p, char *file)
 					+ ft_pow(p->y, 2)), ft_sqrt(ft_pow(p->x * 10, 2)), "test");
 	else
 		p->win = mlx_new_window(p->init, 1500, 1500, "test");
+	p->zoom = p->x > 50 ? 1000 / p->x : 30;
+	p->max = get_max(p);
+	p->min = get_min(p);
 	return (1);
+}
+
+static void	usage(void)
+{
+	ft_printf("usage: ./fdf [-i or -p] [file]\n");
+	ft_printf("file format: x x x\n");
+	ft_printf("             x x x\n");
+	exit(1);
+}
+
+static void	wrong_file(char *file)
+{
+	ft_printf("Incorrect file : %s\n", file);
+	exit(1);
+}
+
+static void	print_fdf(char *file, t_fstruct *p, t_line *line)
+{
+	if (ft_strcmp(file, "-p") == 0)
+		print_para(p, line);
+	else if (ft_strcmp(file, "-i") == 0)
+		print_iso(p, line);
+	else
+		usage();
 }
 
 int	main(int ac, char **av)
@@ -100,25 +127,24 @@ int	main(int ac, char **av)
 	t_fstruct *p;
 	t_line *line;
 
-	if (!(p = malloc(sizeof(t_fstruct))))
-		return (0);
 	line = NULL;
-	if (ac == 2)
+	p = NULL;
+	if (ac == 3)
 	{
-		if (!(create_list(p, av[1])))
+		if (!(p = malloc(sizeof(t_fstruct))))
 			return (0);
+		if (!(create_list(p, av[2])))
+			wrong_file(av[2]);
 		if (!(line = malloc(sizeof(t_line))))
 			return (0);
-		p->zoom = p->x > 50 ? 1000 / p->x : 30;
-		p->max = get_max(p);
-		p->min = get_min(p);
-		get_min(p);
-		print_para(p, line);
+		print_fdf(av[1], p, line);
 		free(line);
 		mlx_key_hook(p->win, deal_key, (void*)0);
 		mlx_loop(p->init);
 		mlx_destroy_window(p->init, p->win);
 		free(p);
 	}
+	else
+		usage();
 	return (0);
 }
