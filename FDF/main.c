@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 1019/01/17 13:59:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/23 11:29:36 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/23 13:00:47 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	usage(int flag, t_fstruct *p, t_line *line)
 {
 	if (flag)
 	{
-		free(p);
-		free(line);
+		p ? free(p) : do_nothing();
+		line ? free(line) : do_nothing();
 	}
 	ft_printf("usage: ./fdf [-i or -p] [file]\n");
 	ft_printf("file format: x x x\n");

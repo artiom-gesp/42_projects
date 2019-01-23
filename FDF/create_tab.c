@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 10:49:28 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/22 16:23:53 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/23 13:04:16 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int			is_tab_ok(char **tab, int x)
 	{
 		if (!ft_isdigit(tab[i][0]) && (tab[i][0] != '-'
 					&& tab[i][1] && !ft_isdigit(tab[i][1])))
+			return (0);
+		if (tab[i][0] == '-' && !ft_isdigit(tab[i][1]))
 			return (0);
 		i++;
 	}
@@ -81,7 +83,6 @@ int			create_tab(char *file, t_fstruct *p)
 		{
 			free(line);
 			free_tab(tab);
-			free(p);
 			return (0);
 		}
 		p->x = get_tab_len(tab);
