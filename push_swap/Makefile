@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/15 16:19:43 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/23 15:29:15 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB = libft/libftprintf.a
 
 SRC = main.c \
     checker.c \
-    move_threw_list.c \
+    move_through_list.c \
     swap.c \
 	fill_pile.c \
 	check_input.c \
@@ -29,7 +29,7 @@ SRC = main.c \
 	nquick_sort.c
 
 PUSH_SRC = checker.c \
-    move_threw_list.c \
+    move_through_list.c \
     swap.c \
 	fill_pile.c \
 	check_input.c \
@@ -53,11 +53,12 @@ all: $(NAME) $(PUSH_NAME)
 $(NAME): $(OBJ) checker.h
 	make -C ./libft
 	$(CC) -c $(SRC) $(CFLAGS)
-	$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS)
+	$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
 
 $(PUSH_NAME): $(PUSH_OBJ) checker.h
 	$(CC) -c $(PUSH_SRC) $(CFLAGS)
-	$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS)
+	$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+
 
 clean:
 	make clean -C ./libft

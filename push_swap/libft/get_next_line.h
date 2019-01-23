@@ -6,13 +6,13 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:50:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/09 15:07:11 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/23 18:12:32 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
+# define BUFF_SIZE 10000
 
 # include <fcntl.h>
 # include "libft.h"
