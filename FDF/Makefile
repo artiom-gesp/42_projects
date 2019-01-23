@@ -6,13 +6,13 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 10:53:44 by agesp             #+#    #+#              #
-#    Updated: 2019/01/22 16:26:58 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/23 11:12:13 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = main.c create_tab.c seg_print.c print_iso.c print_para.c
+SRC = main.c create_tab.c seg_print.c print_iso.c print_para.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
