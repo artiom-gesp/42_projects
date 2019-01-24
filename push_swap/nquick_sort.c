@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_quick_sort.c                                   :+:      :+:    :+:   */
+/*   nquick_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agesp <marvin@202.fr>                       +#+  +:+       +#+        */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 20:2020:020 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 15:44:32 by agesp            ###   ########.fr       */
+/*   Created: 2019/01/24 15:47:27 by agesp             #+#    #+#             */
+/*   Updated: 2019/01/24 17:28:41 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	send_them_back(t_push *a, t_push *b, int mediane, int *i)
 		return ;
 	}
 	save = get_nb_elem(b);
-	b = get_top_list(b);
 	save_b = b->data;
 	while ((!is_max(b, borne) || save <= (get_list_len(a) > 200
 					? 20 : get_list_len(a) / 10)) && !is_empty(b))
@@ -95,7 +94,6 @@ void	nmini_sort(t_push *a, t_push *b, int first, int mediane)
 
 	i = 0;
 	a = get_top_list(a);
-	b = get_top_list(b);
 	if (a->data == mediane || (is_full(a) && is_sorted(a)))
 		return ;
 	while (!is_empty(a) && i < first && a->data != mediane)
@@ -115,38 +113,25 @@ void	nmini_sort(t_push *a, t_push *b, int first, int mediane)
 		push(b, a, 1, 1);
 		rotate(a, 1, 1);
 	}
-	nmini_sort(a, b, (get_list_len(a) > 200 ? 20 : get_list_len(a) / 10), mediane);
+	nmini_sort(a, b, (get_list_len(a) > 200 ? 20 :
+				get_list_len(a) / 10), mediane);
 }
 
-void	nquick_sort(t_push *a, t_push *b)
+void	super_sort(t_push *a, t_push *b, t_push *c)
 {
 	int mediane;
-	t_push *c;
 	int i;
 
 	i = 0;
-	if (is_sorted(a))
-		return ;
-	c = copy_pile(a, 1);
-	if (get_list_len(a) < 10)
-	{
-		is_max(a, 1);
-		get_nb_elem(a);
-		get_mediane(a, b, 1);
-		return ;
-	}
-	else
-	{
-		mediane = get_mediane(c, b, 0);
-		split_in_half(a, b, mediane, 0);
-		a = get_top_list(a);
-		while (a->data != mediane)
-			rotate(a, 1, 1);
-		send_them_back(a, b, mediane, &i);
-		nmini_sort(a, b, i, mediane);
+	mediane = get_mediane(c, b, 0);
+	split_in_half(a, b, mediane, 0);
+	a = get_top_list(a);
+	while (a->data != mediane)
 		rotate(a, 1, 1);
-		split_in_half(a, b, mediane, 1);
-		send_them_back(a, b, mediane, &i);
-		nmini_sort(a, b, i, mediane);
-	}
+	send_them_back(a, b, mediane, &i);
+	nmini_sort(a, b, i, mediane);
+	rotate(a, 1, 1);
+	split_in_half(a, b, mediane, 1);
+	send_them_back(a, b, mediane, &i);
+	nmini_sort(a, b, i, mediane);
 }

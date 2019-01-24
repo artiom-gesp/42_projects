@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:54:58 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 14:46:10 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 16:05:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,30 @@ int		is_rev_sorted(t_push *list)
 	return (1);
 }
 
-int		do_check(t_libx *p, char *instruction)
+int		do_check(t_push *a, t_push *b, char *instruction)
 {
 	if (!ft_strcmp(instruction, "sa"))
-		swap(p->a, 0, 0);
+		swap(a, 0, 0);
 	else if (!ft_strcmp(instruction, "sb"))
-		swap(p->b, 0, 0);
+		swap(b, 0, 0);
 	else if (!ft_strcmp(instruction, "ss"))
-		swap_both(p->a, p->b, 0);
+		swap_both(a, b, 0);
 	else if (!ft_strcmp(instruction, "pa"))
-		push(p->b, p->a, 0, 0);
+		push(b, a, 0, 0);
 	else if (!ft_strcmp(instruction, "pb"))
-		push(p->a, p->b, 0, 0);
+		push(a, b, 0, 0);
 	else if (!ft_strcmp(instruction, "ra"))
-		rotate(p->a, 0, 0);
+		rotate(a, 0, 0);
 	else if (!ft_strcmp(instruction, "rb"))
-		rotate(p->b, 0, 0);
+		rotate(b, 0, 0);
 	else if (!ft_strcmp(instruction, "rr"))
-		rotate_both(p->a, p->b, 0);
+		rotate_both(a, b, 0);
 	else if (!ft_strcmp(instruction, "rra"))
-		rev_rotate(p->a, 0, 0);
+		rev_rotate(a, 0, 0);
 	else if (!ft_strcmp(instruction, "rrb"))
-		rev_rotate(p->b, 0, 0);
+		rev_rotate(b, 0, 0);
 	else if (!ft_strcmp(instruction, "rrr"))
-		rev_rotate_both(p->a, p->b, 0);
+		rev_rotate_both(a, b, 0);
 	else
 		return (0);
 	return (1);

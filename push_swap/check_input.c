@@ -6,11 +6,32 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 15:40:34 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 18:31:26 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+char		**create_tab(int ac, char **av)
+{
+	char	**tab;
+	char	*save;
+
+	if (ac == 3 && !ft_strcmp(av[1], "-v"))
+		tab = ft_strsplit(av[2], ' ');
+	else if (ac == 2 && ft_strcmp(av[1], "-v"))
+	{
+		save = ft_itoa(ft_atoi(av[1]));
+		if (ft_strcmp(av[1], save))
+			tab = ft_strsplit(av[1], ' ');
+		else
+			tab = NULL;
+		save ? free(save) : do_nothing();
+	}
+	else
+		tab = NULL;
+	return (tab);
+}
 
 static int	is_tab_ok(int tab[], int size)
 {
@@ -37,15 +58,12 @@ static int	is_tab_ok(int tab[], int size)
 
 int			is_input_ok(int ac, char **av)
 {
-	int 	i;
+	int		i;
 	int		tab[ac - 1];
 	char	*save;
-	int		flag;
 	int		j;
 
-
 	i = ft_atoi(av[0]) && av[0][0] != '0' ? 0 : 1;
-	flag = ft_atoi(av[0]) && av[0][0] != '0' ? 1 : 0;
 	save = NULL;
 	j = 0;
 	if (!ft_strcmp(av[1], "-v"))
@@ -56,7 +74,11 @@ int			is_input_ok(int ac, char **av)
 			return (0);
 		save = ft_itoa_base(tab[j], 10, 'a');
 		if (save[0] != av[i][0])
+		{
+			save ? free(save) : do_nothing();
 			return (0);
+		}
+		free(save);
 		i++;
 		j++;
 	}

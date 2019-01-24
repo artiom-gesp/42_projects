@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:45:50 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/12 18:08:38 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 16:46:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	push(t_push *a, t_push *b, int print, int which)
 		a->is_data = 0;
 		a->data = 0;
 		b->is_data = 1;
-	}	
+	}
 	if (print)
 	{
 		if (which == 1)
@@ -63,7 +63,6 @@ void	push(t_push *a, t_push *b, int print, int which)
 		else
 			write(1, "pb\n", 3);
 	}
-
 }
 
 void	rotate(t_push *p, int print, int which)
@@ -98,41 +97,5 @@ void	rotate_both(t_push *a, t_push *b, int print)
 	if (print)
 	{
 		write(1, "rr\n", 3);
-	}
-}
-
-void	rev_rotate(t_push *p, int print, int which)
-{
-	int save;
-
-	p = get_end_list(p);
-	save = 0;
-	if (p->prev)
-	{
-		save = p->data;
-		while (p->prev && p->prev->is_data)
-		{
-			p->data = p->prev->data;
-			p = p->prev;
-		}
-		p->data = save;
-	}
-	if (print)
-	{
-		if (which == 1)
-			write(1, "rra\n", 4);
-		else
-			write(1, "rrb\n", 4);
-	}
-
-}
-
-void	rev_rotate_both(t_push *a, t_push *b, int print)
-{
-	rev_rotate(a, 0, 0);
-	rev_rotate(b, 0, 0);
-	if (print)
-	{
-		write(1, "rrr\n", 4);
 	}
 }

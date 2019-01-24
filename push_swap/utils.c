@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 15:37:49 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 15:44:28 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 17:10:06 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int		get_nb_elem(t_push *p)
 
 int		get_borne(t_push *p, int mediane, int *borne)
 {
-	int i;
-	t_push *c;
-	t_push *d;
+	int		i;
+	t_push	*c;
+	t_push	*d;
 
 	(void)mediane;
 	c = copy_pile(p, 1);
@@ -76,5 +76,8 @@ int		get_borne(t_push *p, int mediane, int *borne)
 		c = c->prev;
 	}
 	*borne = i == 0 ? 1 : i;
+	i = c->data;
+	free_list(c);
+	free_list(d);
 	return (c->data);
 }

@@ -6,11 +6,24 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:41:21 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/10 13:59:33 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 17:07:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void	free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 t_push	*fill_pile(int ac, char **av, int is_data)
 {

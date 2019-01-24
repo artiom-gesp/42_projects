@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/24 15:45:01 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/24 18:24:15 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = main.c \
 	get_smallest.c \
 	print_list.c \
 	utils.c \
+	rev_rota.c \
 	nquick_sort.c
 
 PUSH_SRC = checker.c \
@@ -38,6 +39,7 @@ PUSH_SRC = checker.c \
 	get_smallest.c \
 	main_push.c \
 	print_list.c \
+	rev_rota.c \
 	nquick_sort.c
 
 OBJ = $(addsuffix .o,$(basename $(SRC)))
@@ -63,10 +65,12 @@ $(PUSH_NAME): $(PUSH_OBJ) checker.h
 clean:
 	make clean -C ./libft
 	rm -rf $(OBJ)
+	rm -rf $(PUSH_OBJ)
 
 fclean: clean
 	rm -rf $(LIB)
 	rm -rf $(NAME)
+	rm -rf $(PUSH_NAME)
 
 re: fclean all
 

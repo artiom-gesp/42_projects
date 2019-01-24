@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/15 16:19:06 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 17:47:21 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,28 @@
 
 int		main(int ac, char **av)
 {
-	int i;
-	t_push *a;
-	t_push *b;
-	int		flag;
-	char 	**tab;
+	t_push	*a;
+	t_push	*b;
+	char	**tab;
 	int		save_ac;
 
-	i = -1;
 	save_ac = ac;
-	flag = 0;
-	tab = NULL;
-	if (ac == 3 && !ft_strcmp(av[1], "-v"))
-	{
-		tab = ft_strsplit(av[2], ' ');
+	tab = create_tab(ac, av);
+	if (tab)
 		ac = len_tab(tab);
-	}
-	else if (ac == 2 && ft_strcmp(av[1], "-v"))
-	{
-		tab = ft_strsplit(av[1], ' ');
-		ac = len_tab(tab);
-	}
 	if (ac > 1)
 	{
-		if ((save_ac == ac && is_input_ok((int)ac, av)) || (tab && is_input_ok(ac, tab)))
+		if ((save_ac == ac && is_input_ok((int)ac, av))
+				|| (tab && is_input_ok(ac, tab)))
 		{
 			a = fill_pile(ac, tab ? tab : av, 1);
 			b = fill_pile(ac, tab ? tab : av, 0);
-			if (!ft_strcmp(av[1], "-v"))
-				flag = 1;
-			//get_mediane(a, b);
 			nquick_sort(a, b);
+			free_list(a);
+			free_list(b);
+			if (tab)
+				free_tab(tab);
 		}
 	}
+	return (0);
 }

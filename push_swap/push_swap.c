@@ -6,11 +6,21 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:53:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/15 11:40:12 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 18:25:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+int		len_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
 
 int		get_list_len(t_push *p)
 {
@@ -38,7 +48,7 @@ int		is_empty(t_push *list)
 	return (1);
 }
 
-t_push *copy_pile(t_push *p, int is_data)
+t_push	*copy_pile(t_push *p, int is_data)
 {
 	t_push *ret;
 
@@ -62,4 +72,24 @@ t_push *copy_pile(t_push *p, int is_data)
 	}
 	ret = get_start_list(ret);
 	return (ret);
+}
+
+void	nquick_sort(t_push *a, t_push *b)
+{
+	t_push *c;
+
+	if (is_sorted(a))
+		return ;
+	c = copy_pile(a, 1);
+	if (get_list_len(a) < 10)
+	{
+		is_max(a, 1);
+		get_nb_elem(a);
+		get_mediane(a, b, 1);
+		free_list(c);
+		return ;
+	}
+	else
+		super_sort(a, b, c);
+	free_list(c);
 }
