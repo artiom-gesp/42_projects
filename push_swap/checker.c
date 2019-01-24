@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:54:58 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/23 16:24:44 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 14:46:10 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		is_rev_sorted(t_push *list)
 	return (1);
 }
 
-int		do_check(t_libx *p, char *instruction, int flag)
+int		do_check(t_libx *p, char *instruction)
 {
 	if (!ft_strcmp(instruction, "sa"))
 		swap(p->a, 0, 0);
@@ -74,7 +74,5 @@ int		do_check(t_libx *p, char *instruction, int flag)
 		rev_rotate_both(p->a, p->b, 0);
 	else
 		return (0);
-	if (flag)
-		print_plist(p);
 	return (1);
 }

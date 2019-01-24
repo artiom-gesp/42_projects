@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/23 17:44:43 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 15:39:24 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void				rotate_both(t_push *a, t_push *b, int print);
 void				rev_rotate_both(t_push *a, t_push *b, int print);
 void				free_tab(char **tab);
 char				**add_el_ttab(char **ptr, char *str);
-int					do_check(t_libx *p,
-		char *instruction, int flag);
+int					do_check(t_libx *p, char *instruction);
 void				print_plist(t_libx *p);
 int					is_full(t_push *list);
 int					is_sorted(t_push *list);
@@ -69,5 +68,9 @@ int					len_tab(char **tab);
 void				quick_sort(t_push *a, t_push *b);
 void				nquick_sort(t_push *a, t_push *b);
 int					get_direction(t_push *p);
+int					is_max(t_push *p, int data);
+int					is_min(t_push *p, int data);
+int					get_nb_elem(t_push *p);
+int					get_borne(t_push *p, int mediane, int *borne);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/23 17:07:35 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 15:05:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ static void	print_result(t_push *a)
 	ft_printf("KO\n");
 }
 
+int		me_loop(t_libx *p)
+{
+	char *line;
+
+	if (get_next_line(0, &line) < 1)
+	{
+		sleep(4);
+		print_result(p->a);
+		exit(1);
+	}
+	if (!do_check(p, line))
+		exit(1);
+	print_plist(p);
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
 	t_push *a;
@@ -30,7 +46,6 @@ int		main(int ac, char **av)
 	int		flag;
 	char 	**tab;
 	int		save_ac;
-	char	*line;
 	t_libx	*p;
 
 	save_ac = ac;
@@ -60,15 +75,11 @@ int		main(int ac, char **av)
 			p->b = b;
 			if (!ft_strcmp(av[1], "-v"))
 				flag = 1;
-			while (get_next_line(0, &line) > 0)
-			{
-				if (!do_check(p, line, flag))
-					return (0);
-			}
-			print_result(p->a);
+			mlx_loop_hook(p->init, me_loop, p);
 			mlx_loop(p->init);
 		}
 		else
 			ft_printf("Error\n");
 	}
+	return (0);
 }

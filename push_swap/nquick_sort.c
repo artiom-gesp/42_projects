@@ -6,141 +6,11 @@
 /*   By: agesp <marvin@202.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 20:2020:020 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/17 10:51:25 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/24 15:44:32 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-static int		is_max(t_push *p, int data)
-{
-	p = get_top_list(p);
-	if (p->data > data)
-		return (0);
-	while (p->next)
-	{
-		if (p->next->data > data)
-			return (0);
-		p = p->next;
-	}
-	return (1);
-}
-
-static int		is_min(t_push *p, int data)
-{
-	p = get_top_list(p);
-	if (p->data < data)
-		return (0);
-	while (p->next)
-	{
-		if (p->next->data < data)
-			return (0);
-		p = p->next;
-	}
-	return (1);
-}
-
-int		get_nb_elem(t_push *p)
-{
-	int i;
-
-	i = 1;
-	p = get_top_list(p);
-	if (!p)
-		return (0);
-	while (p->next)
-	{
-		i++;
-		p = p->next;
-	}
-	return (i);
-}
-
-int		get_borne(t_push *p, int mediane, int *borne)
-{
-	int i;
-	t_push *c;
-	t_push *d;
-
-	(void)mediane;
-	c = copy_pile(p, 1);
-	d = copy_pile(p, 0);
-	get_mediane(c, d, 0);
-	i = -1;
-	c = get_end_list(c);
-	while (++i < (get_list_len(p) > 200
-				? 20 : get_list_len(p) / 10) && c->is_data)
-	{
-		if (!c->prev)
-			break ;
-		c = c->prev;
-	}
-	*borne = i == 0 ? 1 : i;
-	return (c->data);
-}
-
-int		get_closest(int first, int second, int len)
-{
-	if (first <= len && second <= len)
-		return (first < second ? first : second);
-	else if (first < len && second > len)
-		return (first < len - (second - len) ? first : second);
-	else if (first > len && second < len)
-		return (len - (first - len) < second ? first : second);
-	return (first < second ? second : first);
-
-}
-
-int		find_closest(t_push *b, int data, int i, int j)
-{
-	int first;
-	int second;
-	int third;
-	t_push *c;
-	t_push *d;
-
-	i = 0;
-	c = copy_pile(b, 1);
-	d = copy_pile(b, 0);
-	get_mediane(c, d, 0);
-	c = get_top_list(c);
-	while (c->data != data)
-		rotate(c, 0, 0);
-	if (get_nb_elem(c) > 20)
-	{
-	first = c->next->data;
-	second = c->next->next->data;
-	third = c->next->next->next->data;
-	}
-	else 
-		return (0);
-	b = get_top_list(b);
-	while (b->data != first && b->next)
-	{
-		b = b->next;
-		i++;
-	}
-	j = i;
-	i = 0;
-	b = get_top_list(b);
-	while (b->data != second && b->next)
-	{
-		b = b->next;
-		i++;
-	}
-	j = get_closest(i, j, get_list_len(b));
-	b = get_top_list(b);
-	i = 0;
-	while (b->data != third && b->next)
-	{
-		b = b->next;
-		i++;
-	}
-	j = get_closest(i, j, get_list_len(b));
-	if ( 4 * j > get_list_len(b))
-		return (2);
-	return (1);
-}
 
 void	send_them_back(t_push *a, t_push *b, int mediane, int *i)
 {
@@ -197,69 +67,6 @@ void	split_in_half(t_push *a, t_push *b, int mediane, int flag)
 	}
 }
 
-void	sort_three(t_push *a, t_push *b)
-{
-	if (get_nb_elem(b) == 1)
-	{
-		push(b, a, 1, 1);
-		rotate(a, 1, 1);
-		return ;
-	}
-	if (get_nb_elem(b) == 2)
-	{
-		if (is_sorted(b))
-		{
-			push(b, a, 1, 1);
-		rotate(a, 1, 1);
-			push(b, a, 1, 1);
-		rotate(a, 1, 1);
-		}
-		else
-		{
-			swap(b, 1, 2);
-			push(b, a, 1, 1);
-		rotate(a, 1, 1);
-			push(b, a, 1, 1);
-		rotate(a, 1, 1);
-		}
-		return ;
-	}
-	if (get_nb_elem(b) == 20)
-	{
-		b = get_top_list(b);
-/*cba*/	if (is_rev_sorted(b))
-		{
-			swap(b, 1, 2);
-			rev_rotate(b, 1, 2);
-		}
-/*acb*/	else if (b->data < b->next->data && b->next->data > b->next->next->data
-		&& b->data < b->next->next->data)
-		{
-			rev_rotate(b, 1, 2);
-			swap(b, 1, 2);
-		}
-/*cab*/	else if (b->data > b->next->data && b->next->data < b->next->next->data
-				&& b->data > b->next->next->data)
-		{
-			rotate(b, 1, 2);
-		}
-/*bac*/	else if (b->data > b->next->data  && b->next->data < b->next->next->data)
-		{
-			swap(b, 1, 2);
-		}
-/*bca*/	else if (b->data < b->next->data && b->next->data > b->next->next->data)
-		{
-			rev_rotate(b, 1, 2);
-		}
-		push(b, a, 1, 1);
-		rotate(a, 1, 1);
-		push(b, a, 1, 1);
-		rotate(a, 1, 1);
-		push(b, a, 1, 1);
-		rotate(a, 1, 1);
-	}
-}
-
 int		is_next_sorted(t_push *p)
 {
 	int last;
@@ -304,10 +111,9 @@ void	nmini_sort(t_push *a, t_push *b, int first, int mediane)
 	{
 		b = get_top_list(b);
 		while (!is_smallest(b))
-			get_direction(b) == 2 ? rev_rotate(b, 1, 2) : rotate(b, 1, 2);
+			rotate(b, 1, 2);
 		push(b, a, 1, 1);
 		rotate(a, 1, 1);
-	//	sort_three(a, b);
 	}
 	nmini_sort(a, b, (get_list_len(a) > 200 ? 20 : get_list_len(a) / 10), mediane);
 }
