@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:04:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 16:44:20 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 11:15:44 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	fill_b(t_libx *p, int *j)
 	if (!p->b->is_data)
 		while (i < 500)
 		{
-			p->image[*j] = 0x000000;
 			*j += 1;
 			i++;
 		}
@@ -33,10 +32,11 @@ static void	fill_b(t_libx *p, int *j)
 	{
 		while (i < ft_map(p->b->data, p, 0, 500))
 		{
-			p->image[*j] = 0x1AFF00;
+			p->image[*j] = p->b->color ? 0xFF0000 : 0x1AFF00;
 			*j += 1;
 			i++;
 		}
+		p->b->color = 0;
 		while (i < 500)
 		{
 			p->image[*j] = 0x000000;
@@ -54,7 +54,6 @@ static void	fill_a(t_libx *p, int *j)
 	if (!p->a->is_data)
 		while (i < 500)
 		{
-			p->image[*j] = 0x000000;
 			*j += 1;
 			i++;
 		}
@@ -62,10 +61,11 @@ static void	fill_a(t_libx *p, int *j)
 	{
 		while (i < ft_map(p->a->data, p, 0, 500))
 		{
-			p->image[*j] = 0x1AFF00;
+			p->image[*j] = p->a->color ? 0xFF0000 : 0x1AFF00;
 			*j += 1;
 			i++;
 		}
+		p->a->color = 0;
 		while (i < 500)
 		{
 			p->image[*j] = 0x000000;
@@ -84,7 +84,7 @@ static void	fill_image(t_libx *p)
 	i = 0;
 	p->a = get_start_list(p->a);
 	p->b = get_start_list(p->b);
-	while (p->a->next)
+	while (p->a)
 	{
 		i = 0;
 		fill_a(p, &j);
@@ -96,6 +96,8 @@ static void	fill_image(t_libx *p)
 		}
 		fill_b(p, &j);
 		i = 0;
+		if (!p->a->next)
+			break ;
 		p->a = p->a->next;
 		p->b = p->b->next;
 	}

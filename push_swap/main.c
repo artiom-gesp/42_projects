@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 18:27:48 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 11:22:57 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ int		me_loop(t_libx *p)
 		free(line);
 		exit(1);
 	}
+	get_color(p->a, p->b, line);
 	if (!do_check(p->a, p->b, line))
 	{
 		free_list(p->a);
 		free_list(p->b);
 		free(line);
+		ft_printf("Error\n");
 		exit(1);
 	}
 	free(line);
@@ -62,6 +64,7 @@ int		normal_check(t_push *a, t_push *b)
 				free(line);
 				free_list(a);
 				free_list(b);
+				ft_printf("Error\n");
 				return (0);
 			}
 			free(line);
@@ -98,8 +101,7 @@ int		main(int ac, char **av)
 
 	save_ac = ac;
 	tab = create_tab(ac, av);
-	if (tab)
-		ac = len_tab(tab);
+	ac = tab ? len_tab(tab) : ac;
 	if (ac > 1)
 	{
 		if ((save_ac == ac && is_input_ok(ac, av))
@@ -114,6 +116,7 @@ int		main(int ac, char **av)
 		}
 		else
 			ft_printf("Error\n");
+		tab ? free(tab) : do_nothing();
 	}
 	return (0);
 }

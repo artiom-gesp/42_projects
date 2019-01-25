@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:54:58 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 16:05:49 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 11:05:43 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ int		is_rev_sorted(t_push *list)
 		list = list->next;
 	}
 	return (1);
+}
+
+void	get_color(t_push *a, t_push *b, char *instruction)
+{
+	b = get_top_list(b);
+	a = get_top_list(a);
+	if (!ft_strcmp(instruction, "sa") && a->is_data)
+		a->color = 1;
+	else if (!ft_strcmp(instruction, "sb") && b->is_data)
+		b->color = 1;
+	else if (!ft_strcmp(instruction, "pa"))
+		b->color = 1;
+	else if (!ft_strcmp(instruction, "pb"))
+		a->color = 1;
+	else if (!ft_strcmp(instruction, "ra"))
+		a->color = 1;
+	else if (!ft_strcmp(instruction, "rb"))
+		b->color = 1;
+	else if (!ft_strcmp(instruction, "rra"))
+		a->color = 1;
+	else if (!ft_strcmp(instruction, "rrb"))
+		b->color = 1;
 }
 
 int		do_check(t_push *a, t_push *b, char *instruction)

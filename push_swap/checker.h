@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 17:03:13 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 11:07:07 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_push
 	struct s_push	*prev;
 	int				is_data;
 	int				data;
+	int				color;
 }					t_push;
 
 typedef struct		s_libx
@@ -43,6 +44,7 @@ t_push				*get_end_list(t_push *list);
 int					get_nb_elem(t_push *p);
 void				swap(t_push *p, int print, int which);
 void				swap_both(t_push *a, t_push *b, int print);
+void				get_color(t_push *a, t_push *b, char *instrcution);
 void				push(t_push *a, t_push *b, int print, int which);
 char				**create_tab(int ac, char **av);
 void				rotate(t_push *p, int print, int which);

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:41:21 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 17:07:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 09:57:08 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+t_push	*set_color(t_push *p)
+{
+	p = get_start_list(p);
+	while (p)
+	{
+		p->color = 0;
+		if (!p->next)
+			break ;
+		p = p->next;
+	}
+	p = get_start_list(p);
+	return (p);
 }
 
 t_push	*fill_pile(int ac, char **av, int is_data)
@@ -50,6 +64,6 @@ t_push	*fill_pile(int ac, char **av, int is_data)
 		a = a->next;
 		i++;
 	}
-	a = get_start_list(a);
+	a = set_color(a);
 	return (a);
 }

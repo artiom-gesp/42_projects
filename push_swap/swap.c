@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:45:50 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 16:46:20 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 09:59:50 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	push(t_push *a, t_push *b, int print, int which)
 		a->is_data = 0;
 		a->data = 0;
 		b->is_data = 1;
+		b->color = a->color;
+		a->color = 0;
 	}
 	if (print)
 	{

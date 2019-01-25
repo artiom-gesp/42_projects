@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 17:47:21 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 11:12:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int		main(int ac, char **av)
 			nquick_sort(a, b);
 			free_list(a);
 			free_list(b);
-			if (tab)
-				free_tab(tab);
 		}
+		else
+			ft_printf("Error\n");
+		tab ? free_tab(tab) : do_nothing();
 	}
 	return (0);
 }
