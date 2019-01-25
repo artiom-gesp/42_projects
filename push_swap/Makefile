@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/24 18:24:15 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/25 16:01:29 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = main.c \
     move_through_list.c \
     swap.c \
 	fill_pile.c \
+	sort_three.c \
 	check_input.c \
 	push_swap.c \
 	get_smallest.c \
@@ -34,6 +35,7 @@ PUSH_SRC = checker.c \
     swap.c \
 	fill_pile.c \
 	check_input.c \
+	sort_three.c \
 	push_swap.c \
 	utils.c \
 	get_smallest.c \

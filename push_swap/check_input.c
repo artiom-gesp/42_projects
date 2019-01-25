@@ -6,17 +6,51 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 11:03:52 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 15:47:55 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+int			is_solo(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (str[i])
+		return (0);
+	return (1);
+}
+
+char		**get_solo(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[i] == '-' && str[i + 1] && ft_isdigit(str[i + 1]))
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (NULL);
+		i++;
+	}
+	return (ft_strsplit(str, ' '));
+}
 
 char		**create_tab(int ac, char **av)
 {
 	char	**tab;
 	char	*save;
 
+	if (ac == 2 && is_solo(av[1]))
+		return (get_solo(av[1]));
+	if (ac == 3 && is_solo(av[2]) && !ft_strcmp(av[1], "-v"))
+		return (get_solo(av[2]));
 	if (ac == 3 && !ft_strcmp(av[1], "-v"))
 		tab = ft_strsplit(av[2], ' ');
 	else if (ac == 2 && ft_strcmp(av[1], "-v"))

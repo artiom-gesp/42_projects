@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:53:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 18:25:20 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 17:06:21 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ void	nquick_sort(t_push *a, t_push *b)
 	if (is_sorted(a))
 		return ;
 	c = copy_pile(a, 1);
-	if (get_list_len(a) < 10)
+	if (get_list_len(a) == 3)
+		sort_three(a, 1);
+	else if (get_list_len(a) == 5)
+		sort_five(a, b);
+	else if (get_list_len(a) < 10)
 	{
 		is_max(a, 1);
 		get_nb_elem(a);

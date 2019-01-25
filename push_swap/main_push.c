@@ -6,11 +6,62 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 11:12:49 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/25 15:51:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+static int	is_solo(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (str[i])
+		return (0);
+	return (1);
+}
+
+static char	**get_solo(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[i] == '-' && str[i + 1] && ft_isdigit(str[i + 1]))
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (NULL);
+		i++;
+	}
+	return (ft_strsplit(str, ' '));
+}
+
+static char	**create_tab_2(int ac, char **av)
+{
+	char	**tab;
+	char	*save;
+
+	if (ac == 2 && is_solo(av[1]))
+		return (get_solo(av[1]));
+	if (ac == 2 && ft_strcmp(av[1], "-v"))
+	{
+		save = ft_itoa(ft_atoi(av[1]));
+		if (ft_strcmp(av[1], save))
+			tab = ft_strsplit(av[1], ' ');
+		else
+			tab = NULL;
+		save ? free(save) : do_nothing();
+	}
+	else
+		tab = NULL;
+	return (tab);
+}
 
 int		main(int ac, char **av)
 {
@@ -20,7 +71,7 @@ int		main(int ac, char **av)
 	int		save_ac;
 
 	save_ac = ac;
-	tab = create_tab(ac, av);
+	tab = create_tab_2(ac, av);
 	if (tab)
 		ac = len_tab(tab);
 	if (ac > 1)
