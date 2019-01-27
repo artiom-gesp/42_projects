@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 17:06:12 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/27 11:50:48 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct		s_push
 	int				is_data;
 	int				data;
 	int				color;
+	int				lines;
 }					t_push;
 
 typedef struct		s_libx

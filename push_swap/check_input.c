@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 15:47:55 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/27 12:15:31 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ char		**create_tab(int ac, char **av)
 
 	if (ac == 2 && is_solo(av[1]))
 		return (get_solo(av[1]));
-	if (ac == 3 && is_solo(av[2]) && !ft_strcmp(av[1], "-v"))
+	if (ac == 3 && is_solo(av[2]) && (!ft_strcmp(av[1], "-v")
+				|| !ft_strcmp(av[1], "-w")))
 		return (get_solo(av[2]));
-	if (ac == 3 && !ft_strcmp(av[1], "-v"))
+	if (ac == 3 && (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-w")))
 		tab = ft_strsplit(av[2], ' ');
-	else if (ac == 2 && ft_strcmp(av[1], "-v"))
+	else if (ac == 2 && (ft_strcmp(av[1], "-v")
+				|| ft_strcmp(av[1], "-w")))
 	{
 		save = ft_itoa(ft_atoi(av[1]));
 		if (ft_strcmp(av[1], save))
@@ -100,7 +102,7 @@ int			is_input_ok(int ac, char **av)
 	i = ft_atoi(av[0]) && av[0][0] != '0' ? 0 : 1;
 	save = NULL;
 	j = 0;
-	if (!ft_strcmp(av[1], "-v"))
+	if (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-w"))
 		i++;
 	if (i == ac)
 		return (0);

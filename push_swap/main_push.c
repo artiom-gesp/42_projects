@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 15:51:20 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/27 11:46:55 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	**create_tab_2(int ac, char **av)
 	return (tab);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_push	*a;
 	t_push	*b;
