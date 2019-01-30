@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/25 16:01:29 by agesp            ###   ########.fr        #
+#    Updated: 2019/01/30 11:27:00 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,15 +54,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME) $(PUSH_NAME)
 
-$(NAME): $(OBJ) checker.h
+$(NAME): $(SRC) checker.h
 	make -C ./libft
 	$(CC) -c $(SRC) $(CFLAGS)
 	$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
 
-$(PUSH_NAME): $(PUSH_OBJ) checker.h
+$(PUSH_NAME): $(PUSH_SRC) checker.h
 	$(CC) -c $(PUSH_SRC) $(CFLAGS)
 	$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
-
 
 clean:
 	make clean -C ./libft

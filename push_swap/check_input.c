@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/27 12:15:31 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 15:48:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char		**get_solo(char *str)
 char		**create_tab(int ac, char **av)
 {
 	char	**tab;
-	char	*save;
 
 	if (ac == 2 && is_solo(av[1]))
 		return (get_solo(av[1]));
@@ -56,26 +55,24 @@ char		**create_tab(int ac, char **av)
 		tab = ft_strsplit(av[2], ' ');
 	else if (ac == 2 && (ft_strcmp(av[1], "-v")
 				|| ft_strcmp(av[1], "-w")))
-	{
-		save = ft_itoa(ft_atoi(av[1]));
-		if (ft_strcmp(av[1], save))
 			tab = ft_strsplit(av[1], ' ');
-		else
-			tab = NULL;
-		save ? free(save) : do_nothing();
-	}
 	else
 		tab = NULL;
 	return (tab);
 }
 
-static int	is_tab_ok(int tab[], int size)
+static int	is_tab_ok(int tab[], int size, char **tab2)
 {
 	int i;
 	int j;
 
 	i = 0;
-	j = 0;
+	if (!ft_strcmp(tab2[0], "-v")
+						|| !ft_strcmp(tab2[0], "-w")
+	|| 	!ft_strcmp(tab2[1], "-v")
+						|| !ft_strcmp(tab2[1], "-w"))
+		size -= 1;
+	size -= tab2[0][0] == '.' || tab2[0][0] == '/' ? 1 : 0;
 	while (i < size)
 	{
 		j = 0;
@@ -99,7 +96,7 @@ int			is_input_ok(int ac, char **av)
 	char	*save;
 	int		j;
 
-	i = ft_atoi(av[0]) && av[0][0] != '0' ? 0 : 1;
+	i = av[0] && (av[0][0] == '/' || av[0][0] == '.') ? 1 : 0;
 	save = NULL;
 	j = 0;
 	if (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-w"))
@@ -118,5 +115,5 @@ int			is_input_ok(int ac, char **av)
 		}
 		free(save);
 	}
-	return (is_tab_ok(tab, ac - 1));
+	return (is_tab_ok(tab, ac, av));
 }

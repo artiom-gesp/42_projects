@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:04:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 11:15:44 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 15:13:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,24 @@ static void	fill_b(t_libx *p, int *j)
 
 	i = 0;
 	if (!p->b->is_data)
-		while (i < 500)
+		while (i++ < 500)
 		{
 			*j += 1;
-			i++;
 		}
 	else if (p->b->is_data)
 	{
-		while (i < ft_map(p->b->data, p, 0, 500))
+		while (i < ft_map(p->b->data < 0 ? p->b->data * -1
+					: p->b->data, p, 0, 500))
 		{
-			p->image[*j] = p->b->color ? 0xFF0000 : 0x1AFF00;
+			p->image[*j] = p->b->data < 0 ? 0x168600 : 0x1AFF00;
+			p->image[*j] = p->b->color ? 0xFF0000 : p->image[*j];
 			*j += 1;
 			i++;
 		}
 		p->b->color = 0;
-		while (i < 500)
+		while (i++ < 500)
 		{
-			p->image[*j] = 0x000000;
 			*j += 1;
-			i++;
 		}
 	}
 }
@@ -59,16 +58,16 @@ static void	fill_a(t_libx *p, int *j)
 		}
 	else if (p->a->is_data)
 	{
-		while (i < ft_map(p->a->data, p, 0, 500))
+		while (i < ft_map(p->a->data < 0 ? p->a->data * -1 : p->a->data, p, 0, 500))
 		{
-			p->image[*j] = p->a->color ? 0xFF0000 : 0x1AFF00;
+			p->image[*j] = p->a->data < 0 ? 0x168600 : 0x1AFF00;
+			p->image[*j] = p->a->color ? 0xFF0000 : p->image[*j];
 			*j += 1;
 			i++;
 		}
 		p->a->color = 0;
 		while (i < 500)
 		{
-			p->image[*j] = 0x000000;
 			*j += 1;
 			i++;
 		}

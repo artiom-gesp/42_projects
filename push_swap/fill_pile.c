@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:41:21 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/25 09:57:08 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 15:58:45 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_push	*fill_pile(int ac, char **av, int is_data)
 	int		i;
 	t_push	*a;
 
-	i = ft_atoi(av[0]) && av[0][0] != '0' ? 0 : 1;
-	if (!ft_strcmp(av[1], "-v"))
+	i = av[0][0] == '/' || av[0][0] == '.' ? 1 : 0;
+	if (!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-w"))
 		i++;
 	if (!(a = malloc(sizeof(t_push))))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 15:37:49 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 17:10:06 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 14:56:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ int		get_nb_elem(t_push *p)
 	return (i);
 }
 
+void	pp(t_push *a, t_push *b)
+{
+	a = get_start_list(a);
+	b = get_start_list(b);
+	while (a)
+	{
+		ft_printf("%d               %d\n", a->data, b->data);
+		if (!a->next)
+			break ;
+		a = a->next;
+		b = b->next;
+	}
+}
+
 int		get_borne(t_push *p, int mediane, int *borne)
 {
 	int		i;
@@ -71,13 +85,16 @@ int		get_borne(t_push *p, int mediane, int *borne)
 	while (++i < (get_list_len(p) > 200
 				? 20 : get_list_len(p) / 10) && c->is_data)
 	{
-		if (!c->prev)
+		if (!c->prev || !c->prev->is_data)
+		{
+			i++;
 			break ;
+		}
 		c = c->prev;
 	}
 	*borne = i == 0 ? 1 : i;
 	i = c->data;
 	free_list(c);
 	free_list(d);
-	return (c->data);
+	return (i);
 }

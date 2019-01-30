@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/27 11:50:48 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 13:25:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int					is_rev_sorted(t_push *list);
 t_push				*fill_pile(int ac, char **av, int is_data);
 void				free_list(t_push *list);
 int					is_input_ok(int ac, char **av);
+void				pp(t_push *a, t_push *b);
 void				push_swap(t_push *a, t_push *b);
 int					get_mediane(t_push *a, t_push *b, int print);
 int					get_list_len(t_push *p);

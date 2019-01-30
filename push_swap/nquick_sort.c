@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 15:47:27 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/24 17:28:41 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 13:05:33 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ void	send_them_back(t_push *a, t_push *b, int mediane, int *i)
 	}
 	save = get_nb_elem(b);
 	save_b = b->data;
-	while ((!is_max(b, borne) || save <= (get_list_len(a) > 200
-					? 20 : get_list_len(a) / 10)) && !is_empty(b))
+	while ((!is_max(b, borne) || save <= (get_list_len(a) > 200 ? 20 : get_list_len(a) / 10)) && !is_empty(b))
 	{
 		b = get_top_list(b);
-		if (b->data > borne || (get_nb_elem(b) <= (get_list_len(a) > 200
-						? 20 : get_list_len(a) / 10) && b->data > borne))
+		if (b->data > borne || save <= (get_list_len(a) > 200 ? 20 : get_list_len(a) / 10))
 			push(b, a, 1, 1);
 		else
 			rotate(b, 1, 2);
