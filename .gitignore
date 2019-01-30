@@ -1,6 +1,5 @@
 *.o
 test
-main.c
 a.out
 *.gch
 *.a

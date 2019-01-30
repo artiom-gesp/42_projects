@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:13 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/23 10:51:04 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/21 10:44:14 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char		**ft_strsplit(char const *s, char c)
 		return (NULL);
 	get_var(&i, &j);
 	words = countword(s, c);
-	if (!(tab = (char**)malloc(sizeof(char*) * (words + 1))))
+	if (!(tab = (char**)malloc(sizeof(char*) * (words))))
 		return (NULL);
 	while (s[i] != '\0')
 	{
@@ -88,8 +88,6 @@ char		**ft_strsplit(char const *s, char c)
 		else
 			i++;
 	}
-	if (!(tab[j] = (char*)malloc(sizeof(char))))
-		return (NULL);
 	tab[j] = 0;
 	return (tab);
 }
