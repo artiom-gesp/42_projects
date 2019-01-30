@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/30 15:48:25 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 16:57:06 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char		**create_tab(int ac, char **av)
 		tab = ft_strsplit(av[2], ' ');
 	else if (ac == 2 && (ft_strcmp(av[1], "-v")
 				|| ft_strcmp(av[1], "-w")))
-			tab = ft_strsplit(av[1], ' ');
+		tab = ft_strsplit(av[1], ' ');
 	else
 		tab = NULL;
 	return (tab);
@@ -68,9 +68,9 @@ static int	is_tab_ok(int tab[], int size, char **tab2)
 
 	i = 0;
 	if (!ft_strcmp(tab2[0], "-v")
-						|| !ft_strcmp(tab2[0], "-w")
-	|| 	!ft_strcmp(tab2[1], "-v")
-						|| !ft_strcmp(tab2[1], "-w"))
+			|| !ft_strcmp(tab2[0], "-w")
+			|| !ft_strcmp(tab2[1], "-v")
+			|| !ft_strcmp(tab2[1], "-w"))
 		size -= 1;
 	size -= tab2[0][0] == '.' || tab2[0][0] == '/' ? 1 : 0;
 	while (i < size)

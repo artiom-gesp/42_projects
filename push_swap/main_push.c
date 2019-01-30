@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/27 11:46:55 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 16:45:03 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,13 @@ int			main(int ac, char **av)
 	t_push	*a;
 	t_push	*b;
 	char	**tab;
-	int		save_ac;
 
-	save_ac = ac;
 	tab = create_tab_2(ac, av);
 	if (tab)
 		ac = len_tab(tab);
 	if (ac > 1)
 	{
-		if ((save_ac == ac && is_input_ok((int)ac, av))
+		if ((!tab && is_input_ok((int)ac, av))
 				|| (tab && is_input_ok(ac, tab)))
 		{
 			a = fill_pile(ac, tab ? tab : av, 1);
@@ -87,7 +85,7 @@ int			main(int ac, char **av)
 		}
 		else
 			ft_printf("Error\n");
-		tab ? free_tab(tab) : do_nothing();
 	}
+	tab ? free_tab(tab) : do_nothing();
 	return (0);
 }

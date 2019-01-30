@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:04:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/30 15:13:34 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/30 16:54:29 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static void	fill_a(t_libx *p, int *j)
 		}
 	else if (p->a->is_data)
 	{
-		while (i < ft_map(p->a->data < 0 ? p->a->data * -1 : p->a->data, p, 0, 500))
+		while (i < ft_map(p->a->data < 0 ? p->a->data
+					* -1 : p->a->data, p, 0, 500))
 		{
 			p->image[*j] = p->a->data < 0 ? 0x168600 : 0x1AFF00;
 			p->image[*j] = p->a->color ? 0xFF0000 : p->image[*j];
@@ -66,11 +67,8 @@ static void	fill_a(t_libx *p, int *j)
 			i++;
 		}
 		p->a->color = 0;
-		while (i < 500)
-		{
+		while (i++ < 500)
 			*j += 1;
-			i++;
-		}
 	}
 }
 
