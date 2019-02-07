@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/02/07 16:52:41 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/07 17:03:25 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,12 @@ all: $(NAME) $(PUSH_NAME)
 $(NAME): $(OBJ) src/checker.h
 	@make -C ./libft
 	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
-	@printf "%b\n" "\x1b[32m checker: Ok !\x1b[0m"
+	@printf "%b\n" "\x1b[32mchecker: Ok !\x1b[0m"
 
 $(PUSH_NAME): $(PUSH_OBJ) src/checker.h
 	@make -C ./libft
 	@$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
-	@printf "%b\n" "\x1b[32m push_swap: Ok !\x1b[0m"
+	@printf "%b\n" "\x1b[32mpush_swap: Ok !\x1b[0m"
 
 obj/%.o : src/%.c
 	@cd obj/ && $(CC) -c $(CFLAGS) ../$<
