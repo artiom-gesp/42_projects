@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/02/07 17:03:25 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/07 17:16:08 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,10 @@ $(PUSH_NAME): $(PUSH_OBJ) src/checker.h
 	@printf "%b\n" "\x1b[32mpush_swap: Ok !\x1b[0m"
 
 obj/%.o : src/%.c
+	@if [ ! -d "$(OBJDIR)" ] ; \
+	then \
+		mkdir obj ; \
+	fi;
 	@cd obj/ && $(CC) -c $(CFLAGS) ../$<
 
 clean:
