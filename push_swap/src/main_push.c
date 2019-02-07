@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/30 16:45:03 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/06 16:27:48 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,13 @@ static int	is_solo(char *str)
 	return (1);
 }
 
-static char	**get_solo(char *str)
-{
-	int i;
-
-	i = 0;
-	if (str[i] == '-' && str[i + 1] && ft_isdigit(str[i + 1]))
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (NULL);
-		i++;
-	}
-	return (ft_strsplit(str, ' '));
-}
-
 static char	**create_tab_2(int ac, char **av)
 {
 	char	**tab;
 	char	*save;
 
 	if (ac == 2 && is_solo(av[1]))
-		return (get_solo(av[1]));
+		return (NULL);
 	if (ac == 2 && ft_strcmp(av[1], "-v"))
 	{
 		save = ft_itoa(ft_atoi(av[1]));

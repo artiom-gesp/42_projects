@@ -6,13 +6,15 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/01/30 11:27:00 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/07 16:52:41 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = checker
 
 PUSH_NAME = push_swap
+
+OBJDIR = obj
 
 LIB = libft/libftprintf.a
 
@@ -44,34 +46,41 @@ PUSH_SRC = checker.c \
 	rev_rota.c \
 	nquick_sort.c
 
-OBJ = $(addsuffix .o,$(basename $(SRC)))
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
-PUSH_OBJ = $(addsuffix .o,$(basename $(PUSH_SRC)))
+PUSH_OBJ = $(addprefix $(OBJDIR)/, $(PUSH_SRC:.c=.o))
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME) $(PUSH_NAME)
+	@printf "%b\n" "\x1b[32m All Done !\x1b[0m"
 
-$(NAME): $(SRC) checker.h
-	make -C ./libft
-	$(CC) -c $(SRC) $(CFLAGS)
-	$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+$(NAME): $(OBJ) src/checker.h
+	@make -C ./libft
+	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+	@printf "%b\n" "\x1b[32m checker: Ok !\x1b[0m"
 
-$(PUSH_NAME): $(PUSH_SRC) checker.h
-	$(CC) -c $(PUSH_SRC) $(CFLAGS)
-	$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+$(PUSH_NAME): $(PUSH_OBJ) src/checker.h
+	@make -C ./libft
+	@$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+	@printf "%b\n" "\x1b[32m push_swap: Ok !\x1b[0m"
+
+obj/%.o : src/%.c
+	@cd obj/ && $(CC) -c $(CFLAGS) ../$<
 
 clean:
-	make clean -C ./libft
-	rm -rf $(OBJ)
-	rm -rf $(PUSH_OBJ)
+	@printf "%b\n" "\x1b[32mCleaning..\x1b[0m"
+	@make clean -C ./libft
+	@rm -rf $(OBJ)
+	@rm -rf $(PUSH_OBJ)
 
 fclean: clean
-	rm -rf $(LIB)
-	rm -rf $(NAME)
-	rm -rf $(PUSH_NAME)
+	@printf "%b\n" "\x1b[32mCleaning executable..\x1b[0m"
+	@rm -rf $(LIB)
+	@rm -rf $(NAME)
+	@rm -rf $(PUSH_NAME)
 
 re: fclean all
 

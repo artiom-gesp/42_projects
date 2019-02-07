@@ -6,14 +6,14 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 11:44:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/30 13:25:42 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/07 16:15:17 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "libft/ft_printf.h"
+# include "../libft/ft_printf.h"
 # include "mlx.h"
 
 typedef struct		s_push

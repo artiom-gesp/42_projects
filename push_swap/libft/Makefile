@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2019/01/09 15:06:48 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/07 16:54:30 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,18 +103,21 @@ SRC = ft_put_long_nbr.c \
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
+	@:
 
 $(NAME): $(OBJ) $(SRC) libft.h ft_printf.h get_next_line.h
-	ar -rc $(NAME) $(OBJ)
+	@ar -rc $(NAME) $(OBJ)
+	@printf "%b\n" "\x1b[32mLibft: Ok !\x1b[0m"
 
 %.o: %.c
 	@$(CC) -c $<
 
 clean:
-	rm -f $(OBJ)
+	@printf "%b\n" "\x1b[32mCleaning Libft..\x1b[0m"
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

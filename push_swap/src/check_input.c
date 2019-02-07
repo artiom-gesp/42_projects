@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/30 16:57:06 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/06 16:15:20 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		**create_tab(int ac, char **av)
 	char	**tab;
 
 	if (ac == 2 && is_solo(av[1]))
-		return (get_solo(av[1]));
+		return (NULL);
 	if (ac == 3 && is_solo(av[2]) && (!ft_strcmp(av[1], "-v")
 				|| !ft_strcmp(av[1], "-w")))
 		return (get_solo(av[2]));
