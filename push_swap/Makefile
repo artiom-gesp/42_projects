@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/02/07 17:16:08 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/11 15:54:55 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ all: $(NAME) $(PUSH_NAME)
 
 $(NAME): $(OBJ) src/checker.h
 	@make -C ./libft
-	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -ggdb 
 	@printf "%b\n" "\x1b[32mchecker: Ok !\x1b[0m"
 
 $(PUSH_NAME): $(PUSH_OBJ) src/checker.h

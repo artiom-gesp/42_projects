@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:13:46 by agesp             #+#    #+#             */
-/*   Updated: 2018/12/29 12:56:42 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/11 13:11:14 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		print_plus(t_plist *list, int len, int plus, char *ret)
 	int	lim;
 
 	i = -1;
-	lim = list->min_width + list->precision < len ? 0 :
-		list->min_width - list->precision;
+	lim = list->min_width + list->precision < len ? 0
+		: list->min_width - list->precision;
 	if (list->precision > len && list->precision > list->min_width)
 	{
 		ft_putchar(plus);
@@ -38,8 +38,8 @@ void	print_minus_wd(t_plist *list, char *ret, int plus, int len)
 	int	lim;
 
 	i = -1;
-	lim = list->min_width + list->precision < len ? 0 :
-		list->min_width - list->precision;
+	lim = list->min_width + list->precision < len ? 0
+		: list->min_width - list->precision;
 	if (plus && list->min_width > len && is_int(list->flag))
 		i = print_plus(list, len, plus, ret);
 	else if ((!plus || !is_int(list->flag)) && (list->min_width - len) > 0)

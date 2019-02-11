@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/02/06 16:12:43 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/11 16:58:57 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int		main(int ac, char **av)
 		{
 			a = fill_pile(ac, tab ? tab : av, 1);
 			b = fill_pile(ac, tab ? tab : av, 0);
-			if (!ft_strcmp(av[1], "-v") && get_list_len(a) > 4)
+			if (!ft_strcmp(av[1], "-v") && get_list_len(a) > 11)
 				visu_print(a, b);
 			else
 				normal_check(a, b, !ft_strcmp(av[1], "-w") ? 1 : 0);
