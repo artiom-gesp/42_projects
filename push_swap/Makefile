@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/02/11 15:54:55 by agesp            ###   ########.fr        #
+#    Updated: 2019/02/13 13:18:57 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ clean:
 	@printf "%b\n" "\x1b[32mCleaning..\x1b[0m"
 	@make clean -C ./libft
 	@rm -rf $(OBJ)
+	@rm -rf obj/
 	@rm -rf $(PUSH_OBJ)
 
 fclean: clean

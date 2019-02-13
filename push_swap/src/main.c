@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 17:58:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/02/11 16:58:57 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/13 13:17:27 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int		main(int ac, char **av)
 	t_push	*b;
 	char	**tab;
 
+	while (av[1] && *av[1] == ' ')
+		av[1]++;
 	tab = create_tab(ac, av);
 	ac = tab ? len_tab(tab) : ac;
 	if (ac > 1)

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 10:48:03 by agesp             #+#    #+#             */
-/*   Updated: 2019/02/11 16:58:01 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/13 13:17:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,15 @@
 int			is_solo(char *str)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
 	while (str[i] && str[i] != ' ')
-	{
-		if (!ft_isdigit(str[i]) && str[i] != '-')
-			j++;
-		if ((str[i] == '-' && !str[i + 1]) || (str[i] == '-'
-				&& str[i + 1] && !ft_isdigit(str[i + 1])))
-			j++;
 		i++;
-	}
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (str[i])
 		return (0);
-	return (j ? 2 : 1);
+	return (1);
 }
 
 char		**get_solo(char *str)
