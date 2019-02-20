@@ -5,90 +5,82 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:28:38 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/29 16:16:24 by agesp            ###   ########.fr       */
+/*   Created: 2019/02/20 11:54:09 by agesp             #+#    #+#             */
+/*   Updated: 2019/02/20 15:30:01 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
+#include "lem_in.h"
 
-typedef struct	s_lem
+char	*my_realloc(char *old_str, char *new_str)
 {
-	char *s;
-	int is_start;
-	int	is_end;
-	struct s_lem *next;
-}				t_lem;
-	
-typedef struct	s_ant
-{
-	int save;
-	int is_start;
-	int	is_end;
-}				t_ant;
+	int		i;
+	int		j;
+	char	*save;
 
-void	add_to_list(t_lem *head, char *s, int is_start, int is_end)
-{
-	while (head->next)
-	{
-		head = head->next;
-	}
-	if (!(head->next = malloc(sizeof(s_head))))
-		return ;
-	head->next->is_start = is_start;
-	head->next->is_end = is_end;
-	head->next->next = NULL;
-	head->next->s = s;
+	i = -1;
+	j = 0;
+	if (!old_str)
+		return (NULL);
+	if (!new_str)
+		return (old_str);
+	if (!(save = malloc(sizeof(char) * (ft_strlen(old_str)
+			+ ft_strlen(new_str)) + 2)))
+		return (NULL);
+	while (old_str[++i])
+		save[i] = old_str[i];
+	save[i++] = '\n';
+	while (new_str[j])
+		save[i++] = new_str[j++];
+	save[i] = '\0';
+	free(old_str);
+	old_str = NULL;
+	return (save);
 }
 
-int		is_good_com(char *s)
+void	free_all(t_lem *p)
 {
-	if (s[0] == '#')
+	if (p && p->instr)
 	{
-		if (!ft_strcmp(str, "##start"))
-			return (1);
-		if (!ft_strcmp(str, "##start"))
-			return (2);
-		return (3);
+		free(p->instr);
+		p->instr = NULL;
 	}
-	return (0);
-
-t_lem	*create_list(void)
-{
-	t_lem	*p;
-	t_lem	*head;
-	t_ant	*x;
-	char	*str;
-
+	free(p);
 	p = NULL;
-	head = NULL;
-	if (!(p = malloc(sizeof(t_lem))))
-		return (perror("malloc fail"));
-	if (!(x = malloc(sizeof(t_ant))))
-		return (perror("malloc fail"));
-	while (get_next_line(0, &str) > 0)
-	{
-		x->save = is_good_com(str);
-		x->is_start = x->save == 1 && x->is_start == 0 ? 1 : 0;
-		x->is_end = x->save == 2 && x->is_end == 0 ? 1 : 0;
-		x->save
-	head = p;
+	exit(1);
 }
+
 int		main(int ac, char **av)
 {
-	char *str;
+	t_lem	*p;
+	char	*str;
 
-	str = NULL;
-	if (ac == 1)
+	if (!(p = malloc(sizeof(t_lem))))
+		free_all(p);
+	p->instr = NULL;
+	while (get_next_line(0, &str))
 	{
-		get_next_line(0, &str);
-		while (str[0] && str[0] == "#")
-		p->s = str;
-		head = p;
-		while (get_next_line(0, &str) > 0)
+		if (!p->instr)
+			p->instr = str;
+		else
 		{
-			add_to_
+			if (!(p->instr = my_realloc(p->instr, str)))
+			{
+				free_all(p);
+				free(str);
+			}
+			if (str && !ft_isdigit(str[0]) && str[0] != '#')
+			{
+				free(str);
+				free_all(p);
+			}
+			str ? free(str) : do_nothing();
 		}
 	}
+	free(str);
+	if (!input_check(p->instr))
+		ft_printf("error\n");
+	ft_printf("%s\n", p->instr);
+	sleep(3);
 	return (0);
-}
+}		
