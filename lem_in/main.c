@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 11:54:09 by agesp             #+#    #+#             */
-/*   Updated: 2019/02/22 13:47:14 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/23 14:38:28 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,15 @@ void	free_all(t_lem *p, char *error)
 	}
 	free(p);
 	p = NULL;
-	ft_printf("%s\n", error);
+	if (ft_strcmp(error, "Ok"))
+		ft_printf("%s\n", error);
 	exit(1);
 }
 
-int		main(int ac, char **av)
+void	create_str(t_lem *p)
 {
-	t_lem	*p;
 	char	*str;
-
-	if (!(p = malloc(sizeof(t_lem))))
-		free_all(p, "Malloc fail :(");
-	p->instr = NULL;
+	
 	while (get_next_line(0, &str))
 	{
 		if (!p->instr)
@@ -70,17 +67,27 @@ int		main(int ac, char **av)
 				free(str);
 				free_all(p, "Malloc fail :(");
 			}
-			if (str && !ft_isdigit(str[0]) && str[0] != '#')
-			{
-				free(str);
-				free_all(p, "Wrong input");
-			}
 			str ? free(str) : do_nothing();
 		}
 	}
 	free(str);
-	if (!input_check(p->instr))
+	ft_printf("%s\n\n\n", p->instr);
+	ft_printf("%s", str = input_check(p->instr));
+	p->instr && ft_strcmp(p->instr, str) ? free(p->instr) : do_nothing();
+	p->instr = str;
+}
+
+int		main(int ac, char **av)
+{
+	t_lem	*p;
+	char	*str;
+
+	if (!(p = malloc(sizeof(t_lem))))
+		free_all(p, "Malloc fail :(");
+	p->instr = NULL;
+	create_str(p);
+	if (argument_check(p->instr) == -1)
 		free_all(p, "Wrong input");
-	ft_printf("%s\n", p->instr);
+	free_all(p, "Ok");
 	return (0);
 }		
