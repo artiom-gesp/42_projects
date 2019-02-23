@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:23:18 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/08 15:44:47 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/11 13:25:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int		print_wp(t_plist *list, int len, char *ret)
 	i = -1;
 	print_sign(list, ret, 0);
 	list->precision = list->precision == -1 ? 0 : list->precision;
-	flag = list->min_width + list->precision < len ?
-		0 : (list->min_width - list->precision);
-	lim = list->min_width > list->precision ?
-		flag : 0;
+	flag = list->min_width + list->precision < len
+		? 0 : (list->min_width - list->precision);
+	lim = list->min_width > list->precision
+		? flag : 0;
 	flag = ret[0] == '-' ? 1 : 0;
 	i += list->precision >= len ? flag : 0;
 	if (lim > 0 && list->min_width - len > 0)
@@ -69,10 +69,10 @@ void	print_wp_x(t_plist *list, int len, int hash)
 	i = -1;
 	print_hash_sign(list, 0, len, hash);
 	list->precision = list->precision == -1 ? 0 : list->precision;
-	flag = list->min_width + list->precision < len ?
-		0 : (list->min_width - list->precision);
-	lim = list->min_width > list->precision ?
-		flag : 0;
+	flag = list->min_width + list->precision < len
+		? 0 : (list->min_width - list->precision);
+	lim = list->min_width > list->precision
+		? flag : 0;
 	if (lim > 0 && list->min_width - len > 0)
 		while (++i < (lim = list->precision > len
 					? lim : list->min_width - len))

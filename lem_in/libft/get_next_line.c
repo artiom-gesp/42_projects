@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 09:24:50 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/22 11:18:30 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/11 13:08:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	if (!stock_fd[fd] && (stock_fd[fd] = ft_strnew(0)) == NULL)
 		return (-1);
-	while (!(ft_strchr(stock_fd[fd], '\n')) &&
-			(ret = read(fd, buff, BUFF_SIZE)) > 0)
+	while (!(ft_strchr(stock_fd[fd], '\n'))
+			&& (ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = 0;
 		save = stock_fd[fd];

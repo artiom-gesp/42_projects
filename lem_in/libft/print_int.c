@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 11:22:04 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/07 09:23:53 by agesp            ###   ########.fr       */
+/*   Updated: 2019/02/11 13:08:47 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	integer_print(t_plist *list, va_list *ap)
 		list->size += ret[0] != '-' ? (int)ft_strlen(ret)
 			: (int)ft_strlen(ret) - 1;
 	}
-	ft_strcmp(ret, "") &&
-		ft_strcmp(ret, "-9223372036854775808") ? free(ret) : do_nothing();
+	ft_strcmp(ret, "")
+		&& ft_strcmp(ret, "-9223372036854775808") ? free(ret) : do_nothing();
 }
