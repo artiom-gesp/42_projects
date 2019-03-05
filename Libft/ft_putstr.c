@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:25:53 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 09:25:54 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/18 12:38:50 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putstr(char const *s)
 	{
 		while (s[i])
 		{
-			ft_putchar(s[i]);
+			ft_putchar((unsigned int)s[i]);
 			i++;
 		}
 	}

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 09:25:40 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/12 14:31:15 by agesp            ###   ########.fr       */
+/*   Created: 2018/12/18 16:54:18 by agesp             #+#    #+#             */
+/*   Updated: 2018/12/18 17:02:23 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+void	ft_putchar(unsigned int c)
 {
 	write(1, &c, 1);
 }

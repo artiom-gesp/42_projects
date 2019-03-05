@@ -1,0 +1,2 @@
+pkill -u $1
+userdell $1

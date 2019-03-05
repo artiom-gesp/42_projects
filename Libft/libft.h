@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/23 14:58:45 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/07 09:19:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char					*ft_strsub(char const *s,
 char					*ft_strjoin(char const *s1, char const *s2);
 char					*ft_strtrim(char const *s);
 char					**ft_strsplit(char const *s, char c);
-void					ft_putchar(char c);
+void					ft_putchar(unsigned int c);
 void					ft_putstr(char const *s);
 void					ft_putendl(char const *s);
 void					ft_putchar_fd(char c, int fd);
@@ -73,6 +73,7 @@ void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr(int n);
 void					ft_putnbr_fd(int n, int fd);
 char					*ft_itoa(int n);
+void					ft_put_long_nbr(long long n);
 
 typedef struct			s_list
 {
@@ -94,7 +95,9 @@ char					**ft_sort_tab_param(char **tab,
 		int (*f)(const char *, const char *));
 int						ft_is_bigger(int a, int b);
 int						*ft_sort_nb_tab(int *tab, size_t size);
-char					*ft_itoa_base(int nb, int base);
-float					ft_pow(float nb, int pow);
+char					*ft_itoa_base(long long nb, int base, int a);
+char					*get_u(uintmax_t nb, int base, int a);
+double					ft_pow(double nb, int pow);
+int						ft_nbrlen(long long nbr);
 
 #endif

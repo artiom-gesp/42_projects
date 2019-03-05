@@ -1,0 +1,1 @@
+netstat -nr | grep default | cut -d" " -f13 | sed -n 1p

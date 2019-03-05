@@ -6,88 +6,67 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:27:13 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/21 10:44:14 by agesp            ###   ########.fr       */
+/*   Updated: 2019/01/21 10:37:46 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_size(char const *s, char c)
+static int		ft_cnt_parts(const char *s, char c)
 {
-	int	i;
+	int		cnt;
+	int		in_substring;
 
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-		i++;
-	return (i);
-}
-
-static int	countword(const char *s, char c)
-{
-	int i;
-	int nbmots;
-
-	i = 0;
-	nbmots = 0;
-	if (s[i] != '\0')
+	in_substring = 0;
+	cnt = 0;
+	while (*s != '\0')
 	{
-		while (s[i])
+		if (in_substring == 1 && *s == c)
+			in_substring = 0;
+		if (in_substring == 0 && *s != c)
 		{
-			if (s[i] == c && s[i])
-			{
-				while (s[i] == (char)c && s[i])
-					i++;
-				nbmots++;
-			}
-			i++;
+			in_substring = 1;
+			cnt++;
 		}
-		return (nbmots + 1);
+		s++;
 	}
-	return (0);
+	return (cnt);
 }
 
-static char	*get_next_word(char const *s, char c)
+static int		ft_wlen(const char *s, char c)
 {
-	int		size_word;
-	char	*str;
+	int		len;
 
-	size_word = get_size(s, c);
-	str = NULL;
-	if (!(str = ft_strnew(size_word)))
-		return (NULL);
-	str = ft_strncpy(str, s, size_word);
-	return (str);
-}
-
-static void	get_var(int *i, int *j)
-{
-	*j = 0;
-	*i = 0;
-}
-
-char		**ft_strsplit(char const *s, char c)
-{
-	int		i;
-	int		words;
-	char	**tab;
-	int		j;
-
-	if (!s)
-		return (NULL);
-	get_var(&i, &j);
-	words = countword(s, c);
-	if (!(tab = (char**)malloc(sizeof(char*) * (words))))
-		return (NULL);
-	while (s[i] != '\0')
+	len = 0;
+	while (*s != c && *s != '\0')
 	{
-		if (s[i] != c)
-		{
-			tab[j++] = get_next_word(&s[i], c);
-			i += get_size(&s[i], c);
-		}
-		else
-			i++;
+		len++;
+		s++;
 	}
-	tab[j] = 0;
-	return (tab);
+	return (len);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**t;
+	int		nb_word;
+	int		index;
+
+	index = 0;
+	nb_word = ft_cnt_parts((const char *)s, c);
+	t = (char **)malloc(sizeof(*t) * (ft_cnt_parts((const char *)s, c) + 1));
+	if (t == NULL)
+		return (NULL);
+	while (nb_word--)
+	{
+		while (*s == c && *s != '\0')
+			s++;
+		t[index] = ft_strsub((const char *)s, 0, ft_wlen((const char *)s, c));
+		if (t[index] == NULL)
+			return (NULL);
+		s = s + ft_wlen(s, c);
+		index++;
+	}
+	t[index] = NULL;
+	return (t);
 }

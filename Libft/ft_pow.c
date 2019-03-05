@@ -6,11 +6,11 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 14:17:40 by agesp             #+#    #+#             */
-/*   Updated: 2018/11/23 14:56:23 by agesp            ###   ########.fr       */
+/*   Updated: 2018/12/19 16:59:01 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	ft_pow(float nb, int pow)
+double	ft_pow(double nb, int pow)
 {
 	if (pow > 1)
 	{

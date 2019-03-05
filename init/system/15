@@ -1,0 +1,5 @@
+kill $(pgrep tail -f)
+
+	OU
+
+kill $! pour kill le dernier processus ouvert
