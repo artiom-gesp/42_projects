@@ -1,0 +1,33 @@
+#
+#
+#fdezlifuhezui
+#ffzef
+100
+##start
+start 200 3
+room1 3 9
+room2 205 5
+room3 300 10
+room4 5 10
+room5 4 4
+room6 3 15
+room7 2 8
+room8 6 3
+##end
+end 3 5
+room9 8 2
+start-room1
+start-room9
+room1-room2
+room2-room3
+room3-room4
+room4-room5
+start-end
+room5-room6
+room6-room7
+room6-room3
+room7-room8
+room8-room9
+room9-room1
+end-room2
+end-room9
