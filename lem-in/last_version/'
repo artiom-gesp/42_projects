@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   room_cre_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/18 09:55:09 by agesp             #+#    #+#             */
+/*   Updated: 2019/03/18 09:56:58 by agesp            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lemin.h"
+
+void			add_start(t_lemin *e, char *line)
+{
+	if (!e->start)
+	{
+		e->start = new_rooms();
+		e->start->name = name_rooms(line);
+		e->start->nb_rooms = e->nb_rooms;
+	}
+}
+
+void			add_end(t_lemin *e, char *line)
+{
+	if (!e->end)
+	{
+		e->end = new_rooms();
+		e->end->name = name_rooms(line);
+		e->end->nb_rooms = e->nb_rooms;
+	}
+}

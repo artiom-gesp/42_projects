@@ -1,0 +1,330 @@
+srcs/algo/add_ants.c:	tmp = e->a;
+srcs/algo/add_ants.c:	if (!e->a)
+srcs/algo/add_ants.c:		e->a = new_ants();
+srcs/algo/add_ants.c:		e->a->nb_ants = i;
+srcs/algo/add_ants.c:		e->a->next = NULL;
+srcs/algo/add_ants.c:	e->nb_ants = ft_atoi(line);
+srcs/algo/add_ants.c:	while (++i < e->nb_ants + 1)
+srcs/algo/add_info.c:	if (!e->i)
+srcs/algo/add_info.c:		e->i = new_info();
+srcs/algo/add_info.c:		if (!(e->i->line = ft_strdup(line)))
+srcs/algo/add_info.c:		e->i->next = NULL;
+srcs/algo/add_info.c:		tmp = e->i;
+srcs/algo/add_links.c:	tmp = e->l;
+srcs/algo/add_links.c:	if (!e->l)
+srcs/algo/add_links.c:		e->l = new_links();
+srcs/algo/add_links.c:		e->l->s1 = name_links(line, e->l);
+srcs/algo/add_links.c:		e->l->s2 = name_links(line, e->l);
+srcs/algo/add_links.c:		verif_link(e->l->s1, e->l->s2, e->r);
+srcs/algo/add_links.c:		e->l->next = NULL;
+srcs/algo/add_links.c:		verif_link(tmp->next->s1, tmp->next->s2, e->r);
+srcs/algo/add_links.c:	save = e->l;
+srcs/algo/add_links.c:	while (save->next)
+srcs/algo/add_links.c:		save = save->next;
+srcs/algo/add_links.c:	save->n_links = i;
+srcs/algo/add_links.c:	e->nb_links = i;
+srcs/algo/add_links.c:	if (!ft_strcmp(save->s1, save->s2))
+srcs/algo/add_rooms.c:	tmp = e->r;
+srcs/algo/add_rooms.c:	if (!e->r)
+srcs/algo/add_rooms.c:		e->nb_rooms = 0;
+srcs/algo/add_rooms.c:		e->r = new_rooms();
+srcs/algo/add_rooms.c:		e->r->name = name_rooms(line);
+srcs/algo/add_rooms.c:		e->r->nb_rooms = 0;
+srcs/algo/add_rooms.c:		e->nb_rooms++;
+srcs/algo/add_rooms.c:		e->r->next = NULL;
+srcs/algo/add_rooms.c:		e->nb_rooms++;
+srcs/algo/add_rooms.c:	if (!e->start)
+srcs/algo/add_rooms.c:		e->start = new_rooms();
+srcs/algo/add_rooms.c:		e->start->name = name_rooms(line);
+srcs/algo/add_rooms.c:		e->start->nb_rooms = e->nb_rooms;
+srcs/algo/add_rooms.c:	e->st = 0;
+srcs/algo/add_rooms.c:	if (!e->end)
+srcs/algo/add_rooms.c:		e->end = new_rooms();
+srcs/algo/add_rooms.c:		e->end->name = name_rooms(line);
+srcs/algo/add_rooms.c:		e->end->nb_rooms = e->nb_rooms;
+srcs/algo/add_rooms.c:	e->nd = 0;
+srcs/algo/add_rooms.c:	if (e->st == 1)
+srcs/algo/add_rooms.c:	else if (e->nd == 1)
+srcs/algo/created_hash.c:	r = e->r;
+srcs/algo/created_hash.c:		key = generate_hash(r->name, e->nb_rooms);
+srcs/algo/created_hash.c:		while (e->h[key])
+srcs/algo/created_hash.c:		if (e->h[key])
+srcs/algo/created_hash.c:		e->h[key] = created_lst_hash(r);
+srcs/algo/created_hash.c:	if (!(e->h = malloc(sizeof(t_hash) * e->nb_rooms * 1000)))
+srcs/algo/created_hash.c:	while (i < e->nb_rooms * 1000)
+srcs/algo/created_hash.c:		e->h[i++] = NULL;
+srcs/algo/created_map.c:	while (y < e->nb_rooms)
+srcs/algo/created_map.c:	while (i < e->nb_rooms)
+srcs/algo/created_map.c:		while (x < e->nb_rooms)
+srcs/algo/created_map.c:			e->map[i][x++] = 0;
+srcs/algo/created_map.c:		key2 = generate_hash(l->s2, e->nb_rooms);
+srcs/algo/created_map.c:		key1 = generate_hash(l->s1, e->nb_rooms);
+srcs/algo/created_map.c:		while (ft_strcmp(l->s2, e->h[key2]->r->name))
+srcs/algo/created_map.c:		while (ft_strcmp(l->s1, e->h[key1]->r->name))
+srcs/algo/created_map.c:		e->map[e->h[key1]->r->nb_rooms][e->h[key2]->r->nb_rooms] = 1;
+srcs/algo/created_map.c:		e->map[e->h[key2]->r->nb_rooms][e->h[key1]->r->nb_rooms] = 1;
+srcs/algo/created_map.c:	r = e->r;
+srcs/algo/created_map.c:	l = e->l;
+srcs/algo/created_map.c:	if (!(map = malloc(sizeof(int *) * e->nb_rooms)))
+srcs/algo/created_map.c:	while (i < e->nb_rooms)
+srcs/algo/created_map.c:		if (!(map[i] = malloc(sizeof(int) * e->nb_rooms)))
+srcs/algo/created_map.c:	e->map = map;
+srcs/algo/created_path.c:	while (++i < e->nb_rooms - 1)
+srcs/algo/created_path.c:		e->stack[i] = -1;
+srcs/algo/created_path.c:		e->visited[i] = e->find_new[i];
+srcs/algo/created_path.c:		e->prev[i] = 0;
+srcs/algo/created_path.c:	e->visited[i] = e->find_new[i];
+srcs/algo/created_path.c:	e->visited[e->nb_start] = 1;
+srcs/algo/created_path.c:	while (++i < e->nb_rooms - 1)
+srcs/algo/created_path.c:		e->map_stack[i] = -1;
+srcs/algo/created_path.c:		e->map_visited[i] = 0;
+srcs/algo/created_path.c:		e->map_prev[i] = 0;
+srcs/algo/created_path.c:	e->map_visited[i] = 0;
+srcs/algo/created_path.c:	e->map_visited[e->nb_start] = 1;
+srcs/algo/created_path.c:	if (e->map[e->nb_start][e->nb_end] == 1)
+srcs/algo/created_path.c:		if (!(e->p->path = malloc(sizeof(int) * 2)))
+srcs/algo/created_path.c:		e->p->path[0] = e->nb_start;
+srcs/algo/created_path.c:		e->p->path[1] = e->nb_end;
+srcs/algo/created_path.c:		e->p->next = NULL;
+srcs/algo/created_path.c:		e->p->size_path = 2;
+srcs/algo/created_path.c:	e->y = -1;
+srcs/algo/created_path.c:		while (++e->y < e->nb_rooms)
+srcs/algo/created_path.c:			if (e->map[e->x][e->y] == x && !e->visited[e->y])
+srcs/algo/created_path.c:		e->x = e->stack[0];
+srcs/algo/created_path.c:		while (++e->y < e->nb_rooms)
+srcs/algo/created_path.c:	//		if (e->y == e->nb_start)
+srcs/algo/created_path.c:	//			e->y++;
+srcs/algo/created_path.c:			if (e->map[e->x][e->y] == x && !e->map_visited[e->y])
+srcs/algo/created_path.c:				if (!e->map_fn[e->y])
+srcs/algo/created_path.c:					if (e->map_fn[e->y] == 1 && e->map[e->y][e->x] == -1)
+srcs/algo/created_path.c:					else if (e->map_fn[e->y] == 1 && e->map[e->y][e->x] == 1)
+srcs/algo/created_path.c:						while (++i < e->nb_rooms)
+srcs/algo/created_path.c:							if (e->map[i][e->y] == -1)
+srcs/algo/created_path.c:						if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i])
+srcs/algo/created_path.c:							s_y = e->y + 1;
+srcs/algo/created_path.c:							e->map_prev[e->y] = e->x;
+srcs/algo/created_path.c:							e->y = i;
+srcs/algo/created_path.c:							e->map_prev[i] = s_y - 1;
+srcs/algo/created_path.c:							e->y = s_y;
+srcs/algo/created_path.c:		e->x = e->map_stack[0];
+srcs/algo/created_path.c:	save = e->nb_end;
+srcs/algo/created_path.c:	while (e->map_prev[save] != e->nb_start)
+srcs/algo/created_path.c:		if (e->map[save][e->map_prev[save]] == -1)
+srcs/algo/created_path.c:			e->map[save][e->map_prev[save]] = 1;
+srcs/algo/created_path.c:			e->map[e->map_prev[save]][save] = 1;
+srcs/algo/created_path.c:			e->map[e->map_prev[save]][save] = -1;
+srcs/algo/created_path.c:		save = e->map_prev[save];
+srcs/algo/created_path.c:		e->map_fn[save] = 1;
+srcs/algo/created_path.c:	e->map[e->nb_start][save] = -1;
+srcs/algo/created_path.c:	e->map_fn[e->nb_start] = 1;
+srcs/algo/created_path.c:	while (i < e->nb_rooms)
+srcs/algo/created_path.c:		if (e->map[e->nb_start][i] == -1 && !e->find_new[i])
+srcs/algo/created_path.c:	save = e->p;
+srcs/algo/created_path.c:		e->x = e->nb_start;
+srcs/algo/created_path.c:		while (e->x != e->nb_end)
+srcs/algo/created_path.c:			if (e->x == e->nb_end || is_stack_empty(e->stack, e->nb_rooms - 1))
+srcs/algo/created_path.c:			e->visited[e->x] = 1;
+srcs/algo/created_path.c:			pop_stack(e, e->nb_rooms, -1);
+srcs/algo/created_path.c:		if (is_stack_empty(e->stack, e->nb_rooms - 1))
+srcs/algo/created_path.c:		e->find_new[add_path(e)] = 1;
+srcs/algo/created_path.c:	e->p = save;
+srcs/algo/created_path.c:	while (paths_remain(e) && e->map[e->nb_start][e->nb_end] == 0)
+srcs/algo/created_path.c:		e->x = e->nb_start;
+srcs/algo/created_path.c:		while (e->x != e->nb_end)
+srcs/algo/created_path.c:			if (e->x == e->nb_end || is_stack_empty(e->map_stack, e->nb_rooms - 1))
+srcs/algo/created_path.c:			e->map_visited[e->x] = 1;
+srcs/algo/created_path.c:			pop_stack(e, e->nb_rooms, 1);
+srcs/algo/created_path.c:		if (is_stack_empty(e->map_stack, e->nb_rooms - 1))
+srcs/algo/created_path.c:	//	affiche_map(e, e->map);
+srcs/algo/created_path.c:		while (e->p)
+srcs/algo/created_path.c:			save = e->p;
+srcs/algo/created_path.c:			e->p = e->p->next;
+srcs/algo/created_path.c:			free(save->path);
+srcs/algo/created_path.c:		e->p = malloc(sizeof(t_path));
+srcs/algo/created_path.c:		e->p->next = NULL;
+srcs/algo/created_path.c:		e->p->path = NULL;*/
+srcs/algo/design.c:	r = v->e->r;
+srcs/algo/design.c:		, 230, HEIGHT - 50, 0x00FFFFFF, ft_itoa(v->e->nb_ants));
+srcs/algo/event.c:	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->image->img, 0, 0);
+srcs/algo/image.c:	pos = (x * e->image->img_bpp / 8) + (y * e->image->img_size_line);
+srcs/algo/image.c:	e->image->img_data[pos] = e->color % 256;
+srcs/algo/image.c:	e->image->img_data[pos + 1] = (e->color >> 8) % 256;
+srcs/algo/image.c:	e->image->img_data[pos + 2] = (e->color >> 16) % 256;
+srcs/algo/image.c:	mlx_destroy_image(e->mlx_ptr, e->image->img);
+srcs/algo/image.c:	e->image->img = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
+srcs/algo/image.c:	e->image->img_data = mlx_get_data_addr(e->image->img, &(e->image->img_bpp),
+srcs/algo/image.c:		&(e->image->img_size_line), &(e->image->img_endian));
+srcs/algo/main.c:	while (i < e->nb_rooms)
+srcs/algo/main.c:		while (x < e->nb_rooms)
+srcs/algo/main.c:	e->map_v = malloc(sizeof(char *) * e->nb_rooms * e->nb_ants);
+srcs/algo/main.c:	while (i < e->nb_rooms * e->nb_ants)
+srcs/algo/main.c:		e->map_v[i] = NULL;
+srcs/algo/move_ants.c:	tmpp = e->p;
+srcs/algo/move_ants.c:	tmp = e->a;
+srcs/algo/move_ants.c:	if (!e->a->p)
+srcs/algo/move_ants.c:		e->a->p = malloc(sizeof(t_path));
+srcs/algo/move_ants.c:		e->a->p->i = 1;
+srcs/algo/move_ants.c:		e->a->p->size_path = p->size_path;
+srcs/algo/move_ants.c:		e->a->p->path = malloc(sizeof(int) * p->size_path);
+srcs/algo/move_ants.c:		ft_intcpy(e->a->p->path, p->path, p->size_path - 1);
+srcs/algo/move_ants.c:		if (e->map[p->path[i]][p->path[i]] == 4 && p->conti == 0)
+srcs/algo/move_ants.c:			if (!(count = take_better_path(p, e, e->map)))
+srcs/algo/move_ants.c:			e->map[p->path[i]][p->path[i]] = 4;
+srcs/algo/move_ants.c:	a = e->a;
+srcs/algo/move_ants.c:		if (tmp && tmp->size_path > e->nb_ants - a->nb_ants && tmp->conti == 1\
+srcs/algo/move_ants.c:		 	&& (p->size_path - 1) > e->nb_ants - a->nb_ants && p->next != NULL\
+srcs/algo/move_ants.c:				tmp = e->p->next;
+srcs/algo/move_ants.c:				p = e->p;
+srcs/algo/move_ants.c:			tmp = e->p->next;
+srcs/algo/move_ants.c:			p = e->p;
+srcs/algo/move_ants.c:	a = e->a;
+srcs/algo/move_ants.c:	//	ft_printf("ants %d\n", e->nb_ants - a->nb_ants);
+srcs/algo/move_ants.c:		if (a->next && save && save->conti && p->conti
+srcs/algo/move_ants.c:			&& save->size_path > p->size_path
+srcs/algo/move_ants.c:			&& (e->nb_ants - a->nb_ants) < (save->size_path - p->size_path))
+srcs/algo/move_ants.c:	//		ft_printf("len %d\n", save->size_path);
+srcs/algo/move_ants.c:			save->conti = 0;
+srcs/algo/move_ants.c:			p = e->p;
+srcs/algo/move_ants.c:			p = e->p;
+srcs/algo/move_ants.c:	a = e->a;
+srcs/algo/move_ants.c:	p = e->p;
+srcs/algo/move_ants.c:			p = e->p;
+srcs/algo/move_ants.c:	p = e->p;
+srcs/algo/move_ants.c:	p = e->p;
+srcs/algo/move_ants.c:	a = e->a;
+srcs/algo/move_ants.c:		if (a->p->i < a->p->size_path && e->table_r[a->p->path[a->p->i]]->occuped != 2)
+srcs/algo/move_ants.c:				e->table_r[a->p->path[a->p->i]]->occuped = 0;
+srcs/algo/move_ants.c:				e->table_r[a->p->path[a->p->i]]->occuped = 2;
+srcs/algo/move_ants.c:			tmp = ft_strjoin(ft_itoa(a->nb_ants), e->table_r[a->p->path[a->p->i]]->name);
+srcs/algo/move_ants.c:			if (e->map_v[i])
+srcs/algo/move_ants.c:				e->map_v[i] = ft_strjoin(e->map_v[i], " ");
+srcs/algo/move_ants.c:				e->map_v[i] = ft_strjoin(e->map_v[i], tmp);
+srcs/algo/move_ants.c:				e->map_v[i] = ft_strjoin("", tmp);
+srcs/algo/move_ants.c:			ft_printf("L%d-%s ", a->nb_ants, e->table_r[a->p->path[a->p->i]]->name);
+srcs/algo/move_ants.c:		if (a->next == NULL && not_all_printed(e->a))
+srcs/algo/move_ants.c:				e->table_r[a->p->path[a->p->i]]->occuped = 0;
+srcs/algo/move_ants.c:			a = e->a;
+srcs/algo/move_ants.c:	e->map_v[i] = NULL;
+srcs/algo/move_ants.c:	while (e->map_v[i])
+srcs/algo/move_ants.c:		ft_putendl(e->map_v[i]);
+srcs/algo/path_creation_utils.c:			e->stack[i - 1] = e->stack[i];
+srcs/algo/path_creation_utils.c:		e->stack[i - 1] = -1;
+srcs/algo/path_creation_utils.c:			e->map_stack[i - 1] = e->map_stack[i];
+srcs/algo/path_creation_utils.c:		e->map_stack[i - 1] = -1;
+srcs/algo/path_creation_utils.c:		while (e->stack[i] != -1 && i < e->nb_rooms - 1)
+srcs/algo/path_creation_utils.c:			if (e->stack[i] == e->y)
+srcs/algo/path_creation_utils.c:		e->prev[e->y] = e->x;
+srcs/algo/path_creation_utils.c:		e->stack[i] = e->y;
+srcs/algo/path_creation_utils.c:		while (e->map_stack[i] != -1 && i < e->nb_rooms - 1)
+srcs/algo/path_creation_utils.c:			if (e->map_stack[i] == e->y)
+srcs/algo/path_creation_utils.c:		e->map_prev[e->y] = e->x;
+srcs/algo/path_creation_utils.c:		e->map_stack[i] = e->y;
+srcs/algo/path_creation_utils.c:	if (e->p->path)
+srcs/algo/path_creation_utils.c:		if (!(e->p->next = malloc(sizeof(t_path))))
+srcs/algo/path_creation_utils.c:		e->p = e->p->next;
+srcs/algo/path_creation_utils.c:	e->p->path = malloc(sizeof(int) * len + 2 * sizeof(int));
+srcs/algo/path_creation_utils.c:	e->p->next = NULL;
+srcs/algo/path_creation_utils.c:	e->p->size_path = len + 2;
+srcs/algo/path_creation_utils.c:		e->p->path[j++] = pa[len];
+srcs/algo/path_creation_utils.c:	e->p->path[e->p->size_path - 1] = e->nb_end;
+srcs/algo/path_creation_utils.c:	e->p->path[0] = e->nb_start;
+srcs/algo/path_creation_utils.c:	e->nb_paths++;
+srcs/algo/path_creation_utils.c:	while (i < e->nb_rooms)
+srcs/algo/path_creation_utils.c:		if (e->map[x][i] == 1)
+srcs/algo/path_creation_utils.c:	if (!(path = malloc(sizeof(int) * e->nb_rooms)))
+srcs/algo/path_creation_utils.c:	save = e->nb_end;
+srcs/algo/path_creation_utils.c:	while (e->prev[save] != e->nb_start)
+srcs/algo/path_creation_utils.c:		path[i] = e->prev[save];
+srcs/algo/path_creation_utils.c:		save = e->prev[save];
+srcs/algo/path_creation_utils.c:	while (i < e->nb_rooms)
+srcs/algo/path_creation_utils.c://	while (++i < e->p->size_path - 1)
+srcs/algo/path_creation_utils.c://		e->find_new[e->p->path[i]] = 1;
+srcs/algo/path_creation_utils.c:	e->find_new[e->p->path[1]] = 1;
+srcs/algo/path_creation_utils.c:	return (e->p->path[e->p->size_path - 2]);
+srcs/algo/path_creation_utils_2.c:	while (i < e->nb_rooms)
+srcs/algo/path_creation_utils_2.c:		if (e->map[e->nb_start][i] == 1)
+srcs/algo/path_creation_utils_2.c:	e->nb_paths = 0;
+srcs/algo/path_creation_utils_2.c:	if (!(e->p = malloc(sizeof(t_path))))
+srcs/algo/path_creation_utils_2.c:	e->p->path = NULL;
+srcs/algo/path_creation_utils_2.c:	e->p->next = NULL;
+srcs/algo/path_creation_utils_2.c:	e->stack = malloc(sizeof(int) * e->nb_rooms - 1);
+srcs/algo/path_creation_utils_2.c:	e->map_stack = malloc(sizeof(int) * e->nb_rooms - 1);
+srcs/algo/path_creation_utils_2.c:	e->visited = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	e->map_visited = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	e->prev = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	e->map_prev = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	e->find_new = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	e->map_fn = malloc(sizeof(int) * e->nb_rooms);
+srcs/algo/path_creation_utils_2.c:	if (!e->stack || !e->visited || !e->prev || !e->find_new)
+srcs/algo/path_creation_utils_2.c:	if (!e->map_stack || !e->map_visited || !e->map_prev || !e->map_fn)
+srcs/algo/path_creation_utils_2.c:	while (++i < e->nb_rooms)
+srcs/algo/path_creation_utils_2.c:		e->find_new[i] = 0;
+srcs/algo/path_creation_utils_2.c:		e->map_fn[i] = 0;
+srcs/algo/path_creation_utils_2.c:			ft_printf("%s->", e->table_r[sa->path[i]]->name);
+srcs/algo/path_creation_utils_2.c:		ft_printf("%s\n\n", e->table_r[sa->path[sa->size_path - 1]]->name);
+srcs/algo/reader.c:	if (e->start != NULL || e->end != NULL)
+srcs/algo/reader.c:	e->st = 1;
+srcs/algo/reader.c:	if (e->start == NULL || e->end != NULL)
+srcs/algo/reader.c:	e->nd = 1;
+srcs/algo/reader.c:	ro = e->r;
+srcs/algo/reader.c:	if (!(r = malloc(sizeof(t_rooms) * e->nb_rooms)))
+srcs/algo/reader.c:	while (i < e->nb_rooms)
+srcs/algo/reader.c:	e->nb_rooms = 0;
+srcs/algo/reader.c:	if (e->nb_ants <= 0 || !e->end || !e->start || !e->l)
+srcs/algo/reader.c:	parsing_duplicate_rooms(e->r, e->r);
+srcs/algo/reader.c:	parsing_links_unknow(e->l, e->r);
+srcs/algo/reader.c:	e->table_r = table_rooms(e);
+srcs/algo/reader.c:	e->nb_start = e->start->nb_rooms;
+srcs/algo/reader.c:	e->nb_end = e->end->nb_rooms;
+srcs/algo/reader.c:	e->nb_start = e->start->nb_rooms;
+srcs/algo/reader.c:	e->nb_end = e->end->nb_rooms;
+srcs/algo/select_paths.c:	save = e->p;
+srcs/algo/select_paths.c:		save->conti = save->s_conti;
+srcs/algo/select_paths.c:		if (!save->next)
+srcs/algo/select_paths.c:		save = save->next;
+srcs/algo/select_paths.c:	save = e->p;
+srcs/algo/select_paths.c:		save->conti = 0;
+srcs/algo/select_paths.c:		if (!save->next)
+srcs/algo/select_paths.c:		save = save->next;
+srcs/algo/select_paths.c:	save = e->p;
+srcs/algo/select_paths.c:	save->conti = 1;
+srcs/algo/select_paths.c:	save = save->next;
+srcs/algo/select_paths.c:		if ((new_nb_paths = compare_paths(e->p, save)) == -1)
+srcs/algo/select_paths.c:			save->conti = 1;
+srcs/algo/select_paths.c:			save->s_conti = 0;
+srcs/algo/select_paths.c:				save->conti = 1;
+srcs/algo/select_paths.c:				reset_s_conti(e->p);
+srcs/algo/select_paths.c:				save->conti = 0;
+srcs/algo/select_paths.c:			save->conti = 0;
+srcs/algo/select_paths.c:		if (!save->next)
+srcs/algo/select_paths.c:		save = save->next;
+srcs/algo/tool_move.c:	p = e->p;
+srcs/algo/tool_move.c:			e->table_r[p->path[i]]->occuped = 0;
+srcs/algo/view_map.c:	x = v->e->h[generate_hash(l->s1, v->e->nb_rooms)]->r->x;
+srcs/algo/view_map.c:	y = v->e->h[generate_hash(l->s1, v->e->nb_rooms)]->r->y;
+srcs/algo/view_map.c:	fx = v->e->h[generate_hash(l->s2, v->e->nb_rooms)]->r->x;
+srcs/algo/view_map.c:	fy = v->e->h[generate_hash(l->s2, v->e->nb_rooms)]->r->y;
+srcs/algo/view_map.c:	r = e->r;
+srcs/algo/view_map.c:		if (e->map[r->nb_rooms][r->nb_rooms] == 5)
+srcs/algo/view_map.c:			e->map[r->nb_rooms][r->nb_rooms] = 2;
+srcs/algo/view_map.c:		while (y < e->nb_rooms)
+srcs/algo/view_map.c:			if (e->map[y][y] == 2)
+srcs/algo/view_map.c:				e->map[y][y] = 3;
+srcs/algo/view_map.c:				while (x < e->nb_rooms)
+srcs/algo/view_map.c:					if (e->map[y][x] == 1 && e->map[x][x] != 3)
+srcs/algo/view_map.c:						e->map[x][x] = 5;
+srcs/algo/view_map.c:	p = e->p;
+srcs/algo/view_map.c:	a = v->e->a;
+srcs/algo/view_map.c:	r = v->e->r;
+srcs/algo/view_map.c:	l = v->e->l;
+srcs/algo/view_map.c:	v->e->start->y = HEIGHT / 2 + 10;
+srcs/algo/view_map.c:	v->e->start->x = WIDTH / v->e->nb_rooms;
+srcs/algo/view_map.c:	v->e->h[generate_hash(v->e->start->name, v->e->nb_rooms)]->r->y =  HEIGHT / 2 + 10;
+srcs/algo/view_map.c:	v->e->h[generate_hash(v->e->start->name, v->e->nb_rooms)]->r->x =  50;
+srcs/algo/view_map.c:	y = v->e->h[generate_hash(v->e->start->name, v->e->nb_rooms)]->r->nb_rooms;
+srcs/algo/view_map.c:	v->e->map[y][y] = 2;
+srcs/algo/view_map.c:	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->image->img,
+srcs/algo/visu.c:	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->image->img,
+srcs/algo/visu.c:	v->image->img = mlx_new_image(v->mlx_ptr, WIDTH, HEIGHT);
+srcs/algo/visu.c:	v->image->img_data = mlx_get_data_addr(v->image->img, &(v->image->img_bpp),\
+srcs/algo/visu.c:	&(v->image->img_size_line), &(v->image->img_endian));

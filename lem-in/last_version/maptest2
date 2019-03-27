@@ -1,0 +1,26 @@
+50
+##start
+start 50 1
+##end
+end 50 100
+salle1 1 50
+salle2 50 50
+salle3 100 50
+salle4 1 1
+salle5 2 3
+salle6 32 2
+salle7 13 132
+salle8 1 221
+salle9 4 2
+start-salle1
+start-salle2
+start-salle3
+salle1-salle4
+salle2-salle5
+salle3-salle6
+salle4-salle7
+salle5-salle8
+salle6-salle9
+salle7-end
+salle8-end
+salle9-end
