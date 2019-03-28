@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 12:59:44 by agesp             #+#    #+#             */
-/*   Updated: 2019/03/27 16:13:58 by agesp            ###   ########.fr       */
+/*   Updated: 2019/03/28 15:37:49 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void		control_stack(t_lemin *e, int x)
 						push_stack(e, x);
 					else if (e->map_fn[e->y] == 1 && e->map[e->y][e->x] == 1)
 					{
-						while (++i < e->nb_rooms)
+						while (++i < e->nb_rooms )
 							if (e->map[i][e->y] == -1)
 									break ;
-						if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i])
+						if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i] && i != e->nb_start)
 						{
 							s_y = e->y + 1;
 							e->map_prev[e->y] = e->x;
@@ -161,14 +161,38 @@ void		bfs(t_lemin *e)
 			break ;
 		e->find_new[add_path(e)] = 1;
 	}
-	print_paths(e, save);
 	e->p = save;
+}
+
+void		get_nb_lines(t_lemin *e)
+{
+	t_path *p;
+	int		nb_paths;
+	int		i;
+
+	p = e->p;
+	i = -1;
+	nb_paths = 0;
+	while (p && ++i < e->nb_ants)
+	{
+		nb_paths++;
+		if (!p->next)
+			break ;
+		p = p->next;
+	}
+	i = e->nb_ants / nb_paths;
+	i += p->size_path - 2;
+	i += e->nb_ants % nb_paths != 0 ? 1 : 0;
+//		ft_printf("len of longest path : %d\n", p->size_path);
+	//	ft_printf("number of paths : %d\n", nb_paths);
+	//	ft_printf("number of lines : %d\n", i);
 }
 
 void		setup_map(t_lemin *e)
 {
+//	t_path *save;
 	set_bfs_base_var(e);
-//	create_single(e);
+	create_single(e);
 	while (paths_remain(e) && e->map[e->nb_start][e->nb_end] == 0)
 	{
 		e->x = e->nb_start;
@@ -184,14 +208,19 @@ void		setup_map(t_lemin *e)
 		if (is_stack_empty(e->map_stack, e->nb_rooms - 1))
 			break ;
 		set_map(e);
-	/*	bfs(e);
-		while (e->p)
+//		affiche_map(e, e->map);
+	//	ft_printf("new set \n\n");
+//		bfs(e);
+		get_nb_lines(e);
+//	print_paths(e, e->p);
+	/*	while (e->p)
 		{
 			save = e->p;
 			e->p = e->p->next;
 			free(save->path);
 			free(save);
 		}
+		ft_bzero(e->find_new, e->nb_rooms * sizeof(int));
 		e->p = malloc(sizeof(t_path));
 		e->p->next = NULL;
 		e->p->path = NULL;*/

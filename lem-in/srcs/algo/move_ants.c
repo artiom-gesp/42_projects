@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:31:29 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/25 15:56:55 by agesp            ###   ########.fr       */
+/*   Updated: 2019/03/28 15:34:37 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,17 @@ void	move_ants_forward(t_lemin *e)
 //	select_paths(e);
 	p = e->p;
 //	print_paths(e, p);
+	while (i < 7)
+	{
+		p->conti = 1;
+		if (!p->next)
+			break ;
+		i++;
+		p = p->next;
+	}
+//	ft_printf("%%\n");
+	p = e->p;
+	i = 0;
 	malloc_move(e, p);
 	a = e->a;
 	while (a)
