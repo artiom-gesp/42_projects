@@ -115,6 +115,7 @@ typedef struct 		s_path
 	int				s_conti;
 	int 			stop;
 	int				size_path;
+	int			steps;
 	int 			nb_ants;
 	struct s_path	*next;
 }					t_path;
@@ -152,7 +153,7 @@ void			print_paths(t_lemin *e, t_path *sa);
 int 			set(t_path *p, int **map, int c);
 int 			condition(t_path *p, t_path *ok, int **map, int count);
 void 			zero_vistid(t_lemin *e);
-void 			free_path(t_path **p);
+//void 			free_path(t_path **p);
 void			select_paths(t_lemin *e);
 void			setup_map(t_lemin *e);
 

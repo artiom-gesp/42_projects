@@ -56,21 +56,3 @@ void 	zero_vistid(t_lemin *e)
 		p = p->next;
 	}
 }
-
-void 	free_path(t_path **p)
-{
-	t_path *to_free;
-
-	if (*p)
-	{	
-		if ((*p)->conti == 0)
-		{
-			to_free = *p;
-			*p = (*p)->next;
-			free(to_free);
-			free_path(p);
-		}
-		else
-			free_path(&(*p)->next);
-	}
-}

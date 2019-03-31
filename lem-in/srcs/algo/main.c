@@ -99,6 +99,7 @@ int			main(int ac, char const *av[])
 	created_map(e);
 //	bfs(e);
 	setup_map(e);
+	ft_printf("ee\n");
 	e->map_v = malloc(sizeof(char *) * e->nb_rooms * e->nb_ants);
 	i = 0;
 	while (i < e->nb_rooms * e->nb_ants)

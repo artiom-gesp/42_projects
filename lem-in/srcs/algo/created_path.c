@@ -183,14 +183,71 @@ void		get_nb_lines(t_lemin *e)
 	i = e->nb_ants / nb_paths;
 	i += p->size_path - 2;
 	i += e->nb_ants % nb_paths != 0 ? 1 : 0;
+	e->p->steps = i;
 //		ft_printf("len of longest path : %d\n", p->size_path);
 	//	ft_printf("number of paths : %d\n", nb_paths);
 	//	ft_printf("number of lines : %d\n", i);
 }
 
+t_path		*free_path(t_path *p, int realloc)
+{
+	t_path	*save;
+	while (p)
+	{
+		save = p;
+		p = p->next;
+		free(save->path);
+		free(save);
+	}
+	if (realloc)
+	{
+		p = malloc(sizeof(t_path));
+		p->next = NULL;
+		p->path = NULL;
+		return (p);
+	}
+	return (NULL);
+}
+
+void		copy_path(t_lemin *e)
+{
+	t_path *save;
+
+	save = NULL;
+	if (!e->select_p || (e->select_p && e->select_p->steps > e->p->steps))
+	{
+		if (e->select_p)
+			e->select_p = free_path(e->select_p, 0);
+		while (e->p)
+		{
+			if (!e->select_p)
+			{
+				if (!(e->select_p = malloc(sizeof(t_path))))
+					exit(-1);
+				save = e->select_p;
+			}
+			else
+			{
+				if (!(e->select_p->next = malloc(sizeof(t_path))))
+					exit(-1);
+				e->select_p = e->select_p->next;
+			}
+			if (!(e->select_p->path = malloc(sizeof(int) * e->p->size_path)))
+				exit(-1);
+			e->select_p->steps = e->p->steps;
+			e->select_p->size_path = e->p->size_path;
+			ft_intcpy(e->select_p->path, e->p->path, e->p->size_path - 1);
+			e->select_p->next = NULL;
+			if (!e->p->next)
+				break ;
+			e->p = e->p->next;
+		}
+		e->select_p = save;
+	}
+}
+				
 void		setup_map(t_lemin *e)
 {
-//	t_path *save;
 	set_bfs_base_var(e);
 	create_single(e);
 	while (paths_remain(e) && e->map[e->nb_start][e->nb_end] == 0)
@@ -208,22 +265,12 @@ void		setup_map(t_lemin *e)
 		if (is_stack_empty(e->map_stack, e->nb_rooms - 1))
 			break ;
 		set_map(e);
-//		affiche_map(e, e->map);
-	//	ft_printf("new set \n\n");
-//		bfs(e);
+		bfs(e);
 		get_nb_lines(e);
-//	print_paths(e, e->p);
-	/*	while (e->p)
-		{
-			save = e->p;
-			e->p = e->p->next;
-			free(save->path);
-			free(save);
-		}
+		copy_path(e);
+		e->p = free_path(e->p, 1);
 		ft_bzero(e->find_new, e->nb_rooms * sizeof(int));
-		e->p = malloc(sizeof(t_path));
-		e->p->next = NULL;
-		e->p->path = NULL;*/
 	}
-	bfs(e);
+	e->p = free_path(e->p, 0);
+	e->p = e->select_p;
 }
