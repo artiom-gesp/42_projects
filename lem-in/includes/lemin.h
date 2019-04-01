@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:31:29 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/27 13:49:11 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/01 16:38:44 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct 		s_lemin
 	int 			conti;
 	int 			miny;
 	char 			**map_v;
+	int				max_lines;
 	struct s_rooms  *r;
 	struct s_ants	*a;
 	struct s_rooms  **table_r;
@@ -115,8 +116,9 @@ typedef struct 		s_path
 	int				s_conti;
 	int 			stop;
 	int				size_path;
-	int			steps;
+	int				steps;
 	int 			nb_ants;
+	int				capacity;
 	struct s_path	*next;
 }					t_path;
 void 		affiche_map(t_lemin *e, int **map);
@@ -156,5 +158,7 @@ void 			zero_vistid(t_lemin *e);
 //void 			free_path(t_path **p);
 void			select_paths(t_lemin *e);
 void			setup_map(t_lemin *e);
+int				get_len(t_lemin *e);
+void			set_path_capacity(t_lemin *e);
 
 #endif

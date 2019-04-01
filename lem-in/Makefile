@@ -38,6 +38,7 @@ SRC_ALGO	=	main.c\
 				move_ants.c\
 				room_cre_utils.c\
 				tool_move.c\
+				move_ants_utils.c\
 
 OBJ_ALGO	=	$(SRC_ALGO:.c=.o)
 

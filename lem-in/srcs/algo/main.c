@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:37:44 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/28 15:38:10 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/01 17:00:11 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,8 @@ int			main(int ac, char const *av[])
 	}
 	reader(e);
 	created_map(e);
-//	bfs(e);
 	setup_map(e);
-	ft_printf("ee\n");
+	ft_printf("max_len : %d\n", (e->max_lines = get_len(e)));
 	e->map_v = malloc(sizeof(char *) * e->nb_rooms * e->nb_ants);
 	i = 0;
 	while (i < e->nb_rooms * e->nb_ants)

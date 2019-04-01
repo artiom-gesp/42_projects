@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:31:29 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/28 15:34:37 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/01 17:05:02 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,55 +97,27 @@ void 	call_path(t_lemin *e, t_ants **a, t_path *p)
 			count_ants--;
 		}
 }
-/*
-void 	malloc_move(t_lemin *e, t_path *p)
-{
-	t_ants *a;
-	t_path *tmp;
-
-	tmp = p->next;
-	a = e->a;
-	while (p && a)
-	{
-		if ((a && p->conti == 1))
-		{
-			ft_alloc(e, p);
-			a = a->next;
-			if (!a)
-				break;
-		}
-		if (tmp && tmp->size_path > e->nb_ants - a->nb_ants && tmp->conti == 1\
-		 	&& (p->size_path - 1) > e->nb_ants - a->nb_ants && p->next != NULL\
-		 	&& p->size_path != tmp->size_path)
-		{
-				tmp->conti = 0;
-				tmp = e->p->next;
-				p = e->p;
-		}
-		if (p->next == NULL && a)
-		{
-			tmp = e->p->next;
-			p = e->p;
-		}
-		else 
-		{
-			if (tmp->next != NULL)
-				tmp = tmp->next;
-			p = p->next;
-		}
-	}
-}
-*/
 
 void	malloc_move(t_lemin *e, t_path *p)
 {
 	t_ants *a;
 	t_path *save;
+	int		i;
 
+	a = e->a;
+	i = 0;
+	while (p)
+	{
+//		ft_printf("%d\n", p->capacity);
+		i++;
+		p = p->next;
+	}
+//	print_paths(e, e->p);
+	p = e->p;
 	a = e->a;
 	while (a)
 	{
-		if (a && p->conti == 1)
+		if (a && p->capacity)
 		{
 			ft_alloc(e, p);
 			if (!a->next)
@@ -153,16 +125,8 @@ void	malloc_move(t_lemin *e, t_path *p)
 			a = a->next;
 			save = p->next;
 		}
-	//	ft_printf("ants %d\n", e->nb_ants - a->nb_ants);
-		if (a->next && save && save->conti && p->conti
-			&& save->size_path > p->size_path
-			&& (e->nb_ants - a->nb_ants) < (save->size_path - p->size_path))
-		{
-	//		ft_printf("len %d\n", save->size_path);
-			save->conti = 0;
-			p = e->p;
-			save = p->next;
-		}
+		if (p->capacity > 0)
+			p->capacity--;
 		if (!p->next)
 			p = e->p;
 		else
@@ -205,17 +169,10 @@ void	move_ants_forward(t_lemin *e)
 //	select_paths(e);
 	p = e->p;
 //	print_paths(e, p);
-	while (i < 7)
-	{
-		p->conti = 1;
-		if (!p->next)
-			break ;
-		i++;
-		p = p->next;
-	}
 //	ft_printf("%%\n");
 	p = e->p;
 	i = 0;
+	set_path_capacity(e);
 	malloc_move(e, p);
 	a = e->a;
 	while (a)

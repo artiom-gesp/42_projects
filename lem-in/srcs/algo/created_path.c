@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 12:59:44 by agesp             #+#    #+#             */
-/*   Updated: 2019/03/28 15:37:49 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/01 16:26:19 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		control_stack(t_lemin *e, int x)
 					{
 						while (++i < e->nb_rooms )
 							if (e->map[i][e->y] == -1)
-									break ;
+								break ;
 						if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i] && i != e->nb_start)
 						{
 							s_y = e->y + 1;
@@ -143,7 +143,7 @@ int			still_paths(t_lemin *e)
 void		bfs(t_lemin *e)
 {
 	t_path *save;
-	
+
 	save = e->p;
 	while (still_paths(e))
 	{
@@ -184,9 +184,27 @@ void		get_nb_lines(t_lemin *e)
 	i += p->size_path - 2;
 	i += e->nb_ants % nb_paths != 0 ? 1 : 0;
 	e->p->steps = i;
-//		ft_printf("len of longest path : %d\n", p->size_path);
+	//		ft_printf("len of longest path : %d\n", p->size_path);
 	//	ft_printf("number of paths : %d\n", nb_paths);
 	//	ft_printf("number of lines : %d\n", i);
+}
+
+#include <stdio.h>
+#include <dlfcn.h>
+
+extern void abort();
+
+void my_free(void *alloc) {
+	if (alloc == NULL)
+		return;
+	printf("free %p\n", alloc);
+	void * (*ptr)(void *);
+	void * handle = (void *) -1;
+	ptr = (void *) dlsym(handle, "free");
+	if (ptr == NULL)
+		abort();
+
+	(*ptr)(alloc);
 }
 
 t_path		*free_path(t_path *p, int realloc)
@@ -196,8 +214,11 @@ t_path		*free_path(t_path *p, int realloc)
 	{
 		save = p;
 		p = p->next;
+//		ft_printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		free(save->path);
+//		ft_printf("abbbbbbbbbbbbbbba");
 		free(save);
+//		ft_printf("ccccccccccccccccccaaaaaaa");
 	}
 	if (realloc)
 	{
@@ -218,34 +239,14 @@ void		copy_path(t_lemin *e)
 	{
 		if (e->select_p)
 			e->select_p = free_path(e->select_p, 0);
-		while (e->p)
-		{
-			if (!e->select_p)
-			{
-				if (!(e->select_p = malloc(sizeof(t_path))))
-					exit(-1);
-				save = e->select_p;
-			}
-			else
-			{
-				if (!(e->select_p->next = malloc(sizeof(t_path))))
-					exit(-1);
-				e->select_p = e->select_p->next;
-			}
-			if (!(e->select_p->path = malloc(sizeof(int) * e->p->size_path)))
-				exit(-1);
-			e->select_p->steps = e->p->steps;
-			e->select_p->size_path = e->p->size_path;
-			ft_intcpy(e->select_p->path, e->p->path, e->p->size_path - 1);
-			e->select_p->next = NULL;
-			if (!e->p->next)
-				break ;
-			e->p = e->p->next;
-		}
-		e->select_p = save;
+		e->select_p = e->p;
+		e->p = NULL;
+		e->p = free_path(e->p, 1);
 	}
+	else
+		e->p = free_path(e->p, 1);
 }
-				
+
 void		setup_map(t_lemin *e)
 {
 	set_bfs_base_var(e);
@@ -268,9 +269,9 @@ void		setup_map(t_lemin *e)
 		bfs(e);
 		get_nb_lines(e);
 		copy_path(e);
-		e->p = free_path(e->p, 1);
+//		printf("e->p %p\n", e->p);
+//		printf("e->p->path %p\n", e->p->path);
 		ft_bzero(e->find_new, e->nb_rooms * sizeof(int));
 	}
-	e->p = free_path(e->p, 0);
 	e->p = e->select_p;
 }
