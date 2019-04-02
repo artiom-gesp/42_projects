@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   created_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 12:59:44 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/21 14:36:36 by agesp            ###   ########.fr       */
+/*   Created: 2019/04/02 12:03:03 by agesp             #+#    #+#             */
+/*   Updated: 2019/04/02 12:03:43 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
 void	created_liasion_map(int **map, t_lemin *e)
@@ -31,13 +32,12 @@ void	copy_to_tab(t_lemin *e, t_links *l)
 	int i;
 
 	x = 0;
-	i = 0;
-	while (i < e->nb_rooms)
+	i = -1;
+	while (++i < e->nb_rooms)
 	{
 		x = 0;
 		while (x < e->nb_rooms)
 			e->map[i][x++] = 0;
-		i++;
 	}
 	while (l)
 	{

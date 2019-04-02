@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:22:02 by agesp             #+#    #+#             */
-/*   Updated: 2019/03/27 15:55:53 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 12:01:47 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,33 @@ void		set_bfs_base_var(t_lemin *e)
 	}
 }
 
+t_path		*free_path(t_path *p, int realloc)
+{
+	t_path	*save;
+	while (p)
+	{
+		save = p;
+		p = p->next;
+		free(save->path);
+		free(save);
+	}
+	if (realloc)
+	{
+		p = malloc(sizeof(t_path));
+		p->next = NULL;
+		p->path = NULL;
+		return (p);
+	}
+	return (NULL);
+}
+
 void		print_paths(t_lemin *e, t_path *sa)
 {
 	int i;
 
 	while (sa)
 	{
-//		if (sa->conti != 1)
-//		{
-//			while (sa && sa->conti != 1)
-//				sa = sa->next;
-//			if (!sa)
-//				break ;
-//		}
 		ft_printf("\npath_len : %d\n", sa->size_path);
-		i = -1;
-		// while (++i < sa->size_path - 1)
-		// 	ft_printf("%d->", sa->path[i]);
-		ft_printf("%d\n", sa->path[sa->size_path - 1]);
 		i = -1;
 		while (++i < sa->size_path - 1)
 			ft_printf("%s->", e->table_r[sa->path[i]]->name);

@@ -1,7 +1,7 @@
 CC			=	gcc
 NAME		=	lem-in
 VISU		=	visu
-FLAGS		=	-Wall -Wextra -Werror -ggdb
+FLAGS		=	-Wall -Wextra -Werror
 LIBDIR		=	libft
 LIBLINK		=	-L $(LIBDIR) -lft
 LIB 		=	$(LIBDIR)/libft.a
@@ -30,6 +30,7 @@ SRC_ALGO	=	main.c\
 				created_path.c\
 				path_creation_utils.c\
 				path_creation_utils_2.c\
+				path_creation_utils_3.c\
 				visu.c\
 				design.c\
 				event.c\
