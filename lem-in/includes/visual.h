@@ -53,6 +53,7 @@ typedef	struct			s_mlx
 	int 				wspace;
 	int 				hspace;
 	int 				affiche;
+	int 				name;
 	char 				**mv_ants;
 	struct s_design		*d;
 	struct s_event		*even;

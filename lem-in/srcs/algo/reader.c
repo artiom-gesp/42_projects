@@ -13,85 +13,39 @@
 
 #include "lemin.h"
 
-static void		verif_start(t_lemin *e, enum pos *d)
+static void		verif_start_end(t_lemin *e, enum pos *d)
 {
 	char	*line;
 
-	if (e->start != NULL || e->end != NULL)
-		exit(-1);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] != '#')
 			break ;
 		ft_strdel(&line);
 	}
-	if (line[0] == 'L' || line[0] == '#')
-		exit(-1);
-	e->st = 1;
-	parsing_rooms(line, e, d);
+	if (line[0] == 'L')
+		lem_in_error(e, 6);
+	rooms(line, e, d);
 	ft_strdel(&line);
 }
 
-static void		verif_end(t_lemin *e, enum pos *d)
+static void		parsing_glob(t_lemin *e, char *line, enum pos *d, int n)
 {
-	char	*line;
-
-	if (e->start == NULL || e->end != NULL)
-		exit(-1);
-	while (get_next_line(0, &line) > 0)
-	{
-		if (line[0] != '#')
-			break ;
-		ft_strdel(&line);
-	}
-	if (line[0] == 'L' || line[0] == '#')
-		exit(-1);
-	e->nd = 1;
-	parsing_rooms(line, e, d);
-	ft_strdel(&line);
-}
-
-void	parsing_glob(t_lemin *e, char *line, enum pos *d, int n)
-{
-	if (!ft_strcmp(line, "##start"))
-		verif_start(e, d);
-	else if (!ft_strcmp(line, "##end"))
- 		verif_end(e, d);
+	if (!ft_strcmp(line, "##start") && (*d = START))
+		verif_start_end(e, d);
+	else if (!ft_strcmp(line, "##end") && (*d = END))
+ 		verif_start_end(e, d);
 	else if (line[0] == '#')
 		n = 1;
-	else if (*d == ANTS && n != 1)
-	{
+	else if (*d == ANTS && n != 1 && (*d = ROOMS))
 		parsing_ants(e, line);
-		*d = ROOMS;
-	}
 	else if (*d == ROOMS && n != 1)
-		parsing_rooms(line, e, d);
+		rooms(line, e, d);
 	else if (*d == LINKS)
 		parsing_links(line, e);
 }
 
-
-t_rooms			**table_rooms(t_lemin *e)
-{
-	t_rooms		**r;
-	int			i;
-	t_rooms		*ro;
-
-	ro = e->r;
-	i = 0;
-	if (!(r = malloc(sizeof(t_rooms) * e->nb_rooms)))
-		exit(-1);
-	while (i < e->nb_rooms)
-	{
-		r[i] = ro;
-		ro = ro->next;
-		i++;
-	}
-	r[i] = NULL;
-	return (r);
-}
-
-int				reader(t_lemin *e)
+void			reader(t_lemin *e)
 {
 	char		*line;
 	enum pos	d;
@@ -104,15 +58,7 @@ int				reader(t_lemin *e)
 		parsing_glob(e, line, &d, 0);
 		ft_strdel(&line);
 	}
-	if (e->nb_ants <= 0 || !e->end || !e->start || !e->l)
+	links_rooms(e);
+	if (!e->end || !e->start)
 		exit(-1);
-	parsing_duplicate_rooms(e->r, e->r);
-	parsing_links_unknow(e->l, e->r);
-	e->table_r = table_rooms(e);
-	e->nb_start = e->start->nb_rooms;
-	e->nb_end = e->end->nb_rooms;
-	created_hastable(e);
-	e->nb_start = e->start->nb_rooms;
-	e->nb_end = e->end->nb_rooms;
-	return (0);
 }

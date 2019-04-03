@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:41:53 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/01 16:26:04 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 13:12:37 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void		create_path(t_lemin *e, int *pa, int len)
 	e->p->size_path = len + 2;
 	while (--len >= 0)
 		e->p->path[j++] = pa[len];
-	e->p->path[e->p->size_path - 1] = e->nb_end;
-	e->p->path[0] = e->nb_start;
+	e->p->path[e->p->size_path - 1] = e->end->id_r;
+	e->p->path[0] = e->start->id_r;
 	e->nb_paths++;
 }
 
@@ -113,9 +113,9 @@ int			add_path(t_lemin *e)
 	i = 0;
 	if (!(path = malloc(sizeof(int) * e->nb_rooms)))
 		exit(-1);
-	save = e->nb_end;
+	save = e->end->id_r;
 	next_path = -1;
-	while (e->prev[save] != e->nb_start)
+	while (e->prev[save] != e->start->id_r)
 	{
 		path[i] = e->prev[save];
 		save = e->prev[save];
@@ -127,11 +127,7 @@ int			add_path(t_lemin *e)
 	while (i < e->nb_rooms)
 		path[i++] = 0;
 	create_path(e, path, save);
-//	ft_printf("path addr %p\n", path);
 	free(path);
-	i = 0;
-//	while (++i < e->p->size_path - 1)
-//		e->find_new[e->p->path[i]] = 1;
 	e->find_new[e->p->path[1]] = 1;
 	return (e->p->path[e->p->size_path - 2]);
 }

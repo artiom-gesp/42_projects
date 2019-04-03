@@ -25,12 +25,12 @@ int				generate_hash(char *str, int nb_rooms)
 	return (key);
 }
 
-static t_hash	*created_lst_hash(t_rooms *r)
+static t_hash	*created_lst_hash(t_lemin *e, t_rooms *r)
 {
 	t_hash	*new;
 
-	if (!(new = malloc(sizeof(t_hash))))
-		exit(-1);
+	if (!(new = ft_memalloc(sizeof(t_hash))))
+		lem_in_error(e, 1);
 	new->r = r;
 	return (new);
 }
@@ -45,13 +45,32 @@ static void		init_hash(t_lemin *e)
 	while (r)
 	{
 		key = generate_hash(r->name, e->nb_rooms);
-		while (e->h[key])
-			key++;
 		if (e->h[key])
-			ft_putendl("ici->");
-		e->h[key] = created_lst_hash(r);
+			while (e->h[key])
+				key++;
+		e->h[key] = created_lst_hash(e, r);
 		r = r->next;
 	}
+}
+
+t_rooms			**table_rooms(t_lemin *e)
+{
+	t_rooms		**r;
+	int			i;
+	t_rooms		*ro;
+
+	ro = e->r;
+	i = 0;
+	if (!(r = ft_memalloc(sizeof(t_rooms) * e->nb_rooms)))
+		lem_in_error(e, 1);
+	while (i < e->nb_rooms)
+	{
+		r[i] = ro;
+		ro = ro->next;
+		i++;
+	}
+	r[i] = NULL;
+	return (r);
 }
 
 void			created_hastable(t_lemin *e)
@@ -59,9 +78,7 @@ void			created_hastable(t_lemin *e)
 	int i;
 
 	i = 0;
-	if (!(e->h = malloc(sizeof(t_hash) * e->nb_rooms * 1000)))
-		exit(-1);
-	while (i < e->nb_rooms * 1000)
-		e->h[i++] = NULL;
+	if (!(e->h = ft_memalloc(sizeof(t_hash) * e->nb_rooms * 1000)))
+		lem_in_error(e, 1);
 	init_hash(e);
 }

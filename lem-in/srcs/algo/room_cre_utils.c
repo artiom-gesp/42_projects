@@ -12,32 +12,59 @@
 
 #include "lemin.h"
 
-t_rooms		*new_rooms(void)
+t_rooms					*new_rooms(t_lemin *e)
 {
 	t_rooms	*tmp;
 
-	if (!(tmp = malloc(sizeof(t_rooms))))
-		exit(-1);
-	ft_bzero(tmp, sizeof(t_rooms));
+	if (!(tmp = ft_memalloc(sizeof(t_rooms))))
+		lem_in_error(e, 1);
 	return (tmp);
 }
 
-void		coor_room(char *line, int i)
+static int 			duplicate(t_lemin *e, t_rooms *r, char *line)
 {
-	if (ft_isdigit(line[i]))
+	char *str;
+
+	str = name_rooms(e, &line[0], ' ');
+	while (r)
 	{
-		while (ft_isdigit(line[i]))
-			i++;
-		i++;
-		if (!ft_isdigit(line[i]))
-			exit(-1);
+		if ((!ft_strcmp(r->name, str)))
+		{
+			ft_strdel(&str);
+			return (1);
+		}
+		r = r->next;
 	}
-	else
-		exit(-1);
-	while (ft_isdigit(line[i]))
+	ft_strdel(&str);
+	return (0);
+}
+
+void					parsing_rooms(t_lemin *e, char *line, int i)
+{
+	int x;
+	int y;
+	t_rooms *r;
+
+	r = e->r;
+	x = ft_atoii(line, &i);
+	y =	ft_atoii(line, &i);
+	if (line[i])
+		lem_in_error(e, 15);
+	if (x < 0 || y < 0)
+		lem_in_error(e, 15);
+	if (duplicate(e, r, line))
+		lem_in_error(e, 16);
+}
+
+char					*name_rooms(t_lemin *e, char *line , char c)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (line[i] != c && line[i])
 		i++;
-	if (!line[i])
-		return ;
-	else
-		exit(-1);
+	if (!(str = ft_strsub(line, 0, i)))
+		lem_in_error(e, 1);
+	return (str);
 }

@@ -30,7 +30,8 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-
+int 				ft_atoii(char *nbr, int *i);
+int					ft_strichr(const char *s, int c);
 int					ft_printf(const char *format, ...);
 int					hexa(char *str, int *x);
 int					ft_atoi_base(char *str, int base);

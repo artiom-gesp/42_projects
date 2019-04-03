@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:22:02 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 12:01:47 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 13:13:19 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			paths_remain(t_lemin *e)
 	i = 0;
 	while (i < e->nb_rooms)
 	{
-		if (e->map[e->nb_start][i] == 1)
+		if (e->map[e->start->id_r][i] == 1)
 			return (1);
 		i++;
 	}
@@ -47,7 +47,7 @@ void		set_bfs_base_var(t_lemin *e)
 	i = -1;
 	e->nb_paths = 0;
 	if (!(e->p = malloc(sizeof(t_path))))
-		exit(-1) ;
+		exit(-1);
 	e->p->path = NULL;
 	e->p->next = NULL;
 	e->stack = malloc(sizeof(int) * e->nb_rooms - 1);
@@ -72,6 +72,7 @@ void		set_bfs_base_var(t_lemin *e)
 t_path		*free_path(t_path *p, int realloc)
 {
 	t_path	*save;
+
 	while (p)
 	{
 		save = p;

@@ -13,13 +13,12 @@
 
 #include "../includes/lemin.h"
 
-static t_ants		*new_ants(void)
+static t_ants		*new_ants(t_lemin *e)
 {
 	t_ants	*tmp;
 
-	if (!(tmp = malloc(sizeof(t_ants))))
-		exit(-1);
-	ft_bzero(tmp, sizeof(t_ants));
+	if (!(tmp = ft_memalloc(sizeof(t_ants))))
+		lem_in_error(e , 1);
 	return (tmp);
 }
 
@@ -30,7 +29,7 @@ static void			add_ants(t_lemin *e, int i)
 	tmp = e->a;
 	if (!e->a)
 	{
-		e->a = new_ants();
+		e->a = new_ants(e);
 		e->a->nb_ants = i;
 		e->a->next = NULL;
 	}
@@ -38,7 +37,7 @@ static void			add_ants(t_lemin *e, int i)
 	{
 		while (tmp->next != NULL)
 			tmp = tmp->next;
-		tmp->next = new_ants();
+		tmp->next = new_ants(e);
 		tmp->next->nb_ants = i;
 		tmp->next->next = NULL;
 	}
@@ -53,14 +52,15 @@ void				parsing_ants(t_lemin *e, char *line)
 		i++;
 	else if (line[i] == '-')
 	{
-		exit(-1);
+		ft_strdel(&line);
+		lem_in_error(e , 2);
 	}
 	while (ft_isdigit(line[i]))
 		i++;
 	if (line[i] != 0)
 	{
 		ft_strdel(&line);
-		exit(-1);
+		lem_in_error(e , 2);
 	}
 	e->nb_ants = ft_atoi(line);
 	i = 0;

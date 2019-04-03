@@ -13,13 +13,12 @@
 
 #include "../includes/lemin.h"
 
-static t_info	*new_info(void)
+static t_info	*new_info(t_lemin *e)
 {
 	t_info	*tmp;
 
-	if (!(tmp = malloc(sizeof(t_info))))
-		exit(-1);
-	ft_bzero(tmp, sizeof(t_info));
+	if (!(tmp = ft_memalloc(sizeof(t_info))))
+		lem_in_error(e , 1);
 	return (tmp);
 }
 
@@ -29,9 +28,9 @@ void			add_info(t_lemin *e, char *line)
 
 	if (!e->i)
 	{
-		e->i = new_info();
+		e->i = new_info(e);
 		if (!(e->i->line = ft_strdup(line)))
-			exit(-1);
+			lem_in_error(e , 1);
 		e->i->next = NULL;
 	}
 	else
@@ -39,9 +38,9 @@ void			add_info(t_lemin *e, char *line)
 		tmp = e->i;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
-		tmp->next = new_info();
+		tmp->next = new_info(e);
 		if (!(tmp->next->line = ft_strdup(line)))
-			exit(-1);
+			lem_in_error(e , 1);
 		tmp->next->next = NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:49:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 11:56:24 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 13:13:51 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		reset_tab(t_lemin *e)
 		e->prev[i] = 0;
 	}
 	e->visited[i] = e->find_new[i];
-	e->visited[e->nb_start] = 1;
+	e->visited[e->start->id_r] = 1;
 }
 
 void		reset_map_tab(t_lemin *e)
@@ -39,17 +39,17 @@ void		reset_map_tab(t_lemin *e)
 		e->map_prev[i] = 0;
 	}
 	e->map_visited[i] = 0;
-	e->map_visited[e->nb_start] = 1;
+	e->map_visited[e->start->id_r] = 1;
 }
 
 void		create_single(t_lemin *e)
 {
-	if (e->map[e->nb_start][e->nb_end] == 1)
+	if (e->map[e->start->id_r][e->end->id_r] == 1)
 	{
 		if (!(e->p->path = malloc(sizeof(int) * 2)))
 			exit(-1);
-		e->p->path[0] = e->nb_start;
-		e->p->path[1] = e->nb_end;
+		e->p->path[0] = e->start->id_r;
+		e->p->path[1] = e->end->id_r;
 		e->p->next = NULL;
 		e->p->size_path = 2;
 	}
@@ -65,10 +65,11 @@ void		tricky_case(t_lemin *e, int x)
 		push_stack(e, x);
 	else if (e->map_fn[e->y] == 1 && e->map[e->y][e->x] == 1)
 	{
-		while (++i < e->nb_rooms )
+		while (++i < e->nb_rooms)
 			if (e->map[i][e->y] == -1)
 				break ;
-		if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i] && i != e->nb_start)
+		if (i != e->nb_rooms && !e->map_prev[e->y] && !e->map_prev[i]
+				&& i != e->start->id_r)
 		{
 			s_y = e->y + 1;
 			e->map_prev[e->y] = e->x;

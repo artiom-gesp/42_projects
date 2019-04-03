@@ -14,11 +14,10 @@
 
 void	*ft_memalloc(size_t size)
 {
-	char *zonemem;
+	void *zonemem;
 
-	zonemem = (char *)malloc(size * sizeof(zonemem));
-	if (zonemem == NULL)
-		return (NULL);
+	if (!(zonemem = (char *)malloc(size * sizeof(zonemem))))
+			return (NULL);
 	ft_bzero(zonemem, size);
 	return (zonemem);
 }

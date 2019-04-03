@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:37:44 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/04/01 17:00:11 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 17:09:04 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		error_messages(int error)
 {
 	error == 1 ? write(1, "Error: malloc failure\n", 22) : 0;
-	error == 2 ? write(1, "Error: ' ' or '-' before ants\n", 30) : 0;
+	error == 2 ? write(1, "Error: ' ' or '-' before or after ants\n", 39) : 0;
 	error == 3 ? write(1, "Error: negative, too many, or no ants\n", 38) : 0;
 	error == 4 ? write(1, "Error: comment after ##start or ##end\n", 38) : 0;
 	error == 5 ? write(1, "Error: ants badly formatted\n", 28) : 0;
@@ -32,88 +32,97 @@ static void		error_messages(int error)
 	error == 18 ? write(1, "Error: too many arguments\n", 26) : 0;
 }
 
-void			lem_in_error(t_lemin *e, int error)
+void			free_ants(t_lemin *e)
 {
-	if (error > 0)
-		error_messages(error);
-	else
-		write(1, "Error\n", 6);
-	free(e);
-	exit(-1);
+	t_ants *a;
+
+	while (e->a)
+	{
+		a = e->a;
+		e->a = e->a->next;
+		free(a);
+	}
 }
 
-void 		affiche_map(t_lemin *e, int **map)
+void			path_fun_free(t_lemin *e)
+{
+	if (e->p)
+		free_path(e->p, 0);
+	if (e->find_new)
+	{
+		free(e->stack);
+		free(e->map_stack);
+		free(e->find_new);
+		free(e->map_fn);
+		free(e->prev);
+		free(e->map_prev);
+		free(e->map_visited);
+	}
+}
+
+void			free_info(t_lemin *e)
+{
+	t_info *i;
+
+	while (e->i)
+	{
+		i = e->i;
+		e->i = e->i->next;
+		if (i->line)
+			free(i->line);
+		free(i);
+	}
+}
+
+void			lem_in_error(t_lemin *e, int error)
 {
 	int i;
-	int x;
 
-	x = 0;
-	i = 0;
-	ft_putstr("    ");
-	while (i <= 11)
+	i = -1;
+	if (error > 0)
+		error_messages(error);
+	else if (error != -2)
+		write(1, "Error\n", 6);
+	if (e->i)
+		free_info(e);
+	if (e->map)
 	{
-		ft_putnbr(i);
-		ft_putchar(' ');
-		i++;
+		while (++i < e->nb_rooms)
+			free(e->map[i]);
+		free(e->map);
 	}
-	i = 0;
-	ft_putchar('\n');
-	while (i < e->nb_rooms)
-	{
-		ft_putnbr(i);
-		if (i < 10)
-		ft_putstr("   ");
-		else
-			ft_putstr("  ");
-		x = 0;
-		while (x < e->nb_rooms)
+	if (e->r)
+		while (e->r && (e->r = e->r->next))
 		{
-			map[x][x] = 0;
-			if (map[i][x] < 0)
-				ft_printf("%%");
-			else 
-				ft_putnbr(map[i][x]);
-			x++;
-			ft_putchar(' ');
+			ft_strdel(&(e->r->name)); //TO_FREE !!!
+			free(e->r->links);
 		}
-		ft_putchar('\n');
-		i++;
-	}
+	path_fun_free(e);
+	free_ants(e);
+	free(e);
+	if (error == -2)
+		exit(1);
+	exit(0);
 }
 
 int			main(int ac, char const *av[])
 {
 	t_lemin *e;
-	int i;
 
-	i = 0;
-	if (!(e = malloc(sizeof(t_lemin))))
-		exit(-1);	
-	bzero(e, sizeof(t_lemin));
+	if ((!(e = ft_memalloc(sizeof(t_lemin)))))
+		lem_in_error(e, 1);
 	if (ac < 1 && av)
 	{
 		ft_putstr("usage: lem-in ,[maps...]");
 		return (0);
 	}
 	reader(e);
-	created_map(e);
 	setup_map(e);
-	ft_printf("max_len : %d\n", (e->max_lines = get_len(e)));
-	e->map_v = malloc(sizeof(char *) * e->nb_rooms * e->nb_ants);
-	i = 0;
-	while (i < e->nb_rooms * e->nb_ants)
-	{	
-		e->map_v[i] = NULL;
-		i++;
-	}
-	i = 0;
+	e->max_lines = get_len(e);
 	move_ants_forward(e);
-	while (av[i])
-	{
-		if (ft_strequ(av[i], "-v"))
-			visu(e);
-		i++;
-	}
-	ft_putchar('\n');
+	ft_printf("\n\nsent %d ants through %d paths in %d steps\n",\
+			e->nb_ants, e->nb_paths, \
+			e->p->size_path == 2 ? 1 : e->max_lines);
+	lem_in_error(e, -2);
 	return (0);
 }

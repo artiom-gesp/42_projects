@@ -150,7 +150,7 @@ void	move_ants_forward(t_lemin *e)
 	t_path *p;
 	t_ants *a;
 	int i;
-	char *tmp;
+	// char *tmp;
 	i = 0;
 	a = e->a;
 	p = e->p;
@@ -183,15 +183,15 @@ void	move_ants_forward(t_lemin *e)
 				e->table_r[a->p->path[a->p->i]]->occuped = 0;
 			else
 				e->table_r[a->p->path[a->p->i]]->occuped = 2;
-			tmp = ft_strjoin(ft_itoa(a->nb_ants), e->table_r[a->p->path[a->p->i]]->name);
-			if (e->map_v[i])
-			{
-				e->map_v[i] = ft_strjoin(e->map_v[i], " ");
-				e->map_v[i] = ft_strjoin(e->map_v[i], tmp);
-			}
-			else
-				e->map_v[i] = ft_strjoin("", tmp);
-			ft_strdel(&tmp);
+			// tmp = ft_strjoin(ft_itoa(a->nb_ants), e->table_r[a->p->path[a->p->i]]->name);
+			// if (e->map_v[i])
+			// {
+			// 	e->map_v[i] = ft_strjoin(e->map_v[i], " ");
+			// 	e->map_v[i] = ft_strjoin(e->map_v[i], tmp);
+			// }
+			// else
+			// 	e->map_v[i] = ft_strjoin("", tmp);
+			// ft_strdel(&tmp);
 			ft_printf("L%d-%s ", a->nb_ants, e->table_r[a->p->path[a->p->i]]->name);
 			a->p->i++;
 		}
@@ -206,12 +206,12 @@ void	move_ants_forward(t_lemin *e)
 		else
 			a = a->next;
 	}
-	e->map_v[i] = NULL;
-	i = 0;
-	while (e->map_v[i])
-	{
-		ft_putendl(e->map_v[i]);
-		i++;
-		i++;
-	}
+	// e->map_v[i] = NULL;
+	// i = 0;
+	// while (e->map_v[i])
+	// {
+	// 	ft_putendl(e->map_v[i]);
+	// 	i++;
+	// 	i++;
+	// }
 }

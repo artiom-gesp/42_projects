@@ -37,10 +37,24 @@ void		write_name_rooms(t_mlx *v)
 	while (r)
 	{
 		mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, r->x,  r->y, 0x4A0404, r->name);
+		, r->x,  r->y, 0x00FFFFFF, r->name);
 		r = r->next;
 	}
 }
+
+// void		write_name_ants(t_mlx *v)
+// {
+// 	t_rooms *a;
+// 	int i;
+
+// 	a = v->e->
+// 	while (r)
+// 	{
+// 		mlx_string_put(v->mlx_ptr, v->win_ptr\
+// 		, r->x, r->y, 0x00FFFFFF, a->nb_ants);
+// 		a = a->next;
+// 	}
+// }
 
 void		info(t_mlx *v)
 {
@@ -62,6 +76,8 @@ void		info(t_mlx *v)
 		, 230, HEIGHT - 50, 0x00FFFFFF, ft_itoa(v->e->nb_ants));
 	if (v->affiche == 1)
 		write_name_rooms(v);
+	// if (v->name == 1)
+	// 	write_name_ants(v);
 }
 
 t_design	*init_design(int x, int y, int fy, int fx)

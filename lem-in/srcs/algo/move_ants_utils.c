@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 14:31:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/01 17:08:37 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/02 16:34:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		get_max_len(t_path *p)
 {
 	int max;
-	
+
 	max = 0;
 	while (p)
 	{
@@ -97,4 +97,5 @@ void	set_path_capacity(t_lemin *e)
 			break ;
 		p = p->next;
 	}
+	e->nb_paths = get_nb_paths(e->p);
 }

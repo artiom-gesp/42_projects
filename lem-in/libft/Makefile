@@ -94,6 +94,8 @@ SRCS=ft_memset.c\
 	itoa_base.c\
 	ft_atoi_adv.c\
 	ft_intcpy.c\
+	ft_strichr.c\
+	ft_atoii.c\
 	
 OBJS= $(SRCS:.c=.o)
 
