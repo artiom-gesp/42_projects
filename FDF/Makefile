@@ -6,36 +6,59 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 10:53:44 by agesp             #+#    #+#              #
-#    Updated: 2019/01/23 11:12:13 by agesp            ###   ########.fr        #
+#    Updated: 2019/04/19 13:53:25 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = main.c create_tab.c seg_print.c print_iso.c print_para.c utils.c
+INCLUDE = ./includes
 
-OBJ = $(SRC:.c=.o)
+SRCDIR = src
 
-CFLAGS = -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+LIB_INCLUDE = ./libft/includes
 
-CC = gcc -Wall -Werror -Wextra
+OBJDIR = obj
+
+LIB = -L ./libft -lft
+
+SRC = main.c \
+	  create_tab.c \
+	  seg_print.c \
+	  print_iso.c \
+	  print_para.c \
+	  utils.c
+
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+
+CFLAGS = -Wall -Werror -Wextra
+
+MLX_FLAGS = -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+
+CC = gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ) fdf.h
+$(NAME): $(SRCS) $(OBJ) $(INCLUDES)
 	make -C ./libft
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) libft/libftprintf.a
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -I$(INCLUDE) $(MLX_FLAGS)
 
-%.o: %.c
-	@$(CC) -c $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@if [ ! -d "$(OBJDIR)" ] ; \
+	then \
+		mkdir $(OBJDIR) ; \
+	fi;
+	@$(CC) $(CFLAGS) -c $^ -o $@ -I$(INCLUDE) -I$(LIB_INCLUDE)
 
 clean:
-	make clean -C ./libft
-	rm -f $(OBJ)
+	@make clean -C ./libft
+	@rm -f $(OBJ)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	make fclean -C ./libft
-	rm -f $(NAME)
+	@make fclean -C ./libft
+	@rm -f $(NAME)
 
 re:	fclean all
 
