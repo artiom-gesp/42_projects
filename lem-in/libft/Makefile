@@ -103,12 +103,10 @@ FLAGS=-Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ) $(SRC)
 	@gcc -c $(FLAGS) $(SRCS) 
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-
-.PHONY: all clean fclean re
 
 clean:
 	@rm -rf $(OBJS)
@@ -117,3 +115,5 @@ fclean: clean
 	@rm -rf $(NAME) 
 
 re: fclean all
+
+.PHONY: all clean fclean re

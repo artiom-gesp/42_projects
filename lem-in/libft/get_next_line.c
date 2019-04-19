@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:28:17 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:28:19 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/09 12:32:30 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int			get_next_line(int const fd, char **line)
 	static char *stack[10];
 	int			ret;
 
-	if (!line || BUFF_SIZE <= 0 || fd < 0 || fd > 1000 ||
-		(read(fd, stack[fd], 0) < 0))
+	if (!line || BUFF_SIZE <= 0 || fd < 0 || fd > 1000
+			|| (read(fd, stack[fd], 0) < 0))
 		return (-1);
 	if (stack[fd] && check_line(&stack[fd], line))
 		return (1);

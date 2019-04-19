@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:42:35 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:37 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/09 12:34:30 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int			putlstwstr(t_parsing *lst, wchar_t *wstr)
 int			is_special_prec(t_parsing *lst, char *str)
 {
 	return (((issigned(lst) || isunsigned(lst) || lst->conv == 'p')
-		&& lst->prec > 0) || (lst->conv == 'p' &&\
-		lst->prec && ft_strcmp(str, "0")) ||\
-		(lst->conv == 'c' && lst->zero) || (lst->conv == 's' && lst->zero)
+		&& lst->prec > 0) || (lst->conv == 'p'\
+		&& lst->prec && ft_strcmp(str, "0"))\
+		|| (lst->conv == 'c' && lst->zero) || (lst->conv == 's' && lst->zero)
 		|| (lst->conv == '%' && lst->zero) || (lst->conv == '0' && lst->zero));
 }

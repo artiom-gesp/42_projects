@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 11:49:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 13:13:51 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/08 13:18:22 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		create_single(t_lemin *e)
 	if (e->map[e->start->id_r][e->end->id_r] == 1)
 	{
 		if (!(e->p->path = malloc(sizeof(int) * 2)))
-			exit(-1);
+			lem_in_error(e, 1);
 		e->p->path[0] = e->start->id_r;
 		e->p->path[1] = e->end->id_r;
 		e->p->next = NULL;

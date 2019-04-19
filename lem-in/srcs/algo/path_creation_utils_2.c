@@ -6,11 +6,25 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:22:02 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 13:13:19 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/04 11:33:39 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+int			still_paths(t_lemin *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->nb_rooms)
+	{
+		if (e->map[e->start->id_r][i] == -1 && !e->find_new[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int			paths_remain(t_lemin *e)
 {
@@ -47,7 +61,7 @@ void		set_bfs_base_var(t_lemin *e)
 	i = -1;
 	e->nb_paths = 0;
 	if (!(e->p = malloc(sizeof(t_path))))
-		exit(-1);
+		lem_in_error(e, 1);
 	e->p->path = NULL;
 	e->p->next = NULL;
 	e->stack = malloc(sizeof(int) * e->nb_rooms - 1);
@@ -59,35 +73,14 @@ void		set_bfs_base_var(t_lemin *e)
 	e->find_new = malloc(sizeof(int) * e->nb_rooms);
 	e->map_fn = malloc(sizeof(int) * e->nb_rooms);
 	if (!e->stack || !e->visited || !e->prev || !e->find_new)
-		exit(-1);
+		lem_in_error(e, 1);
 	if (!e->map_stack || !e->map_visited || !e->map_prev || !e->map_fn)
-		exit(-1);
+		lem_in_error(e, 1);
 	while (++i < e->nb_rooms)
 	{
 		e->find_new[i] = 0;
 		e->map_fn[i] = 0;
 	}
-}
-
-t_path		*free_path(t_path *p, int realloc)
-{
-	t_path	*save;
-
-	while (p)
-	{
-		save = p;
-		p = p->next;
-		free(save->path);
-		free(save);
-	}
-	if (realloc)
-	{
-		p = malloc(sizeof(t_path));
-		p->next = NULL;
-		p->path = NULL;
-		return (p);
-	}
-	return (NULL);
 }
 
 void		print_paths(t_lemin *e, t_path *sa)

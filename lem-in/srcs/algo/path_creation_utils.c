@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:41:53 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 13:12:37 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/03 09:56:08 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ void		create_path(t_lemin *e, int *pa, int len)
 	if (e->p->path)
 	{
 		if (!(e->p->next = malloc(sizeof(t_path))))
-			return ;
+			lem_in_error(e, 1);
 		e->p = e->p->next;
 	}
-	e->p->path = malloc(sizeof(int) * (len + 2));
+	if (!(e->p->path = malloc(sizeof(int) * (len + 2))))
+		lem_in_error(e, 1);
 	e->p->next = NULL;
 	e->p->size_path = len + 2;
 	while (--len >= 0)
@@ -112,7 +113,7 @@ int			add_path(t_lemin *e)
 
 	i = 0;
 	if (!(path = malloc(sizeof(int) * e->nb_rooms)))
-		exit(-1);
+		lem_in_error(e, 1);
 	save = e->end->id_r;
 	next_path = -1;
 	while (e->prev[save] != e->start->id_r)

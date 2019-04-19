@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:28:17 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:28:19 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:49:40 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-// # include "../printf/"
+
 # define BUFF_SIZE 150
 # define BUFF 500
 
@@ -30,7 +30,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int 				ft_atoii(char *nbr, int *i);
+int					ft_atoii(char *nbr, int *i);
 int					ft_strichr(const char *s, int c);
 int					ft_printf(const char *format, ...);
 int					hexa(char *str, int *x);
@@ -113,6 +113,6 @@ int					ft_wcharlen(wchar_t c);
 void				ft_putwstr(wchar_t *wstr);
 void				ft_putwchar(wchar_t chr);
 int					ft_atoi_adv(const char **nbr);
-void 				ft_intcpy(int *s1, int *s2, int size);
+void				ft_intcpy(int *s1, int *s2, int size);
 
 #endif

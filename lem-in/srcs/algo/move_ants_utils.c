@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 14:31:37 by agesp             #+#    #+#             */
-/*   Updated: 2019/04/02 16:34:34 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/03 14:53:42 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		get_len(t_lemin *e)
 	max = get_max_len(e->p);
 	rooms = get_total_len(e->p);
 	nb_paths = get_nb_paths(e->p);
+	if (nb_paths == 0)
+		return (-5);
 	ants = ((max * nb_paths) - rooms);
 	ants = e->nb_ants - ants;
 	if (ants < 0)

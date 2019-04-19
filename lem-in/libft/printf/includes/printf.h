@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:37:05 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:37:08 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:51:25 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_parsing
 	char		car;
 }				t_parsing;
 
-int 			ft_atoi_adv(const char **tmp_stack);
+int				ft_atoi_adv(const char **tmp_stack);
 int				is_special_prec(t_parsing *lst, char *str);
 int				ft_printf(const char *format, ...);
 const char		*glob_init(va_list arg, const char *format, \

@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:36:59 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:55 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:50:34 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int				ft_wstrlen(wchar_t *wstr);
 int				ft_wcharlen(wchar_t c);
 void			ft_putwstr(wchar_t *wstr);
 void			ft_putwchar(wchar_t chr);
-
 
 #endif

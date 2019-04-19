@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:42:35 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:37 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/09 12:35:15 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		isunsigned(t_parsing *lst)
 {
-	return (lst->conv == 'O' || lst->conv == 'o' ||\
-			lst->conv == 'X' || lst->conv == 'x' ||\
-			lst->conv == 'u' || lst->conv == 'U');
+	return (lst->conv == 'O' || lst->conv == 'o'
+			|| lst->conv == 'X' || lst->conv == 'x'
+			|| lst->conv == 'u' || lst->conv == 'U');
 }
 
 int		issigned(t_parsing *lst)

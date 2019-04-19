@@ -6,16 +6,16 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 12:59:44 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/21 14:31:58 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/09 09:49:10 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int				generate_hash(char *str, int nb_rooms)
+long long		generate_hash(char *str, int nb_rooms)
 {
-	int i;
-	int key;
+	int			i;
+	long long	key;
 
 	key = 0;
 	i = 0;
@@ -45,6 +45,8 @@ static void		init_hash(t_lemin *e)
 	while (r)
 	{
 		key = generate_hash(r->name, e->nb_rooms);
+		if (key < 0)
+			lem_in_error(e, 19);
 		if (e->h[key])
 			while (e->h[key])
 				key++;
@@ -78,7 +80,7 @@ void			created_hastable(t_lemin *e)
 	int i;
 
 	i = 0;
-	if (!(e->h = ft_memalloc(sizeof(t_hash) * e->nb_rooms * 1000)))
+	if (!(e->h = ft_memalloc(sizeof(t_hash*) * e->nb_rooms * 10000)))
 		lem_in_error(e, 1);
 	init_hash(e);
 }

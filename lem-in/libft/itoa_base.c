@@ -6,12 +6,12 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:42:35 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:37 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:48:08 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "printf/includes/printf.h"
+
 static int	ft_pow(uintmax_t value, int base)
 {
 	uintmax_t nb;

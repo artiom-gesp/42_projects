@@ -6,12 +6,12 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:42:35 by kecosmon          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:37 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:31:30 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "printf/includes/printf.h"
+
 static t_parsing	*change_conv(t_parsing *lst)
 {
 	if (lst->conv == 'c' && lst->l)

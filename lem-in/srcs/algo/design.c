@@ -6,7 +6,7 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:35:51 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/18 10:52:23 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/05 11:17:27 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		function_color(t_design *d, t_mlx *v)
 		}
 		d->y++;
 	}
+	free(d);
 }
 
 void		write_name_rooms(t_mlx *v)
@@ -36,55 +37,43 @@ void		write_name_rooms(t_mlx *v)
 	r = v->e->r;
 	while (r)
 	{
-		mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, r->x,  r->y, 0x00FFFFFF, r->name);
+		mlx_string_put(v->mlx_ptr, v->win_ptr,
+				r->x, r->y, 0x00FFFFFF, r->name);
 		r = r->next;
 	}
 }
 
-// void		write_name_ants(t_mlx *v)
-// {
-// 	t_rooms *a;
-// 	int i;
-
-// 	a = v->e->
-// 	while (r)
-// 	{
-// 		mlx_string_put(v->mlx_ptr, v->win_ptr\
-// 		, r->x, r->y, 0x00FFFFFF, a->nb_ants);
-// 		a = a->next;
-// 	}
-// }
-
 void		info(t_mlx *v)
 {
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, (WIDTH / 2) - 30 ,  30, 0xC7DBFF, "Lem-in");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 55, HEIGHT - 100, 0x00FFFFFF, "< = arriere");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 300, HEIGHT - 100, 0x00FFFFFF, "> = avant");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 300, HEIGHT - 60, 0x00FFFFFF, "1 = start");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 55, HEIGHT - 70, 0x00FFFFFF, "2 = pause");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 600, HEIGHT - 50, 0x00FFFFFF, "3 = affiche name_rooms");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 55, HEIGHT - 50, 0x00FFFFFF, "nombre fourmis = ");
-	mlx_string_put(v->mlx_ptr, v->win_ptr\
-		, 230, HEIGHT - 50, 0x00FFFFFF, ft_itoa(v->e->nb_ants));
+	char *tmp;
+
+	if (!(tmp = ft_itoa(v->e->nb_ants)))
+		free_visu(v);
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			(WIDTH / 2) - 30, 30, 0xC7DBFF, "Lem-in");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			55, HEIGHT - 80, 0x00FFFFFF, "< = arriere");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			300, HEIGHT - 80, 0x00FFFFFF, "> = avant");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			300, HEIGHT - 50, 0x00FFFFFF, "3 = affiche name_rooms");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			55, HEIGHT - 50, 0x00FFFFFF, "4 = cacher name_rooms");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			590, HEIGHT - 50, 0x00FFFFFF, "nombre fourmis = ");
+	mlx_string_put(v->mlx_ptr, v->win_ptr,
+			760, HEIGHT - 50, 0x00FFFFFF, tmp);
+	free(tmp);
 	if (v->affiche == 1)
 		write_name_rooms(v);
-	// if (v->name == 1)
-	// 	write_name_ants(v);
 }
 
 t_design	*init_design(int x, int y, int fy, int fx)
 {
 	t_design *d;
 
-	d = malloc(sizeof(t_design));
+	if (!(d = malloc(sizeof(t_design))))
+		exit(1);
 	d->fx = fx;
 	d->fy = fy;
 	d->x = x;

@@ -6,26 +6,24 @@
 /*   By: kecosmon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 14:18:19 by kecosmon          #+#    #+#             */
-/*   Updated: 2019/03/04 14:18:20 by kecosmon         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:29:48 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
-int 		ft_atoii(char *nbr, int *i)
+int			ft_atoii(char *nbr, int *i)
 {
 	int nb;
 
 	nb = 0;
-
 	if (nbr[*i] == ' ')
 		(*i)++;
 	if (nbr[*i] == '+')
 		(*i)++;
 	while (nbr[*i] && (nbr[*i] >= '0' && nbr[*i] <= '9'))
 	{
-		nb = nb * 10 + (nbr[*i] - '0'); 
+		nb = nb * 10 + (nbr[*i] - '0');
 		(*i)++;
 	}
 	if (!nbr[*i])
