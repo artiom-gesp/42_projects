@@ -4,6 +4,9 @@ File de Fer is the first graphic project @school42.
 
 The idea is to create a wireframe structure from a given file.
 
+![Screen Shot 2019-04-19 at 2 43 22 PM](https://user-images.githubusercontent.com/41552833/56425318-04762e00-62b4-11e9-84c8-732937386f2e.png)
+
+
 The file format should be as follow :
 
 ```
