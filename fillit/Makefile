@@ -6,13 +6,21 @@
 #    By: uroy <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/09 15:18:11 by uroy              #+#    #+#              #
-#    Updated: 2018/12/10 13:49:26 by agesp            ###   ########.fr        #
+#    Updated: 2019/04/19 14:36:55 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit 
 
-LIB = libft/libft.a
+LIB = -L ./libft -lft
+
+LIB_INCLUDE = ./libft/includes
+
+INCLUDE = ./includes
+
+SRCDIR = src
+
+OBJDIR = obj
 
 SRC = main.c \
 	solve.c \
@@ -45,24 +53,33 @@ SRC = main.c \
 	canplace18.c \
 	canplace19.c
 
-OBJ = $(addsuffix .o,$(basename $(SRC)))
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
-CC = gcc -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+
+CC = gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(SRC) fillit.h
-	make -C ./libft
-	$(CC) -c $(SRC)
-	$(CC) -o $(NAME) $(OBJ) $(LIB)
+$(NAME): $(OBJ) $(SRCS) $(INCLUDE) 
+	@make -C ./libft
+	@$(CC) $(CGLAGS) -o $(NAME) $(OBJ) $(LIB) -I$(INCLUDE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@if [ ! -d "$(OBJDIR)" ] ; \
+	then \
+		mkdir $(OBJDIR) ; \
+	fi ;
+	@$(CC) $(CFLAGS) -c $^ -o $@ -I$(INCLUDE) -I$(LIB_INCLUDE)
 
 clean:
-	make clean -C ./libft
-	rm -rf $(OBJ)
+	@make clean -C ./libft
+	@rm -rf $(OBJ)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -rf $(LIB)
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
