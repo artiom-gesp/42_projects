@@ -3,7 +3,7 @@
 PUSH_SWAP is a stack sorting algorithm.  
 It receives as input a stack of integers and returns a list of instructions to sort it.
 
-To sort the stack, the algorithm can only use the provided stack A and an empty stack on equal size B.  
+To sort the stack, the algorithm can only use the provided stack A and an empty stack of equal size B.  
 
 ![GIF_VISU_PUSH_SWAP](https://user-images.githubusercontent.com/41552833/56455917-4f9c4980-6365-11e9-8373-4b06f391b561.gif)
 
