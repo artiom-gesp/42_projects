@@ -17,3 +17,6 @@ Make
 ./push_swap STACK | ./checker STACK     (STACK can be for example : "1 2 5 6 -43 4")
 ./checker -w STACK    => OUTPUTS the number of moves
 ./checker -v STACK    => To visualize the sorting
+```
+  
+![GIF_VISU_PUSH_SWAP](https://user-images.githubusercontent.com/41552833/56455917-4f9c4980-6365-11e9-8373-4b06f391b561.gif)
