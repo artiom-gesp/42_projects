@@ -23,3 +23,5 @@ Make
 ./checker -w STACK    => OUTPUTS the number of moves
 ./checker -v STACK    => To visualize the sorting
 ```
+
+More information in the subject.
