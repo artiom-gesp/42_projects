@@ -1,14 +1,16 @@
 CC			=	gcc
 NAME		=	lem-in
 FLAGS		=	-Wall -Wextra -Werror
+LIB_FLAGS	=	-framework Opengl -framework AppKit
 LIBDIR		=	libft
 LIBLINK		=	-L $(LIBDIR) -lft
 LIB 		=	$(LIBDIR)/libft.a
-LIB_VISU	=	-I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit 
+VISU_DIR	= 	./minilibx_macos
+LIB_VISU	=	$(VISU_DIR)/libmlx.a
 INCLUDES	= 	-I ./includes
 INCLUDE		=	./includes
 INCLUDEL	=	-I ./$(LIBDIR)/
-INCLUDES_VISU	=	-I ~/usr/local/includes/ 
+INCLUDES_VISU	= $(VISU_DIR)/mlx.h 
 
 OBJDIR		= 	objs
 
@@ -47,13 +49,14 @@ OBJS_ALGO	=	$(addprefix $(OBJDIR_ALGO)/, $(SRC_ALGO:.c=.o))
 all: directory $(NAME) 
 
 $(NAME): $(OBJDIR_ALGO) $(LIB) $(OBJS_ALGO) $(INCLUDE)
-	@$(CC) $(FLAGS) $(LIB) $(LIB_VISU)  -o $@ $(OBJS_ALGO) $(LIBLINK)
+	@$(CC) $(FLAGS) $(LIB) $(LIB_FLAGS) $(LIB_VISU)  -o $@ $(OBJS_ALGO) $(LIBLINK) -I$(INCLUDES_VISU)
 
 $(LIB):
 	@make -C $(LIBDIR)
+	@make -C $(VISU_DIR) 
 
 $(OBJDIR_ALGO)/%.o: $(SRCDIR_ALGO)/%.c
-	gcc $(FLAGS) -c $^ -o $@ $(INCLUDES) $(INCLUDEL)
+	gcc $(FLAGS) -c $^ -o $@ $(INCLUDES) $(INCLUDEL) -I$(INCLUDES_VISU) 
 
 directory: $(OBJDIR) $(OBJDIR_ALGO)
 
