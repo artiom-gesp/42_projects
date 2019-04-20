@@ -14,10 +14,12 @@ Here is the list of all possible moves :
 
 Usage :
 ```
-Make
 ./push_swap STACK     =>    list of moves to sort the stack
 ./checker < list_of_moves STACK     =>    verify that the list sorts the stack correclty
+
+Make
 ./push_swap STACK | ./checker STACK     (STACK can be for example : "1 2 5 6 -43 4")
+
 ./checker -w STACK    => OUTPUTS the number of moves
 ./checker -v STACK    => To visualize the sorting
 ```
