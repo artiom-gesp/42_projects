@@ -45,8 +45,6 @@ static void			add_rooms(t_lemin *e, char *line, int i, enum e_pos *d)
 	{
 		e->r = new_rooms(e);
 		e->r->name = name_rooms(e, line, ' ');
-		if (ft_strlen(e->r->name) > 30)
-			lem_in_error(e, 19);
 		e->nb_rooms++;
 		tmp = e->r;
 		e->r->next = NULL;

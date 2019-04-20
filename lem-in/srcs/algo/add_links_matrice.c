@@ -30,12 +30,6 @@ int					init_map(t_lemin *e, char *s1, char *s2, long long key2)
 {
 	long long key1;
 
-	if (ft_strlen(s2) > 30 || ft_strlen(s1) > 30)
-	{
-		ft_strdel(&s1);
-		ft_strdel(&s2);
-		lem_in_error(e, 19);
-	}
 	key1 = generate_hash(s1, e->nb_rooms);
 	key2 = generate_hash(s2, e->nb_rooms);
 	if (e->h[key1] == NULL || e->h[key2] == NULL)
