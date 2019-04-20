@@ -6,7 +6,7 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 09:29:07 by agesp             #+#    #+#              #
-#    Updated: 2019/04/19 13:09:03 by agesp            ###   ########.fr        #
+#    Updated: 2019/04/20 11:11:37 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,18 @@ NAME = checker
 
 PUSH_NAME = push_swap
 
+SRCDIR = src
+
 OBJDIR = obj
 
-LIB = libft/libftprintf.a
+INCLUDE = ./includes
+
+LIB_INCL = ./libft/includes
+
+LIB = -L ./libft -lft
+
+MLX_FLAGS = -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+
 
 SRC = main.c \
     checker.c \
@@ -47,8 +56,10 @@ PUSH_SRC = checker.c \
 	nquick_sort.c
 
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 PUSH_OBJ = $(addprefix $(OBJDIR)/, $(PUSH_SRC:.c=.o))
+PUSH_SRCS = $(addprefix $(SRCDIR)/, $(PUSH_SRC))
 
 CC = gcc
 
@@ -57,33 +68,32 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME) $(PUSH_NAME)
 	@printf "%b\n" "\x1b[32m All Done !\x1b[0m"
 
-$(NAME): $(OBJ) src/checker.h
+$(NAME): $(OBJ) $(INCLUDE) $(SRCS)
 	@make -C ./libft
-	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+	@$(CC) -o $@ $(OBJ) $(LIB) $(CFLAGS) $(MLX_FLAGS) -I$(INCLUDE)
 	@printf "%b\n" "\x1b[32mchecker: Ok !\x1b[0m"
 
-$(PUSH_NAME): $(PUSH_OBJ) src/checker.h
+$(PUSH_NAME): $(PUSH_OBJ) $(INCLUDE) $(PUSH_SRCS)
 	@make -C ./libft
-	@$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+	@$(CC) -o $@ $(PUSH_OBJ) $(LIB) $(CFLAGS) $(MLX_FLAGS) -I$(INCLUDE)
 	@printf "%b\n" "\x1b[32mpush_swap: Ok !\x1b[0m"
 
-obj/%.o : src/%.c
+$(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@if [ ! -d "$(OBJDIR)" ] ; \
 	then \
 		mkdir obj ; \
 	fi;
-	@cd obj/ && $(CC) -c $(CFLAGS) ../$<
+	@$(CC) $(CFLAGS) -c $^ -o $@ -I$(INCLUDE) -I$(LIB_INCL)
 
 clean:
 	@printf "%b\n" "\x1b[32mCleaning..\x1b[0m"
-	@make clean -C ./libft
+	@make fclean -C ./libft
 	@rm -rf $(OBJ)
 	@rm -rf obj/
 	@rm -rf $(PUSH_OBJ)
 
 fclean: clean
 	@printf "%b\n" "\x1b[32mCleaning executable..\x1b[0m"
-	@rm -rf $(LIB)
 	@rm -rf $(NAME)
 	@rm -rf $(PUSH_NAME)
 

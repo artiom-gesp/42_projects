@@ -6,7 +6,7 @@
 /*   By: agesp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:40:07 by agesp             #+#    #+#             */
-/*   Updated: 2019/01/07 09:19:15 by agesp            ###   ########.fr       */
+/*   Updated: 2019/04/19 14:00:35 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ char					*ft_itoa_base(long long nb, int base, int a);
 char					*get_u(uintmax_t nb, int base, int a);
 double					ft_pow(double nb, int pow);
 int						ft_nbrlen(long long nbr);
+long long				ft_atoll(const char *str);
 
 #endif

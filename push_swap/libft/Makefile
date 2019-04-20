@@ -6,13 +6,21 @@
 #    By: agesp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:52:08 by agesp             #+#    #+#              #
-#    Updated: 2019/02/07 16:54:30 by agesp            ###   ########.fr        #
+#    Updated: 2019/04/19 14:03:14 by agesp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
+
+INCLUDE = ./includes
+
+INCLUDES = -I ./includes
 
 CC = gcc -Wall -Werror -Wextra
+
+OBJDIR = obj
+
+SRCDIR = src
 
 SRC = ft_put_long_nbr.c \
 	  ft_isalpha.c \
@@ -99,22 +107,29 @@ SRC = ft_put_long_nbr.c \
 	  ft_nbrlen.c \
 	  complete_stars.c \
 	  get_next_line.c \
+	  ft_atoll.c
 
-OBJ = $(SRC:.c=.o)
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC_ALGO))
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 	@:
 
-$(NAME): $(OBJ) $(SRC) libft.h ft_printf.h get_next_line.h
+$(NAME): $(OBJ) $(SRCS) $(INCLUDE)
 	@ar -rc $(NAME) $(OBJ)
 	@printf "%b\n" "\x1b[32mLibft: Ok !\x1b[0m"
 
-%.o: %.c
-	@$(CC) -c $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@if [ ! -d "$(OBJDIR)" ] ; \
+	then \
+		mkdir $(OBJDIR) ; \
+	fi;
+	@$(CC) -c $^ -o $@ $(INCLUDES)
 
 clean:
 	@printf "%b\n" "\x1b[32mCleaning Libft..\x1b[0m"
 	@rm -f $(OBJ)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@rm -f $(NAME)
