@@ -10,6 +10,8 @@ The goal is to move all the ants from _start_ to _end_ with the less amount of m
 
 It is equivalent to find the largest amount of node-disjoint paths from _start_ to _end_.
 
+![resized_lem_in_visu](https://user-images.githubusercontent.com/41552833/56457060-b45fa000-6375-11e9-915f-fce6d451d37c.gif)
+
 ## Steps of the algorithm :
 1. Parsing instructions
 2. Creating adjacency matrix representing the graph
