@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c7994ab0-7e14-45f6-a21b-1210fd0fba8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../FDF/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/fdf_subject_en.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/includes/fdf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/includes/ft_printf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/includes/get_next_line.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/includes/libft.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/complete_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/complete_stars.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_atoi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_atoi_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_atoll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_bzero.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_is_bigger.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isalnum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isalpha.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isascii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isdigit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isprint.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_isspace.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_itoa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_itoa_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstadd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstdelone.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstiter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_lstnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memalloc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memccpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memmove.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_memset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_nbrlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_pow.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_printf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_put_long_nbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putchar_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putendl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putendl_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putnbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putnbr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_putstr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_sort_nb_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_sort_tab_param.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_striter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_striteri.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strjoin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strlcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strmapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strncat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strncmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strncpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strnequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strnstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strrchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strsplit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strsub.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_strtrim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_tolower.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/ft_toupper.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/get_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_float.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_int.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_minus.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_precision.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_w.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_width.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/print_x_o_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/prints.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/sort_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/libft/src/test_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/10-2.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/10-70.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/100-6.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/20-60.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/42.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/50-4.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/France.XXL.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/Japan.L.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/basictest.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/color_test.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/elem.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/mars.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/pentenegpos.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/plat.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/pnp_flat.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/pylone.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/pyra.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/maps/pyramide.fdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/create_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/print_iso.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/print_para.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/seg_print.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FDF/src/utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/Subject_fillit_en.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error03" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error04" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error05" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error18" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error19" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/error20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/perf00" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/perf01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/perf02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test00" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test03" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test04" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test05" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/examples/test10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/includes/fillit.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/includes/ft_printf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/includes/get_next_line.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/includes/libft.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/complete_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/complete_stars.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_atoi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_atoi_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_atoll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_bzero.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_is_bigger.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isalnum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isalpha.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isascii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isdigit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isprint.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_isspace.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_itoa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_itoa_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstadd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstdelone.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstiter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_lstnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memalloc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memccpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memmove.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_memset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_nbrlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_pow.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_printf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_put_long_nbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putchar_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putendl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putendl_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putnbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putnbr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_putstr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_sort_nb_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_sort_tab_param.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_striter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_striteri.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strjoin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strlcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strmapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strncat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strncmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strncpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strnequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strnstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strrchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strsplit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strsub.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_strtrim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_tolower.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/ft_toupper.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/get_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_float.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_int.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_minus.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_precision.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_w.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_width.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/print_x_o_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/prints.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/sort_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/libft/src/test_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/call_canplace.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace1.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace10.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace11.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace12.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace13.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace14.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace15.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace16.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace17.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace18.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace19.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace3.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace4.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace5.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace6.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace7.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace8.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/canplace9.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/check_correct_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/check_entry.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/create_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/extract_tetraminos.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/free_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/print_result.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/recon_tetr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fillit/src/solve.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/03" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/04" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/05" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/network/15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/scripts/01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/scripts/02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/scripts/03" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/03" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/04" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/05" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/18" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/19" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/22" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/23" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../init/system/24" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/includes/lemin.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/includes/visual.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/controller_attr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/controller_mod_long.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/controller_wstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/conv_dec.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/conv_string.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/free_2mem.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/freestr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/freewstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_abs.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_atoi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_atoi_adv.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_atoi_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_atoii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_bzero.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_hexa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_intcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_isalnum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_isalpha.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_isascii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_isdigit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_ishexa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_isprint.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_itoa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstadd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstdelone.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstiter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_lstnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memalloc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memccpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memmove.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_memset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putchar_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putendl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putendl_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putnbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putnbr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putstr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putwchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_putwstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strcpyend.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strichr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_striter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_striteri.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strjoin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strlcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strmapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strncat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strncmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strncpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strnequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strnstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strrchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strsplit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strsub.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_strtrim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_tolower.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_toupper.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcharlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcscat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcscpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcsdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcslen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wcsnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/ft_wstrlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/init_attr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/init_conv.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/init_glob.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/init_mod_long.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/init_prec.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/itoa_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/libft.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/parsing_glob.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/printf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/printf/includes/conver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/printf/includes/lib.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/printf/includes/printf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/tool.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/tool_controller.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/libft/tool_is.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/1.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/10.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/100_rooms_1000_links.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/10_lots_of_comments.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/10k.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/20.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/5.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_10_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_1_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_2_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_4_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_8_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/9_path_depth_9_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/big.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_3_coordinates.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_duplicate.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_empty.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_letter_in_coordinate.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_link_to_unknown_room.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_ants2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_ants3.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_end.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_end2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_links.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_path.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_rooms.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_start.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_no_start2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_start_end_same.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_too_few_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/err_too_many_ants.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/hot_stuff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/invalid_no_path_simple.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/lots_of_rooms_with_end_start.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/maptest2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/new_test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/new_test.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/no_path.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/ok" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/ok1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/ok12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/ok2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/ok3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/oke" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/oker" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/pdf_example.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/simple1.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/start_to_end.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test1.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test2.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test3.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test_line" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test_line2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test_map.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/test_map1.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/testi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/testi2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/maps/tricky" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/_README_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/font.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/font.xcf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man1/mlx.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man1/mlx_loop.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man1/mlx_new_image.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man1/mlx_new_window.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man1/mlx_pixel_put.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man3/mlx.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man3/mlx_loop.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man3/mlx_new_image.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man3/mlx_new_window.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/man/man3/mlx_pixel_put.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_init_loop.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_int.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_int_str_to_wordtab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_new_image.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_new_window.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_new_window.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_rgb.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_shaders.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/minilibx_macos/mlx_xpm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/add_ants.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/add_info.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/add_links_matrice.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/add_rooms.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/created_hash.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/created_path.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/design.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/event.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/free_func.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/free_func_2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/image.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/move_ants.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/move_ants_utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/path_creation_utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/path_creation_utils_2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/path_creation_utils_3.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/reader.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/room_cre_utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/tool_map.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/view_map.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lem-in/srcs/algo/visu.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/includes/ft_printf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/includes/get_next_line.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/includes/libft.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/complete_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/complete_stars.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_atoi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_atoi_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_atoll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_bzero.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_is_bigger.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isalnum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isalpha.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isascii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isdigit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isprint.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_isspace.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_itoa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_itoa_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstadd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstdelone.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstiter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_lstnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memalloc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memccpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memmove.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_memset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_nbrlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_pow.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_printf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_put_long_nbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putchar_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putendl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putendl_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putnbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putnbr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_putstr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_sort_nb_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_sort_tab_param.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_striter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_striteri.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strjoin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strlcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strmapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strncat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strncmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strncpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strnequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strnstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strrchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strsplit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strsub.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_strtrim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_tolower.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/ft_toupper.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/get_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_float.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_int.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_minus.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_precision.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_w.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_width.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/print_x_o_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/prints.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/sort_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../libft/src/test_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/includes/checker.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/author" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/includes/ft_printf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/includes/get_next_line.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/includes/libft.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/complete_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/complete_stars.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_atoi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_atoi_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_atoll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_bzero.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_is_bigger.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isalnum.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isalpha.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isascii.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isdigit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isprint.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_isspace.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_itoa.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_itoa_base.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstadd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstdelone.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstiter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_lstnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memalloc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memccpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memmove.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_memset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_nbrlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_pow.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_printf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_put_long_nbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putchar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putchar_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putendl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putendl_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putnbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putnbr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_putstr_fd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_sort_nb_tab.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_sort_tab_param.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strcmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strcpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strdel.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strdup.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_striter.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_striteri.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strjoin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strlcat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strlen.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strmap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strmapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strncat.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strncmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strncpy.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strnequ.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strnew.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strnstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strrchr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strsplit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strstr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strsub.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_strtrim.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_tolower.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/ft_toupper.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/get_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/get_next_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_float.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_int.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_minus.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_precision.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_w.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_width.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/print_x_o_u.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/prints.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/sort_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/libft/src/test_flags.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/push_swap.en.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/check_input.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/checker.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/fill_pile.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/get_smallest.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/main_push.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/move_through_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/nquick_sort.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/print_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/push_swap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/rev_rota.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/sort_three.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/swap.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../push_swap/src/utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/.ipynb_checkpoints/ml week 3-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/Quantum/ibm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/Titanic.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/apl.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../python_stuff/ml week 3.ipynb" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Robot_arm$main.coverage" NAME="main Coverage Results" MODIFIED="1555935097055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1555929548116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/main.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="2560" />
+    <option name="height" value="1440" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Robot_arm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Robot_arm" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="Robot_arm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c7994ab0-7e14-45f6-a21b-1210fd0fba8e" name="Default Changelist" comment="" />
+      <created>1555767800833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555767800833</updated>
+      <workItem from="1555767804571" duration="5208000" />
+      <workItem from="1555916762865" duration="96000" />
+      <workItem from="1555916870622" duration="12263000" />
+      <workItem from="1555935038348" duration="18000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="17585000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28038126" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15182482" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.329927" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.329927" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.329927" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" x="0" y="0" width="269" height="1240" id="Documentation" order="4" side_tool="true" visible="true" weight="0.32883242" />
+      <window_info anchor="right" id="Database" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
