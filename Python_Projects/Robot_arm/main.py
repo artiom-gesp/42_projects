@@ -18,14 +18,18 @@ JOINT_WIDTH = 5
 """First joint related variables"""
 J1_COORD = (1080 / 2, BASE_COORD[1])
 J1_TIP = (JOINT_LEN, 0)
+S = J1_TIP
+J1_ANGLE = 0
 
 """Second joint related variables"""
 J2_COORD = (J1_TIP[0] + J1_COORD[0], J1_TIP[1] + J1_COORD[1])
 J2_TIP = (J1_TIP[0], J1_TIP[1])
+J2_ANGLE = 0
 
 """Third joint related variables"""
 J3_COORD = (J2_TIP[0] + J2_COORD[0], J2_TIP[1] + J2_COORD[1])
 J3_TIP = (J1_TIP[0], J1_TIP[1])
+J3_ANGLE = 0
 
 """Some colors for clarity"""
 WHITE = (255, 255, 255)
@@ -46,14 +50,35 @@ pg.init()
 window = pg.display.set_mode(MAIN_WIN, RESIZABLE)
 print(MAIN_WIN)
 flag = 1
+
+
+def controls():
+    global J1_ANGLE
+    global J1_TIP
+    keys = pg.key.get_pressed()
+    while keys[K_KP1] and J1_ANGLE < 180 and event.type == KEYDOWN:
+        keys = pg.key.get_pressed()
+        J1_TIP = S
+        J1_ANGLE += 3
+        J1_TIP = rotate(J1_TIP, J1_ANGLE)
+    while keys[K_KP3] and J1_ANGLE > 0:
+        keys = pg.key.get_pressed()
+        J1_TIP = S
+        J1_ANGLE -= 3
+        J1_TIP = rotate(J1_TIP, J1_ANGLE)
+
+
 """Main loops starts here"""
 while True:
+
+    pg.time.Clock().tick(30)
     for event in pg.event.get():
         keys = pg.key.get_pressed()
         if event.type == QUIT:
             pg.quit()
             sys.exit(0)
         if event.type == KEYDOWN:
+
             """Quit the program"""
             if keys[K_LMETA] and keys[K_q]:
                 pg.quit()
@@ -68,16 +93,14 @@ while True:
                     flag = 1
                 else:
                     flag = 0
+            controls()
 
     if flag:
         window.fill(BLACK)
         BASE.fill(WHITE)
         window.blit(BASE, BASE_COORD)
-
-        """First joint movement"""
-        J1_TIP = rotate(J1_TIP, 12)
         pg.draw.line(window, WHITE, J1_COORD,
-                     (J1_TIP[0] + J1_COORD[0], J1_TIP[1] + J1_COORD[1]), JOINT_WIDTH)
+                 (J1_TIP[0] + J1_COORD[0], J1_TIP[1] + J1_COORD[1]), JOINT_WIDTH)
 
         """Second joint movement"""
         J2_COORD = (J1_TIP[0] + J1_COORD[0], J1_TIP[1] + J1_COORD[1])
@@ -93,5 +116,5 @@ while True:
                       J3_TIP[1] + J2_TIP[1] + J2_COORD[1]), JOINT_WIDTH)
 
         pg.display.flip()
-        pg.time.delay(40)
+        #pg.time.delay(40)
 ##Main loops ends here
