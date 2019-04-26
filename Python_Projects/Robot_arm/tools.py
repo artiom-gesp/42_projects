@@ -1,5 +1,5 @@
 import sys
-from Classes import *
+from robot_arm_class import *
 from pygame.locals import *
 
 
