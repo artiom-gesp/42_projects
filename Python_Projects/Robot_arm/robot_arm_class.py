@@ -2,12 +2,13 @@ import pygame as pg
 import math
 from G_Var import *
 import operator
+import numpy as np
 
 
 class RobotArm:
     def __init__(self, window):
         # screen coordinates ((0, 0) is the base's cartesian coordinates
-        self.base_coord = (WIN_WIDTH / 2, WIN_HEIGHT - WIN_HEIGHT / 5)
+        self.base_coord = np.array([[WIN_WIDTH / 2], [WIN_HEIGHT - WIN_HEIGHT / 5]])
 
         # Arm base is represented by a rectangle
         self.base_surface = (int(WIN_WIDTH / 4.5), int(WIN_HEIGHT / 24))
@@ -20,25 +21,23 @@ class RobotArm:
         self.joint_width = int(self.joint_len / 20)
 
         # cartesian coordinates of joint_1
-        self.first_joint_base = (0, 0)
+        self.first_joint_base = np.zeros((2, 1))
         # angle is relative to previous joint, for J1 its the base
-        self.first_joint_tip = (-1 * self.joint_len, self.joint_len)
-        print(self.first_joint_tip)
+        self.first_joint_tip = np.array([[-1 * self.joint_len], [self.joint_len]])
         self.first_joint_angle = 135
 
         # screen coordinates of joint_1
-        self.first_joint_plane_coord = (self.first_joint_tip[0] + self.base_coord[0],
-                                        (math.fabs(self.first_joint_tip[1] - self.base_coord[1])))
+        self.first_joint_plane_coord = np.add(self.first_joint_tip, self.base_coord)
         # base of joint_2
         self.second_joint_base = self.first_joint_tip
 
         # angle between joint_1 and joint_2
         self.second_joint_angle = 90
         # cartesian coordinates of joint_2
-        self.second_joint_tip = (-1 * self.first_joint_tip[0], self.first_joint_tip[1])
+        self.second_joint_tip = np.array([[-1 * self.first_joint_tip[0][0]], [self.first_joint_tip[1][0]]])
         # screen coordinates of joint_2
-        self.second_plane_coord =\
-            tuple(map(operator.add, self.first_joint_plane_coord, self.second_joint_base))
+        self.second_plane_coord = np.add(self.first_joint_plane_coord, self.second_joint_base)
+        print(self.second_plane_coord.shape)
 
         # base of joint_3
         self.third_joint_base = self.second_joint_tip
@@ -46,10 +45,9 @@ class RobotArm:
         # angle between joint_2 and joint_3
         self.third_joint_angle = 90
         # cartesian coordinates of joint_3
-        self.third_joint_tip = (-1 * self.first_joint_tip[0], -1 * self.first_joint_tip[1])
+        self.third_joint_tip = np.array([[-1 * self.first_joint_tip[0][0]], [-1 * self.first_joint_tip[1][0]]])
         # screen coordinates of joint_3
-        self.third_plane_coord = \
-            tuple(map(operator.add, self.first_joint_plane_coord, self.third_joint_base))
+        self.third_plane_coord = np.add(self.first_joint_plane_coord, self.third_joint_base)
 
         # Set of variables to enable manual rotation
         self.left_j1 = False
@@ -64,12 +62,11 @@ class RobotArm:
 
     # do a simple rotation in space using a rotation matrix
     @staticmethod
-    def rotate(coord: tuple, deg_angle: int):
-        x = ((coord[0]) * math.cos(math.radians(deg_angle))
-             - (coord[1]) * math.sin(math.radians(deg_angle)))
-        y = ((coord[0]) * math.sin(math.radians(deg_angle))
-             + (coord[1]) * math.cos(math.radians(deg_angle)))
-        return x, y
+    def rotate(coord: np.array, deg_angle: int):
+        rot_matrix = np.array([[math.cos(math.radians(deg_angle)), -1 * math.sin(math.radians(deg_angle))],
+                               [math.sin(math.radians(deg_angle)), math.cos(math.radians(deg_angle))]])
+        # returns the product of the rotation matrix * the vector coordinates
+        return np.dot(rot_matrix, coord)
 
     # rotating joint_1 and adapt joint_2 to keep the same angle between them
     def rotate_j1(self, angle: int = 1):
@@ -85,25 +82,23 @@ class RobotArm:
         if (angle > 0 and self.second_joint_angle + angle < 140)\
                 or (angle < 0 and 40 < self.second_joint_angle + angle):
             self.second_joint_angle += angle
-            self.second_joint_tip = self.rotate(self.second_joint_tip, angle)
-            self.third_joint_tip = self.rotate(self.third_joint_tip, angle)
+            self.second_joint_tip = np.array(self.rotate(self.second_joint_tip, angle))
+            self.third_joint_tip = np.array(self.rotate(self.third_joint_tip, angle))
 
     # rotating joint_3
     def rotate_j3(self, angle: int = 1):
         if (angle > 0 and self.third_joint_angle + angle < 140)\
                 or (angle < 0 and 40 < self.third_joint_angle + angle):
             self.third_joint_angle += angle
-            self.third_joint_tip = self.rotate(self.third_joint_tip, angle)
+            self.third_joint_tip = np.array(self.rotate(self.third_joint_tip, angle))
 
     def draw_joints(self):
         self.robot_base.fill(WHITE)
         # base_coord being the origin, base_coord - base_surface is the top left corner of the base
         self.window.blit(self.robot_base, (self.base_coord[0] - self.base_surface[0] / 2, self.base_coord[1]))
-
         # Transposing a cartesian coordinates plane into a computer graphics plane
-        self.first_joint_plane_coord = (self.first_joint_tip[0] + self.base_coord[0],
-                                        (math.fabs(self.first_joint_tip[1] - self.base_coord[1])))
-
+        self.first_joint_plane_coord = np.array([[self.first_joint_tip[0] + self.base_coord[0]],
+                                                [math.fabs(self.first_joint_tip[1] - self.base_coord[1])]])
         # Drawing first joint
         pg.draw.line(self.window, WHITE, self.base_coord, self.first_joint_plane_coord,
                      self.joint_width)
