@@ -1,9 +1,9 @@
 import tools
 import sys
-from G_Var import *
+from settings import *
 import pygame as pg
 import robot_arm_class
-import Info_screen_class
+import info_screen_class
 
 pg.init()
 pg.font.init()
@@ -19,7 +19,8 @@ def main():
     flag = True
     # Generate the arm
     robot = robot_arm_class.RobotArm(window)
-    info_screen = Info_screen_class.InfoScreen(window)
+    info_screen = info_screen_class.InfoScreen(window)
+    x, y = 0, 0
     while True:
         # pg.time.Clock().tick(60)
         keys = pg.key.get_pressed()
@@ -32,6 +33,8 @@ def main():
                     flag = True
                 else:
                     flag = False
+            if event.type == pg.MOUSEBUTTONDOWN:
+                robot.x_line, robot.y_line = pg.mouse.get_pos()
             # Get joints movement related events
             robot.get_controls(event)
         if flag:
@@ -40,6 +43,8 @@ def main():
 
             # Rotate joints
             robot.move_arm()
+
+            robot.draw_line()
 
             # Draw joints
             robot.draw_joints()

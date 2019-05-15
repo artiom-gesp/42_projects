@@ -13,10 +13,3 @@ def quit_program(event, keys):
     if event.type == QUIT:
         pg.quit()
         sys.exit(0)
-
-
-def add_vectors(*vectors) -> tuple:
-    vec_sum: tuple = (0, 0)
-    for vector in vectors:
-        vec_sum = tuple(map(operator.add, sum, vector))
-    return vec_sum
