@@ -23,6 +23,10 @@ ROBOT_J1_ANGLE = 3 * math.pi / 4
 ROBOT_J2_ANGLE = math.pi / 2
 ROBOT_J3_ANGLE = 2 * math.pi / 3
 
+ROBOT_J1_MAX_ANGLE = (math.pi / 8, 7 * math.pi / 8)
+ROBOT_J2_MAX_ANGLE = (math.pi / 8, 7 * math.pi / 8)
+ROBOT_J3_MAX_ANGLE = (math.pi / 8, 7 * math.pi / 8)
+
 # Joints width
 ROBOT_JOINT_WIDTH = 5
 

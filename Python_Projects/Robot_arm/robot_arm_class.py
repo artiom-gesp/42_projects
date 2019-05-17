@@ -1,6 +1,7 @@
 import pygame as pg
 from settings import *
 import numpy as np
+import inverse_kinematic
 
 
 class RobotArm:
@@ -54,10 +55,11 @@ class RobotArm:
 
         # maximum_range of the arm
         self.max_range = (ROBOT_MAX_RANGE if ROBOT_MAX_RANGE <= (ROBOT_J1_LEN + ROBOT_J2_LEN + ROBOT_J3_LEN) else
-                          ROBOT_J1_LEN + ROBOT_J2_LEN + ROBOT_J3_LEN) * JOINT_SCALE
-
-        self.x_line = 0
-        self.y_line = 0
+                          ROBOT_J1_LEN + ROBOT_J2_LEN + ROBOT_J3_LEN)
+        print(self.max_range)
+        self.free_movement_flag = True
+        self.x_target: int = 1920 / 2
+        self.y_target: int = self.base_coord[1] + 1
 
     # do a simple rotation in space using a rotation matrix
     @staticmethod
@@ -71,8 +73,8 @@ class RobotArm:
 
     # rotating joint_1 and adapt joint_2 to keep the same angle between them
     def rotate_j1(self, angle: float = (math.pi / 180)):
-        if (angle > 0 and self.j1_angle + angle < math.pi) \
-                or (angle < 0 < self.j1_angle + angle):
+        if (angle > 0 and self.j1_angle + angle < ROBOT_J1_MAX_ANGLE[1]) \
+                or (angle < 0 and ROBOT_J1_MAX_ANGLE[0] < self.j1_angle + angle):
             self.j1_angle += angle
             self.j1_ee = self.rotate(self.j1_ee, angle)
             self.j2_ee = self.rotate(self.j2_ee, angle)
@@ -80,16 +82,16 @@ class RobotArm:
 
     # rotating joint_2
     def rotate_j2(self, angle: float = (math.pi / 180)):
-        if (angle > 0 and self.j2_angle + angle < math.pi) \
-                or (angle < 0 < self.j2_angle + angle):
+        if (angle > 0 and self.j2_angle + angle < ROBOT_J2_MAX_ANGLE[1]) \
+                or (angle < 0 and ROBOT_J2_MAX_ANGLE[0] < self.j2_angle + angle):
             self.j2_angle += angle
             self.j2_ee = np.array(self.rotate(self.j2_ee, angle))
             self.j3_ee = np.array(self.rotate(self.j3_ee, angle))
 
     # rotating joint_3
     def rotate_j3(self, angle: float = (math.pi / 180)):
-        if (angle > 0 and self.j3_angle + angle < math.pi) \
-                or (angle < 0 < self.j3_angle + angle):
+        if (angle > 0 and self.j3_angle + angle < ROBOT_J3_MAX_ANGLE[1]) \
+                or (angle < 0 and ROBOT_J3_MAX_ANGLE[0] < self.j3_angle + angle):
             self.j3_angle += angle
             self.j3_ee = np.array(self.rotate(self.j3_ee, angle))
 
@@ -125,16 +127,27 @@ class RobotArm:
                      ROBOT_JOINT_WIDTH)
 
     # Draw a line with the end effector perpendicular to the x_axis at the position of the mouse_click
-    def draw_line(self):
-        coord_range = math.sqrt((self.x_line - self.base_coord[0]) ** 2 + (self.base_coord[1] - self.y_line) ** 2)
-        if self.y_line < self.j3_plane_origin[1] and coord_range < self.max_range:
-            self.rotate_j1(math.pi / 180)
-            self.rotate_j3(math.pi / 180)
-        if self.y_line >= self.j3_plane_origin[1] and coord_range < self.max_range:
-            self.rotate_j1(-math.pi / 180)
-            self.rotate_j3(-math.pi / 180)
-        if self.x_line == self.j2_plane_origin[0]:
-            self.x_line, self.y_line = 0, 0
+    def long_rotate(self):
+        if self.free_movement_flag:
+            return
+        end_effector = ((self.x_target - self.base_coord[0]) / JOINT_SCALE,
+                        (self.y_target - self.base_coord[1] if self.y_target > self.base_coord[1]
+                        else math.fabs(self.y_target - self.base_coord[1])) / JOINT_SCALE)
+        if math.sqrt(end_effector[0]**2 + end_effector[1]**2) >= ROBOT_J1_LEN + ROBOT_J2_LEN:
+            return
+        new_angle = inverse_kinematic.inv_ki(end_effector)
+        if self.j2_ee[0] != end_effector[0] or self.j2_ee[1] != end_effector[1]:
+            if new_angle[0] < self.j1_angle:
+                self.rotate_j1(-math.pi / 180)
+            elif new_angle[0] > self.j1_angle:
+                self.rotate_j1(math.pi / 180)
+            if new_angle[1] < self.j2_angle:
+                self.rotate_j2(-math.pi / 180)
+            elif new_angle[1] > self.j2_angle:
+                self.rotate_j2(math.pi / 180)
+            if new_angle[0] - math.pi / 180 < self.j1_angle < new_angle[0] + math.pi / 180\
+                    and new_angle[1] - math.pi / 180 < self.j2_angle < new_angle[1] + math.pi / 180:
+                self.free_movement_flag = True
 
     # While a key is maintained, keep sending a signal to move the associated joint
     def get_controls(self, event):

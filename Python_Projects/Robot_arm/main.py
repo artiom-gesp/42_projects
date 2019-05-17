@@ -34,7 +34,8 @@ def main():
                 else:
                     flag = False
             if event.type == pg.MOUSEBUTTONDOWN:
-                robot.x_line, robot.y_line = pg.mouse.get_pos()
+                robot.free_movement_flag = False
+                robot.x_target, robot.y_target = pg.mouse.get_pos()
             # Get joints movement related events
             robot.get_controls(event)
         if flag:
@@ -44,7 +45,7 @@ def main():
             # Rotate joints
             robot.move_arm()
 
-            robot.draw_line()
+            robot.long_rotate()
 
             # Draw joints
             robot.draw_joints()

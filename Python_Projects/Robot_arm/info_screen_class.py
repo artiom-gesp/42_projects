@@ -55,7 +55,8 @@ class InfoScreen:
         ee = np.add(robot.j1_ee, np.add(robot.j2_ee, robot.j3_ee)) / JOINT_SCALE
         # This ugly line first convert the ee of the arm from float to integer than from integer to string
         # And finally formats the line with brackets
-        self.info_list['end effector : '] = np.array2string(ee.astype(int), separator=', ')
+        self.info_list['end effector : '] =\
+            np.array2string(ee.astype(int), separator=', ').replace('[', '').replace(']', '').replace('\n', '')
 
         # Iterate through dict and print both index (= key) and value (= val)
         for key, val in self.info_list.items():
