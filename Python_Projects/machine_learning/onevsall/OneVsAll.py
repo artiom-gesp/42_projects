@@ -4,7 +4,7 @@ import scipy.io as sp
 import scipy.optimize as opt
 import time
 
-mat = sp.loadmat('ex3/ex3data1.mat')
+mat = sp.loadmat('ressources/ex3data1.mat')
 
 data = np.hstack((mat['X'], mat['y']))
 
@@ -71,7 +71,7 @@ def get_accuracy(theta, x_val, y):
     for i in range(x_val.shape[0]):
         img = np.transpose(np.reshape(x_val[i, :], (x_val[i, :].shape[0], 1)))
         accuracy += 1 if predict(img, theta) == y[i] else 0
-    print('accuracy :', accuracy / x_val.shape[0], '%')
+    print('accuracy :', 100 * accuracy / x_val.shape[0], '%')
 
 
 """lmbda for regularization and k the number of class of digits (0-9)"""
