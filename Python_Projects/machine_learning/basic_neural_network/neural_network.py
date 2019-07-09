@@ -5,6 +5,7 @@ import pandas as pd
 
 
 class NeuralNetwork:
+
     def __init__(self, train_ex, labels, reg, theta: list = None):
         self.input_layer_size = 400
         self.hidden_layer_size = 25
