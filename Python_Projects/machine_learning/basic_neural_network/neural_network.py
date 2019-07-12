@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.io as sp
 import pandas as pd
 import scipy.optimize as opt
 
 
 class NeuralNetwork:
 
-    def __init__(self, train_ex, labels, reg, weights: list = None, num_iters = 1500):
+    def __init__(self, train_ex, labels, reg, weights: list = None, num_iters = 1500, learn_rate = 0.3):
         self.input_layer_size = 400
         self.hidden_layer_size = 25
         self.num_labels = 10  # output layer size
@@ -17,7 +16,8 @@ class NeuralNetwork:
         self.labels = labels
 
         self.reg = reg  # regularization coefficient for cost and gradient
-        self.num_iters = 50
+        self.num_iters = num_iters
+        self.learn_rate = learn_rate
 
     def is_input_valid(self, w):
 
@@ -123,62 +123,74 @@ class NeuralNetwork:
 
     @staticmethod
     def compute_gradient(weights_bias, train_ex, labels, reg, w_size):
+        """vectorized implementation of neural network backpropagation"""
 
         num_train_ex = train_ex.shape[0]
 
-        w1, w2, b1, b2 = NeuralNetwork.unpack_weights_bias(weights_bias, w_size[0], w_size[1])
+        w1, w2, b1, b2 = NeuralNetwork.unpack_weights_bias(weights_bias, w_size[0], w_size[1])  # current weights
 
-        labels = pd.get_dummies(labels.flatten())
+        labels = pd.get_dummies(labels.flatten())   # one hot encoding of labels (5000 * 10)
         a_2, a_1, z_2, z_1 = NeuralNetwork.forward_prop(weights_bias, train_ex, w_size)
 
-        d_2 = a_2 - np.array(labels)  # 5000 * 10
-        d_1 = np.dot(d_2, w2)    # 5000 * 25
-        d_1 = np.multiply(d_1, NeuralNetwork.sigmoid(z_1, derivative=True))
+        d_2 = a_2 - np.array(labels)  # error of output layer (5000 * 10)
+        d_1 = np.dot(d_2, w2)
+        d_1 = np.multiply(d_1, NeuralNetwork.sigmoid(z_1, derivative=True))     # error at hidden layer (5000 * 25)
 
         delta_1 = d_1.T @ train_ex
         delta_2 = d_2.T @ a_1
 
-        delta_1 /= num_train_ex
-        delta_2 /= num_train_ex
+        delta_1 /= num_train_ex  # gradient with respect to w1
+        delta_2 /= num_train_ex # gradient with respect to w2
 
-        delta_1 += (w1 * reg) / num_train_ex
+        delta_1 += (w1 * reg) / num_train_ex    # regularization
         delta_2 += (w2 * reg) / num_train_ex
 
-        update_b2 = np.sum(d_2 / num_train_ex, axis=0)
+        update_b2 = np.sum(d_2 / num_train_ex, axis=0)  # gradient with respect to bias units
         update_b1 = np.sum(d_1 / num_train_ex, axis=0)
 
         return NeuralNetwork.pack_weights_bias(delta_1, delta_2, update_b1, update_b2)
 
     def my_learn(self):
+        """my_learn is my very basic optimization function, it updates weights during num_iters iterations
+        and prints system accuracy every 100 iterations, a accuracy of 96% is to be expected with 5000+ iterations"""
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
-        for i in range(5000):
-            # w1, w2, b1, b2 = NeuralNetwork.unpack_weights_bias(self.weights_bias, w_size[0], w_size[1])
-            self.weights_bias -= 0.31 * NeuralNetwork.compute_gradient(self.weights_bias, self.train_ex, self.labels, self.reg, w_size)
-            # print(NeuralNetwork.compute_cost(self.weights_bias, self.train_ex, self.labels, self.reg, w_size))
-            if i % 100 == 0:
+        for i in range(self.num_iters):
+            self.weights_bias -= self.learn_rate * NeuralNetwork.compute_gradient(self.weights_bias,
+                                                                                  self.train_ex,
+                                                                                  self.labels,
+                                                                                  self.reg,
+                                                                                  w_size)
+            if i % 100 == 0:    # prints accuracy at start + every 100 steps
                 self.get_accuracy()
-
+                # saves current parameters in a .npy file
+        np.save('trained_params.npy', self.unpack_weights_bias(self.weights_bias, w_size[0], w_size[1]))
 
     def learn_param(self):
+        """this is supposed to work.. but it does not, fmin_cg losses accuracy for some reason"""
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
         self.weights_bias = opt.fmin_cg(f=NeuralNetwork.compute_cost, x0=self.weights_bias,
                                         fprime=NeuralNetwork.compute_gradient,
                                         args=(self.train_ex, self.labels, self.reg, w_size), maxiter=100)
         return self.weights_bias
 
-    def predict(self, img, theta):
-        """compute the likelihood for the image to belong to each class (0-9) than returns the higher percentage"""
-        num_class = [None] * theta.shape[0]
-        for i in range(0, 10):
-            cur_theta = np.reshape(theta[i, :], (theta.shape[1], 1))
-            num_class[i] = NeuralNetwork.sigmoid(np.dot(img, cur_theta))[0][0]
-        return np.argmax(np.array(num_class))
-
     def get_accuracy(self):
+        """for all training examples do forward prop and increment accuracy if prediction == label"""
         accuracy = 0
+        m = self.train_ex.shape[0]
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
         res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.train_ex, w_size)
-        for i in range(5000):
+        for i in range(m):
             if np.argmax(res[i]) == self.labels[i]:
                 accuracy += 1
-        print('accuracy :', 100 * accuracy / 5000, '%')
+        print('accuracy :', 100 * accuracy / m, '%')
+
+    def get_rand_image(self):
+        """prints a single example from the dataset and the corresponding prediction"""
+        w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
+        res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.train_ex, w_size)
+        img_pos = np.random.randint(low=5000, size=1)
+        img = np.reshape(self.train_ex[img_pos], (20, 20))
+        plt.imshow(np.transpose(img))
+        plt.show()
+        print(res.shape)
+        print(np.argmax(res[img_pos]))

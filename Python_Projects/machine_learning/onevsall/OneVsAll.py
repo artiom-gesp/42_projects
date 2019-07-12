@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io as sp
 import scipy.optimize as opt
-import time
 
 mat = sp.loadmat('ressources/ex3data1.mat')
 

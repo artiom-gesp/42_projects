@@ -30,7 +30,6 @@ bias_two = theta_two[:, 0]
 weights_bias = nn.NeuralNetwork.pack_weights_bias(weights_one, weights_two, bias_one, bias_two)
 weights_size = [weights_one.shape, weights_two.shape]
 
-nn_params = np.hstack((theta_one.ravel(order='F'), theta_two.ravel(order='F')))
 
 def check_pack_unpack(w1, w2, b1, b2):
     pack = nn.NeuralNetwork.pack_weights_bias(w1, w2, b1, b2)
@@ -41,14 +40,20 @@ def check_pack_unpack(w1, w2, b1, b2):
     print(np.array_equal(b2, ub2))
 
 
+w1, w2, b1, b2 = np.load('trained_params.npy')
+params = nn.NeuralNetwork.pack_weights_bias(w1, w2, b1, b2)
 # check_pack_unpack(weights_one, weights_two, bias_one, bias_two)
-nnn = nn.NeuralNetwork(X, y, 1)
+nnn = nn.NeuralNetwork(X, y, 1, params, num_iters=2000)
+# nnn.my_learn()
+nnn.get_accuracy()
+for i in range(50):
+    nnn.get_rand_image()
 # nnn = nn.NeuralNetwork(X, y, 1, weights_bias)
 # res_0 = nn.NeuralNetwork.nnGrad(nn_params, 400, 25, 10, X, y, 1)
 # print(nn.NeuralNetwork.compute_cost(nnn.weights_bias, nnn.train_ex, nnn.labels, 1, weights_size))  # expected 0.3837
 
 # res = nnn.compute_gradient(weights_bias, X, y, 1, weights_size)
-nnn.learn_param()
-nnn.my_learn()
+# nnn.learn_param()
+# nnn.my_learn()
 # print(res)
 
