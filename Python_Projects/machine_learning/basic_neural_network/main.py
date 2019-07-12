@@ -3,7 +3,7 @@ import time
 import scipy.io as sp
 
 '''Neural network designed to predict hand written digits from 20 x 20 pixels images
-    Layer sizes can be changed in NeuralNetworks class's __init__ function
+    Layer sizes can be changed in NeuralNetwork's __init__ function
     The neural net should, in theory, work with other data sets, 
     even it was specifically designed for hand written digit recognition
     The class expects a valid training set (examples separated from labels) and a regularization coefficient
