@@ -18,7 +18,9 @@ def predict(net):
         time.sleep(0.7)
 
 
-def vis_hidden_layer(w1):   # visualize
+def vis_hidden_layer(w1):
+    """visualize first weight matrix as 20 x 20 pixels images,
+    to get some insight on how neural net actually makes the predictions"""
     for i in range(25):
         img = np.reshape(w1[i], (20, 20))
         plt.imshow(np.transpose(img))
@@ -34,7 +36,7 @@ if __name__ == '__main__':
 
     y[y == 10] = 0  # provided dataset uses label 10 for 0, dit
 
-    """load already trained params"""
+    '''load already trained params'''
     w1, w2, b1, b2 = np.load('trained_params.npy')
     weights_bias = NeuralNetwork.pack_weights_bias(w1, w2, b1, b2)
 
