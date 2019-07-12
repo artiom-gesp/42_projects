@@ -40,8 +40,8 @@ if __name__ == '__main__':
     w1, w2, b1, b2 = np.load('trained_params.npy')
     weights_bias = NeuralNetwork.pack_weights_bias(w1, w2, b1, b2)
 
-    # nn = NeuralNetwork(X, y, 1, num_iters=5000, learn_rate=0.3)    # for training
-    nn = NeuralNetwork(X, y, 1, num_iters=5000, learn_rate=0.3, weights=weights_bias)  # already trained
+    # nn = NeuralNetwork(X, y, 1, num_iters=10000, learn_rate=0.3)    # for training
+    nn = NeuralNetwork(X, y, 1, weights=weights_bias)  # already trained
 
     # nn.my_learn()  # comment if you wish to use already learned params
 

@@ -174,7 +174,8 @@ class NeuralNetwork:
                                                                                   w_size)
             if i % 100 == 0:    # prints accuracy at start + every 100 steps
                 self.get_accuracy()
-                # saves current parameters in a .npy file
+                print('current epoch :', i)
+        # saves current parameters in a .npy file
         np.save('trained_params.npy', self.unpack_weights_bias(self.weights_bias, w_size[0], w_size[1]))
 
     def learn_param(self):
