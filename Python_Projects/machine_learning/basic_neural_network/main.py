@@ -34,7 +34,7 @@ if __name__ == '__main__':
     X = np.array(mat['X'])  # training examples : 20px x 20px images mapped as rows of 400 elements
     y = np.array(mat['y'])  # corresponding label : (1 to 10, 10 being the label for 0 digits)
 
-    y[y == 10] = 0  # provided dataset uses label 10 for 0, dit
+    y[y == 10] = 0  # provided dataset uses label 10 for 0
 
     '''load already trained params'''
     w1, w2, b1, b2 = np.load('trained_params.npy')
@@ -43,11 +43,11 @@ if __name__ == '__main__':
     # nn = NeuralNetwork(X, y, 1, num_iters=5000, learn_rate=0.3)    # for training
     nn = NeuralNetwork(X, y, 1, num_iters=5000, learn_rate=0.3, weights=weights_bias)  # already trained
 
-    # nnn.my_learn()  # comment if you wish to use already learned params
+    # nn.my_learn()  # comment if you wish to use already learned params
 
     nn.get_accuracy()
 
-    predict(nn)
+    # predict(nn)
 
     # vis_hidden_layer(w1)
 

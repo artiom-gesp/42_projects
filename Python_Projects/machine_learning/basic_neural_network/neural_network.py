@@ -12,12 +12,24 @@ class NeuralNetwork:
         self.num_labels = 10  # output layer size
         self.weights_bias = self.init_weights_biases(weights)  # weights = [np.array(),... ,np.array()]
 
-        self.train_ex = train_ex
-        self.labels = labels
+        self.train_ex, self.test_ex, self.labels, self.test_labels = self.get_train_test_set(train_ex, labels)
 
         self.reg = reg  # regularization coefficient for cost and gradient
         self.num_iters = num_iters
         self.learn_rate = learn_rate
+
+    @staticmethod
+    def get_train_test_set(X, y):
+        """randomly shuffles examples and labels"""
+        temp = np.hstack((X, y))
+        np.random.shuffle(temp)
+        train_size = int(0.7 * X.shape[0])
+
+        labels = temp[:train_size, -1]
+        test_labels = temp[train_size:, -1]
+        train_set = temp[:train_size, :-1]
+        test_set = temp[train_size:, :-1]
+        return train_set, test_set, labels, test_labels
 
     def is_input_valid(self, w):
 
@@ -151,7 +163,8 @@ class NeuralNetwork:
 
     def my_learn(self):
         """my_learn is my very basic optimization function, it updates weights during num_iters iterations
-        and prints system accuracy every 100 iterations, a accuracy of 96% is to be expected with 5000+ iterations"""
+        and prints system accuracy every 100 iterations, a accuracy of 92% with test_set and 96%
+        with both is to be expected with 5000+ iterations"""
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
         for i in range(self.num_iters):
             self.weights_bias -= self.learn_rate * NeuralNetwork.compute_gradient(self.weights_bias,
@@ -175,18 +188,18 @@ class NeuralNetwork:
     def get_accuracy(self):
         """for all training examples do forward prop and increment accuracy if prediction == label"""
         accuracy = 0
-        m = self.train_ex.shape[0]
+        m = self.test_ex.shape[0]
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
-        res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.train_ex, w_size)
+        res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.test_ex, w_size)
         for i in range(m):
-            if np.argmax(res[i]) == self.labels[i]:
+            if np.argmax(res[i]) == self.test_labels[i]:
                 accuracy += 1
         print('accuracy :', 100 * accuracy / m, '%')
 
     def get_rand_image(self):
         """prints a single example from the dataset and the corresponding prediction"""
         w_size = [(self.hidden_layer_size, self.input_layer_size), (self.num_labels, self.hidden_layer_size)]
-        res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.train_ex, w_size)
+        res, no, na, ni = NeuralNetwork.forward_prop(self.weights_bias, self.test_ex, w_size)
         img_pos = np.random.randint(low=5000, size=1)
         img = np.reshape(self.train_ex[img_pos], (20, 20))
         plt.imshow(np.transpose(img))
