@@ -1,0 +1,19 @@
+''test1
+'test2
+' test3
+' aaa
+''' 4343
+'4'a 'bbb
+--ccc
+-dd--dd
+-ddddd-d
+-wwwww-www
+---a- - www-w
+a --a
+--a
+'''--a-'a''-'
+'aa-bb
+
+I'd
+i'
+i i i i
