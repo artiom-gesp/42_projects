@@ -10,7 +10,7 @@ How to use :
   from wordSplit import *
   
   split = WordSplit('/path/to/file.txt')
-  print(split.get_word_occurrences(n=10, pattern='xxx'))
+  print(split.get_word_occurrences(n=10, pattern='xxx')) # 10 most frequent words containing pattern 'xxx'
 ```
 
 See main.py for more examples
