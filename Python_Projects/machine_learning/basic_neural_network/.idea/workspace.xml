@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13dd9879-5479-433f-82d7-304e3754c7c6" name="Default Changelist" comment="added PCA to CDNOW">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../split_words/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../split_words/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../split_words/ressources/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../split_words/ressources/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../split_words/wordSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/../split_words/wordSplit.py" afterDir="false" />
+    <list default="true" id="290a2179-b589-422f-9ed0-fbf71d5a9aff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../CDNOW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../CDNOW/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SVM/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../SVM/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../split_words/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../split_words/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../split_words/ressources/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../split_words/ressources/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../split_words/wordSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../split_words/wordSplit.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,20 +15,38 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>00005</find>
-    </findStrings>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/neural_network.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1614">
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1282" />
-    <option name="width" value="1278" />
-    <option name="height" value="1440" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-22" />
+    <option name="width" value="2560" />
+    <option name="height" value="1462" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -39,8 +58,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="CDNOW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CDNOW" type="462c0819:PsiDirectoryNode" />
+              <item name="basic_neural_network" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic_neural_network" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -54,7 +73,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -73,32 +91,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="13dd9879-5479-433f-82d7-304e3754c7c6" name="Default Changelist" comment="" />
-      <created>1563266562185</created>
+      <changelist id="290a2179-b589-422f-9ed0-fbf71d5a9aff" name="Default Changelist" comment="" />
+      <created>1564744083720</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1563266562185</updated>
-      <workItem from="1563266569588" duration="1101000" />
-      <workItem from="1563886712244" duration="445000" />
-      <workItem from="1563961000400" duration="736000" />
+      <updated>1564744083720</updated>
+      <workItem from="1564744092519" duration="349000" />
+      <workItem from="1565076660725" duration="476000" />
     </task>
-    <task id="LOCAL-00001" summary="added PCA to CDNOW">
-      <created>1563963064690</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1563963064690</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2282000" />
+    <option name="totallyTimeSpent" value="825000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1282" y="0" width="1278" height="1440" extended-state="0" />
+    <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25809062" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25178713" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -111,8 +120,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5008091" side_tool="true" visible="true" weight="0.29927006" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49919093" visible="true" weight="0.29927006" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -124,18 +133,24 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="added PCA to CDNOW" />
-    <option name="LAST_COMMIT_MESSAGE" value="added PCA to CDNOW" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CDNOW_master.txt">
+    <entry file="file://$PROJECT_DIR$/neural_network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="-1614">
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py" />
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

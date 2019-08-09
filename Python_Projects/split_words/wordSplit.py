@@ -26,18 +26,18 @@ class WordSplit:
 
         text = f.read().lower()  # Read text_file into string
 
-        # [^a-z\-\'\s] : match all characters except latin letters, hyphens, apostrophe and whitespaces
-        # (?<![a-z])- : match all hyphens not directly preceded by letters e.g. --test
-        # -(?![a-z]) : match all hyphens not directly followed by letters e.g. this--
-        # ('(?!([a-z])) : match all apostrophes not directly followed by a letter e.g. ' test
-        regex = re.compile(r"[^a-z\-\'\s]|(?<!([a-z]))-|-(?!([a-z]))|'(?!([a-z]))", re.IGNORECASE)
-
+        regex = re.compile(r"[a-zA-Z\-']*[a-zA-Z][a-zA-Z\-']*")
+        print(re.findall(regex, text))
         clean_text = re.sub(regex, " ", text)  # We remove everything superfluous e.g. dots, commas, etc..
 
         words = clean_text.split()
 
+        frame = pd.DataFrame(words, columns=['words'])
+
+        # frame = frame[frame.words.str.contains('[a-z]')]  # Drop rows not containing letters
+
         # Creating DataFrame containing words from text_file and counting occurrences
-        count_uniq = pd.DataFrame(words, columns=['words']).groupby('words').size().reset_index(name='count')
+        count_uniq = frame.groupby('words').size().reset_index(name='count')
 
         return count_uniq
 
@@ -49,6 +49,6 @@ class WordSplit:
         if pattern:  # Search for given pattern in DataFrame
             select_by_pattern = self.word_frame[self.word_frame.words.str.contains(pattern)]
             n_first_occurrence = select_by_pattern.sort_values('count', ascending=False).head(n)
-        else: # select n first
+        else:  # select n first
             n_first_occurrence = self.word_frame.sort_values('count', ascending=False).head(n)
         return n_first_occurrence.to_string(index=False)
