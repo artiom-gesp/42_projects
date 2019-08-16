@@ -36,11 +36,12 @@ class ParseComments:
 
         self.comment_urls += [ParseComments.url + link['href'] for link in links]   # Add new urls to list
 
-        next = parsed_html.find('a', attrs={"title": "Suivant >"})         # Find next url to visit
-        if not next:
+        next_url = parsed_html.find('a', attrs={"title": "Suivant >"})         # Find next url to visit
+        if not next_url:
             return
         else:
-            self.extract_links(ParseComments.root + next['href'])
+            # next_url contains a relative path, thus we need to prepend the website root
+            self.extract_links(ParseComments.root + next_url['href'])
 
     def extract_data(self, url):
         """
@@ -62,7 +63,7 @@ class ParseComments:
     @staticmethod
     def extract_comment(parsed_html):
         """
-        Extracts global commentary and positive + positive feedback
+        Extracts global comment, positive and negative feedbacks
         :param parsed_html: Beautiful Soup parsed html:
         :return list of commentaries:
         """
@@ -89,7 +90,7 @@ class ParseComments:
     @staticmethod
     def extract_grade(parsed_html):
         """
-        Extracts global commentary and positive + positive feedback
+        Extracts grades from comment structure
         :param parsed_html: Beautiful Soup parsed html
         :return list of grades:
         """
@@ -106,13 +107,18 @@ class ParseComments:
         """
 
         data = []
+        #  Initializing progress bar
         bar = progressbar.ProgressBar(maxval=len(self.comment_urls),
                                       widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
         bar.start()
+
+        # Call extract_data for every urls in comment_urls
         for url, j in zip(self.comment_urls, range(len(self.comment_urls))):
+            # for loop could be replaced by a list comprehension, but I really wanted to add a progress bar :)
             bar.update(j + 1)
             comment_info = self.extract_data(url)
             data.append(comment_info)
+
         bar.finish()
         data_frame = pd.DataFrame(data, columns=['com_general', 'com_moins',
                                                  'com_plus', 'date',
@@ -120,4 +126,4 @@ class ParseComments:
                                                  'qualite des garanties', 'satisfaction'])
 
         data_frame = data_frame.assign(assureur='Ag2r La Mondiale').assign(produit='sante')
-        data_frame.to_excel('data/test.xlsx')
+        data_frame.to_excel('data/data.xlsx')
