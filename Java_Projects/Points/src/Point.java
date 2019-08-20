@@ -49,11 +49,15 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
+//        System.out.printf("in slope %d %d %d %d\n", this.x , this.y, that.x, that.y);
         if (this.compareTo(that) == 0)
             return Double.NEGATIVE_INFINITY;
         if (this.x == that.x)
             return Double.POSITIVE_INFINITY;
-        return (this.y - that.x) * 1.0 / (this.x - that.x);
+        if (this.y == that.y)
+            return 0.0;
+//        System.out.println("int point :" + (this.y - that.y) * 1.0 / (this.x - that.x));
+        return (this.y - that.y) * 1.0 / (this.x - that.x);
     }
 
     /**
@@ -69,6 +73,7 @@ public class Point implements Comparable<Point> {
      *         argument point
      */
     public int compareTo(Point that) {
+//        System.out.printf("in compare %d %d %d %d\n", this.x , this.y, that.x, that.y);
         if (that.y == this.y && that.x == this.x)
             return 0;
         else if (that.y == this.y)
@@ -84,28 +89,60 @@ public class Point implements Comparable<Point> {
      */
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
-        return new slopeCompare(this);
+        return new SlopeOrder();
     }
 
-    private class slopeCompare implements Comparator<Point>
+//    public Comparator<Point> slopeOrder(boolean flag) {
+//        /* YOUR CODE HERE */
+//        return new RealSlopeOrder();
+//    }
+
+    private class SlopeOrder implements Comparator<Point>
     {
-
-        private final Point point;
-
-        slopeCompare(Point point)
-        {
-            this.point = point;
-        }
-
         public int compare(Point a, Point b)
         {
-            double s1 = a.slopeTo(point);
-            double s2 = b.slopeTo(point);
-            if (s1 == s2)
+            Double s1 = slopeTo(a);
+            Double s2 = slopeTo(b);
+            if (s1.equals(s2))
+            {
                 return 0;
-            return s1 > s2 ? 1 : 0;
+            }
+            return s1 > s2 ? 1 : -1;
         }
     }
+
+//    private class RealSlopeOrder implements Comparator<Point>
+//    {
+//        public int compare(Point a, Point b)
+//        {
+//            double s1 = slopeTo(a);
+//            double s2 = slopeTo(b);
+//            if (s1 == s2)
+//            {
+//                return a.compareTo(b);
+//            }
+//            return s1 > s2 ? 1 : -1;
+//        }
+//    }
+
+//    private Comparator<Point> realSlopeOrder()
+//    {
+//        return new RealSlopeOrder();
+//    }
+//
+//    private class RealSlopeOrder implements Comparator<Point>
+//    {
+//        public int compare(Point a, Point b)
+//        {
+//            double s1 = slopeTo(a);
+//            double s2 = slopeTo(b);
+//            if (s1 == s2)
+//            {
+//                return a.compareTo(b);
+//            }
+//            return s1 > s2 ? 1 : -1;
+//        }
+//    }
 
     /**
      * Returns a string representation of this point.
@@ -123,33 +160,33 @@ public class Point implements Comparable<Point> {
      * Unit tests the Point data type.
      */
     public static void main(String[] args) {
-        Point a = new Point(0, 0);
-        Point b = new Point(20, 20);
-        Point c = new Point(20, 20);
-        Point d = new Point(21, 211);
-        Point e = new Point(2, 221);
-        Point f = new Point(23, 21);
-        Point g = new Point(-2, 21);
-        Point h = new Point(212, 22);
-//        StdDraw.setPenRadius(0.05);
-//        StdDraw.setPenColor(StdDraw.BLUE);
-//        StdDraw.point(1.0, 2.0);
-//        StdDraw.setCanvasSize(720, 720);
-//        StdDraw.setScale(-10, 10);
-
-        System.out.println("Compare : "+ c.compareTo(b));
-
-//        a.draw();
-//        b.draw();
-//        c.draw();
-//        d.draw();
-//        e.draw();
-//        f.draw();
-//        g.draw();
-//        h.draw();
-//        a.drawTo(b);
-
-//        a.draw();
+        Point a = new Point(46, 65);
+        Point b = new Point(40, 265);
+//        Point c = new Point(20, 20);
+//        Point d = new Point(21, 211);
+//        Point e = new Point(2, 221);
+//        Point f = new Point(23, 21);
+//        Point g = new Point(-2, 21);
+//        Point h = new Point(212, 22);
+////        StdDraw.setPenRadius(0.05);
+////        StdDraw.setPenColor(StdDraw.BLUE);
+////        StdDraw.point(1.0, 2.0);
+////        StdDraw.setCanvasSize(720, 720);
+////        StdDraw.setScale(-10, 10);
+//
+        System.out.println("Compare : "+ a.slopeTo(b));
+//
+////        a.draw();
+////        b.draw();
+////        c.draw();
+////        d.draw();
+////        e.draw();
+////        f.draw();
+////        g.draw();
+////        h.draw();
+////        a.drawTo(b);
+//
+////        a.draw();
 
     }
 }
