@@ -13,6 +13,7 @@ public class Deque<Item> implements Iterable<Item>, Comparable<Deque> {
     public Deque() {
         first = new Node();
         last = first;
+        assert false;
     }
 
     // unit testing (required)
