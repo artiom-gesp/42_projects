@@ -19,7 +19,7 @@ public class Board {
         blankCoord = findBlank();
     }
 
-    public Board(int[][] tiles, int[] blankCoord, int printPadding)
+    private Board(int[][] tiles, int[] blankCoord, int printPadding)
     {
         gridSize = tiles.length;
         grid = tiles.clone();
@@ -82,6 +82,33 @@ public class Board {
     // is this grid the goal grid?
     public boolean isGoal(){
         return hamming() == 0;
+    }
+
+    private boolean isSolvable()
+    {
+        int inv_count = 0;
+        int len = (int)Math.pow(gridSize, 2);
+        int baseRow;
+        int tmpRow;
+        int baseCol;
+        int tmpCol;
+
+        for (int i = 0; i < len - 1; i++)
+        {
+            baseRow = i / gridSize; // Iterating through the 2D array using a single variable, for simplicity
+            baseCol = i % gridSize;
+            for (int j = i + 1; j < len; j++){
+                tmpRow = j / gridSize;
+                tmpCol = j % gridSize;
+                if (grid[baseRow][baseCol] != 0 && grid[tmpRow][tmpCol] != 0
+                        && grid[baseRow][baseCol] > grid[tmpRow][tmpCol]) {
+                    inv_count++;
+                }
+            }
+        }
+        // Sorry :)
+        // Checks whether grid size if odd or even, if even takes than it takes in account blank position
+        return gridSize % 2 == 0 ? ((inv_count % 2 + blankCoord[0] + 1) % 2 == 0) : inv_count % 2 == 0;
     }
 
     // does this grid equal y?
@@ -227,19 +254,22 @@ public class Board {
 
     // unit testing (not graded)
     public static void main(String[] args){
-        ParseInput input = new ParseInput();
-        int [][] grid = input.readInput();
-        Board board = new Board(grid);
-        Board board2 = new Board(grid);
-        System.out.println(board.toString());
-        System.out.println("Out of place : " + board.hamming());
-        System.out.println("Is goal ? " + board.isGoal());
-        System.out.println("Manhattan " + board.manhattan());
-        System.out.println(board.equals(board2));
-        Iterable<Board> list = board.neighbors();
-        for (Board i : list)
-            System.out.println(i);
-        System.out.println(board.twin().toString());
+//        ParseInput input = new ParseInput();
+//        int [][] grid = input.readInput();
+//        Board board = new Board(grid);
+//        Board board2 = new Board(grid);
+//        System.out.println(board.toString());
+//        System.out.println("Out of place : " + board.hamming());
+//        System.out.println("Is goal ? " + board.isGoal());
+//        System.out.println("Manhattan " + board.manhattan());
+//        System.out.println(board.equals(board2));
+//        Iterable<Board> list = board.neighbors();
+//        for (Board i : list)
+//            System.out.println(i);
+//        System.out.println(board.twin().toString());
+//
+//
+//        System.out.println("Solvable " + board.isSolvable());
     }
 
 }
