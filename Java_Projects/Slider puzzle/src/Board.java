@@ -13,8 +13,8 @@ public class Board {
         checkInput(tiles);
         gridSize = tiles.length;
 
-        grid = tiles.clone();
-        // Get length of biggest element from grid to align items in toString();
+        grid = cloneGrid(tiles);
+        // Get the length of the biggest element from grid to align items in toString();
         printPadding = String.valueOf((int)Math.pow(gridSize , 2) - 1).length();
         blankCoord = findBlank();
     }
@@ -22,7 +22,7 @@ public class Board {
     private Board(int[][] tiles, int[] blankCoord, int printPadding)
     {
         gridSize = tiles.length;
-        grid = tiles.clone();
+        grid = tiles;
         this.blankCoord = blankCoord;
         this.printPadding = printPadding;
     }
@@ -58,9 +58,10 @@ public class Board {
         for (int rowIndex = 0; rowIndex < gridSize; rowIndex++)
             for (int columnIndex = 0; columnIndex < gridSize; columnIndex++)
             {
-                outOfPlace += grid[rowIndex][columnIndex] != rowIndex * gridSize + (columnIndex + 1) ? 1 : 0;
+                if (grid[rowIndex][columnIndex] != 0)
+                    outOfPlace += grid[rowIndex][columnIndex] != rowIndex * gridSize + (columnIndex + 1) ? 1 : 0;
             }
-        return outOfPlace - (grid[gridSize - 1][gridSize - 1] == 0 ? 1 : 0);
+        return outOfPlace;
     }
 
     // sum of Manhattan distances between tiles and goal
@@ -146,7 +147,7 @@ public class Board {
 
     // a grid that is obtained by exchanging any pair of tiles
     public Board twin(){
-        int[][] tmpGrid = cloneGrid();
+        int[][] tmpGrid = cloneGrid(grid);
         int tmpVal;
         if (grid[0][0] == 0)
         {
@@ -179,12 +180,12 @@ public class Board {
                         "(missing value) and n^2 - 1");
     }
 
-    private int[][] cloneGrid()
+    private int[][] cloneGrid(int[][] toCopy)
     {
         int[][] tmp = new int[gridSize][];
         for (int i = 0; i < gridSize; i++)
         {
-            tmp[i] = grid[i].clone();
+            tmp[i] = toCopy[i].clone();
         }
         return tmp;
     }
@@ -194,7 +195,7 @@ public class Board {
     {
         if (blankCoord[0] - 1 >= 0)
         {
-            int[][] tmp = cloneGrid();
+            int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0] - 1][blankCoord[1]];
             tmp[blankCoord[0] - 1][blankCoord[1]] = 0;
             return new Board(tmp, new int[]{blankCoord[0] - 1, blankCoord[1]}, printPadding);
@@ -206,7 +207,7 @@ public class Board {
     {
         if (blankCoord[0] + 1 < gridSize)
         {
-            int[][] tmp = cloneGrid();
+            int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0] + 1][blankCoord[1]];
             tmp[blankCoord[0] + 1][blankCoord[1]] = 0;
             return new Board(tmp, new int[]{blankCoord[0] + 1, blankCoord[1]}, printPadding);
@@ -219,7 +220,7 @@ public class Board {
     {
         if (blankCoord[1] - 1 >= 0)
         {
-            int[][] tmp = cloneGrid();
+            int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0]][blankCoord[1] - 1];
             tmp[blankCoord[0]][blankCoord[1] - 1] = 0;
             return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] - 1}, printPadding);
@@ -232,7 +233,7 @@ public class Board {
     {
         if (blankCoord[1] + 1 < gridSize)
         {
-            int[][] tmp = cloneGrid();
+            int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0]][blankCoord[1] + 1];
             tmp[blankCoord[0]][blankCoord[1] + 1] = 0;
             return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] + 1}, printPadding);
@@ -268,8 +269,10 @@ public class Board {
 //            System.out.println(i);
 //        System.out.println(board.twin().toString());
 //
+//        System.out.println("Size " + ObjectSizeCalculator.getObjectSize(grid));
 //
 //        System.out.println("Solvable " + board.isSolvable());
+
     }
 
 }

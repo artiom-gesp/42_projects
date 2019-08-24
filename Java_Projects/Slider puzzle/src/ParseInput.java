@@ -74,7 +74,7 @@ public class ParseInput {
             ++len;
         }
         if (values.find() || len != gridSize)
-            throw new IllegalArgumentException("Invalid width at line " + height + 1);
+            throw new IllegalArgumentException("Invalid width at line " + (height + 1));
 
     }
 
