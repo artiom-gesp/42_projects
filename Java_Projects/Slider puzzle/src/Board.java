@@ -6,6 +6,7 @@ public class Board {
     private final int[][] grid;
     private final int printPadding;
     private int[] blankCoord;
+    private int manhattan = 0;
 
     // create a grid from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -19,12 +20,13 @@ public class Board {
         blankCoord = findBlank();
     }
 
-    private Board(int[][] tiles, int[] blankCoord, int printPadding)
+    private Board(int[][] tiles, int[] blankCoord, int printPadding, int manhattan)
     {
         gridSize = tiles.length;
         grid = tiles;
         this.blankCoord = blankCoord;
         this.printPadding = printPadding;
+        this.manhattan = manhattan;
     }
 
     // string representation of this grid
@@ -64,19 +66,27 @@ public class Board {
         return outOfPlace;
     }
 
+    private int getElemDiff(int[][] grid, int rowIndex, int columnIndex)
+    {
+        int goalRow = (int)Math.ceil(grid[rowIndex][columnIndex] / (double)gridSize) - 1;
+        int goalCol = grid[rowIndex][columnIndex] - goalRow * gridSize - 1;
+        if (grid[rowIndex][columnIndex] != 0)
+            return Math.abs(rowIndex - goalRow) + Math.abs(columnIndex - goalCol);
+        return 0;
+    }
+
     // sum of Manhattan distances between tiles and goal
     public int manhattan(){
+        if (this.manhattan != 0)
+            return this.manhattan;
         int distance = 0;
-        int goalRow;
-        int goalCol;
         for (int rowIndex = 0; rowIndex < gridSize; rowIndex++)
             for (int columnIndex = 0; columnIndex < gridSize; columnIndex++)
             {
-                goalRow = (int)Math.ceil(grid[rowIndex][columnIndex] / (double)gridSize) - 1;
-                goalCol = grid[rowIndex][columnIndex] - goalRow * gridSize - 1;
-                if (grid[rowIndex][columnIndex] != 0)
-                    distance += Math.abs(rowIndex - goalRow) + Math.abs(columnIndex - goalCol);
+                distance += getElemDiff(this.grid, rowIndex, columnIndex);
             }
+//        System.out.println("calc " + distance);
+        this.manhattan = distance;
         return distance;
     }
 
@@ -85,7 +95,7 @@ public class Board {
         return hamming() == 0;
     }
 
-    private boolean isSolvable()
+    public boolean isSolvable()
     {
         int inv_count = 0;
         int len = (int)Math.pow(gridSize, 2);
@@ -145,31 +155,6 @@ public class Board {
         return neighbors;
     }
 
-    // a grid that is obtained by exchanging any pair of tiles
-    public Board twin(){
-        int[][] tmpGrid = cloneGrid(grid);
-        int tmpVal;
-        if (grid[0][0] == 0)
-        {
-            tmpVal = grid[0][1];
-            tmpGrid[0][1] = tmpGrid[1][1];
-            tmpGrid[1][1] = tmpVal;
-        }
-        else if (grid[0][1] != 0)
-        {
-            tmpVal = grid[0][1];
-            tmpGrid[0][1] = tmpGrid[0][0];
-            tmpGrid[0][0] = tmpVal;
-        }
-        else
-        {
-            tmpVal = grid[1][0];
-            tmpGrid[1][0] = tmpGrid[0][0];
-            tmpGrid[0][0] = tmpVal;
-        }
-        return new Board(tmpGrid, blankCoord, printPadding);
-    }
-
     private void checkInput(int[][] grid)
     {
         if (grid.length < 2 || grid.length > 127)
@@ -195,10 +180,14 @@ public class Board {
     {
         if (blankCoord[0] - 1 >= 0)
         {
+            if (this.manhattan == 0)
+                this.manhattan = manhattan();
+            int newMan = this.manhattan - getElemDiff(this.grid, blankCoord[0] - 1, blankCoord[1]);
             int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0] - 1][blankCoord[1]];
             tmp[blankCoord[0] - 1][blankCoord[1]] = 0;
-            return new Board(tmp, new int[]{blankCoord[0] - 1, blankCoord[1]}, printPadding);
+            newMan += getElemDiff(tmp, blankCoord[0], blankCoord[1]);
+            return new Board(tmp, new int[]{blankCoord[0] - 1, blankCoord[1]}, printPadding, newMan);
         }
         return null;
     }
@@ -207,10 +196,14 @@ public class Board {
     {
         if (blankCoord[0] + 1 < gridSize)
         {
+            if (this.manhattan == 0)
+                this.manhattan = manhattan();
+            int newMan = this.manhattan - getElemDiff(this.grid, blankCoord[0] + 1, blankCoord[1]) ;
             int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0] + 1][blankCoord[1]];
             tmp[blankCoord[0] + 1][blankCoord[1]] = 0;
-            return new Board(tmp, new int[]{blankCoord[0] + 1, blankCoord[1]}, printPadding);
+            newMan += getElemDiff(tmp, blankCoord[0], blankCoord[1]);
+            return new Board(tmp, new int[]{blankCoord[0] + 1, blankCoord[1]}, printPadding, newMan);
         }
         return null;
 
@@ -220,10 +213,14 @@ public class Board {
     {
         if (blankCoord[1] - 1 >= 0)
         {
+            if (this.manhattan == 0)
+                this.manhattan = manhattan();
+            int newMan = this.manhattan - getElemDiff(this.grid, blankCoord[0], blankCoord[1] - 1) ;
             int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0]][blankCoord[1] - 1];
             tmp[blankCoord[0]][blankCoord[1] - 1] = 0;
-            return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] - 1}, printPadding);
+            newMan += getElemDiff(tmp, blankCoord[0], blankCoord[1]);
+            return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] - 1}, printPadding, newMan);
         }
         return null;
 
@@ -233,10 +230,14 @@ public class Board {
     {
         if (blankCoord[1] + 1 < gridSize)
         {
+            if (this.manhattan == 0)
+                this.manhattan = manhattan();
+            int newMan = this.manhattan - getElemDiff(this.grid, blankCoord[0], blankCoord[1] + 1) ;
             int[][] tmp = cloneGrid(grid);
             tmp[blankCoord[0]][blankCoord[1]] = tmp[blankCoord[0]][blankCoord[1] + 1];
             tmp[blankCoord[0]][blankCoord[1] + 1] = 0;
-            return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] + 1}, printPadding);
+            newMan += getElemDiff(tmp, blankCoord[0], blankCoord[1]);
+            return new Board(tmp, new int[]{blankCoord[0], blankCoord[1] + 1}, printPadding, newMan);
         }
         return null;
 
@@ -255,23 +256,21 @@ public class Board {
 
     // unit testing (not graded)
     public static void main(String[] args){
-//        ParseInput input = new ParseInput();
-//        int [][] grid = input.readInput();
-//        Board board = new Board(grid);
-//        Board board2 = new Board(grid);
-//        System.out.println(board.toString());
-//        System.out.println("Out of place : " + board.hamming());
-//        System.out.println("Is goal ? " + board.isGoal());
-//        System.out.println("Manhattan " + board.manhattan());
-//        System.out.println(board.equals(board2));
-//        Iterable<Board> list = board.neighbors();
-//        for (Board i : list)
-//            System.out.println(i);
-//        System.out.println(board.twin().toString());
-//
-//        System.out.println("Size " + ObjectSizeCalculator.getObjectSize(grid));
-//
-//        System.out.println("Solvable " + board.isSolvable());
+        ParseInput input = new ParseInput();
+        int [][] grid = input.readInput();
+        Board board = new Board(grid);
+        Board board2 = new Board(grid);
+        System.out.println(board.toString());
+        System.out.println("Out of place : " + board.hamming());
+        System.out.println("Is goal ? " + board.isGoal());
+        System.out.println("Manhattan " + board.manhattan());
+        System.out.println(board.equals(board2));
+        Iterable<Board> list = board.neighbors();
+        for (Board i : list)
+            System.out.println(i);
+
+
+        System.out.println("Solvable " + board.isSolvable());
 
     }
 

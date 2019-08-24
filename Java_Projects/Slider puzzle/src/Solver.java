@@ -9,9 +9,7 @@ public class Solver {
     private final SearchNode initialNode;
     private final MinPQ<SearchNode> minPQ;
     private int nbMoves;
-    private boolean isSolvable = true;
-//    private LinkedList<Board> visited;
-//    private final Set<Board> visited;
+    private Iterable<Board> solution;
 
     private class SearchNode
     {
@@ -29,8 +27,13 @@ public class Solver {
         {
             this.curr = curr;
             this.prevNode = prev;
-            this.priority = prev.priority;
+            this.priority = curr.manhattan();
             this.moves = prev.moves + 1;
+        }
+
+        private void getNewPriority()
+        {
+
         }
 
         private Comparator<SearchNode> priority()
@@ -56,31 +59,26 @@ public class Solver {
     public Solver(Board initial){
         if (initial == null)
             throw new IllegalArgumentException("Null argument");
+        if (!isSolvable(initial))
+            throw new IllegalArgumentException("Given grid is not solvable");
         dimension = initial.dimension();
-        this.initialNode = new SearchNode(initial, initial.manhattan(), null, 0);
+        this.initialNode = new SearchNode(initial);
         minPQ = new MinPQ<>(5, this.initialNode.priority());
         minPQ.insert(this.initialNode);
-//        visited = new HashSet<Board>();
-//        visited = new LinkedList<>();
         solve();
     }
 
-    // is the initial board solvable?
-    public boolean isSolvable(){
-        // to change later
-//        return initial.grid[0][0] == 0;
-        return isSolvable;
+    // is the board solvable?
+    private boolean isSolvable(Board toCheck){
+        return toCheck.isSolvable();
     }
-
-    // min number of moves to solve initial board
+    // number of moves to solve initial board
     public int moves(){
         return this.nbMoves;
     }
 
     // sequence of boards in a shortest solution
-    public Iterable<Board> solution(){
-        if (!isSolvable)
-            return null;
+    private Iterable<Board> computeSolution(SearchNode node){
         LinkedList<Board> solution = new LinkedList<>();
         SearchNode finalNode = minPQ.min();
         while (finalNode.prevNode != null)
@@ -92,60 +90,41 @@ public class Solver {
         return solution;
     }
 
-    private void solve() {
-        try {
-            while (!minPQ.min().curr.isGoal()) {
-                SearchNode minNode = minPQ.delMin();
-                if (minNode.moves > 80) {
-                    isSolvable = false;
-                    break;
-                }
-                for (Board tmp : minNode.curr.neighbors()) {
-                    if (minNode.prevNode == null || !tmp.equals(minNode.prevNode.curr)) {
-                        minPQ.insert(new SearchNode(tmp, minNode));
-                    }
-                }
-            }
-            this.nbMoves = minPQ.min().moves;
-        }
-        catch (NoSuchElementException e) {
-            isSolvable = false;
-        }
+    public Iterable<Board> getSolution()
+    {
+        return this.solution;
     }
 
-//    private boolean isVisited(Board toCheck)
-//    {
-//        for (Board tmp : visited)
-//        {
-//            if (toCheck.equals(tmp))
-//                return true;
-//        }
-//        return false;
-//    }
+    private void solve() {
+        while (!minPQ.min().curr.isGoal()) {
+            SearchNode minNode = minPQ.delMin();
+            for (Board tmp : minNode.curr.neighbors()) {
+                if (minNode.prevNode == null || !tmp.equals(minNode.prevNode.curr)) {
+                    minPQ.insert(new SearchNode(tmp, minNode));
+                }
+            }
+        }
+        this.nbMoves = minPQ.min().moves;
+        this.solution = computeSolution(minPQ.min());
+    }
 
     // test client
     public static void main(String[] args){
-////        long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-//
-//        ParseInput input = new ParseInput();
-//        final double startTime = System.currentTimeMillis() / Math.pow(10, 3);
-//        int[][] grid = input.readInput();
-//        Board board = new Board(grid);
-////        Board board2 = new Board(grid);
-//        Solver solve = new Solver(board);
-////        solve.solve();
-//        System.out.println("solved in " + solve.moves());
-////        long after = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-////        System.out.println("memory usage : " + (after - before));
-//        Iterable<Board> sol = solve.solution();
-//        if (sol == null)
-//            return;
-//        for (Board tmp : sol)
-//        {
-//            System.out.println(tmp.toString());
-//        }
-//        final double endTime = System.currentTimeMillis() / Math.pow(10, 3);
-//        System.out.println("Total execution time: " + (endTime - startTime) + " seconds");
+        ParseInput input = new ParseInput();
+        final double startTime = System.currentTimeMillis() / Math.pow(10, 3);
+        int[][] grid = input.readInput();
+        Board board = new Board(grid);
+        Solver solve = new Solver(board);
+        System.out.println("solved in " + solve.moves());
+        Iterable<Board> sol = solve.getSolution();
+        if (sol == null)
+            return;
+        for (Board tmp : sol)
+        {
+            System.out.println(tmp.toString());
+        }
+        final double endTime = System.currentTimeMillis() / Math.pow(10, 3);
+        System.out.println("Total execution time: " + (endTime - startTime) + " seconds");
     }
 
 }
