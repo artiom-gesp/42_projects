@@ -3,12 +3,16 @@ import java.util.regex.*;
 import java.util.Set;
 import java.util.HashSet;
 
-public class ParseInput {
+class ParseInput {
     private int gridSize = 0;
     private boolean init = true;
     private int[][] grid;
 
-    public int[][] readInput()
+    /**
+     * Read users input from command line or from file (using redirection)
+     * @return a n * n grid of integers representing a (n^2 - 1)-puzzle
+     */
+    int[][] readInput()
     {
         int height = 0;
         String line;
@@ -33,6 +37,11 @@ public class ParseInput {
         return grid;
     }
 
+    /**
+     * Retrieve integers values from string, throw error if anything else than integers of white spaces is found.
+     * @param s String representing a line in the grid (e.g. 1 2 3)
+     * @return a regex matcher containing the matched values.
+     */
     private Matcher extractIntegers(String s)
     {
         Pattern findIinvalid = Pattern.compile("[^0-9\\s]");
@@ -46,6 +55,9 @@ public class ParseInput {
         return pattern.matcher(s);
     }
 
+    /**
+     * Check whether provided input contains duplicate values.
+     */
     private void findDuplicates()
     {
         Set<Integer> set =  new HashSet<>();
@@ -64,7 +76,11 @@ public class ParseInput {
                     "(missing value) and n^2 - 1");
     }
 
-
+    /**
+     * Copy matcher (n integer values) to int[n][n] grid
+     * @param values Matcher values
+     * @param height current line index (0 for upper side of grid, n - 1 for lower)
+     */
     private void copyToGrid(Matcher values, int height)
     {
         int len = 0;
@@ -78,6 +94,10 @@ public class ParseInput {
 
     }
 
+    /**
+     * Create a grid from information contained in the first line of input
+     * @param values Matcher of the first line of input
+     */
     private void initGrid(Matcher values)
     {
         int len = 0;
@@ -98,7 +118,12 @@ public class ParseInput {
         }
         this.init = false;
     }
-    
+
+    /**
+     * initGrid if first input, else copyToGrid
+     * @param s line as string
+     * @param height current line index (0 for upper side of grid, n - 1 for lower)
+     */
     private void parseString(String s, int height)
     {
         Matcher values = extractIntegers(s);

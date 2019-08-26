@@ -1,70 +1,83 @@
 import edu.princeton.cs.algs4.MinPQ;
-import java.util.Comparator;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 public class Solver {
 
-    private final int dimension;
     private final SearchNode initialNode;
-    private final MinPQ<SearchNode> minPQ;
     private int nbMoves;
     private Iterable<Board> solution;
 
-    private class SearchNode
+    /**
+     * SearchNode class to link together related Boards and easily retrieve the path to solution.
+     * Each node has a board, a previous node (null for the initial node), a priority (manhattan distance)
+     * and the number of moves made to reach this node.
+     */
+    private class SearchNode implements Comparable
     {
-        private final Board curr;
+        private final Board board;
         private SearchNode prevNode;
         private int priority = 0;
         private int moves = 0;
+        Method heuristic;
 
-        private SearchNode(Board inital)
+        private SearchNode(Board initial, String heuristic)
         {
-            this.curr = inital;
-        }
-
-        private SearchNode(Board curr, SearchNode prev)
-        {
-            this.curr = curr;
-            this.prevNode = prev;
-            this.priority = curr.manhattan();
-            this.moves = prev.moves + 1;
-        }
-
-        private void getNewPriority()
-        {
-
-        }
-
-        private Comparator<SearchNode> priority()
-        {
-            return new Priority();
-        }
-
-        private class Priority implements Comparator<SearchNode>
-        {
-            public int compare(SearchNode a, SearchNode b)
-            {
-                if (a.priority + a.moves == b.priority + b.moves) {
-//                    if (a.moves == b.moves)
-                        return 0;
-//                    return a.moves > b.moves ? 1 : -1;
-                }
-                return a.priority + a.moves > b.priority + b.moves ? 1 : -1;
+            this.board = initial;
+            try {
+                this.heuristic = Board.class.getMethod(heuristic);
             }
+            catch (NoSuchMethodException e)
+            {
+                throw new IllegalArgumentException("Please provide a correct heuristics name");
+            }
+        }
+
+        private SearchNode(Board board, SearchNode prev)
+        {
+            this.board = board;
+            this.prevNode = prev;
+            this.heuristic = prev.heuristic;
+            this.moves = prev.moves + 1;
+            try {
+                this.priority = (int)this.heuristic.invoke(board);
+            }
+            catch (IllegalAccessException | InvocationTargetException e)
+            {
+                throw new UnsupportedOperationException("Something went wrong :( Please try again");
+            }
+        }
+
+        /**
+         * Compares two search node by depth in solution graph
+         * @param o The Search node to compare to
+         * @return A negative integer if o is farther from the origin, a positive one if closer and 0 if same depth
+         */
+        public int compareTo(Object o) {
+            if (o != null && o.getClass() == SearchNode.class)
+                return this.compareTo((SearchNode)o);
+            return -1;
+        }
+
+        private int compareTo(SearchNode a)
+        {
+            return (this.priority ) - (a.priority);
         }
     }
 
-    // find a solution to the initial board (using the A* algorithm)
-    public Solver(Board initial){
+    /**
+     * Find a solution to the initial board (using the A* algorithm)
+     * @param initial Board object representing the initial grid
+     */
+    private Solver(Board initial, String heuristic){
         if (initial == null)
             throw new IllegalArgumentException("Null argument");
         if (!isSolvable(initial))
             throw new IllegalArgumentException("Given grid is not solvable");
-        dimension = initial.dimension();
-        this.initialNode = new SearchNode(initial);
-        minPQ = new MinPQ<>(5, this.initialNode.priority());
-        minPQ.insert(this.initialNode);
+        this.initialNode = new SearchNode(initial, heuristic);
         solve();
     }
 
@@ -73,33 +86,35 @@ public class Solver {
         return toCheck.isSolvable();
     }
     // number of moves to solve initial board
-    public int moves(){
+    private int moves(){
         return this.nbMoves;
     }
 
     // sequence of boards in a shortest solution
     private Iterable<Board> computeSolution(SearchNode node){
         LinkedList<Board> solution = new LinkedList<>();
-        SearchNode finalNode = minPQ.min();
-        while (finalNode.prevNode != null)
+        while (node.prevNode != null)
         {
-            solution.addFirst(finalNode.curr);
-            finalNode = finalNode.prevNode;
+            solution.addFirst(node.board);
+            node = node.prevNode;
         }
-        solution.addFirst(finalNode.curr);
+        solution.addFirst(node.board);
         return solution;
     }
 
-    public Iterable<Board> getSolution()
+    private Iterable<Board> getSolution()
     {
         return this.solution;
     }
 
     private void solve() {
-        while (!minPQ.min().curr.isGoal()) {
+        MinPQ<SearchNode> minPQ = new MinPQ<>(5);
+        minPQ.insert(this.initialNode);
+        while (!minPQ.min().board.isGoal()) {
             SearchNode minNode = minPQ.delMin();
-            for (Board tmp : minNode.curr.neighbors()) {
-                if (minNode.prevNode == null || !tmp.equals(minNode.prevNode.curr)) {
+            for (Board tmp : minNode.board.neighbors()) {
+                // Do not add parent node to queue
+                if (minNode.prevNode == null || !tmp.equals(minNode.prevNode.board)) {
                     minPQ.insert(new SearchNode(tmp, minNode));
                 }
             }
@@ -108,13 +123,29 @@ public class Solver {
         this.solution = computeSolution(minPQ.min());
     }
 
+    static private int[][] generator(int size)
+    {
+        ArrayList<Integer> list  = new ArrayList<>();
+        int[][] grid = new int[size][size];
+        for (int i = 0; i < Math.pow(size, 2); i++)
+        {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                grid[i][j] = list.get(size * i + j);
+        return grid;
+    }
+
     // test client
     public static void main(String[] args){
         ParseInput input = new ParseInput();
         final double startTime = System.currentTimeMillis() / Math.pow(10, 3);
-        int[][] grid = input.readInput();
+//        int[][] grid = input.readInput();
+        int[][] grid = Solver.generator(3);
         Board board = new Board(grid);
-        Solver solve = new Solver(board);
+        Solver solve = new Solver(board, "manhattan");
         System.out.println("solved in " + solve.moves());
         Iterable<Board> sol = solve.getSolution();
         if (sol == null)
@@ -126,5 +157,6 @@ public class Solver {
         final double endTime = System.currentTimeMillis() / Math.pow(10, 3);
         System.out.println("Total execution time: " + (endTime - startTime) + " seconds");
     }
+
 
 }
