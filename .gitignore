@@ -4,3 +4,4 @@ a.out
 *.gch
 *.a
 a.out.dSYM
+.idea/
