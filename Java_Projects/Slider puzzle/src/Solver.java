@@ -16,6 +16,7 @@ public class Solver {
      * Each node has a board, a previous node (null for the initial node), a priority (manhattan distance)
      * and the number of moves made to reach this node.
      */
+
     private class SearchNode implements Comparable
     {
         private final Board board;
@@ -140,22 +141,26 @@ public class Solver {
 
     // test client
     public static void main(String[] args){
-        ParseInput input = new ParseInput();
+//        ParseInput input = new ParseInput();
         final double startTime = System.currentTimeMillis() / Math.pow(10, 3);
 //        int[][] grid = input.readInput();
         int[][] grid = Solver.generator(3);
         Board board = new Board(grid);
-        Solver solve = new Solver(board, "manhattan");
-        System.out.println("solved in " + solve.moves());
-        Iterable<Board> sol = solve.getSolution();
-        if (sol == null)
-            return;
-        for (Board tmp : sol)
-        {
-            System.out.println(tmp.toString());
-        }
-        final double endTime = System.currentTimeMillis() / Math.pow(10, 3);
-        System.out.println("Total execution time: " + (endTime - startTime) + " seconds");
+        Board board2 = new Board(grid);
+        System.out.println(board.equals(board2));
+        System.out.println(board.hashCode() + " " + board2.hashCode());
+        System.out.println(board.hashCode() + " " + board2.hashCode());
+//        Solver solve = new Solver(board, "manhattan");
+//        System.out.println("solved in " + solve.moves());
+//        Iterable<Board> sol = solve.getSolution();
+//        if (sol == null)
+//            return;
+//        for (Board tmp : sol)
+//        {
+//            System.out.println(tmp.toString());
+//        }
+//        final double endTime = System.currentTimeMillis() / Math.pow(10, 3);
+//        System.out.println("Total execution time: " + (endTime - startTime) + " seconds");
     }
 
 
