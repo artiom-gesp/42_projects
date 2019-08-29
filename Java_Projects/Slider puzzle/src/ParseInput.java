@@ -12,7 +12,7 @@ class ParseInput {
      * Read users input from command line or from file (using redirection)
      * @return a n * n grid of integers representing a (n^2 - 1)-puzzle
      */
-    int[][] readInput()
+    public int[][] readInput()
     {
         int height = 0;
         String line;

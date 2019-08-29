@@ -12,7 +12,7 @@ class Board {
      * Base constructor of class Board
      * @param tiles A n * n of grid of integers representing a (n^2 - 1)-puzzle.
      */
-    Board(int[][] tiles){
+    public Board(int[][] tiles){
         checkInput(tiles);
         gridSize = tiles.length;
 
