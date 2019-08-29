@@ -156,7 +156,6 @@ public class Deque<Item> implements Iterable<Item>, Comparable<Deque> {
         private Node current = first;
 
         public boolean hasNext() {
-//            System.out.println("in it : " + current.next + " " + current.item);
             return current != null && current.item != null;
         }
 
