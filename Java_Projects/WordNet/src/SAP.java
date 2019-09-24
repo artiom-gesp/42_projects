@@ -12,7 +12,7 @@ public class SAP {
     private int cachedV;
     private int cachedW;
 
-    // constructor takes a digraph (not necessarily a DAG)
+    // constructor takes a digraph
     public SAP(Digraph G) {
         this.G = new Digraph(G);
         this.V = G.V();

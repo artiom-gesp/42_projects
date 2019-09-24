@@ -26,6 +26,7 @@ public class WordNet {
         if (!topo.hasOrder())
             throw new IllegalArgumentException("Graph has cycles");
 
+        System.out.println(net);
         sap = new SAP(net);
     }
 
@@ -64,6 +65,7 @@ public class WordNet {
     private Digraph setGraph(String[] hypernymArray)
     {
         String[] splitHyp;
+        System.out.println(hypernymArray.length);
         Digraph net = new Digraph(hypernymArray.length);
         for (String pair : hypernymArray) {
             splitHyp = pair.split(",");
