@@ -1,23 +1,22 @@
-import edu.princeton.cs.algs4.Heap;
-import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.TST;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.Set;
 
 public class BoggleSolver
 {
     private TST<Integer>[] dictionary;
-    private int[] arr;
+    private Set<String> words;
 
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
     public BoggleSolver(String[] dictionary)
     {
         int val = 0;
+        this.words = new HashSet<>();
         this.dictionary = new TST[26];
         for (int i = 0; i < 26; i++)
         {
@@ -27,13 +26,14 @@ public class BoggleSolver
         {
             this.dictionary[s.charAt(0) - 'A'].put(s, val++);
         }
-        for (TST tmp : this.dictionary)
-            System.out.println(tmp.keys());
+//        for (TST tmp : this.dictionary)
+//            System.out.println(tmp.keys());
     }
 
     // Returns the set of all valid words in the given Boggle board, as an Iterable.
     public Iterable<String> getAllValidWords(BoggleBoard board)
     {
+        words = new HashSet<>();
         if (board == null)
             throw new NullPointerException("Board cannot be null");
 
@@ -44,79 +44,63 @@ public class BoggleSolver
         {
             for (int j = 0; j < col; j++)
             {
-                findValidSubset(i, j, board);
+                boolean[][] test = new boolean[row][col];
+                test[i][j] = true;
+                String toAdd = String.valueOf(board.getLetter(i, j));
+                findValidSubset(i, j, board, toAdd.equals("Q") ? "QU" : toAdd, test);
             }
         }
-        return null;
+        return words;
     }
 
-    private class Node{
-        int subset;
-        int row;
-        int column;
-
-        private Node(int subset, int row, int column){
-            this.subset = subset;
-            this.row = row;
-            this.column = column;
-        }
-    }
-
-    private int findValidSubset(int row, int col, BoggleBoard board)
+    private void findValidSubset(int row, int col, BoggleBoard board, String word, boolean[][] visited)
     {
-        boolean[][] visited;
-        LinkedList<String>[] words;
-        Queue<Node> toVisit;
-
-        int size = 0;
-        for (Integer i : neighbors(row, col, board.rows(), board.cols())) {
-            ++size;
+        if (word.length() > 2 && dictionary[word.charAt(0) - 'A'].contains(word)) {
+            words.add(word);
         }
-        words = new LinkedList[size];
-        for (int i = 0; i < size; i++)
-        {
-            words[i] = new LinkedList<>();
-        }
-        visited = new boolean[size][board.rows() * board.cols()];
-        for (int i = 0; i < size; i++)
-        {
-            toVisit = new LinkedList<Node>();
-            toVisit.add(new Node(i, row, col));
-//            System.out.println("here " + (board.rows() * row + col) + " " + i + " size " + size);
-//            System.out.println(visited[0][0]);
-            visited[i][row * board.rows() + col] = true;
-            words[i].add(String.valueOf(board.getLetter(row, col)));
-            while (!toVisit.isEmpty())
-            {
-                Node tmp = toVisit.remove();
+        if (word.charAt(0) == 'Z')
+            System.out.println("t");
 
-                Iterable<Integer> neighbors = neighbors(tmp.row, tmp.column, board.rows(), board.cols());
-                for (Integer j : neighbors) {
 
-//                    System.out.println("in for loop " + i + " " + j);
-//                    System.out.println("rows cols " + tmp.row + " " + tmp.column);
-//                    System.out.println(neighbors(tmp.row, tmp.column, board.rows(), board.cols()));
-                    if (!visited[i][j]) {
-                        toVisit.add(new Node(i, j / board.rows(), j % board.rows()));
-                        visited[i][j] = true;
-                        words[i].add(words[i].peekLast() + board.getLetter(j / board.rows(), j % board.rows()));
-                    }
-                }
+        Iterable<Integer> neighbors = neighbors(row, col, board.rows(), board.cols());
+        for (Integer j : neighbors) {
+            int tmpRow = board.rows() != 1 ? j / board.rows() : 0;
+            int tmpCol = board.rows() != 1 ? j % board.rows() : j;
 
+            if (tmpRow < 0 || tmpRow >= board.rows() || tmpCol < 0 || tmpCol >= board.cols())
+                continue;
+            String toAdd = String.valueOf(board.getLetter(tmpRow, tmpCol));
+            String wordTmp = word + (toAdd.equals("Q") ? "QU" : toAdd);
+            if (!visited[tmpRow][tmpCol] && hasPrefix(wordTmp)) {
+                // Set this node as visited for all of his children
+                visited[tmpRow][tmpCol] = true;
+                findValidSubset(tmpRow, tmpCol, board, wordTmp, visited);
+                // Free this node for next iterations
+                visited[tmpRow][tmpCol] = false;
+            }
         }
-
-        }
-        for (int i = 0; i < size; i++)
-        {
-            System.out.println(words[i]);
-        }
-        return 0;
     }
 
-    private Iterable<Integer> neighbors(int row, int col, int rowLength, int colLength)
+    private boolean hasPrefix(String word)
+    {
+        int size = 0;
+        Iterable<String> it = dictionary[word.charAt(0) - 'A'].keysWithPrefix(word);
+
+        for (String s : it)
+            ++size;
+        return size != 0;
+    }
+
+    private Iterable<Integer> neighbors(int row, int col, int colLength, int rowLength)
     {
         LinkedList<Integer> neighbors = new LinkedList<>();
-        if (row < rowLength - 1 && row > 0)
+        if (rowLength == 1)
+        {
+            neighbors.add(col + 1);
+            if (col > 0)
+                neighbors.add(col - 1);
+        }
+        else if (row < rowLength - 1 && row > 0)
         {
             if (col < colLength - 1 && col > 0)
             {
@@ -199,13 +183,33 @@ public class BoggleSolver
     // (You can assume the word contains only the uppercase letters A through Z.)
     public int scoreOf(String word)
     {
+        int[] score = {1, 1, 1, 1, 2, 3, 5, 11};
+        if (dictionary[word.charAt(0) - 'A'].contains(word))
+            return word.length() < 8 ? score[word.length() - 1] : 11;
         return 0;
     }
 
     public static void main(String[] args) {
-        In in = new In(args[0]);
-        BoggleSolver bog = new BoggleSolver(in.readAllLines());
-        BoggleBoard board = new BoggleBoard();
-        bog.getAllValidWords(board);
+//        In in = new In(args[0]);
+//        BoggleSolver bog = new BoggleSolver(in.readAllLines());
+//        BoggleBoard board = new BoggleBoard();
+//        System.out.println(board);
+//        bog.getAllValidWords(board);
+            In in = new In(args[0]);
+            String[] dictionary = in.readAllStrings();
+            BoggleSolver solver = new BoggleSolver(dictionary);
+            BoggleBoard board = new BoggleBoard(args[1]);
+//            for (int i = 0; i < 10000; i++)
+//            {
+//                board = new BoggleBoard();
+//                solver.getAllValidWords(board);
+//            }
+            int score = 0;
+            for (String word : solver.getAllValidWords(board)) {
+                StdOut.println(word);
+                score += solver.scoreOf(word);
+            }
+            StdOut.println("Score = " + score);
+
     }
 }
