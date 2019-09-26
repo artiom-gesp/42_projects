@@ -58,14 +58,11 @@ public class BoggleSolver
         if (word.length() > 2 && dictionary[word.charAt(0) - 'A'].contains(word)) {
             words.add(word);
         }
-        if (word.charAt(0) == 'Z')
-            System.out.println("t");
-
 
         Iterable<Integer> neighbors = neighbors(row, col, board.rows(), board.cols());
         for (Integer j : neighbors) {
-            int tmpRow = board.rows() != 1 ? j / board.rows() : 0;
-            int tmpCol = board.rows() != 1 ? j % board.rows() : j;
+            int tmpRow = board.rows() != 1 ? j / board.cols() : 0;
+            int tmpCol = board.rows() != 1 ? j % board.cols() : j;
 
             if (tmpRow < 0 || tmpRow >= board.rows() || tmpCol < 0 || tmpCol >= board.cols())
                 continue;
@@ -79,6 +76,21 @@ public class BoggleSolver
                 visited[tmpRow][tmpCol] = false;
             }
         }
+//        for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, board.rows() - 1); i++)
+//            for (int j = Math.max(col - 1, 0); j <= Math.min(col + 1, board.cols() - 1); j++)
+//            {
+////                System.out.println(i + " " + j);
+//                String toAdd = String.valueOf(board.getLetter(i, j));
+//                String wordTmp = word + (toAdd.equals("Q") ? "QU" : toAdd);
+//                if (!visited[i][j] && hasPrefix(wordTmp)) {
+//
+//                    visited[i][j] = true;
+//
+//                    findValidSubset(i, j, board, wordTmp, visited);
+//                    // Free this node for next iterations
+//                    visited[i][j] = false;
+//                }
+//            }
     }
 
     private boolean hasPrefix(String word)
@@ -86,94 +98,102 @@ public class BoggleSolver
         int size = 0;
         Iterable<String> it = dictionary[word.charAt(0) - 'A'].keysWithPrefix(word);
 
-        for (String s : it)
+        for (String s : it) {
             ++size;
+            if (size == 1)
+                break ;
+        }
         return size != 0;
     }
 
-    private Iterable<Integer> neighbors(int row, int col, int colLength, int rowLength)
+    private Iterable<Integer> neighbors(int row, int col, int height, int width)
     {
         LinkedList<Integer> neighbors = new LinkedList<>();
-        if (rowLength == 1)
+        if (height == 1)
         {
             neighbors.add(col + 1);
             if (col > 0)
                 neighbors.add(col - 1);
         }
-        else if (row < rowLength - 1 && row > 0)
+        else if (width == 1)
         {
-            if (col < colLength - 1 && col > 0)
+            neighbors.add(row + 1);
+            neighbors.add(row - 1);
+        }
+        else if (row < height - 1 && row > 0)
+        {
+            if (col < width - 1 && col > 0)
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col - 1));
-                neighbors.add((row - 1) * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row - 1) * width + (col - 1));
+                neighbors.add((row - 1) * width + (col + 1));
+                neighbors.add((row + 1) * width + (col + 1));
+                neighbors.add((row + 1) * width + (col - 1));
             }
             else if (col == 0)
             {
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + (col + 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row - 1) * width + (col + 1));
+                neighbors.add((row + 1) * width + (col + 1));
             }
             else
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col - 1));
-                neighbors.add((row + 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row - 1) * width + (col - 1));
+                neighbors.add((row + 1) * width + (col - 1));
             }
         }
         else if (row == 0)
         {
-            if (col > 0 && col < colLength - 1)
+            if (col > 0 && col < width - 1)
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row + 1) * width + (col + 1));
+                neighbors.add((row + 1) * width + (col - 1));
             }
             else if (col == 0)
             {
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + (col + 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row + 1) * width + (col + 1));
             }
             else
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add((row + 1) * rowLength + col);
-                neighbors.add((row + 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add((row + 1) * width + col);
+                neighbors.add((row + 1) * width + (col - 1));
             }
         }
         else
         {
-            if (col > 0 && col < colLength - 1)
+            if (col > 0 && col < width - 1)
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col + 1));
-                neighbors.add((row - 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row - 1) * width + (col + 1));
+                neighbors.add((row - 1) * width + (col - 1));
             }
             else if (col == 0)
             {
-                neighbors.add(row * rowLength + (col + 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col + 1));
+                neighbors.add(row * width + (col + 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row - 1) * width + (col + 1));
             }
             else
             {
-                neighbors.add(row * rowLength + (col - 1));
-                neighbors.add((row - 1) * rowLength + col);
-                neighbors.add((row - 1) * rowLength + (col - 1));
+                neighbors.add(row * width + (col - 1));
+                neighbors.add((row - 1) * width + col);
+                neighbors.add((row - 1) * width + (col - 1));
             }
         }
         return neighbors;
@@ -184,7 +204,7 @@ public class BoggleSolver
     public int scoreOf(String word)
     {
         int[] score = {1, 1, 1, 1, 2, 3, 5, 11};
-        if (dictionary[word.charAt(0) - 'A'].contains(word))
+        if (dictionary[word.charAt(0) - 'A'].contains(word) && word.length() > 2)
             return word.length() < 8 ? score[word.length() - 1] : 11;
         return 0;
     }
@@ -199,17 +219,23 @@ public class BoggleSolver
             String[] dictionary = in.readAllStrings();
             BoggleSolver solver = new BoggleSolver(dictionary);
             BoggleBoard board = new BoggleBoard(args[1]);
-//            for (int i = 0; i < 10000; i++)
+//            double end = 0;
+//            for (int i = 0; i < 100; i++)
 //            {
 //                board = new BoggleBoard();
+//                double start = System.currentTimeMillis();
 //                solver.getAllValidWords(board);
+//                end += (System.currentTimeMillis() - start);
+//                System.out.println((System.currentTimeMillis() - start));
 //            }
+//        System.out.println(end / 100);
             int score = 0;
             for (String word : solver.getAllValidWords(board)) {
                 StdOut.println(word);
                 score += solver.scoreOf(word);
             }
-            StdOut.println("Score = " + score);
+//            StdOut.println("Score = " + score);
+//        System.out.println(solver.scoreOf("AT"));
 
     }
 }
