@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<form action="/users" method="POST"> 
+           <input type="text" name="username" placeholder="name">
+           <input type="text" name="mail" placeholder="mail">
+           <input type="text" name="password" placeholder="pass">
+           <input type="submit"> 
+           </form>
+
+           <form action="javascript:void(0)">
+           <input type="text" name="username" id="a" placeholder="name">
+           <input type="text" name="id" id="b" placeholder="id">
+           <input type="text" name="password" id="c" placeholder="pass">
+           <input type="submit" onclick="deleteUser()">
+           </form>
+
+            <form action="javascript:void(0)">
+           <input type="text" name="username" id="e" placeholder="name">
+           <input type="text" name="id" id="f" placeholder="id" >
+            <input type="text" name="mail" id="g" placeholder="mail">
+           <input type="text" name="password" id="h" placeholder="pass">
+           <input type="submit" onclick="updateUser()">
+           </form>
+</body>
+    <script>
+        function deleteUser() {
+            console.log('test');
+            const formData = new FormData();
+            formData.append('username', $("#a").val());
+            formData.append('password', $("#c").val());
+            return fetch('/users/' + $("#b").val(), {
+            method: 'DELETE',
+            body: formData
+        }).then(response => {
+                console.log(response.json());
+            }
+        );
+    }
+
+    function updateUser() {
+            console.log('test');
+            const formData = new FormData();
+            formData.append('username', $("#e").val());
+            formData.append('mail', $("#g").val());
+            formData.append('password', $("#h").val());
+            return fetch('/users/' + $("#f").val(), {
+            method: 'PUT',
+            body: formData
+        }).then(response => {
+                console.log(response.json());
+            }
+        );
+    }
+    </script>
+</html>
