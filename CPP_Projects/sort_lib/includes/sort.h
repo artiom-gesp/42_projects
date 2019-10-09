@@ -81,7 +81,7 @@ void merge(T *arr, T *tmp, int low, int mid, int high)
     int tmp_index = low;
     int tmp_low = low;
     int tmp_mid = mid;
-    T* tmp_pointer;
+    static int inv = 0;
 
     while (low < tmp_mid && mid < high)
     {
@@ -112,8 +112,6 @@ void merge_sort(T *arr, T *tmp, int low, int mid, int high)
 
     merge_sort(arr, tmp, low, mid1, mid);
     merge_sort(arr, tmp, mid, mid2, high);
-//    assert(std::is_sorted(arr, arr + (mid - low)));
-//    assert(std::is_sorted(arr + mid, arr + high));
 
     if (arr[mid - 1] > arr[mid])
         merge(arr, tmp, low, mid, high);

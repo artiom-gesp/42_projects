@@ -1,0 +1,6 @@
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/test/CMakeFiles/rebuild_cache.dir
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/test/CMakeFiles/edit_cache.dir
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/test/CMakeFiles/test.dir
+/Users/agesp/CLionProjects/sort_lib/cmake-build-debug/test/CMakeFiles/test_sort.dir

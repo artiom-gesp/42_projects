@@ -201,8 +201,11 @@ CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/Xcode
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//No help, variable specified on the command line.
+SIZE:UNINITIALIZED=1000
+
 //run benchmark
-TEST_TIME:BOOL=OFF
+TEST_TIME:BOOL=ON
 
 //Value Computed by CMake
 my_utils_lib_BINARY_DIR:STATIC=/Users/agesp/Documents/School/42_projects/CPP_Projects/sort_lib/build
