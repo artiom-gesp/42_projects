@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE= -DSIZE=1000 -DTEST_TIME=ON -G "CodeBlocks - Unix Makefiles" /Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build

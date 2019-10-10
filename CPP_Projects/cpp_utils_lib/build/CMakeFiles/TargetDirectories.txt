@@ -1,0 +1,8 @@
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/CMakeFiles/rebuild_cache.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/CMakeFiles/edit_cache.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/rebuild_cache.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/_search.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/test_search.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/test_sort.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/edit_cache.dir
+/Users/agesp/Documents/School/42_projects/CPP_Projects/cpp_utils_lib/build/test/CMakeFiles/_sort.dir
