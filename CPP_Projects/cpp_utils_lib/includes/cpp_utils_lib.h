@@ -6,5 +6,6 @@
 #define MY_UTILS_LIB_CPP_UTILS_LIB_H
 
 #include "sort/sort.h"
+#include "search/search.h"
 
 #endif //MY_UTILS_LIB_CPP_UTILS_LIB_H

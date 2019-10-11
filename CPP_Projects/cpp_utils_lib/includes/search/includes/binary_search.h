@@ -1,0 +1,10 @@
+//
+// Created by Artiom GESP on 10/11/19.
+//
+
+#ifndef MY_UTILS_LIB_BINARY_SEARCH_H
+#define MY_UTILS_LIB_BINARY_SEARCH_H
+
+
+
+#endif //MY_UTILS_LIB_BINARY_SEARCH_H

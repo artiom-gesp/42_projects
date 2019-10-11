@@ -5,6 +5,8 @@
 #ifndef MY_UTILS_LIB_UTILS_H
 #define MY_UTILS_LIB_UTILS_H
 
+#include <iostream>
+
 template <typename T>
 void swap(T *arr, size_t i, size_t j)
 {
