@@ -10,5 +10,7 @@
 #include "includes/selection_sort.h"
 #include "includes/insertion_sort.h"
 #include "includes/shell_sort.h"
+#include "includes/quick_sort.h"
+#include "includes/shuffle.h"
 
 #endif //CPPLIB_SELECTION_SORT_H
