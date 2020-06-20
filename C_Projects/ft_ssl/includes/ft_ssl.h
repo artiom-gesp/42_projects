@@ -36,5 +36,6 @@ typedef struct s_input
 }               t_input;
 
 void parser(int argc, char **argv, t_input *input);
+void ssl_exit(char *msg, t_input *input);
 
 #endif

@@ -1,5 +1,5 @@
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Werror -Wextra
 
 NAME = ./ft_ssl
 
@@ -17,7 +17,8 @@ UTILS_PATHS = $(addprefix $(UTILS_DIR)/, $(UTILS_SRCS))
 CRYPTO_PATHS = $(addprefix $(CRYPTO_DIR)/, $(CRYPTO_SRCS))
 SRC_PATHS = $(MAIN_PATH) $(UTILS_PATHS) $(CRYPTO_PATHS)
 
-UTILS_SRCS = parser.c
+UTILS_SRCS = parser.c \
+			 exit.c
 CRYPTO_SRCS =
 MAIN = ft_ssl.c
 SRCS = $(MAIN) $(UTILS_SRCS) $(CRYPTO_SRCS)
@@ -32,16 +33,25 @@ INCLS = $(INCL_DIR)/ft_ssl.h
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJ_DIR) $(OBJ_PATHS) $(INCLS) $(SRC_PATHS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_PATHS) -I$(INCL_DIR) -I$(LIBFT_INCLS) $(LIBFT_LIB)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_PATHS) -I$(INCL_DIR) -I$(LIBFT_INCLS) $(LIBFT_LIB) -ggdb
 
 $(OBJ_DIR)/%.o: %.c $(INCLS) $(LIBFT_LIB)
 	@printf "building : %s\n" $<
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INCL_DIR) -I$(LIBFT_INCLS)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INCL_DIR) -I$(LIBFT_INCLS) -ggdb
 
 $(OBJ_DIR):
 	@mkdir -p $@
 
 $(LIBFT_LIB):
 	@make -C $(LIBFT_DIR)
+
+clean:
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re

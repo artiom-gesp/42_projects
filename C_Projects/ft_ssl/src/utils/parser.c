@@ -29,33 +29,58 @@ int8_t get_flags(char *flag_list, int8_t flags)
         else
         {
             ft_printf("Unrecognized flag : -%c\n", flag_list[i]);
-            exit(-1);
+            return 0;
         }
     }
     return flags;
 }
 
+t_filename *allocate_filename(char *name)
+{
+    t_filename *filename;
+
+    if (!(filename = malloc(sizeof(t_filename))))
+        return NULL;
+    else
+    {
+        filename->name = name;
+        filename->next = NULL;
+        return filename;
+    }
+}
+
 void parser(int argc, char **argv, t_input *input)
 {
-    int8_t flags;
+    t_filename *filenames;
 
-    flags = 0;
+    filenames = NULL;
+    input->flags = 0;
     for (int i = 1; i < argc; i++)
     {
-        if (argv[i][0] == '-' \
-            && !(flags & FORBID_FLAGS) \
-            && ft_strlen(argv[i]) > 1)
-            {
-                flags = get_flags(&argv[i][1], flags);
-            }
+        if (argv[i][0] == '-')
+        {
+            if (ft_strlen(argv[i]) <= 1)
+                ssl_exit("Missing flag after -\n", input);
+            if (!(input->flags & FORBID_FLAGS))
+                input->flags = get_flags(&argv[i][1], input->flags);
+            if (input->flags == 0)
+                ssl_exit("", input);
+        }
         else
-            flags |= FORBID_FLAGS;
-            if (!input->filenames)
+        {
+            input->flags |= FORBID_FLAGS;
+            if (!filenames)
             {
-                input->filenames = &(t_filename){0, NULL};
+        	    if (!(filenames = allocate_filename(argv[i])))
+                    ssl_exit("Malloc failed\n", input);
+                input->filenames = filenames;
             }
-
+            else
+            {
+        	    if (!(filenames->next = allocate_filename(argv[i])))
+                    ssl_exit("Malloc failed\n", input);
+                filenames = filenames->next;
+            }
+        }
     }
-
-    return flags;
 }

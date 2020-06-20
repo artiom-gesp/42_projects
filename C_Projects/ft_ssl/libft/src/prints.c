@@ -46,11 +46,9 @@ void	do_print_s(char *s, t_plist *list)
 
 void	print_s(t_plist *list, va_list *ap)
 {
-	int		i;
 	char	*s;
 	char	*save;
 
-	i = -1;
 	save = va_arg(*ap, char*);
 	if (!save)
 		save = "(null)";
@@ -71,9 +69,6 @@ void	print_s(t_plist *list, va_list *ap)
 
 void	print_percent(t_plist *list)
 {
-	int i;
-
-	i = -1;
 	if (ft_strchr(list->sign, '-'))
 	{
 		ft_putchar('%');

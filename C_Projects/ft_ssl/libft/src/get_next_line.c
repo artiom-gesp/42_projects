@@ -24,9 +24,6 @@ int		get_n_pos(char *str)
 
 char	*remove_start(char *s)
 {
-	int i;
-
-	i = 0;
 	if (ft_strchr(s, '\n'))
 	{
 		s = ft_strcpy(s, ft_strchr(s, '\n') + 1);

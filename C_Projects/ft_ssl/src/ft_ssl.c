@@ -15,13 +15,23 @@
 int main(int argc, char **argv)
 {
     t_input input;
-    t_filename filenames;
+    char buffer[5];
+    char *line;
 
-    input = (t_input){0, &filenames};
+    input = (t_input){0, NULL};
     parser(argc, argv, &input);
-    while ((flags & CONSOLE_FLAG))
+    printf("%s\n", ft_itoa_base(input.flags, 2, 'a'));
+    line = "";
+    while (input.filenames)
     {
-        input = get_input()
+        printf("%s\n", input.filenames->name);
+        input.filenames = input.filenames->next;
     }
+    while ((input.flags & CONSOLE_FLAG) && fgets(buffer, sizeof(buffer), stdin) != NULL)
+    {
+        ft_printf("line : %s", line);
+        line = realloc()
+    }
+    printf("%d\n", sizeof(buffer));
     return 0;
 }

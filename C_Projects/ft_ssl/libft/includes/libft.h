@@ -16,6 +16,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "stdint.h"
 
 void					*ft_memset(void *b, int c, size_t len);
 int						ft_toupper(int c);
