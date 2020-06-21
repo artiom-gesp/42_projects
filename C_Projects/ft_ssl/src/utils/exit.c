@@ -1,15 +1,15 @@
 #include "ft_ssl.h"
 
-void ssl_exit(char *msg, t_input *input)
+void ssl_exit(char *msg, t_input *input, int8_t code)
 {
     t_filename *tmp;
 
     ft_printf("%s", msg);
-    if (input->filenames)
+    while (input->filenames)
     {
         tmp = input->filenames;
         input->filenames = input->filenames->next;
         free(tmp);
     }
-    exit(-1);
+    exit(code);
 }

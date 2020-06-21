@@ -15,23 +15,42 @@
 int main(int argc, char **argv)
 {
     t_input input;
-    char buffer[5];
+    char buffer[BUFFER_SIZE];
     char *line;
 
-    input = (t_input){0, NULL};
-    parser(argc, argv, &input);
-    printf("%s\n", ft_itoa_base(input.flags, 2, 'a'));
-    line = "";
-    while (input.filenames)
+    if (argc <= 1)
     {
-        printf("%s\n", input.filenames->name);
-        input.filenames = input.filenames->next;
+        ft_printf("usage: ft_ssl command [command opts] [command args]\n");
+        return -1;
     }
+
+    input = (t_input){0, NULL, 0, NULL, NULL};
+    parser(argc, argv, &input);
+    line = NULL;
+    // ft_printf("%s", ft_itoa_base(input.flags, 2, 'a'));
     while ((input.flags & CONSOLE_FLAG) && fgets(buffer, sizeof(buffer), stdin) != NULL)
     {
-        ft_printf("line : %s", line);
-        line = realloc()
+        if (line && !ft_strstr(line, "\n"))
+        {
+            ft_printf("HERE\n");
+
+            line = realloc(line, ft_strlen(line) + ft_strlen(buffer));
+            line = ft_strcat(line, buffer);
+            ft_printf("line cr: %s\n", line);
+        }
+        else
+        {
+            line = calloc(BUFFER_SIZE, sizeof(char));
+            line = ft_strcpy(line, buffer);
+        }
+        if (ft_strstr(buffer, "\n"))
+        {
+            input.alg_func(line);
+            free(line);
+            line = NULL;
+        }
     }
-    printf("%d\n", sizeof(buffer));
-    return 0;
+    free(line);
+    handle_files(&input);
+    ssl_exit("", &input, 0);
 }

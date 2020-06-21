@@ -18,8 +18,12 @@ CRYPTO_PATHS = $(addprefix $(CRYPTO_DIR)/, $(CRYPTO_SRCS))
 SRC_PATHS = $(MAIN_PATH) $(UTILS_PATHS) $(CRYPTO_PATHS)
 
 UTILS_SRCS = parser.c \
-			 exit.c
-CRYPTO_SRCS =
+			 exit.c \
+			 files.c \
+			 console.c
+
+CRYPTO_SRCS = ft_md5.c \
+			  ft_sha256.c
 MAIN = ft_ssl.c
 SRCS = $(MAIN) $(UTILS_SRCS) $(CRYPTO_SRCS)
 
