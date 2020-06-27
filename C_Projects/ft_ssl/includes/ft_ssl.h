@@ -15,6 +15,7 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include <stdint.h>
+# include <math.h>
 
 # define FORBID_FLAGS 1
 
@@ -61,7 +62,7 @@ void handle_files(t_input *input);
 /*
 Crypto
 */
-char *ft_md5(char *str);
-char *ft_sha256(char *str);
+uint16_t *ft_md5(char *msg);
+char *ft_sha256(char *msg);
 
 #endif

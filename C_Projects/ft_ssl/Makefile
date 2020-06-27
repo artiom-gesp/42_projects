@@ -37,11 +37,11 @@ INCLS = $(INCL_DIR)/ft_ssl.h
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJ_DIR) $(OBJ_PATHS) $(INCLS) $(SRC_PATHS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_PATHS) -I$(INCL_DIR) -I$(LIBFT_INCLS) $(LIBFT_LIB) -ggdb
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_PATHS) -I$(INCL_DIR) -I$(LIBFT_INCLS) $(LIBFT_LIB) -lm -ggdb
 
 $(OBJ_DIR)/%.o: %.c $(INCLS) $(LIBFT_LIB)
 	@printf "building : %s\n" $<
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INCL_DIR) -I$(LIBFT_INCLS) -ggdb
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INCL_DIR) -I$(LIBFT_INCLS) -lm -ggdb
 
 $(OBJ_DIR):
 	@mkdir -p $@

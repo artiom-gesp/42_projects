@@ -36,7 +36,6 @@ void handle_files(t_input *input)
         {
             handle_file(filename->name, input);
         }
-        
         filename = filename->next;
     }
 }

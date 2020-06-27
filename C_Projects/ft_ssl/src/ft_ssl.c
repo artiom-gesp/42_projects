@@ -26,6 +26,8 @@ int main(int argc, char **argv)
 
     input = (t_input){0, NULL, 0, NULL, NULL};
     parser(argc, argv, &input);
+    // line = realloc(NULL, 432094234);
+    // ft_printf("line : %s ", line);
     line = NULL;
     // ft_printf("%s", ft_itoa_base(input.flags, 2, 'a'));
     while ((input.flags & CONSOLE_FLAG) && fgets(buffer, sizeof(buffer), stdin) != NULL)
@@ -34,7 +36,7 @@ int main(int argc, char **argv)
         {
             ft_printf("HERE\n");
 
-            line = realloc(line, ft_strlen(line) + ft_strlen(buffer));
+            line = realloc(line, ft_strlen(line) + ft_strlen(buffer) + 1);
             line = ft_strcat(line, buffer);
             ft_printf("line cr: %s\n", line);
         }
@@ -45,6 +47,7 @@ int main(int argc, char **argv)
         }
         if (ft_strstr(buffer, "\n"))
         {
+            line[ft_strlen(line) - 1] = 0;
             input.alg_func(line);
             free(line);
             line = NULL;
