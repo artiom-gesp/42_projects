@@ -45,14 +45,17 @@ int main(int argc, char **argv)
             line = calloc(BUFFER_SIZE, sizeof(char));
             line = ft_strcpy(line, buffer);
         }
-        if (ft_strstr(buffer, "\n"))
+        if ((ft_strlen(buffer) + 1 < BUFFER_SIZE) || ft_strstr(buffer, "\n"))
         {
-            line[ft_strlen(line) - 1] = 0;
+            ft_printf("len %d\n", ft_strlen(buffer));
+            // line[ft_strlen(line) - 1] = 0;
             input.alg_func(line);
             free(line);
             line = NULL;
         }
     }
+    if (line)
+        input.alg_func(line); 
     free(line);
     handle_files(&input);
     ssl_exit("", &input, 0);

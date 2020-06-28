@@ -15,6 +15,7 @@ void handle_file(char *filename, t_input *input)
         ssl_exit("Malloc error", input, -1);
     fread(buffer, sizeof(char), len, file);
     fclose(file);
+    ft_printf("ft_strlen: %d\n", ft_strlen(buffer));
     ft_printf("buffer : %s", input->alg_func(buffer));
     free(buffer);
 }

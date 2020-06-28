@@ -1,6 +1,22 @@
 #include "ft_ssl.h"
 
 
+void leftRotatebyOne(uint32_t arr[], int n) 
+{ 
+    int temp = arr[0], i; 
+    for (i = 0; i < n - 1; i++) 
+        arr[i] = arr[i + 1]; 
+    arr[i] = temp; 
+} 
+
+void leftRotate(uint32_t arr[], int d, int n) 
+{ 
+    int i; 
+    for (i = 0; i < d; i++) 
+        leftRotatebyOne(arr, n); 
+} 
+  
+
 uint32_t rotl32 (uint32_t value, unsigned int count) {
     const unsigned int mask = 8 * sizeof(value) - 1;
     count &= mask;
@@ -47,16 +63,15 @@ char *pad_msg(char *msg)
         return NULL;
     }
     ft_memset(padded_msg + msg_len, 0, 1 + ceil(zero_pad / 8) + 8);
-    ft_printf("len msg : %d, zero pad %lld\n", msg_len, zero_pad);
     *(padded_msg + msg_len) = 0x80;
-    *(padded_msg + msg_len + 1 + (uint64_t)(ceil(zero_pad / 8))) = msg_len;
+    *((uint64_t*)(padded_msg + msg_len + 1 + (uint16_t)(ceil(zero_pad / 8)))) = (msg_len * 8) % ULLONG_MAX;
 
-    print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
-
+    // print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
+    // printf("\nmsg  %lu\n", msg_len);
     return padded_msg;
 }
 
-uint16_t *ft_md5(char *msg)
+char *ft_md5(char *msg)
 {
     unsigned int rounds[4][4] = {
         {7, 12, 17, 22}, {5, 9, 14, 20}, {4, 11, 16, 23}, {6, 10, 15, 21}
@@ -73,16 +88,12 @@ uint16_t *ft_md5(char *msg)
     uint64_t msg_len;
 
     for (int i = 0; i < 64; i++)
-    {
         cst[i] = floor(4294967296 * fabs(sin(i + 1)));
-        // printf("%#x\n", cst[i]);
-    }
     msg_len = ceil(ft_strlen(msg) / (float)64) + ((ft_strlen(msg) % 64) >= 56 ? 1 : 0);
-    ft_printf("len msg : %lld\n", msg_len); 
     if (!(padded_msg = pad_msg(msg)))
         return NULL;
     round = 0;
-    ft_printf("In md5 : %s\n", msg);
+
     int block;
     for (int i = 0; i < msg_len; i++)
     {
@@ -90,36 +101,40 @@ uint16_t *ft_md5(char *msg)
         b = res[1];
         c = res[2];
         d = res[3];
+        // ft_printf("A=%u, B=%u, C=%u, D=%u\n", a, b, c, d);
         for (int j = 0; j < 64; j++)
         {
             if (j < 16)
             {
                 func = (b & c) | (~b & d);
-                block = i;
+                block = j;
             }
             else if (j < 32)
             {
                 func = (d & b) | (~d & c);
-                block = ((5 * i) + 1) % 16;
+                block = ((5 * j) + 1) % 16;
             }
             else if (j < 48)
             {
                 func = b ^ c ^ d;
-                block = ((3 * i) + 5) % 16;
+                block = ((3 * j) + 5) % 16;
             }
             else
             {
                 func = c ^ (b | ~d);
-                block = (7 * i) % 16;
+                block = (7 * j) % 16;
             }
-            func += a + cst[i] + ((uint32_t*)(padded_msg))[i * 16 + block];
+            // ft_printf("block [%d] : %u\n", i * 16 + block, ((uint32_t*)(padded_msg))[i * 16 + block]);
+            // ft_printf("block : %u, round : %d, cst: %u\n", block, rounds[(int)(j / 16)][round], cst[j]);
+            func += a + cst[j] + ((uint32_t*)(padded_msg))[i * 16 + block];
             a = d;
             d = c;
             c = b;
-            b += rotl32(func, rounds[(int)(ceil(i / 64)) * 4][round]);
-            ++round;
-            if (round == 4)
-                round = 0;
+            b += rotl32(func, rounds[(int)(j / 16)][round]);
+            // uint32_t arr[4] = {a, b, c, d};
+            // leftRotate(arr, j + 1, 4);
+            round = round == 3 ? 0 : round + 1;
+            // ft_printf("[i = %d] A=%u, B=%u, C=%u, D=%u\n", j, arr[0], arr[1], arr[2], arr[3]);
         }
         res[0] += a;
         res[1] += b;
@@ -129,8 +144,8 @@ uint16_t *ft_md5(char *msg)
     free(padded_msg);
     for (int i = 0; i < 4; i++)
     {
-        ft_printf("%x ", res[i]);
+        ft_printf("%08x ", __bswap_32(res[i]));
     }
     ft_printf("\n");
-    return res[0] << 12 | res[1] << 8 | res[2] << 4 | res[1];
+    return "a";
 }

@@ -16,6 +16,8 @@
 # include "ft_printf.h"
 # include <stdint.h>
 # include <math.h>
+# include <limits.h>
+# include <byteswap.h>
 
 # define FORBID_FLAGS 1
 
@@ -62,7 +64,7 @@ void handle_files(t_input *input);
 /*
 Crypto
 */
-uint16_t *ft_md5(char *msg);
+char *ft_md5(char *msg);
 char *ft_sha256(char *msg);
 
 #endif
