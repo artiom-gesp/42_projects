@@ -26,7 +26,7 @@
 # define QUIET_FLAG 8
 # define STRING_FLAG 16
 
-# define BUFFER_SIZE 50
+# define BUFFER_SIZE 5
 
 # define MD5 0
 # define SHA256 1
@@ -90,6 +90,9 @@ void print_files(t_filename *head);
 
 void add_to_console(t_bytes *output, t_input *input, char *msg);
 void print_console(t_console *head);
+void handle_noninteractive(t_input *input);
+void handle_interactive(t_input *input);
+
 
 /*
 Crypto

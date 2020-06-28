@@ -4,11 +4,15 @@ void print_files(t_filename *head)
 {
     while (head)
     {
-        for (int i = 0; i < head->output->nb_bytes / 4; i++)
+        if (head->output)
         {
-            ft_printf("%08x ", __bswap_32(((uint32_t*)(head->output->bytes))[i]));
+            ft_printf("(%s) ", head->name);
+            for (int i = 0; i < head->output->nb_bytes / 4; i++)
+            {
+                ft_printf("%08x ", __bswap_32(((uint32_t*)(head->output->bytes))[i]));
+            }
+            ft_printf("\n");
         }
-        ft_printf("\n");
         head = head->next;
     }
 }
@@ -44,6 +48,7 @@ void handle_files(t_input *input)
         if (access(filename->name, F_OK))
         {
             ft_printf("%s: No such file or directory\n", filename->name);
+            filename->output = NULL;
         }
         else
         {

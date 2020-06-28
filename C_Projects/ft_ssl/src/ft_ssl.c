@@ -27,30 +27,12 @@ int main(int argc, char **argv)
     input = (t_input){0, NULL, 0, NULL, NULL, NULL};
     parser(argc, argv, &input);
     line = NULL;
-    while ((input.flags & CONSOLE_FLAG) && fgets(buffer, sizeof(buffer), stdin) != NULL)
+    if (!isatty(fileno(stdin)))
+        handle_noninteractive(&input);
+    if (input.flags & CONSOLE_FLAG)
     {
-        if (line && !ft_strstr(line, "\n"))
-        {
-            line = realloc(line, ft_strlen(line) + ft_strlen(buffer) + 1);
-            line = ft_strcat(line, buffer);
-        }
-        else
-        {
-            line = calloc(BUFFER_SIZE, sizeof(char));
-            line = ft_strcpy(line, buffer);
-        }
-        if ((ft_strlen(buffer) + 1 < BUFFER_SIZE) || ft_strstr(buffer, "\n"))
-        {
-            ft_printf("line : %s", buffer);
-            add_to_console(input.alg_func(line), &input, line);
-            input.alg_func(line);
-            line = NULL;
-        }
-    }
-    if (line)
-    {
-        add_to_console(input.alg_func(line), &input, line);
-        input.alg_func(line);
+        printf("HF");
+        handle_interactive(&input);
     }
     handle_files(&input);
     print_console(input.console);

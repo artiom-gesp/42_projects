@@ -8,8 +8,11 @@ void free_filenames(t_filename *filenames)
     {
         tmp = filenames;
         filenames = filenames->next;
-        free(tmp->output->bytes);
-        free(tmp->output);
+        if (tmp->output)
+        {
+            free(tmp->output->bytes);
+            free(tmp->output);
+        }
         free(tmp);
     }
 }
@@ -22,8 +25,11 @@ void free_consoles(t_console *consoles)
     {
         tmp = consoles;
         consoles = consoles->next;
-        free(tmp->output->bytes);
-        free(tmp->output);
+        if (tmp->output)
+        {
+            free(tmp->output->bytes);
+            free(tmp->output);
+        }
         free(tmp->msg);
         free(tmp);
     }

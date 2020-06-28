@@ -108,11 +108,13 @@ void parser(int argc, char **argv, t_input *input)
     for (int i = 2; i < argc; i++)
     {
         if (ft_strlen(argv[i]) > 0 && argv[i][0] == '-')
+        {
             parse_flags(argv[i], input);
             if (input->flags & STRING_FLAG)
             {
                 continue;
             }
+        }
         else
             parse_filenames(argv[i], input);
     }
