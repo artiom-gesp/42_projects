@@ -23,7 +23,8 @@ UTILS_SRCS = parser.c \
 			 console.c
 
 CRYPTO_SRCS = ft_md5.c \
-			  ft_sha256.c
+			  ft_sha256.c \
+			  utils.c
 MAIN = ft_ssl.c
 SRCS = $(MAIN) $(UTILS_SRCS) $(CRYPTO_SRCS)
 

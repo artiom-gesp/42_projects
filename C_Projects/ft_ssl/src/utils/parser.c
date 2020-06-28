@@ -12,6 +12,10 @@
 
 #include "ft_ssl.h"
 
+void save_s_flag(char *str, t_input *input)
+{
+    
+}
 
 int8_t get_flags(char *flag_list, int8_t flags)
 {
@@ -105,6 +109,10 @@ void parser(int argc, char **argv, t_input *input)
     {
         if (ft_strlen(argv[i]) > 0 && argv[i][0] == '-')
             parse_flags(argv[i], input);
+            if (input->flags & STRING_FLAG)
+            {
+                continue;
+            }
         else
             parse_filenames(argv[i], input);
     }

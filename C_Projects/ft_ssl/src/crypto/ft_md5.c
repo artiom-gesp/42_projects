@@ -1,32 +1,21 @@
 #include "ft_ssl.h"
 
-uint32_t rotl32 (uint32_t value, unsigned int count) {
-    const unsigned int mask = 8 * sizeof(value) - 1;
-    count &= mask;
-    return (value << count) | (value >> (-count & mask));
-}
+unsigned int rounds[4][4] = {{7, 12, 17, 22}, {5, 9, 14, 20}, {4, 11, 16, 23}, {6, 10, 15, 21}};
 
-uint32_t rotr32 (uint32_t value, unsigned int count) {
-    const unsigned int mask = 8 * sizeof(value) - 1;
-    count &= mask;
-    return (value >> count) | (value << (-count & mask));
-}
-
-void print_b(void *s, uint64_t len)
+t_bytes *format_md5_output(uint32_t *res)
 {
-    char *p = s;
-    uint64_t a = 0x8000000000000000;
-    for (int i = 0; i < len; i++)
+    t_bytes *output;
+    
+    if (!(output = malloc(sizeof(t_bytes))))
+        return NULL;
+    if (!(output->bytes = malloc(16)))
     {
-        a = 128;
-        for (int j = 0; j < 8; j++)
-        {
-            printf("%u", p[i] & a ? 1 : 0);
-            a = a >> 1;
-        }
-        printf(" ");
+        free(output);
+        return NULL;
     }
-    printf("\n");
+    output->nb_bytes = 16;
+    ft_memcpy(output->bytes, res, 16);
+    return output;
 }
 
 char *pad_msg(char *msg)
@@ -78,22 +67,29 @@ void compute_func(t_md5 *process, int j)
     }
 }
 
-char *ft_md5(char *msg)
+void md5_hash(t_md5 *process, int j)
 {
-    unsigned int rounds[4][4] = {{7, 12, 17, 22}, {5, 9, 14, 20}, {4, 11, 16, 23}, {6, 10, 15, 21}};
+    process->tmp[0] = process->tmp[3];
+    process->tmp[3] = process->tmp[2];
+    process->tmp[2] = process->tmp[1];
+    process->tmp[1] += rotl32(process->func, rounds[(int)(j / 16)][process->round]);
+    process->round = process->round == 3 ? 0 : process->round + 1;
+}
+
+t_bytes *ft_md5(char *msg)
+{
     t_md5 process;
     unsigned int cst[64];
     unsigned int res[4] = {0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476};
     char* padded_msg;
-    uint64_t msg_len;
 
     ft_memset(&process, 0, sizeof(t_md5));
     for (int i = 0; i < 64; i++)
         cst[i] = floor(4294967296 * fabs(sin(i + 1)));
-    msg_len = ceil(ft_strlen(msg) / (float)64) + ((ft_strlen(msg) % 64) >= 56 ? 1 : 0);
+    process.nb_blocks = ceil(ft_strlen(msg) / (float)64) + ((ft_strlen(msg) % 64) >= 56 ? 1 : 0);
     if (!(padded_msg = pad_msg(msg)))
-        return NULL;
-    for (int i = 0; i < msg_len; i++)
+        return format_md5_output(NULL);
+    for (int i = 0; i < process.nb_blocks; i++)
     {
         for (int k = 0; k < 4; k++)
             process.tmp[k] = res[k];
@@ -101,20 +97,16 @@ char *ft_md5(char *msg)
         {
             compute_func(&process, j);
             process.func += process.tmp[0] + cst[j] + ((uint32_t*)(padded_msg))[i * 16 + process.block_index];
-            process.tmp[0] = process.tmp[3];
-            process.tmp[3] = process.tmp[2];
-            process.tmp[2] = process.tmp[1];
-            process.tmp[1] += rotl32(process.func, rounds[(int)(j / 16)][process.round]);
-            process.round = process.round == 3 ? 0 : process.round + 1;
+            md5_hash(&process, j);
         }
         for (int k = 0; k < 4; k++)
             res[k] += process.tmp[k];
     }
     free(padded_msg);
-    for (int i = 0; i < 4; i++)
-    {
-        ft_printf("%08x ", __bswap_32(res[i]));
-    }
-    ft_printf("\n");
-    return "a";
+    // for (int i = 0; i < 4; i++)
+    // {
+    //     ft_printf("%08x ", __bswap_32(res[i]));
+    // }
+    // ft_printf("\n");
+    return format_md5_output(res);
 }

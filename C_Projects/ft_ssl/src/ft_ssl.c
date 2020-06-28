@@ -24,21 +24,15 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    input = (t_input){0, NULL, 0, NULL, NULL};
+    input = (t_input){0, NULL, 0, NULL, NULL, NULL};
     parser(argc, argv, &input);
-    // line = realloc(NULL, 432094234);
-    // ft_printf("line : %s ", line);
     line = NULL;
-    // ft_printf("%s", ft_itoa_base(input.flags, 2, 'a'));
     while ((input.flags & CONSOLE_FLAG) && fgets(buffer, sizeof(buffer), stdin) != NULL)
     {
         if (line && !ft_strstr(line, "\n"))
         {
-            ft_printf("HERE\n");
-
             line = realloc(line, ft_strlen(line) + ft_strlen(buffer) + 1);
             line = ft_strcat(line, buffer);
-            ft_printf("line cr: %s\n", line);
         }
         else
         {
@@ -47,16 +41,20 @@ int main(int argc, char **argv)
         }
         if ((ft_strlen(buffer) + 1 < BUFFER_SIZE) || ft_strstr(buffer, "\n"))
         {
-            ft_printf("len %d\n", ft_strlen(buffer));
-            // line[ft_strlen(line) - 1] = 0;
+            ft_printf("line : %s", buffer);
+            add_to_console(input.alg_func(line), &input, line);
             input.alg_func(line);
-            free(line);
             line = NULL;
         }
     }
     if (line)
-        input.alg_func(line); 
-    free(line);
+    {
+        add_to_console(input.alg_func(line), &input, line);
+        input.alg_func(line);
+    }
     handle_files(&input);
+    print_console(input.console);
+    print_files(input.filenames);
+
     ssl_exit("", &input, 0);
 }

@@ -1,12 +1,25 @@
 #include "ft_ssl.h"
 
-void handle_file(char *filename, t_input *input)
+void print_files(t_filename *head)
+{
+    while (head)
+    {
+        for (int i = 0; i < head->output->nb_bytes / 4; i++)
+        {
+            ft_printf("%08x ", __bswap_32(((uint32_t*)(head->output->bytes))[i]));
+        }
+        ft_printf("\n");
+        head = head->next;
+    }
+}
+
+void handle_file(t_filename *filename, t_input *input)
 {
     FILE *file;
     int len;
     char *buffer;
 
-    file = fopen(filename, "r");
+    file = fopen(filename->name, "r");
     fseek(file, 0, SEEK_END);
     len = ftell(file);
  
@@ -15,8 +28,7 @@ void handle_file(char *filename, t_input *input)
         ssl_exit("Malloc error", input, -1);
     fread(buffer, sizeof(char), len, file);
     fclose(file);
-    ft_printf("ft_strlen: %d\n", ft_strlen(buffer));
-    ft_printf("buffer : %s", input->alg_func(buffer));
+    filename->output = ft_md5(buffer);
     free(buffer);
 }
 
@@ -35,7 +47,7 @@ void handle_files(t_input *input)
         }
         else
         {
-            handle_file(filename->name, input);
+            handle_file(filename, input);
         }
         filename = filename->next;
     }
