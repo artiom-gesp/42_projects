@@ -52,6 +52,14 @@ typedef struct s_input
     t_digest *digests;
 }               t_input;
 
+typedef struct s_md5
+{
+    int8_t round;
+    uint32_t tmp[4];
+    uint32_t func;
+    uint64_t block_index;
+}               t_md5;
+
 /*
 Parsing
 */
