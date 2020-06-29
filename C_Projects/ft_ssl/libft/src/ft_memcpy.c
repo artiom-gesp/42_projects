@@ -19,12 +19,15 @@ void				*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*savesrc;
 
 	i = 0;
+	printf("char : %c\n", savesrc[0]);
+
 	savedst = (unsigned char*)dst;
 	savesrc = (unsigned char*)src;
 	if (savedst == savesrc)
 		return (dst);
 	while (i < n)
 	{
+		printf("char : %c\n", savesrc[i]);
 		savedst[i] = savesrc[i];
 		i++;
 	}

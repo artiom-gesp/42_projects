@@ -20,19 +20,18 @@ void print_files(t_filename *head)
 void handle_file(t_filename *filename, t_input *input)
 {
     FILE *file;
-    int len;
+    uint64_t len;
     char *buffer;
 
-    file = fopen(filename->name, "r");
+    file = fopen(filename->name, "rb");
     fseek(file, 0, SEEK_END);
     len = ftell(file);
- 
     fseek(file, 0L, SEEK_SET);
     if (!(buffer = calloc(len, sizeof(char))))
         ssl_exit("Malloc error", input, -1);
     fread(buffer, sizeof(char), len, file);
     fclose(file);
-    filename->output = ft_md5(buffer);
+    filename->output = input->alg_func((t_bytes){buffer, len});
     free(buffer);
 }
 

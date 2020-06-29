@@ -17,6 +17,23 @@ void free_filenames(t_filename *filenames)
     }
 }
 
+void free_strings(t_string *strings)
+{
+    t_string *tmp;
+
+    while (strings)
+    {
+        tmp = strings;
+        strings = strings->next;
+        if (tmp->output)
+        {
+            free(tmp->output->bytes);
+            free(tmp->output);
+        }
+        free(tmp);
+    }
+}
+
 void free_consoles(t_console *consoles)
 {
     t_console *tmp;
@@ -39,8 +56,8 @@ void ssl_exit(char *msg, t_input *input, int8_t code)
 {
     t_filename *tmp;
 
-    ft_printf("%s", msg);
     free_filenames(input->filenames);
+    free_strings(input->strings);
     free_consoles(input->console);
     exit(code);
 }

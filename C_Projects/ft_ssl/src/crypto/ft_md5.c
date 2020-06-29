@@ -18,28 +18,24 @@ t_bytes *format_md5_output(uint32_t *res)
     return output;
 }
 
-char *pad_msg(char *msg)
+char *pad_msg(t_bytes data)
 {
     uint16_t zero_pad;
     uint64_t msg_len;
     char *tmp;
     char *padded_msg;
 
-    msg_len = ft_strlen(msg);
+    msg_len = data.nb_bytes;
+
     zero_pad = ((msg_len + 1) * 8) % 512 <= 448 ? 448 - (((msg_len + 1) * 8) % 512) : 448 + (512 - (((msg_len + 1) * 8) % 512));
-    if (!(tmp = ft_strdup(msg)))
+    if (!(padded_msg = malloc(msg_len + 1 + ceil(zero_pad / 8) + 8)))
         return NULL;
-    if (!(padded_msg = realloc(ft_strdup(tmp), msg_len + 1 + ceil(zero_pad / 8) + 8)))
-    {
-        free(tmp);
-        return NULL;
-    }
+    ft_memcpy(padded_msg, data.bytes, msg_len);
     ft_memset(padded_msg + msg_len, 0, 1 + ceil(zero_pad / 8) + 8);
     *(padded_msg + msg_len) = 0x80;
     *((uint64_t*)(padded_msg + msg_len + 1 + (uint16_t)(ceil(zero_pad / 8)))) = (msg_len * 8) % ULLONG_MAX;
 
     // print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
-    // printf("\nmsg  %lu\n", msg_len);
     return padded_msg;
 }
 
@@ -76,7 +72,7 @@ void md5_hash(t_md5 *process, int j)
     process->round = process->round == 3 ? 0 : process->round + 1;
 }
 
-t_bytes *ft_md5(char *msg)
+t_bytes *ft_md5(t_bytes data)
 {
     t_md5 process;
     unsigned int cst[64];
@@ -86,9 +82,9 @@ t_bytes *ft_md5(char *msg)
     ft_memset(&process, 0, sizeof(t_md5));
     for (int i = 0; i < 64; i++)
         cst[i] = floor(4294967296 * fabs(sin(i + 1)));
-    process.nb_blocks = ceil(ft_strlen(msg) / (float)64) + ((ft_strlen(msg) % 64) >= 56 ? 1 : 0);
-    if (!(padded_msg = pad_msg(msg)))
-        return format_md5_output(NULL);
+    process.nb_blocks = ceil(data.nb_bytes / (float)64) + ((data.nb_bytes % 64) >= 56 ? 1 : 0);
+    if (!(padded_msg = pad_msg(data)))
+        return NULL;
     for (int i = 0; i < process.nb_blocks; i++)
     {
         for (int k = 0; k < 4; k++)
@@ -103,10 +99,5 @@ t_bytes *ft_md5(char *msg)
             res[k] += process.tmp[k];
     }
     free(padded_msg);
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     ft_printf("%08x ", __bswap_32(res[i]));
-    // }
-    // ft_printf("\n");
     return format_md5_output(res);
 }

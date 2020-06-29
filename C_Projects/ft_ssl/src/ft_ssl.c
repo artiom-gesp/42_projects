@@ -29,13 +29,11 @@ int main(int argc, char **argv)
     line = NULL;
     if (!isatty(fileno(stdin)))
         handle_noninteractive(&input);
-    if (input.flags & CONSOLE_FLAG)
-    {
-        printf("HF");
+    else
         handle_interactive(&input);
-    }
     handle_files(&input);
     print_console(input.console);
+    print_string(input.strings);
     print_files(input.filenames);
 
     ssl_exit("", &input, 0);

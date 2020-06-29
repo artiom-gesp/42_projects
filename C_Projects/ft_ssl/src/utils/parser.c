@@ -112,7 +112,12 @@ void parser(int argc, char **argv, t_input *input)
             parse_flags(argv[i], input);
             if (input->flags & STRING_FLAG)
             {
-                continue;
+                input->flags &= ~STRING_FLAG;
+                if (i + 1 < argc && argv[i + 1])
+                {
+                    add_to_string(input->alg_func((t_bytes){argv[i + 1], ft_strlen(argv[i + 1])}), input, argv[i + 1]);
+                    ++i;
+                }
             }
         }
         else

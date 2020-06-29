@@ -20,7 +20,8 @@ SRC_PATHS = $(MAIN_PATH) $(UTILS_PATHS) $(CRYPTO_PATHS)
 UTILS_SRCS = parser.c \
 			 exit.c \
 			 files.c \
-			 console.c
+			 console.c \
+			 strings.c
 
 CRYPTO_SRCS = ft_md5.c \
 			  ft_sha256.c \

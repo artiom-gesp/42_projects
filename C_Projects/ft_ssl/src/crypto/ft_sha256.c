@@ -10,9 +10,9 @@ t_bytes *format_sha256_output(uint32_t *res)
     return &output;
 }
 
-t_bytes *ft_sha256(char *str)
+t_bytes *ft_sha256(t_bytes data)
 {
     
-    ft_printf("In sha256 : %s", str);
+    ft_printf("In sha256 : %s", data.bytes);
     return format_sha256_output(NULL);
 }

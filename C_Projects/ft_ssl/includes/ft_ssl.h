@@ -61,7 +61,7 @@ typedef struct s_string
 typedef struct s_input
 {
     int8_t alg;
-    t_bytes *(*alg_func)(char*);
+    t_bytes *(*alg_func)(t_bytes);
     int8_t flags;
     t_console *console;
     t_string *strings;
@@ -93,12 +93,14 @@ void print_console(t_console *head);
 void handle_noninteractive(t_input *input);
 void handle_interactive(t_input *input);
 
+void add_to_string(t_bytes *output, t_input *input, char *msg);
+void print_string(t_string *head);
 
 /*
 Crypto
 */
-t_bytes *ft_md5(char *msg);
-t_bytes *ft_sha256(char *msg);
+t_bytes *ft_md5(t_bytes data);
+t_bytes *ft_sha256(t_bytes data);
 uint32_t rotl32 (uint32_t value, unsigned int count);
 uint32_t rotr32 (uint32_t value, unsigned int count);
 void print_b(void *s, uint64_t len);
