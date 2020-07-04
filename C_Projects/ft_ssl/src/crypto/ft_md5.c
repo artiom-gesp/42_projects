@@ -18,27 +18,6 @@ t_bytes *format_md5_output(uint32_t *res)
     return output;
 }
 
-char *pad_msg(t_bytes data)
-{
-    uint16_t zero_pad;
-    uint64_t msg_len;
-    char *tmp;
-    char *padded_msg;
-
-    msg_len = data.nb_bytes;
-
-    zero_pad = ((msg_len + 1) * 8) % 512 <= 448 ? 448 - (((msg_len + 1) * 8) % 512) : 448 + (512 - (((msg_len + 1) * 8) % 512));
-    if (!(padded_msg = malloc(msg_len + 1 + ceil(zero_pad / 8) + 8)))
-        return NULL;
-    ft_memcpy(padded_msg, data.bytes, msg_len);
-    ft_memset(padded_msg + msg_len, 0, 1 + ceil(zero_pad / 8) + 8);
-    *(padded_msg + msg_len) = 0x80;
-    *((uint64_t*)(padded_msg + msg_len + 1 + (uint16_t)(ceil(zero_pad / 8)))) = (msg_len * 8) % ULLONG_MAX;
-
-    // print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
-    return padded_msg;
-}
-
 void compute_func(t_md5 *process, int j)
 {
     if (j < 16)
@@ -82,7 +61,7 @@ t_bytes *ft_md5(t_bytes data)
     ft_memset(&process, 0, sizeof(t_md5));
     for (int i = 0; i < 64; i++)
         cst[i] = floor(4294967296 * fabs(sin(i + 1)));
-    process.nb_blocks = ceil(data.nb_bytes / (float)64) + ((data.nb_bytes % 64) >= 56 ? 1 : 0);
+    process.nb_blocks = ceil((data.nb_bytes + 1) / (float)64) + ((data.nb_bytes % 64) >= 56 ? 1 : 0);
     if (!(padded_msg = pad_msg(data)))
         return NULL;
     for (int i = 0; i < process.nb_blocks; i++)

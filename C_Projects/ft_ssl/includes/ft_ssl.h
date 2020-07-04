@@ -77,6 +77,14 @@ typedef struct s_md5
     uint64_t nb_blocks;
 }               t_md5;
 
+typedef struct s_sha256
+{
+    int8_t round;
+    uint32_t tmp[4];
+    uint32_t func;
+    uint64_t block_index;
+    uint64_t nb_blocks;
+}               t_sha256;
 
 /*
 Parsing
@@ -104,6 +112,7 @@ t_bytes *ft_sha256(t_bytes data);
 uint32_t rotl32 (uint32_t value, unsigned int count);
 uint32_t rotr32 (uint32_t value, unsigned int count);
 void print_b(void *s, uint64_t len);
+char *pad_msg(t_bytes data);
 
 
 #endif
