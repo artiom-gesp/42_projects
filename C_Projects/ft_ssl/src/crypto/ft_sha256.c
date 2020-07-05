@@ -39,12 +39,13 @@ t_bytes *ft_sha256(t_bytes data)
     nb_blocks = ceil((data.nb_bytes + 1) / (float)64) + ((data.nb_bytes % 64) >= 56 ? 1 : 0);
     if (!(padded_msg = pad_msg(data)))
         return NULL;
+    ((uint64_t*)(padded_msg))[(nb_blocks - 1) * 8 + 7] = __bswap_64(((uint64_t*)(padded_msg))[(nb_blocks - 1) * 8 + 7]);
     for (int i = 0; i < nb_blocks; i++)
     {
         ft_memset(words, 0, 256);
         ft_memcpy(words, &(((uint32_t*)(padded_msg))[i * 16]), 64);
         for (int f = 0; f < 16; f++)
-            ft_printf("W[%d] = %llx\n", f, words[f]);
+            words[f] = __bswap_32(words[f]);
         for (int l = 16; l < 64; l++)
         {
             words[l] = words[l - 16]
@@ -69,7 +70,7 @@ t_bytes *ft_sha256(t_bytes data)
             S0 = rotr32(tmp[0], 2) ^ rotr32(tmp[0], 13) ^ rotr32(tmp[0], 22);
             maj = (tmp[0] & tmp[1]) ^ (tmp[0] & tmp[2]) ^ (tmp[1] & tmp[2]);
             temp2 = S0 + maj;
-            ft_printf("%llx %llx %llx %llx %llx %llx\n", S1, ch, temp1, S0, maj, temp2);
+
             tmp[7] = tmp[6];
             tmp[6] = tmp[5];
             tmp[5] = tmp[4];
@@ -83,5 +84,7 @@ t_bytes *ft_sha256(t_bytes data)
             res[k] += tmp[k];
     }
     free(padded_msg);
+    for (int k = 0; k < 8; k++)
+        res[k] = __bswap_32(res[k]);
     return format_sha256_output(res);
 }

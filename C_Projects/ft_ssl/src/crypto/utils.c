@@ -49,6 +49,6 @@ char *pad_msg(t_bytes data)
     *(padded_msg + msg_len) = 0x80;
     *((uint64_t*)(padded_msg + msg_len + 1 + (uint16_t)(ceil(zero_pad / 8)))) = (msg_len * 8) % ULLONG_MAX;
 
-    print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
+    // print_b(padded_msg, msg_len + 1 + ceil(zero_pad / 8) + 8);
     return padded_msg;
 }
