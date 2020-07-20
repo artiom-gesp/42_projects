@@ -10,11 +10,13 @@ LIBFT_INCLS = $(LIBFT_DIR)/includes
 SRC_DIR = ./src
 UTILS_DIR = $(SRC_DIR)/utils
 CRYPTO_DIR = $(SRC_DIR)/crypto
-vpath %.c $(SRC_DIR) $(UTILS_DIR) $(CRYPTO_DIR)
+CYPHER_DIR = $(SRC_DIR)/cypher
+vpath %.c $(SRC_DIR) $(UTILS_DIR) $(CRYPTO_DIR) $(CYPHER_DIR)
 
 MAIN_PATH = $(addprefix $(SRC_DIR)/, $(MAIN))
 UTILS_PATHS = $(addprefix $(UTILS_DIR)/, $(UTILS_SRCS))
 CRYPTO_PATHS = $(addprefix $(CRYPTO_DIR)/, $(CRYPTO_SRCS))
+CYPHER_PATHS = $(addprefix $(CYPHER_DIR)/, $(CYPHER_SRCS))
 SRC_PATHS = $(MAIN_PATH) $(UTILS_PATHS) $(CRYPTO_PATHS)
 
 UTILS_SRCS = parser.c \
@@ -26,8 +28,11 @@ UTILS_SRCS = parser.c \
 CRYPTO_SRCS = ft_md5.c \
 			  ft_sha256.c \
 			  utils.c
+
+CYPHER_SRCS = ft_base64.c
+
 MAIN = ft_ssl.c
-SRCS = $(MAIN) $(UTILS_SRCS) $(CRYPTO_SRCS)
+SRCS = $(MAIN) $(UTILS_SRCS) $(CRYPTO_SRCS) $(CYPHER_SRCS)
 
 OBJ_DIR = ./obj
 OBJS = $(SRCS:.c=.o)

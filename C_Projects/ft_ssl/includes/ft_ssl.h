@@ -6,7 +6,7 @@
 /*   By: agesp <agesp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:20:43 by agesp             #+#    #+#             */
-/*   Updated: 2020/06/19 15:49:24 by agesp            ###   ########.fr       */
+/*   Updated: 2020/07/20 11:26:12 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,29 @@
 # include <stdint.h>
 # include <math.h>
 # include <limits.h>
-# include <byteswap.h>
 
+
+#ifndef __APPLE__
+# include <byteswap.h>
+#elif defined(__APPLE__)
+#include <libkern/OSByteOrder.h>
+#define __bswap_16(x) OSSwapInt16(x)
+#define __bswap_32(x) OSSwapInt32(x)
+#define __bswap_64(x) OSSwapInt64(x)
+#endif
 # define FORBID_FLAGS 1
 
 # define CONSOLE_FLAG 2
 # define REVERSE_FLAG 4
 # define QUIET_FLAG 8
 # define STRING_FLAG 16
+# define ENCODE_FLAG 32
+# define DECODE_FLAG 64
+# define INPUT_FLAG 128
+# define OUTPUT_FLAG 256
+
 
 # define BUFFER_SIZE 5
-
-# define MD5 0
-# define SHA256 1
 
 typedef struct s_bytes
 {
@@ -113,6 +123,11 @@ uint32_t rotl32 (uint32_t value, unsigned int count);
 uint32_t rotr32 (uint32_t value, unsigned int count);
 void print_b(void *s, uint64_t len);
 char *pad_msg(t_bytes data);
+
+/*
+Cypher
+*/
+t_bytes *ft_base64(t_bytes data);
 
 
 #endif

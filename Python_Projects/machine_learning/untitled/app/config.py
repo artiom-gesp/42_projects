@@ -1,0 +1,5 @@
+config = {}
+MYSQL_DATABASE_HOST = 'localhost'
+MYSQL_DATABASE_USER = 'root'
+MYSQL_DATABASE_PASSWORD = 'testtest'
+MYSQL_DATABASE_DB = 'mail'

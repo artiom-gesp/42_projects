@@ -6,16 +6,12 @@
 /*   By: agesp <agesp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:41:30 by agesp             #+#    #+#             */
-/*   Updated: 2020/06/19 15:54:30 by agesp            ###   ########.fr       */
+/*   Updated: 2020/07/20 14:25:26 by agesp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void save_s_flag(char *str, t_input *input)
-{
-    
-}
 
 int8_t get_flags(char *flag_list, int8_t flags)
 {
@@ -31,6 +27,14 @@ int8_t get_flags(char *flag_list, int8_t flags)
             flags |= QUIET_FLAG;
         else if (flag_list[i] == 's')
             flags |= STRING_FLAG;
+        else if (flag_list[i] == 'i')
+            flags |= INPUT_FLAG;
+        else if (flag_list[i] == 'o')
+            flags |= OUTPUT_FLAG;
+        else if (flag_list[i] == 'e')
+            flags |= ENCODE_FLAG;
+        else if (flag_list[i] == 'd')
+            flags |= DECODE_FLAG;
         else
         {
             ft_printf("Unrecognized flag : -%c\n", flag_list[i]);
@@ -60,6 +64,8 @@ void parse_digest(char *digest, t_input *input)
         input->alg_func = &ft_md5;
     else if (!ft_strcmp(digest, "sha256"))
         input->alg_func = &ft_sha256;
+    else if (!ft_strcmp(digest, "base64"))
+        input->alg_func = &ft_base64;
     else
     {
         ft_printf("Invalid command '%s'; type \"help\" for a list.", digest);
@@ -85,7 +91,7 @@ void parse_filenames(char *filename, t_input *input)
     input->flags |= FORBID_FLAGS;
     if (!input->filenames)
     {
-        if (!(input->filenames = allocate_filename(filename)))
+        if (!(input->filenames =    (filename)))
             ssl_exit("Malloc failed\n", input, -1);
     }
     else

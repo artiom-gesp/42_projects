@@ -22,6 +22,7 @@ void check_neighbors(char **map, int heigh, int width, int x, int y)
     {
         for (int j = MAX(0, x - 1); j < MIN(width, x + 2); ++j)
         {
+
           if ((i == y - 1 && j == x - 1) || (i == y + 1 && j == x + 1)
           || (i == y - 1 && j == x + 1) || (i == y + 1 && j == x - 1))
                 continue;
