@@ -1,6 +1,6 @@
 # All my projects @school42 (by Artiom Gesp)
 
-School 42 offers a unique and revolutionary pedagogy based on project submission instead of regular classes. 
+School 42 offers a unique and revolutionary pedagogy based on project submission instead of regular coursework.
 
 Each student, to advance in the program, has to complete different projects grouped by themes (Algorithmic, Graphics, Shell, Cybersecurity, etc..).
 
